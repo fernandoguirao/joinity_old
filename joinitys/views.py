@@ -17,7 +17,7 @@ from django.core.mail import send_mail
 from reservas.models import Empresa
 
 
-
+#PAGINA INDEX
 @login_required
 def index(request):
     if not request.user.first_name:
@@ -29,6 +29,7 @@ def index(request):
     lista_family=Joinitys.objects.filter(tipo="1")
     context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":request.user, "pagina":"home"}
     return render(request, 'index/index.html', context)
+
 
 
 @login_required
@@ -83,7 +84,8 @@ def ver(request, joinity_id):
   
     context = {"joinity": joinity, "comentar": comentar, "admin":joinity.soy_admin(request.user), 
                "miembro":joinity.soy_miembro(request.user), "invitado":joinity.soy_invitado(request.user), 
-               "espera":joinity.soy_espera(request.user), "subir_foto":subir_foto, "puntuar":puntuar, "pagina":"joinity"}
+               "espera":joinity.soy_espera(request.user), "subir_foto":subir_foto, "puntuar":puntuar, "pagina":"joinity",
+               "usuario":request.user}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 
 
@@ -133,11 +135,11 @@ def crear_evento(request, joinity_id):
 
     else:
         formulario=Crear_Evento(instance=request.user, user=request.user, joinity=joinity)
-    context={"formulario":formulario, "joinity":joinity}
-    return render_to_response("crear_evento.html", context, context_instance=RequestContext(request))
+    context={"formulario":formulario, "joinity":joinity, "usuario":request.user}
+    return render_to_response("eventos/crear_evento.html", context, context_instance=RequestContext(request))
 
 
-def crear_evento_2(request, joinity_id, evento_id):
+def crear_evento_3(request, joinity_id, evento_id):
     state = "Invitar usuarios"
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
     evento=get_object_or_404(Eventos, pk=evento_id)
@@ -146,8 +148,8 @@ def crear_evento_2(request, joinity_id, evento_id):
     for user in usuarios_evento:
         usuarios_invitados.append(user.usuario)
 
-    context={"state":state, "joinity": joinity, "evento": evento, "usuarios_invitados": usuarios_invitados}
-    return render_to_response('crear_evento_2.html', context, context_instance=RequestContext(request))
+    context={"state":state, "joinity": joinity, "evento": evento, "usuarios_invitados": usuarios_invitados, "usuario":request.user, "pagina":"invitar"}
+    return render_to_response('eventos/crear_evento.html', context, context_instance=RequestContext(request))
 
 
 def invitar_evento(request, joinity_id, evento_id, usuario_id):
@@ -157,7 +159,7 @@ def invitar_evento(request, joinity_id, evento_id, usuario_id):
     if Usuarios_Evento.objects.filter(usuario=usuario, evento=evento).count()==0:
         nuevo=Usuarios_Evento(usuario=usuario, evento=evento, estado=0)
         nuevo.save()
-    return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/2/"+str(evento.id))
+    return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
 def invitar_todos_evento(request, joinity_id, evento_id):
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
     evento=get_object_or_404(Eventos, pk=evento_id)
@@ -167,8 +169,8 @@ def invitar_todos_evento(request, joinity_id, evento_id):
         if Usuarios_Evento.objects.filter(usuario=usuario.usuario, evento=evento).count()==0:
             nuevo=Usuarios_Evento(usuario=usuario.usuario, evento=evento, estado=0)
             nuevo.save()
-    return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/2/"+str(evento.id))
-def crear_evento_3(request, joinity_id, evento_id):
+    return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
+def crear_evento_2(request, joinity_id, evento_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
     evento=get_object_or_404(Eventos, pk=evento_id)
     state="Anyadir Lugares"
@@ -180,11 +182,11 @@ def crear_evento_3(request, joinity_id, evento_id):
             n+=1
             nuevo=Lugares_Evento(evento=evento, lugar=request.POST["lugar"], n=n)
             nuevo.save()
-            return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
+            return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/2/"+str(evento.id))
     else:
         formulario=Anyadir_Lugar_Evento()
-    context={"joinity": joinity, "evento": evento,"formulario":formulario, "state": state}
-    return render_to_response('crear_evento_3.html', context, context_instance=RequestContext(request))
+    context={"joinity": joinity, "evento": evento,"formulario":formulario, "state": state, "pagina":"anyadir_lugares", "usuario":request.user}
+    return render_to_response('eventos/crear_evento.html', context, context_instance=RequestContext(request))
 def crear_tarea(request, joinity_id):
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
     if request.POST:
@@ -477,4 +479,16 @@ def aprobar(request, reserva_id):
     reserva.estado=2
     reserva.save()
     return HttpResponseRedirect("/empresa/"+str(reserva.empresa.id))
+def unirse_evento(request, joinity_id, evento_id):
+    evento=get_object_or_404(Eventos, pk=evento_id)
+    if not Usuarios_Evento.objects.filter(usuario=request.user, evento=evento).exists():
+        nuevo=Usuarios_Evento(usuario=request.user, evento=evento, estado=1)
+        nuevo.save()
+    return HttpResponseRedirect("/joinity/"+str(evento.joinity.id))
+def mis_eventos(request):
+    subconsulta="SELECT * FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
+    lista_eventos=Usuarios_Evento.objects.filter(usuario=request.user)
+    context={'lista_eventos':lista_eventos, "pagina":"misEventos"}
+    return render(request, 'eventos/index.html', context)
+
 

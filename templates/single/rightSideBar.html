@@ -33,10 +33,13 @@
         </div>
         Eventos
       </div>
-      <div class="btn btn-mini btn-embossed">
-        Crea un evento
-      </div>
+      <a href="/joinity/{{joinity.id}}/evento/crear">
+	      <div class="btn btn-mini btn-embossed">
+	        Crea un evento
+	      </div>
+      </a>
       <div class="eventosLista">
+      	{% for evento in joinity.eventos.all %}
         <!-- UN EVENTO -->
         <div class="unEvento">
           <div class="fechaEvento">
@@ -46,29 +49,31 @@
             </span>
           </div>
           <p>
-            Lectura de poemas en el café de las letras con mis amigos y mis enemigos
+            {{evento.titulo}}
           </p>
           <div class="participan">
             Con
-            <div class="participante" style="background-image:url('/media/images/ejemplos/avatar.png');">
+            {% for participante in evento.usuarios.all|slice:":3" %}
+            <div class="participante" style="background-image:url('/media/{{participante.usuario.foto}}');">
             </div>
-            <div class="participante" style="background-image:url('/media/images/ejemplos/archivo03.png');">
-            </div>
-            <div class="participante" style="background-image:url('/media/images/ejemplos/archivo02.png');">
-            </div>
+            {% endfor %}
             y <b data-toggle="tooltip" data-placement="bottom" data-container=".toolt" data-html="true" title="Fernando Guirao<br>Adriano Celentano<br>Borja Garc�a">30 m�s</b>
             <div class="toolt"></div>
             
             
           </div>
+          <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
           <div class="btn btn-mini btn-icono gris">
             <i class="iconos">
               q
             </i>
             Me apunto
           </div>
+          </a>
         </div>
         <!-- FIN DE UN EVENTO -->
+        
+        {% endfor %}
       </div>
     </div>
     <div class="lasTareas">

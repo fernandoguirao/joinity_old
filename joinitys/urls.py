@@ -39,4 +39,5 @@ urlpatterns = patterns('',
     url(r'^invitar/(?P<joinity_id>\d+)/(?P<usuario_id>\d+)/$', views.invitar_usuario, name='invitar_usuario'),
     url(r'^nombrar_admin/(?P<usuario_joinity_id>\d+)/$', views.nombrar_admin, name='nombrar_admin'),
     url(r'^aceptar_membresia/(?P<usuario_joinity_id>\d+)/$', views.aceptar_membresia, name='aceptar_membresia'),
+    url(r'^(?P<joinity_id>\d+)/evento/(?P<evento_id>\d+)/unirse/$', views.unirse_evento, name='unirse_evento'),
 )

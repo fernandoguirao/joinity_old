@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block contenedor %}
+<div id="contenedorMain">
+  {% include "persistentes/menuAdaptativo.html" %}
+  <div class="container-fluid contenedorAdaptativo">
+    <div class="row-fluid">
+      <div class="span2 panelIzquierdo">
+		{% include "persistentes/leftMenu.html" %}
+      </div>
+      <div class="span10" id="contenedorPrincipal">
+
+        {% include "persistentes/buscador.html" %}
+
+        {% include "eventos/mis_eventos.html" %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

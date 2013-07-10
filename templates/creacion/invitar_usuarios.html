@@ -23,7 +23,7 @@
 	{% if usuario in usuarios_invitados %}
 		Ya invitado
 	{% else %}
-		<a href="/joinity/invitar/{{joinity.id}}/{{usuario.id}}/?next=/joinity/nuevo_joinity/aficiones/3/{{joinity.id}}">Invitar</a>
+		<a href="/joinity/invitar/{{joinity.id}}/{{usuario.id}}/?next=/joinity/nuevo_joinity/{{joinity.get_tipo}}/3/{{joinity.id}}">Invitar</a>
 	{% endif %}
 	<br>
 {% empty %}

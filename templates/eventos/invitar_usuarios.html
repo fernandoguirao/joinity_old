@@ -1,0 +1,12 @@
+{% for usuario in joinity.joinity_usuario.all %}
+	{{usuario.usuario.first_name}}-
+	{% if usuario.usuario not in usuarios_invitados %}
+		<a href="/joinity/{{joinity.id}}/evento/invitar/{{evento.id}}/{{usuario.usuario.id}}">
+	Invitar</a><br>
+	{% else %}
+		Ya invitado<br>
+	{% endif %}
+{% endfor %}
+
+<a href="/joinity/{{joinity.id}}/evento/invitar/{{evento.id}}/all">Invitar a todos</a><br>
+<a href="/joinity/{{joinity.id}}/"><input type="button" value="Finalizar" /></a>

@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^reserva/aprobar/(?P<reserva_id>\d+)/$', joinitys_views.aprobar, name="aprobar_reserva"),
     url(r'^mis_joinitys/$', joinitys_views.mis_joinitys, name='mis_joinitys'),
     url(r'^mis_tareas/$', joinitys_views.mis_tareas, name='mis_tareas'),
+    url(r'^mis_eventos/$', joinitys_views.mis_eventos, name='mis_eventos'),
 
 
 )
