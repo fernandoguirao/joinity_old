@@ -29,6 +29,8 @@ urlpatterns = patterns('',
     url(r'^mis_joinitys/$', joinitys_views.mis_joinitys, name='mis_joinitys'),
     url(r'^mis_tareas/$', joinitys_views.mis_tareas, name='mis_tareas'),
     url(r'^mis_eventos/$', joinitys_views.mis_eventos, name='mis_eventos'),
+    url(r'^mis_eventos/(?P<evento_id>\d+)/$', joinitys_views.ver_mi_evento, name='mis_eventos_joinity'),
+
 
 
 )

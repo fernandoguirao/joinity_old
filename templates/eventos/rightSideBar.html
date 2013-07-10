@@ -7,69 +7,30 @@
     
     <!-- TODOS LOS MENSAJES -->
     <div class="todosMensajes">
+    {% for evento in eventos %}
       <!-- CADA MENSAJE -->
+      <a href="/mis_eventos/{{evento.id}}">
       <div class="cadaMensaje nuevo">
-        <div class="avatar span3" style="background-image:url('/media/images/ejemplos/archivo03.png');">
+        {% if evento.foto %}
+        	<div class="avatar span3" style="background-image:url('/media/{{evento.foto}}');">
+        {% else %}
+        	<div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
+        {% endif %}
         </div>
         <div class="numeroNotif">
           2
         </div>
         <p class="span9">
-          <b>Nombre del evento</b>
-          <i>27/05/2013</i>
-          <span>En Jerez de la Frontera</span>
+          <b>{{evento.titulo}}</b>
+          <i>{{evento.fecha_inicio}}</i>
+          {% for lugar in evento.lugares_evento.all|slice:":1" %}
+          	<span>En {{lugar.lugar}}</span>
+          {% endfor %}
         </p>
-
       </div>
+      </a>
       <!-- FIN DE CADA MENSAJE -->
-      <!-- CADA MENSAJE -->
-      <div class="cadaMensaje">
-        <div class="avatar span3" style="background-image:url('/media/images/ejemplos/avatar.png');">
-        </div>
-        <p class="span9">
-          <b>Nombre del evento</b>
-          <i>27/05/2013</i>
-          <span>En Jerez de la Frontera</span>
-        </p>
-
-      </div>
-      <!-- FIN DE CADA MENSAJE -->
-      <!-- CADA MENSAJE -->
-      <div class="cadaMensaje">
-        <div class="avatar span3" style="background-image:url('/media/images/ejemplos/archivo01.png');">
-        </div>
-        <p class="span9">
-          <b>Nombre del evento</b>
-          <i>27/05/2013</i>
-          <span>En Jerez de la Frontera</span>
-        </p>
-
-      </div>
-      <!-- FIN DE CADA MENSAJE -->
-      <!-- CADA MENSAJE -->
-      <div class="cadaMensaje">
-        <div class="avatar span3" style="background-image:url('/media/images/ejemplos/archivo02.png');">
-        </div>
-        <p class="span9">
-          <b>Nombre del evento</b>
-          <i>27/05/2013</i>
-          <span>En Jerez de la Frontera</span>
-        </p>
-
-      </div>
-      <!-- FIN DE CADA MENSAJE -->
-      <!-- CADA MENSAJE -->
-      <div class="cadaMensaje activo">
-        <div class="avatar span3" style="background-image:url('/media/images/ejemplos/avatar.png');">
-        </div>
-        <p class="span9">
-          <b>Nombre del evento</b>
-          <i>27/05/2013</i>
-          <span>En Jerez de la Frontera</span>
-        </p>
-        
-      </div>
-      <!-- FIN DE CADA MENSAJE -->
+     {% endfor %}
     </div>
     <!-- FIN DE TODOS LOS MENSAJES -->
    </div>
