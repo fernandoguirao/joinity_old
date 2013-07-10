@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block contenedor %}
+<div id="contenedorMain">
+	{% include "persistentes/menuAdaptativo.html" %}  
+	<div class="container-fluid contenedorAdaptativo">
+    	<div class="row-fluid">
+        	{% include "persistentes/buscador.html" %}
+	    </div>
+  	</div>
+</div>
+	{% include "index/selector.html" %}
+	{% include "index/carousel.html" %}
+	{% include "index/array-aficiones.html" %}
+	{% include "index/array-compras.html" %}
+	{% include "index/array-fandfriends.html" %}
+	{% include "index/footer.html" %}
+{% endblock %}

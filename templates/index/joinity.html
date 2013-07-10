@@ -1,0 +1,85 @@
+<a href="/joinity/{{ joinity.joinity.id }}" class="extracto-joinity horizontal rojo">
+  <div class="left-side" style="background-image:url('media/images/ejemplos/archivo01.png');">
+  </div>
+  <div class="right-side">
+    <!-- FILA 01 -->
+    <div class="fila">
+      <div class="valor01">
+        <i class="iconos">
+          h
+        </i>
+        <p>
+          {{joinity.joinity.precio}}
+          <span>
+            euros/ persona
+          </span>
+        </p>
+      </div>
+      <div class="valor02">
+        <i class="iconos">
+          i
+        </i>
+        <p>
+          25
+          <span>
+            días para empezar
+          </span>
+        </p>
+      </div>
+    </div> <!-- FIN FILA 01 -->
+    <!-- FILA 02 -->
+    <div class="fila">
+      <div class="valor03">
+        <h3>
+          {{ joinity.joinity.nombre }}
+        </h3>
+      </div>
+      <div class="valor04">
+        <div class="etiqueta">
+          {{joinity.joinity.get_categoria}}
+        </div>
+        {% if joinity.joinity.tipo != 1 %}
+        <div class="etiqueta">
+          {{joinity.joinity.get_subcategoria}}
+        </div>
+        {% endif %}
+      </div>
+    </div> <!-- FIN FILA 02 -->
+    <!-- FILA 03 -->
+    <div class="fila">
+      <div class="valor05">
+        <div class="numero-joiners">
+          <p>
+            <span class="njoiners">
+              25
+            </span>
+            joiners > 
+            <span class="djoiners">
+              15%
+            </span>
+            de descuento
+          </p>
+        </div>
+        <div class="progreso">
+          <div class="progress">
+            <div class="bar" style="width: 45%;">
+            </div>
+          </div>
+          <p class="minjoiners">
+            Min. {{joinity.joinity.n_min}} joiners
+          </p>
+          <p class="maxjoiners">
+            Max. {{joinity.joinity.n_max}} joiners
+          </p>
+        </div>
+      </div>
+      <div class="valor06">
+        <i class="punto iconos">j</i>
+        <i class="punto iconos">j</i>
+        <i class="iconos">j</i>
+        <i class="iconos">j</i>
+        <i class="iconos">j</i>
+      </div>
+    </div> <!-- FIN FILA 03 -->
+  </div>
+</a>

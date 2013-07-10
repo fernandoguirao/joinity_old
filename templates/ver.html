@@ -1,0 +1,7 @@
+<a href="/usuario/"><input type="button" value="Perfil"/>
+<a href="/"><input type="button" value="Inicio"/>
+{% if mensaje %}
+	<h1>{{mensaje.asunto}}</h1>
+	<a href="../../usuario/{{mensaje.remitente.id}}"><p>De: {{mensaje.remitente.email}}</p></a>
+	<p>{{mensaje.mensaje}}</p>
+{% endif %}

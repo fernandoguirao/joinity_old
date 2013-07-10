@@ -1,0 +1,10 @@
+Busqueda hotel del joinity {{joinity.id}}
+<form action="" method="get">
+	{{ busqueda }}
+	<input type="submit" value="Buscar" />
+</form>	
+{% if hoteles %}
+	{% for hotel in hoteles %}
+		{{hotel.nombre}}-{{hotel.ubicacion}} <a href="/empresa/{{hotel.id}}" target="_blank"><input type="button" value="Ver"/></a><a href="/joinity/{{joinity.id}}/reserva/hotel/crear/{{hotel.id}}/"><input type="button" value="Crear"/></a><br>
+	{% endfor %}
+{% endif %}

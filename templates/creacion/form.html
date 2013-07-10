@@ -1,0 +1,35 @@
+	<form action="" method="post">
+		{% csrf_token %}
+		<div class="fieldWrapper">
+	        <label for="id_Nombre">Nombre del joinity:</label>
+	        {{ formulario.nombre }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_descripcion">Descripcion:</label>
+	        {{ formulario.descripcion }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_nmin">Participantes Minimos:</label>
+	        {{ formulario.n_min }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_nmax">Participantes Maximos:</label>
+	        {{ formulario.n_max }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_precio">Precio:</label>
+	        {{ formulario.precio }}
+	    </div>
+	    {% if pagina == "crear-aficiones" %}
+	    	{% include "creacion/formaficiones.html" %}
+	    {% elif pagina == "crear-family" %}
+	    	{% include "creacion/formfamily.html" %}
+	    {% elif pagina == "crear-compras" %}
+	    	{% include "creacion/formcompras.html" %}
+	    {% endif %}
+	    <div class="fieldWrapper">
+	        <label for="id_privacidad">Privacidad:</label>
+	        {{ formulario.privacidad }}
+	    </div>
+		<input type="submit" value="Crear Joinity" />
+	</form>

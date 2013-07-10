@@ -1,0 +1,36 @@
+<!-- ACTUALIZACIÓN: TEXTO -->
+<div class="actualizacion texto">
+  <div class="clasificacion">
+    <div class="icono">
+      <i class="iconos">
+        t
+      </i>
+    </div>
+    <div class="fecha etiqueta">
+      12 jun
+    </div>
+  </div>
+  <div class="continente">
+    <div class="creditos">
+      <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+      </div>
+      <p class="smallTxt">
+        <a href="/usuario/{{comentario.usuario.id}}">
+          {{comentario.usuario.first_name}}
+        </a>
+        ha dicho:
+      </p>
+    </div>
+    <div class="contenido">
+      <!-- CONTENIDO ESPECÍFICO -->
+        <div class="texto">
+          <p>
+            {{comentario.comentario}}
+          </p>
+        </div>
+      <!-- FIN CONTENIDO ESPECÍFICO -->
+      {% include "single/comentarios.html" %}
+    </div>
+  </div>
+</div>
+<!-- FIN ACTUALIZACIÓN: TEXTO-->

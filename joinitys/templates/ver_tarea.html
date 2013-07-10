@@ -1,0 +1,42 @@
+Titulo: {{tarea.nombre}}<br>
+<img src="/media/{{tarea.foto}}"><br>
+Descripcion: {{tarea.notas}}<br>
+Fecha Inicio: {{tarea.fecha_inicio}}<br>
+Fecha Fin: {{tarea.fecha_fin}}<br>
+Repeticion:
+{% if tarea.repeticion == 0 %}
+	Puntual
+{% elif tarea.repeticion == 1 %}
+	Diario
+{% elif tarea.repeticion == 2 %}
+	Semanal
+{% elif tarea.repeticion == 3 %}
+	Dos Semanas
+{% elif tarea.repeticion == 4 %}
+	Mensual
+{% elif tarea.repeticion == 5 %}
+	Anual
+{% endif %}<br>
+Lugares:<br>
+{% for lugar in tarea.lugares_tarea.all %}
+	<li>Paso {{lugar.n}}: {{lugar.lugar}}</li>
+{% endfor %}
+<h1> Participantes </h1>
+{% for usuario in tarea.usuarios.all %}
+	{{usuario.first_name}}<br>
+{% endfor %}
+<h1> Lista Admins </h1>
+{% for usuario in lista_admins.all %}
+	{{usuario.usuario.first_name}}<br>
+{% endfor %}
+
+{% if not tarea.padre %}
+	<h1> Subtareas </h1>
+	{% for hija in tarea.hijas.all %}
+		<a href="/joinity/{{tarea.joinity.id}}/tarea/{{hija.id}}">{{hija.nombre}}</a>
+		<br>
+	{% endfor %}		
+ 	<a href="/joinity/{{tarea.joinity.id}}/tarea/crear/sub/{{tarea.id}}"><input type="button" value="Crear SubTarea" /></a><br>
+{% endif %}
+
+<a href="/joinity/ver/{{tarea.joinity.id}}">volver al joinity</a>

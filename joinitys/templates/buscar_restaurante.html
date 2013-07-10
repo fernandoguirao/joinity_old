@@ -1,0 +1,10 @@
+Busqueda restaurante del joinity {{joinity.id}}
+<form action="" method="get">
+	{{ busqueda }}
+	<input type="submit" value="Buscar" />
+</form>	
+{% if restaurantes %}
+	{% for restaurante in restaurantes %}
+		{{restaurante.nombre}}-{{restaurante.ubicacion}} <a href="/empresa/{{restaurante.id}}" target="_blank"><input type="button" value="Ver"/></a><a href="/joinity/{{joinity.id}}/reserva/restaurante/crear/{{restaurante.id}}"><input type="button" value="Crear"/></a><br>
+	{% endfor %}
+{% endif %}

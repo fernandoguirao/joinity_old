@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'joinity';
+    src: url('2joinity-webfont.eot');
+    src: url('2joinity-webfont.eot?#iefix') format('embedded-opentype'),
+         url('2joinity-webfont.woff') format('woff'),
+         url('2joinity-webfont.ttf') format('truetype'),
+         url('2joinity-webfont.svg#joinityregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

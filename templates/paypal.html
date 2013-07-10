@@ -1,0 +1,25 @@
+PAGO: {{pago.nombre}}<br>
+PRECIO POR PERSONA: {{pago.precio}}<br>
+CORREO: {{pago.correo}}<br>
+CREADOR: {{pago.creador}}<br><br>
+
+
+{% if admin %}
+	USUARIOS EN ESTE PAGO
+	<ul>
+	{% for usuario in usuarios %}
+		<li>Usuario: {{usuario.usuario.username}} Estado: 
+		{% if usuario.ha_pagado %}
+			PAGADO
+		{% else %}
+			NO PAGADO
+		{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}
+{% if pagado %}
+	YA PAGADO
+{% else %}
+	{{ form }}
+{% endif %}

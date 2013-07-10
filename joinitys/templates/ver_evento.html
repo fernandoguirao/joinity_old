@@ -1,0 +1,35 @@
+Foto: <img src="/media/{{evento.foto}}"><br>
+
+Titulo: {{evento.titulo}}<br>
+Descripcion: {{evento.descripcion}}<br>
+Fecha Inicio: {{evento.fecha_inicio}}<br>
+Fecha Fin: {{evento.fecha_fin}}<br>
+Repeticion:
+{% if evento.repeticion == 0 %}
+	Puntual
+{% elif evento.repeticion == 1 %}
+	Diario
+{% elif evento.repeticion == 2 %}
+	Semanal
+{% elif evento.repeticion == 3 %}
+	Dos Semanas
+{% elif evento.repeticion == 4 %}
+	Mensual
+{% elif evento.repeticion == 5 %}
+	Anual
+{% endif %}<br>
+Lugares:<br>
+{% for lugar in evento.lugares_evento.all %}
+	<li>Paso {{lugar.n}}: {{lugar.lugar}}</li>
+{% endfor %}
+Privacidad: {% if evento.privacidad == 0 %} Publico {% else %} Privado {% endif %}<br>
+Privilegios: {% if evento.privilegios == 0 %} Solo Administrador puede invitar {% else %} puede invitar todo el mundo {% endif %}<br>
+<h1> Participantes </h1>
+{% for usuario in evento.usuarios.all %}
+	{{usuario.first_name}}<br>
+{% endfor %}
+<h1> Lista Admins </h1>
+{% for usuario in lista_admins.all %}
+	{{usuario.usuario.first_name}}<br>
+{% endfor %}
+<a href="/joinity/ver/{{evento.joinity.id}}">volver al joinity</a>

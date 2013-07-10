@@ -1,0 +1,20 @@
+{% if lista_joinitys %}
+    {% for joinity in lista_joinitys %}
+    	{% include "index/joinity.html" %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay Joinitys.</p>
+{% endif %}
+
+
+
+<a href="/joinity/nuevo_joinity/"><input type="button" value="Crear Joinity"/></a>
+<a href="/usuario/"><input type="button" value="Perfil"/></a>
+<a href="/mensaje/inbox/"><input type="button" value="Mensajes"/></a>
+<a href="/logout/"><input type="button" value="Cerrar Sesion"/></a>
+<br>
+EMPRESAS QUE ADMINISTRO<br>
+{% for empresa in usuario.empresas_admin.all %}
+	<a href="/empresa/{{empresa.id}}">{{empresa.nombre}}</a><br>
+{% endfor %}

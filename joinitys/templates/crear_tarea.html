@@ -1,0 +1,30 @@
+<a href="/joinity/ver/{{joinity.id}}">volver a joinity</a>
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="fieldWrapper">
+	        <label for="id_nombre">Nombre:</label>
+	        {{ formulario.nombre }}
+	</div>
+	<div>
+		<label>Notas:</label>
+		{{formulario.notas}}
+	</div>
+	<div>
+		<label>Foto:</label>
+		{{formulario.foto}}
+	</div>
+	<div>
+		<label>Fecha Inicio:</label>
+		{{formulario.fecha_inicio}}
+	</div>
+	<div>
+		<label>Fecha Fin:</label>
+		{{formulario.fecha_fin}}
+	</div>
+	<div>
+		<label>Repeticion:</label>
+		{{formulario.repeticion}}
+	</div>
+	<input type="submit" value="Crear Tarea" />
+	
+</form>

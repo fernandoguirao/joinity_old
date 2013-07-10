@@ -1,0 +1,9 @@
+{% for lugar in joinity.lugares.all %}
+	Paso {{lugar.n}}: {{lugar.lugar}}<br>
+{% endfor %}
+<form action="" method="post">
+	{% csrf_token %}
+	{{ formulario }}
+	<input type="submit" value="Anyadir Lugar" />
+</form>	
+<a href="/joinity/nuevo_joinity/aficiones/3/{{joinity.id}}"><input type="button" value="Siguiente"/></a>

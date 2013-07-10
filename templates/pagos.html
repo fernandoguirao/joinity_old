@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<body>
+	{{ state }}
+	<form action="" method="post">
+		{% csrf_token %}
+		<div class="fieldWrapper">
+	        <label for="id_Email">Cuenta de Ebay del vendedor:</label>
+	        {{ formulario.correo }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_username">Producto:</label>
+	        {{ formulario.nombre }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_precio">Precio:</label>
+	        {{ formulario.precio }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_usuarios">Usuarios:</label>
+	        {{ formulario.usuarios }}
+	    </div>
+
+		<input type="submit" value="Crear Pago" />
+	</form>
+</body>
+</html>

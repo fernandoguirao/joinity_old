@@ -1,0 +1,13 @@
+<h1>INBOX</h1>
+<a href="/usuario/"><input type="button" value="Perfil"/>
+<a href="/"><input type="button" value="Inicio"/>
+{% if mensajes %}
+	{% for mensaje in mensajes %}
+		<a href="../{{mensaje.id}}"><h1>{{mensaje.asunto}} {% if mensaje.leido %} LEIDO {% endif %}</h1></a>
+		<a href="../../usuario/{{mensaje.remitente.id}}"><p>De: {{mensaje.remitente.email}}</p></a>
+	{% endfor %}
+{% else %}
+	No tiene mensajes
+{% endif %}
+
+<a href="/mensaje/"><input type="button" value="Mandar Mensaje"/>

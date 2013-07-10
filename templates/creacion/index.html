@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block contenedor %}
+<div id="contenedorMain">
+
+  {% include "persistentes/menuAdaptativo.html" %}
+  <div class="container-fluid contenedorAdaptativo">
+    <div class="row-fluid">
+      <div class="span2 panelIzquierdo">
+		{% include "persistentes/leftMenu.html" %}
+      </div>
+      <div class="span10" id="contenedorPrincipal">
+		{% include "persistentes/buscador.html" %}
+		<div id="unJoinity">
+
+  			<div id="contenedorJoinity">
+  				<!-- CONTENIDO -->
+				<a href="/joinity/nuevo_joinity/family"><input type="button" value="Family and friends" /></a>
+				<a href="/joinity/nuevo_joinity/aficiones"><input type="button" value="Aficiones" /></a>
+				<a href="/joinity/nuevo_joinity/compras"><input type="button" value="Compras" /></a>
+				
+				<!-- FIN CONTENIDO -->
+    			<div style="clear:both;width:1px;height:1px;">
+    			</div> 
+
+  			</div>
+		</div>
+		
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

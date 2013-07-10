@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block contenedor %}
+<div id="contenedorMain">
+	{% include "persistentes/menuAdaptativo.html" %} 
+  <div class="container-fluid contenedorAdaptativo">
+    <div class="row-fluid">
+      <div class="span2 panelIzquierdo">
+
+        <?php include('vistas/general/leftMenu.html'); ?>
+
+		{% include "persistentes/leftMenu.html" %}
+      </div>
+      <div class="span10" id="contenedorPrincipal">
+
+		{% include "persistentes/buscador.html" %}
+        
+        <div id="unJoinity">
+
+			{% include "single/head.html" %}
+  			<div id="contenedorJoinity">
+  
+
+    		{% include "single/timeline.html" %}
+
+    		{% include "single/rightSideBar.html" %}
+    
+    		<div style="clear:both;width:1px;height:1px;">
+    	</div> 
+
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

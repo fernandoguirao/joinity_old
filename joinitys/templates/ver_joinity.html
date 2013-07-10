@@ -1,0 +1,190 @@
+{% if admin %}
+	<h1>Panel de admin</h1><br>
+	<b>Lista de usuarios</b><br>
+	{% for usuario in joinity.joinity_usuario.all %}
+		{% if usuario.estado == 0 %}
+			Invitado
+		{% elif usuario.estado == 1 %}
+			<a href="/joinity/nombrar_admin/{{usuario.id}}">Nombrar admin</a>
+		{% elif usuario.estado == 2 %}
+			Admin
+		{% elif usuario.estado == -1 %}
+			<a href="/joinity/aceptar_membresia/{{usuario.id}}">Aceptar Membresia</a>
+		{% endif %}
+		-{{usuario.usuario.first_name}}
+		{% if usuario.estado == 1 %}
+		{% endif %}
+		<br>
+	{% endfor %}
+	{% if joinity.tipo == 1 %}
+		<a href="/joinity/nuevo_joinity/family/2/{{joinity.id}}"><input type="button" value="Invitar"/></a>
+	{% elif joinity.tipo == 2 %}
+		<a href="/joinity/nuevo_joinity/compras/2/{{joinity.id}}"><input type="button" value="Invitar"/></a>
+	{% elif joinity.tipo == 3 %}
+		<a href="/joinity/nuevo_joinity/aficiones/2/{{joinity.id}}"><input type="button" value="Invitar"/></a>
+	{% endif %}
+	
+	
+	<form action="?foto=1" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+			{{subir_foto}}
+		<input type="submit" value="Subir Foto" />
+	
+	</form>
+	
+	
+{% elif miembro %}
+Eres miembro
+{% elif invitado %}
+Eres invitado
+	<a href="/joinity/aceptar/{{joinity.id}}"><input type="button" value="Aceptar"/></a><br>
+{% elif espera %}
+A la espera de aceptar
+{% else %}
+	<a href="/joinity/unirse/{{joinity.id}}"><input type="button" value="Unirse a joinity"/></a><br>
+{% endif %}
+<br>
+<br>
+<h1>Joinity</h1>
+
+<h2>Puntuacion: {{joinity.puntuacion_media}}</h2>
+<form action="?puntua=1" method="post">
+	{% csrf_token %}
+	{{ puntuar }}
+	<input type="submit" value="Puntuar" />
+</form>
+
+{% for foto in joinity.fotos.all %}
+	<img src="/media/{{foto.foto}}"><br>
+{% endfor %}
+Nombre: {{joinity.nombre}}<br>
+Descripcion: {{joinity.descripcion}}<br>
+Precio: {{joinity.precio}}<br>
+Minimo Usuarios: {{joinity.n_min}}<br>
+Maximo Usuarios: {{joinity.n_max}}<br>
+Lugares:<br>
+{% for lugar in joinity.lugares.all %}
+<li>Paso {{lugar.n}}: {{lugar.lugar}}</li>
+{% endfor %}
+
+{% if joinity.tipo == 1 %}
+<b>Family and Friends</b><br>
+Subcategoria: 
+{{joinity.family_rel.subcategoria.nombre}}<br>
+Fecha inicio: 
+{{joinity.family_rel.fecha_inicio}}<br>
+Fecha Fin: 
+{{joinity.family_rel.fecha_fin}}<br>
+Repeticion:
+{% if joinity.family_rel.repeticion == 0 %}
+	Puntual
+{% elif joinity.family_rel.repeticion == 1 %}
+	Diario
+{% elif joinity.family_rel.repeticion == 2 %}
+	Semanal
+{% elif joinity.family_rel.repeticion == 3 %}
+	Dos Semanas
+{% elif joinity.family_rel.repeticion == 4 %}
+	Mensual
+{% elif joinity.family_rel.repeticion == 5 %}
+	Anual
+{% endif %}
+<br>
+{% elif joinity.tipo == 2 %}
+<b>Compras</b><br>
+Categoria:
+{{joinity.compras_rel.subcategoria.categoria.nombre}}<br>
+Subcategoria:
+{{joinity.compras_rel.subcategoria.nombre}}<br>
+Minimo 1r descuento:
+{{joinity.compras_rel.n_descuento1}}%<br>
+1r descuento:
+{{joinity.compras_rel.descuento1}}<br>
+Minimo 2o descuento:
+{{joinity.compras_rel.n_descuento2}}%<br>
+2o descuento:
+{{joinity.compras_rel.descuento2}}<br>
+Minimo 3r descuento:
+{{joinity.compras_rel.n_descuento3}}%<br>
+3r descuento:
+{{joinity.compras_rel.descuento3}}<br>
+{% elif joinity.tipo == 3 %}
+<b>Aficiones</b><br>
+Categoria: 
+{{joinity.aficiones_rel.subcategoria.categoria.nombre}}<br>
+Subcategoria: 
+{{joinity.aficiones_rel.subcategoria.nombre}}<br>
+Fecha inicio: 
+{{joinity.aficiones_rel.fecha_inicio}}<br>
+Fecha Fin: 
+{{joinity.aficiones_rel.fecha_fin}}<br>
+Repeticion: 
+{% if joinity.aficiones_rel.repeticion == 0 %}
+	Puntual
+{% elif joinity.aficiones_rel.repeticion == 1 %}
+	Diario
+{% elif joinity.aficiones_rel.repeticion == 2 %}
+	Semanal
+{% elif joinity.aficiones_rel.repeticion == 3 %}
+	Dos Semanas
+{% elif joinity.aficiones_rel.repeticion == 4 %}
+	Mensual
+{% elif joinity.aficiones_rel.repeticion == 5 %}
+	Anual
+{% endif %}
+<br>
+Nivel: 
+{% if joinity.aficiones_rel.nivel == 0 %}
+	Indiferente
+{% elif joinity.aficiones_rel.nivel == 1 %}
+	Amateur
+{% elif joinity.aficiones_rel.nivel == 1 %}
+	Intermedio
+{% elif joinity.aficiones_rel.nivel == 1 %}
+	Pro
+{% endif %}
+<br>
+Requisitos: 
+{{joinity.aficiones_rel.requisitos}}<br>
+{% else %}
+Joinity Obsoleto sin tipo
+{% endif %}
+<h1>Comentarios</h1>
+{% for comentario in joinity.comentarios.all %}
+	{{comentario.usuario.first_name}} escribio:
+	{{comentario.comentario}}
+	<br>
+{% endfor %}
+<form action="?comentar=1" method="post">
+	{% csrf_token %}
+	<div>{{ comentar.comentario }}</div>
+	
+	<input type="submit" value="Comentar" />
+</form>
+
+<h1>Eventos</h1>
+{% for evento in joinity.eventos.all %}
+	<a href="/joinity/{{joinity.id}}/evento/{{evento.id}}">{{evento.titulo}}</a>
+	<br>
+{% endfor %}
+<a href="/joinity/{{joinity.id}}/evento/crear"><input type="button" value="Crear Evento" /></a>
+<h1>Tareas</h1>
+{% for tarea in joinity.tareas.all %}
+	{% if not tarea.padre %}
+		<a href="/joinity/{{joinity.id}}/tarea/{{tarea.id}}">{{tarea.nombre}}</a>
+		<br>
+	{% endif %}
+{% endfor %}
+<a href="/joinity/{{joinity.id}}/tarea/crear"><input type="button" value="Crear Tarea" /></a>
+
+{% if joinity.tipo == 1 %}
+	<h1>Reservas</h1>
+	{% for reserva in joinity.family_rel.family_reserva.all %}
+		<a href="/joinity/{{joinity.id}}/reserva/{% if reserva.empresa.clase == 0 %}restaurante{% else %}hotel{% endif %}/{{reserva.id}}/">{{reserva.empresa.nombre}}</a>
+		{% if reserva.estado == 0 %}Sin confirmar {% elif reserva.estado == 1 %} confirmada {% elif reserva.estado == 2 %}Aprobada por la empresa {%endif%}
+		{% if admin and reserva.estado == 0 %}<a href="/reserva/confirmar/{{reserva.id}}/"><input type="button" value="Confirmar" /></a>{%endif%}
+		<br>
+		
+	{% endfor %}
+	<a href="/joinity/{{joinity.id}}/reserva/"><input type="button" value="Crear Reserva" /></a>
+{% endif %}

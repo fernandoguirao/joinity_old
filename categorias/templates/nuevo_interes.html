@@ -1,0 +1,13 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<body>
+<a href="/usuario/"><input type="button" value="Perfil"/></a>
+<a href="/"><input type="button" value="Inicio"/></a>
+	<form action="" method="post">
+		{% csrf_token %}
+		{{formulario}}
+
+		<input type="submit" value="Crear Interes" />
+	</form>
+</body>
+</html>

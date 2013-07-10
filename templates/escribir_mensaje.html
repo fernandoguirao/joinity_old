@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<body>
+	<a href="/usuario/"><input type="button" value="Perfil"/>
+	<a href="/"><input type="button" value="Inicio"/>
+	<form action="" method="post">
+		{% csrf_token %}
+		{{formulario}}
+
+		<input type="submit" value="Mandar Mensaje" />
+	</form>
+</body>
+</html>

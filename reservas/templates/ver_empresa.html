@@ -1,0 +1,48 @@
+Nombre:{{empresa.nombre}}<br>
+Ubicacion: {{empresa.ubicacion}}<br>
+Notas: {{empresa.notas}}<br>
+Precio: {{empresa.precio}}<br>
+Tipo: {{empresa.tipo}}<br>
+Calificacion: {{empresa.calificacion}}<br>
+Clase:
+{% if empresa.clase == 0 %}
+	restaurante
+{% else %}
+	hotel
+{% endif %}
+<br>
+Fotos:
+{% for foto in empresa.fotos_empresas.all %}
+	<img src="/media/{{foto.foto}}"><br>
+{% endfor %}
+
+Puntuacion media: {{empresa.puntuacion_media}}
+<form action="" method="post">
+	{% csrf_token %}
+	{{ puntuar }}
+	<input type="submit" value="Puntuar" />
+</form>
+
+LISTA DE SEGUIDORES:<br>
+{% for seguidor in empresa.seguidores.all %}
+	-<a href="/usuario/{{seguidor.id}}">{{seguidor}}</a><br>
+{% endfor %}
+
+<a href="/empresa/seguir/{{empresa.id}}"><input type="button" value="Seguir" /></a>
+
+{% if empresa.admin == usuario %}
+<br>
+Panel de admin
+<br>
+	<a href="/empresa/editar/{{empresa.id}}"><input type="button" value="Editar" /></a>
+<br>
+
+LISTA DE RESERVAS:
+<br>
+{% for reserva in empresa.empresa_reserva.all %}
+	{% if reserva.estado != 0 %}
+		<a href="/joinity/{{reserva.family.joinity.id}}/reserva/restaurante/{{reserva.id}}">{{reserva.family.joinity.creador}}</a>{% if reserva.estado == 1 %}	<a href="/reserva/aprobar/{{reserva.id}}"><input type="button" value="Aprobar" /></a>{%else%}-Aprobada{%endif%}
+		<br>
+	{% endif %}
+{% endfor %}
+{% endif %}

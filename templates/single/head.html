@@ -1,0 +1,124 @@
+  <div class="extracto-joinity horizontal unJoinity">
+    <div class="left-side" style="background-image:url('/media/images/ejemplos/archivo01.png');">
+    </div>
+    <div class="right-side">
+      <!-- FILA 01 -->
+      <div class="fila">
+        <div class="valor01">
+          <i class="iconos">
+            h
+          </i>
+          <p>
+            {{joinity.precio}}
+            <span>
+              euros/ persona
+            </span>
+          </p>
+        </div>
+        <div class="valor02">
+          <i class="iconos">
+            i
+          </i>
+          <p>
+            25
+            <span>
+              días para empezar
+            </span>
+          </p>
+        </div>
+      </div> <!-- FIN FILA 01 -->
+      <!-- FILA 02 -->
+      <div class="fila">
+        <div class="valor03">
+          <h3>
+            {{joinity.nombre}}
+          </h3>
+        </div>
+        <div class="valor04">
+          <div class="etiqueta">
+            {{joinity.get_categoria}}
+          </div>
+          {% if joinity.get_subcategoria %}
+          	<div class="etiqueta">
+            	{{joinity.get_subcategoria}}
+          	</div>
+          {% endif %}
+        </div>
+      </div> <!-- FIN FILA 02 -->
+      <!-- FILA 03 -->
+      <div class="fila">
+        <div class="valor05">
+          <div class="numero-joiners">
+            <p>
+              <span class="njoiners">
+                25
+              </span>
+              joiners > 
+              <span class="djoiners">
+                15%
+              </span>
+              de descuento
+            </p>
+          </div>
+          <div class="progreso">
+            <div class="progress">
+              <div class="bar" style="width: 45%;">
+              </div>
+            </div>
+            <p class="minjoiners">
+              Mín. {{joinity.n_min}} joiners
+            </p>
+            <p class="maxjoiners">
+              Míx. {{joinity.n_max}} joiners
+            </p>
+          </div>
+        </div>
+        <div class="valor06">
+          <i class="punto iconos">j</i>
+          <i class="punto iconos">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+        </div>
+      </div> <!-- FIN FILA 03 -->
+      <div class="fila">
+        <div class="valor07">
+          <p>
+            {{joinity.descripcion}}
+          </p>
+        </div>
+      </div>
+      <div class="fila">
+        <div class="valor08">
+          <a class="thumb-img" href="" alt="" style="background-image:url('/media/images/ejemplos/archivo03.png');">
+          </a>
+          <a class="thumb-img" href="" alt="" style="background-image:url('/media/images/ejemplos/archivo02.png');">
+          </a>
+          <a class="thumb-video" href="" alt="" style="background-image:url('/media/images/ejemplos/archivo01.png');">
+          </a>
+        </div>
+        <div class="valor09">
+          <div class="etiqueta">
+            <i class="iconos">
+              l
+            </i>
+            Ciudad 1
+          </div>
+          <div class="trazado">
+            <span class="arriba">
+            </span>
+            <span class="abajo">
+            </span>
+          </div>
+          <div class="etiqueta">
+            <span>
+              Ciudad 2
+            </span>
+            <i class="iconos icoder">
+              l
+            </i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

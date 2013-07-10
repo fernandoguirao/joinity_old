@@ -1,0 +1,38 @@
+<a href="/joinity/ver/{{joinity.id}}">volver a joinity</a>
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="fieldWrapper">
+	        <label for="id_Titulo">Titulo:</label>
+	        {{ formulario.titulo }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_Descripcion">Descripcion:</label>
+	        {{ formulario.descripcion }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_fecha_inicio">Fecha Inicio:</label>
+	        {{ formulario.fecha_inicio }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_fecha_inicio">Fecha Fin:</label>
+	        {{ formulario.fecha_fin }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_foto">Foto:</label>
+	        {{ formulario.foto }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_privacidad">Privacidad:</label>
+	        {{ formulario.privacidad }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_privilegios">Invitar a participantes:</label>
+	        {{ formulario.privilegios }}
+	</div>
+	<div class="fieldWrapper">
+	        <label for="id_repeticion">Repeticion:</label>
+	        {{ formulario.repeticion }}
+	</div>
+	<input type="submit" value="Crear Evento" />
+	
+</form>

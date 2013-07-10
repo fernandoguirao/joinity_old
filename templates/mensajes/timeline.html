@@ -1,0 +1,70 @@
+<div id="timeline">
+  <div id="escribe-main">
+    <div class="escribe-input">
+      <div class="avatar" style="background-image:url('images/ejemplos/avatar.png');">
+      </div>
+      {% if formulario %} 
+	  <form action="" method="post">
+	  {% csrf_token %}
+      <div class="input-append">
+        {{formulario.mensaje}}
+        <div id="losbotones">
+          <input type="submit" value="Enviar" class="btn btn-small" />
+          
+          <button class="btn btn-small" type="button">
+            <i class="iconos">
+              s
+            </i>
+          </button>
+        </div>
+      </div>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+  <div id="cronologia">
+    <div id="lineaTiempo">
+    </div>
+
+    <!-- EL CHAT -->
+    {% if mensajes %}
+    {% for mensaje in mensajes %}
+    <!-- INICIO MENSAJE -->
+    <div class="actualizacion texto">
+      <!-- AUTOR Y FECHA -->
+      <div class="clasificacion">
+        <div class="icono avatar" style="background-image:url('/media/{{mensaje.remitente.usuario.foto}}');">
+        </div>
+        <div class="fecha etiqueta">
+          {{mensaje.fecha|date:'H:i'}}
+        </div>
+      </div>
+      <!-- / FIN AUTOR Y FECHA -->
+      <!-- CUERPO MENSAJE -->
+      <div class="continente">
+        <div class="creditos">
+          <p class="smallTxt">
+            <a href="/usuario/{{mensaje.remitente.id}}">
+            	{{mensaje.remitente.first_name}}
+            </a>
+            ha dicho:
+          </p>
+        </div>
+        <div class="contenido">
+          <div class="texto">
+            <p>
+              {{mensaje.mensaje}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- / FIN CUERPO MENSAJE -->
+    </div>
+    <!-- FIN MENSAJE -->
+    {% endfor %}
+    {% else %}
+    	No tiene mensajes
+    {% endif %}
+  </div>
+</div>
+

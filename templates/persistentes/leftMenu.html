@@ -1,0 +1,55 @@
+        <div class="iconbar">
+          <ul>
+            <li {% if pagina == "index" %} class="activo" {% endif %}>
+              <a href="/">
+                <i class="iconos">
+                  c
+                </i>
+                <span class="detalle">
+                  Novedades
+                </span>
+              </a>
+            </li>
+            <li {% if pagina == "joinity" %} class="activo" {% endif %}>
+              <a href="/mis_joinitys/">
+                <i class="iconos">
+                  d
+                </i>
+                <span class="detalle">
+                  Mis joinitys
+                </span>
+              </a>
+            </li>
+            <li {% if pagina == "misTareas" %} class="activo" {% endif %}>
+            <a href="/mis_tareas/">
+              <i class="iconos">
+                e
+              </i>
+              <span class="detalle">Mis tareas</span>
+            </a></li>
+           	<li {% if pagina == "misCompras" %} class="activo" {% endif %}>
+              <a href="misCompras.php">
+              <i class="iconos">
+                f
+              </i>
+              <span class="detalle">Mis compras</span>
+            </a></li>
+            <li {% if pagina == "misMensajes" %} class="activo" {% endif %}>
+              <a href="/mensaje/inbox">
+              <i class="iconos">
+                g
+              </i>
+                <span class="iconbar-unread">1</span>
+                <span class="detalle">Mensajes</span>
+              </a>
+            </li>
+            <li {% if pagina == "misEventos" %} class="activo" {% endif %}>
+              <a href="misEventos.php">
+              <i class="iconos fl">
+                
+              </i>
+                <span class="detalle">Mis eventos</span>
+              </a>
+            </li>
+          </ul>
+        </div> <!-- /iconbar -->

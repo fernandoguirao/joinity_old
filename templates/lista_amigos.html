@@ -1,0 +1,15 @@
+<a href="/usuario/"><input type="button" value="Perfil"/>
+<a href="/"><input type="button" value="Inicio"/>
+{% if solicitudes %}
+	{% for solicitud in solicitudes %}
+		<p>{{solicitud.usuario.first_name}} {{solicitud.usuario.last_name}} <a href="aceptar/{{solicitud.id}}">Aceptar</a></p>
+	{% endfor %}
+{% endif %}
+
+{% if amigos %}
+	{% for amigo in amigos %}
+		<p>{{amigo.amigo.first_name}} {{amigo.amigo.last_name}}</p>
+	{% endfor %}
+{% else %}
+	No tiene amigos
+{% endif %}

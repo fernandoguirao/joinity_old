@@ -1,0 +1,4 @@
+Nombre del {% if reserva.empresa.clase == 0 %}Restaurante{% else %}Hotel{% endif %}:{{reserva.empresa.nombre}} <a href="/empresa/{{reserva.empresa.id}}" target="_blank"><input type="button" value="Ver"/></a><br>
+Lugar: {{reserva.empresa.ubicacion}}<br>
+Fecha inicio: {{reserva.fecha_inicio}}<br>
+Fecha fin: {{reserva.fecha_fin}}<br>

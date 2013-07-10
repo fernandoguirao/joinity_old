@@ -1,0 +1,45 @@
+{% extends "login/base.html" %}
+{% block titulo %}-Iniciar Sesión{% endblock %}
+{% block contenedor %}
+<div class="contenedor">
+
+	<div class="login">
+	  <div class="login-screen">
+	    <div class="login-icon">
+	      <i class="iconos elefante">
+	        K
+	      </i>
+	      <br>
+	      <i class="iconos">
+	        J
+	      </i>
+	    </div>
+	
+	    <form action="" method="post" class="login-form">
+	    	{% csrf_token %}
+	      <div class="control-group">
+	        <!--<input type="text" class="login-field inputNormal" value="" placeholder="Introduce tu nombre" id="login-name" />-->
+	       	{{ formulario.username }}
+	      </div>
+	      <div class="control-group">
+	        <!--<input type="password" class="login-field inputNormal" value="" placeholder="Tu contraseña" id="login-pass" />-->
+	       	{{ formulario.password }}
+	      </div>
+	      <div class="extras">
+	        <label class="checkbox login-recuerda" for="checkbox1">
+	          <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+	        Recuerdame
+	        </label>
+	        <a class="login-link" href="#">Has perdido tu contraseña?</a>
+	      </div>
+	      <input class="btn btn-primary btn-small oscuro" type="submit" value="Iniciar Sesión" />
+	      
+	      <!-- NUEVOOOOOOOOOOOOO -->
+	      <a href="/usuario/registro" class="btn btn-primary btn-small oscuro">Registrarse</a>
+	      <!-- NUEVOOOOOOOOOOOOO -->
+	      
+	    </form>
+	  </div>
+	</div>
+</div>
+{% endblock %}

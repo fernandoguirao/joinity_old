@@ -1,0 +1,36 @@
+
+
+<h1>Usuarios Invitados</h1>
+
+{% if usuarios_invitados %}
+{% for usuario in usuarios_invitados %}
+	{{usuario.first_name}}<br>
+{% empty %}
+	No hay nada en la lista
+{% endfor %}
+{% endif %}
+
+<h1>Busqueda de usuarios</h1>
+{% if busqueda %}
+	<form action="" method="get">
+		{{ busqueda }}
+		<input type="submit" value="Buscar Joiners" />
+	</form>	
+{% endif %}
+{% if usuarios %}
+{% for usuario in usuarios %}
+	{{usuario.first_name}} 
+	{% if usuario in usuarios_invitados %}
+		Ya invitado
+	{% else %}
+		<a href="/joinity/invitar/{{joinity.id}}/{{usuario.id}}/?next=/joinity/nuevo_joinity/aficiones/3/{{joinity.id}}">Invitar</a>
+	{% endif %}
+	<br>
+{% empty %}
+	No hay nada en la lista
+{% endfor %}
+{% else %}
+  	No hay realizada busqueda
+{% endif %}
+<br>
+<a href="/joinity/ver/{{joinity.id}}"><input type="button" value="Finalizar" /></a>

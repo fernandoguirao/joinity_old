@@ -1,0 +1,106 @@
+<div class="container contenedor-array fandfriends">
+  <div class="contenedor-categoria">
+    <div class="la-categoria">
+      <i class="iconos">
+        7
+      </i>
+      Aficiones
+    </div>
+    <div class="la-categoria">
+      <i class="iconos">
+        3
+      </i>
+      Compras
+    </div>
+    <div class="la-categoria activa">
+      <i class="iconos">
+        5
+      </i>
+      Fam. & friends
+    </div>
+  </div>
+  <div class="contenedor-elarray">
+    <div class="contenedor-filtro">
+      <div class="container">
+        <div class="filtros activo">
+          <i class="iconos">
+            i
+          </i>
+          Más recientes
+        </div>
+        <div class="filtros">
+          <i class="iconos otro2">
+            j
+          </i>
+          Mejores ofertas
+        </div>
+        <div class="filtros">
+          <i class="iconos">
+            c
+          </i>
+          Para mí
+        </div>
+        <div class="filtros">
+          <i class="iconos otros">
+            0
+          </i>
+          Más
+        </div>
+      </div>
+    </div>
+    <div class="contenedor-los-joinitys">
+      {% for family in lista_family|slice:":8" %}
+    
+      <!-- CADA JOINITY -->
+      <div class="los-joinity">
+        {% for foto in family.fotos.all|slice:":1" %}
+        	<div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
+        	</div>
+        {% endfor %}
+        <div class="info-caja">
+          <h6>
+            {{family.nombre}}
+          </h6>
+          <p>
+             {% for lugar in family.lugares.all|slice:":1" %}
+          		En {{lugar.lugar}}, por {{family.precio}} €
+          	{% endfor %}
+          </p>
+        </div>
+        <!-- HOVER -->
+        <div class="rueda img-circle">
+          <div class="donutchartfandfriends" data-percent="50"></div>
+          <div class="numjoine">
+            <span>
+              {{family.n_min}}/{{family.n_max}}
+            </span>
+            joiners
+          </div>
+        </div>
+        <div class="lafecha">
+          25
+          <span>
+            jun
+          </span>
+        </div>
+        <div class="valor06">
+          <i class="iconos punto">j</i>
+          <i class="iconos punto">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+        </div>
+        <!-- FIN DE HOVER -->
+      </div>
+      <!-- FIN DE CADA JOINITY -->
+     {% endfor %}
+    </div>
+    <div class="los-join-footer">
+      <div class=linea-puntos>
+      </div>
+      <a href="" class="btn amarillo btn-embossed">
+        Quiero ver más
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{% for usuario in joinity.joinity_usuario.all %}
+	{{usuario.usuario.first_name}}-
+	{% if usuario.usuario not in usuarios_invitados %}
+		<a href="/joinity/{{joinity.id}}/tarea/invitar/{{tarea.id}}/{{usuario.usuario.id}}">
+	Invitar</a><br>
+	{% else %}
+		Ya invitado<br>
+	{% endif %}
+{% endfor %}
+
+<a href="/joinity/{{joinity.id}}/tarea/invitar/{{tarea.id}}/all">Invitar a todos</a><br>
+<a href="/joinity/{{joinity.id}}/tarea/crear/3/{{tarea.id}}"><input type="button" value="Siguiente"/></a>

@@ -1,0 +1,47 @@
+<div id="timeline">
+  <div id="escribe-main">
+    <ul id="opciones">
+      <li>
+        <i class="iconos">
+          n
+        </i>
+        Comparte un mensaje
+      </li>
+      <li>
+        <i class="iconos">
+          j
+        </i>
+        Inicia una votación
+      </li>
+    </ul>
+	<form action="?comentar=1" method="post">
+	{% csrf_token %}
+    <div class="escribe-input">
+      <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+      </div>
+      <div class="input-append">
+        {{ comentar.comentario }}
+        <div id="losbotones">
+          <input type="submit" value="Enviar" class="btn btn-small" />
+          
+          <button class="btn btn-small" type="button">
+            <i class="iconos">
+              s
+            </i>
+          </button>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+  <div id="cronologia">
+    <div id="lineaTiempo">
+    </div>
+    <!-- INSERTAMOS UPDATES -->
+    {% for comentario in joinity.comentarios.all|dictsortreversed:"id" %}
+    	{% if 1 == 1 %}    
+			{% include "single/updateTexto.html" %}
+		{% endif %}
+	{% endfor %}
+  </div>
+</div>

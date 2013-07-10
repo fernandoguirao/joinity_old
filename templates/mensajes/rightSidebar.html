@@ -1,0 +1,32 @@
+<div id="rightSideBar">
+  <div id="contenidoSide">
+  
+    <!-- BUSCADOR -->
+    <input type="text" placeholder="Busca en tus mensajes" class="inputNormal input-small">
+    <!-- FIN BUSCADOR -->
+    
+    <!-- TODOS LOS MENSAJES -->
+    <div class="todosMensajes">
+      {% for usuario in usuarios %}
+      <!-- CADA MENSAJE -->
+      <a href="/mensaje/inbox/{{usuario.id}}">
+      <div class="cadaMensaje nuevo">
+        <div class="avatar span3" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+        </div>
+        <div class="numeroNotif">
+          1
+        </div>
+        <p class="span9">
+          <b>{{usuario.first_name}} {{usuario.last_name}}</b>
+          <i>27/05/2013</i>
+          <span>Hola, Borja, ¿qué te parece si quedamos a comer mañana y hablamos el resto de asuntos?</span>
+        </p>
+	
+      </div>
+      </a>
+      <!-- FIN DE CADA MENSAJE -->
+      {% endfor %}
+    </div>
+    <!-- FIN DE TODOS LOS MENSAJES -->
+   </div>
+</div>

@@ -1,0 +1,27 @@
+{% for foto in empresa.fotos_empresas.all %}
+	<img src="/media/{{foto.foto}}">
+{% endfor %}
+
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	Nombre: {{empresaform.nombre}}<br>
+	Notas: {{empresaform.notas}}<br>
+	Precio: {{empresaform.precio}}<br>
+	Tipo: {{empresaform.tipo}}<br>
+	Calificacion: {{empresaform.calificacion}}<br>
+	Ubicacion: {{empresaform.ubicacion}}<br>
+	Imagen de cabecera: {{empresaform.imagen_cabecera}}<br>
+	Video: {{empresaform.video}}<br>
+	Imagen de fondo: {{empresaform.imagen_fondo}}<br>
+	<input type="submit" value="Editar" />
+</form>
+
+GALERIA
+<form action="?foto=1" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+			{{subir_foto}}
+		<input type="submit" value="Subir Foto" />
+	
+</form>
+
+<a href="/empresa/{{empresa.id}}"><input type="button" value="Volver" /></a>

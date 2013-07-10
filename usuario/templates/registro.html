@@ -1,0 +1,21 @@
+<a href="/"><input type="button" value="Volver a Inicio"/></a>
+<form action="" method="post">
+	{% csrf_token %}
+	 <div class="fieldWrapper">
+	        <label for="id_username">Usuario:</label>
+	        {{ formulario.username }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_email">Email:</label>
+	        {{ formulario.email }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_password1">Password:</label>
+	        {{ formulario.password1 }}
+	    </div>
+	    <div class="fieldWrapper">
+	        <label for="id_password2">Confirma:</label>
+	        {{ formulario.password2 }}
+	    </div>
+	   	<input type="submit" value="Registrate" />
+</form>
