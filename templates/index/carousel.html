@@ -19,11 +19,12 @@
       <!-- FIN THUMBS CAROUSEL -->
 
         <div class="carousel-inner">
-            <div class="active item">
+        {% for joinity in VIP %}
+            <div class=" {% if forloop.first %}active{%endif%} item">
                 <div class="slide-info">
                   <div class="centrador">
                     <h1>
-                      Una escapada a Escocia
+                      {{joinity.joinity.nombre}}
                     </h1>
                     <div class="sub-info">
                       <p>
@@ -33,77 +34,26 @@
                         Dentro de <i class="iconos">q</i>2 semanas
                       </p>
                       <p>
-                        Por <i class="iconos">j</i>35 euros
+                        Por <i class="iconos">j</i>{{joinity.joinity.precion}} euros
                       </p>
                     </div>
                     <div class="slide-foot">
                       <div class="linea">
                       </div>
-                      <a class="btn" href="joinity.php">
+                      <a class="btn" href="/joinity/{{joinity.joinity.id}}">
                           Suena bien. Quiero verlo.
                       </a>
                     </div>
                   </div>
                 </div>
-                <img src="/media/images/ejemplos/escocia.png" alt="Slide1" style="top:-254px;" />
+                {% for foto in joinity.joinity.fotos.all|slice:":1"%}
+                <img src="/media/{{foto.foto}}" alt="Slide{{joinity.joinity.id}}" style="top:-254px;" />
+                {% empty %}
+                <img src="/media/images/ejemplos/escocia.png" alt="Slide{{joinity.joinity.id}}" style="top:-254px;" />
+                {% endfor %}
             </div>
-            <div class="item">
-                <div class="slide-info">
-                  <div class="centrador">
-                    <h1>
-                      Una escapada a Escocia
-                    </h1>
-                    <div class="sub-info">
-                      <p>
-                        Desde <i class="iconos">l</i>Madrid
-                      </p>
-                      <p>
-                        Dentro de <i class="iconos">q</i>2 semanas
-                      </p>
-                      <p>
-                        Por <i class="iconos">j</i>35 euros
-                      </p>
-                    </div>
-                    <div class="slide-foot">
-                      <div class="linea">
-                      </div>
-                      <a class="btn" href="joinity.php">
-                          Suena bien. Quiero verlo.
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <img src="/media/images/ejemplos/escocia.png" alt="Slide2" />
-            </div>
-            <div class="item">
-                <div class="slide-info">
-                  <div class="centrador">
-                    <h1>
-                      Una escapada a Escocia
-                    </h1>
-                    <div class="sub-info">
-                      <p>
-                        Desde <i class="iconos">l</i>Madrid
-                      </p>
-                      <p>
-                        Dentro de <i class="iconos">q</i>2 semanas
-                      </p>
-                      <p>
-                        Por <i class="iconos">j</i>35 euros
-                      </p>
-                    </div>
-                    <div class="slide-foot">
-                      <div class="linea">
-                      </div>
-                      <a class="btn" href="joinity.php">
-                          Suena bien. Quiero verlo.
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <img src="/media/images/ejemplos/escocia.png" alt="Slide3" />
-        </div>
-<!--
+            {% endfor %}
+            <!--
         <a class="carousel-control left" href="#myCarousel" data-slide="prev"><<</a>
         <a class="carousel-control right" href="#myCarousel" data-slide="next">>></a>
 -->

@@ -1,8 +1,9 @@
 {% include "persistentes/head.html" %}
-
+{% if usuario %}
 {% include "persistentes/topmenu.html" %}
-
-
+{% else %}
+{% include "persistentes/topMenuUnloged.html" %}
+{% endif %}
 {% block contenedor %}
 
 {% endblock %}

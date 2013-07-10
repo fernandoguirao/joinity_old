@@ -52,6 +52,8 @@
       {% for family in lista_family|slice:":8" %}
     
       <!-- CADA JOINITY -->
+      <a href="/joinity/{{family.id}}">
+      
       <div class="los-joinity">
         {% for foto in family.fotos.all|slice:":1" %}
         	<div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
@@ -78,21 +80,24 @@
           </div>
         </div>
         <div class="lafecha">
-          25
+          {{family.family.fecha_inicio|date:"d"}}
           <span>
-            jun
+            {{family.family.fecha_inicio|date:"m"}}
           </span>
         </div>
         <div class="valor06">
-          <i class="iconos punto">j</i>
-          <i class="iconos punto">j</i>
-          <i class="iconos">j</i>
-          <i class="iconos">j</i>
-          <i class="iconos">j</i>
+          {% for i in cinco  %}
+         {% if i <= family.puntuacion_media %}
+         	<i class="iconos punto">j</i>
+         {% else %}
+         	<i class="iconos">j</i>
+         {% endif %}
+         {% endfor %}
         </div>
         <!-- FIN DE HOVER -->
       </div>
       <!-- FIN DE CADA JOINITY -->
+      </a>
      {% endfor %}
     </div>
     <div class="los-join-footer">

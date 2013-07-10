@@ -51,7 +51,7 @@
     <div class="contenedor-los-joinitys">
     	{% for aficion in lista_aficiones|slice:":8" %}
       <!-- CADA JOINITY -->
-      <a class="los-joinity" href="">
+      <a class="los-joinity" href="/joinity/{{aficion.id}}">
       	{% for foto in aficion.fotos.all|slice:":1" %}
         <div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
         </div>
@@ -77,17 +77,19 @@
           </div>
         </div>
         <div class="lafecha">
-          25
+          {{aficion.aficiones.fecha_inicio|date:"d"}}
           <span>
-            jun
+             {{aficion.aficiones.fecha_inicio|date:"m"}}
           </span>
         </div>
         <div class="valor06">
-          <i class="iconos punto">j</i>
-          <i class="iconos punto">j</i>
-          <i class="iconos">j</i>
-          <i class="iconos">j</i>
-          <i class="iconos">j</i>
+        {% for i in cinco  %}
+         {% if i <= aficion.puntuacion_media %}
+         	<i class="iconos punto">j</i>
+         {% else %}
+         	<i class="iconos">j</i>
+         {% endif %}
+         {% endfor %}
         </div>
         <!-- FIN DE HOVER -->
       </a>

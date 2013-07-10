@@ -183,3 +183,8 @@ class Puntuaciones(models.Model):
     puntuacion = models.IntegerField(default=0)
     class Meta:
         db_table = "Puntuaciones_Joinity"
+
+class Joinitys_VIP(models.Model):
+    joinity=models.ForeignKey(Joinitys, related_name="joinity_vip")
+    class Meta:
+        db_table="Joinitys_VIP"

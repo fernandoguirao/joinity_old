@@ -5,7 +5,7 @@ from forms import AficionesForm, Anyadir_Lugar, Subir_Foto, Anyadir_Lugar_Evento
 from forms import Buscar as Buscar_Reserva, Reservar, Puntuar
 from django.contrib.auth.decorators import login_required
 from models import Usuarios_Joinity, Eventos, Tareas, Usuarios_Tarea, Usuarios_Evento, Lugares_Joinity
-from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys
+from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys, Joinitys_VIP
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from usuario.forms import Buscar
@@ -16,18 +16,20 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
 
-
-#PAGINA INDEX
-@login_required
 def index(request):
-    if not request.user.first_name:
-        return HttpResponseRedirect('/usuario/editar/')
+    if not request.user.is_authenticated():
+        usuario=False
+    else:
+        usuario=request.user
+        if not request.user.first_name:
+            return HttpResponseRedirect('/usuario/editar/')
     # lista_pagos = Pagos.objects.filter(usuarios=request.user.id).order_by('id')
     #lista_joinitys = Usuarios_Joinity.objects.filter(usuario=request.user)
     lista_aficiones=Joinitys.objects.filter(tipo="3")
     lista_compras=Joinitys.objects.filter(tipo="2")
     lista_family=Joinitys.objects.filter(tipo="1")
-    context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":request.user, "pagina":"home"}
+    lista_vip=Joinitys_VIP.objects.all()
+    context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":usuario, "pagina":"home", "cinco":{1,2,3,4,5}, "VIP":lista_vip}
     return render(request, 'index/index.html', context)
 
 
@@ -485,12 +487,14 @@ def unirse_evento(request, joinity_id, evento_id):
         nuevo=Usuarios_Evento(usuario=request.user, evento=evento, estado=1)
         nuevo.save()
     return HttpResponseRedirect("/joinity/"+str(evento.joinity.id))
+
 def mis_eventos(request):
     subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
     consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
     eventos=Eventos.objects.raw(consulta)
     context={'eventos':eventos, "pagina":"misEventos", "usuario":request.user}
     return render(request, 'eventos/index.html', context)
+
 def ver_mi_evento(request, evento_id):
     subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
     consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
