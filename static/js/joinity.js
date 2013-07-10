@@ -50,3 +50,22 @@ $('.los-joinity').hover (function(){
   $(".donutchartcompras",this).stop().donutchart("animate");
   $(".donutchartfandfriends",this).stop().donutchart("animate");
 })
+
+/* SELECTOR HOME */
+
+
+var seleccionbtn = $('.primerselect .dropdown-menu a');
+var seleccionPrim = $(".primerselect button").find('span');
+
+seleccionbtn.click(function(){
+  if(seleccionPrim.text()=="comprar") {
+    $('.select.comprar').show();
+    $('.select.aficion,.select.reserva').hide();
+  } else if (seleccionPrim.text()=="Practicar una afición") {
+    $('.select.aficion').show();
+    $('.select.comprar,.select.reserva').hide();
+  } else {
+    $('.select.reserva').show();
+    $('.select.aficion,.select.comprar').hide();
+  }
+});
