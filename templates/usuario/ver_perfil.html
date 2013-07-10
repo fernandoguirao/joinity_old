@@ -9,13 +9,14 @@
 {% if logeado or not usuario.usuario.oculto or amigos %}
 	
 	{% if logeado %}
-		<a href="/usuario/editar/"><input type="button" value="Editar Perfil"/></a>
+		<a href="/usuario/editar/" class="btn gris-claro">Editar perfil</a>
+		<br><br>
 	
 		{% if usuario.usuario.mensajes != 0 %}
 			{% if usuario.usuario.mensajes == 1 %}
-				<p><a href="/mensaje/inbox">Tiene {{usuario.usuario.mensajes}} mensaje</a></p>
+				<p><a href="/mensaje/inbox" class="btn">Tienes {{usuario.usuario.mensajes}} mensaje</a></p>
 			{% else %}
-				<p><a href="/mensaje/inbox">Tiene {{usuario.usuario.mensajes}} mensajes</a></p>
+				<p><a href="/mensaje/inbox" class="btn">Tienes {{usuario.usuario.mensajes}} mensajes</a></p>
 			{% endif %}
 		{% endif %}
 		{% if usuario.usuario.solicitudes != 0 %}
@@ -27,7 +28,7 @@
 		{% endif %}
 	{% endif %}
 	<hr>
-	<h2>Puntuacion: {{usuario.usuario.puntuacion_media}}</h2>
+	<h5>Puntuacion: {{usuario.usuario.puntuacion_media}}</h5>
 	{% if not logeado %}
 		<form action="" method="post">
 			{% csrf_token %}
@@ -35,7 +36,7 @@
 			<input type="submit" value="Puntuar" />
 		</form>
 	{% endif %}
-	<h1>INFORMACI&OacuteN</h1>
+	<h4>INFORMACI&OacuteN</h4>
 	<p>Foto: <img src="/media/{{usuario.usuario.foto}}"></p>
     <p>Nombre: {{usuario.first_name}}</p>
     <p>Apellidos: {{usuario.last_name}}</p>
@@ -49,7 +50,7 @@
     <p>Ciudad: {{usuario.usuario.ciudad}}</p>
     <p>Codigo Postal: {{usuario.usuario.cpostal}}</p>
     <hr>
-    <h1>INTERESES:</h1>
+    <h4>INTERESES:</h4>
     <p>Intereses:</p>
     {% for interes in usuario.usuario.intereses.all %}
     	<li>{{interes.categoria.nombre}}-{{interes.nombre}}</li>
@@ -59,7 +60,7 @@
     	<li>{{interes.categoria.nombre}}-{{interes.nombre}}</li>
     {% endfor %}
     <hr>
-    <h1>CONTACTOS</h1>
+    <h4>CONTACTOS</h4>
     {% if lista_amigos %}
 		{% for amigo in lista_amigos %}
 			<p>{{amigo.amigo.first_name}} {{amigo.amigo.last_name}}<a href="/usuario/{{amigo.amigo.id}}">ver perfil</a></p>
