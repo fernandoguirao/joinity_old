@@ -69,3 +69,15 @@ seleccionbtn.click(function(){
     $('.selector.aficion,.selector.comprar').hide("fast");
   }
 });
+
+/* AUTOSCROLL HOME */
+
+$(".aficat").click(function(){
+  $('html,body').animate({scrollTop:$(".faficiones").offset().top});
+});
+$(".compracat").click(function(){
+  $('html,body').animate({scrollTop:$(".fcompras").offset().top});
+});
+$(".famcat").click(function(){
+  $('html,body').animate({scrollTop:$(".fandfriends").offset().top});
+});
