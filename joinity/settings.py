@@ -64,7 +64,7 @@ USE_TZ = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
 if LOCALHOST:
-    MEDIA_ROOT = '/Volumes/Macintosh HD/Applications/MAMP/htdocs/joinity-dev/media/'
+    MEDIA_ROOT = '/Users/girien/Documents/Bueninvento/joinity/media/'
 else:
     MEDIA_ROOT = '/var/www/vhosts/bueninvento.net/proyectos/django/prueba1/media/'
 
@@ -78,7 +78,7 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 if LOCALHOST:
-    STATIC_ROOT = '/Volumes/Macintosh HD/Applications/MAMP/htdocs/joinity-dev/'
+    STATIC_ROOT = '/Users/girien/Documents/Bueninvento/joinity/'
 else:
     STATIC_ROOT = '/var/www/vhosts/bueninvento.net/proyectos/django/prueba1/static/'
 
@@ -92,7 +92,7 @@ if LOCALHOST:
         # Put strings here, like "/home/html/static" or "C:/www/django/static".
         # Always use forward slashes, even on Windows.
         # Don't forget to use absolute paths, not relative paths.
-        '/Volumes/Macintosh HD/Applications/MAMP/htdocs/joinity-dev/static/',
+        '/Users/girien/Documents/Bueninvento/joinity/static/',
     )
 else:
     STATICFILES_DIRS = (
@@ -142,7 +142,7 @@ if LOCALHOST:
         # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
         # Always use forward slashes, even on Windows.
         # Don't forget to use absolute paths, not relative paths.
-        '/Volumes/Macintosh HD/Applications/MAMP/htdocs/joinity-dev/templates',
+        '/Users/girien/Documents/Bueninvento/joinity/templates',
     )
 else:
     TEMPLATE_DIRS = (
