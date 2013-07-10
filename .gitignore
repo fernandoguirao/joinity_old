@@ -1,0 +1,7 @@
+wp
+*.swo
+.sass-cache
+.local
+*.DS_Store
+*.pyc
+settings.py
