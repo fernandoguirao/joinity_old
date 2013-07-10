@@ -1,6 +1,5 @@
 {% load staticfiles %}{% load mathfilters %}
 
-<a href="/"><input type="button" value="Volver a Inicio"/></a>
 
 {% if not logeado and not amigos %}
 	<a href="/amigo/invitar/{{usuario.id}}"><input type="button" value="Solicitar Amistad"/></a>
