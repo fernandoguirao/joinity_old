@@ -58,14 +58,14 @@ var seleccionbtn = $('.primerselect .dropdown-menu a');
 var seleccionPrim = $(".primerselect button").find('span');
 
 seleccionbtn.click(function(){
-  if(seleccionPrim.text()=="comprar") {
-    $('.select.comprar').show();
-    $('.select.aficion,.select.reserva').hide();
-  } else if (seleccionPrim.text()=="Practicar una afición") {
-    $('.select.aficion').show();
-    $('.select.comprar,.select.reserva').hide();
-  } else {
-    $('.select.reserva').show();
-    $('.select.aficion,.select.comprar').hide();
+  if($(this).text()=="Comprar") {
+    $('.selector.comprar').show("fast");
+    $('.selector.aficion,.selector.reserva').hide("fast");
+  } else if ($(this).text()=="Practicar una afición") {
+    $('.selector.aficion').show("fast");
+    $('.selector.comprar,.selector.reserva').hide("fast");
+  } else if ($(this).text()=="Realizar una reserva"){
+    $('.selector.reserva').show("fast");
+    $('.selector.aficion,.selector.comprar').hide("fast");
   }
 });
