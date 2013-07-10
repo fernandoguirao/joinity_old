@@ -12,8 +12,21 @@
       <div class="span10" id="contenedorPrincipal">
 
 		{% include "persistentes/buscador.html" %}
+		  <div id="unJoinity">
+<div id="contenedorJoinity" class="creareljoinity">
         <div id="loBlanco">
   			<div class="contenidoPagina">
+  			  				<!-- CONTENIDO -->
+  				    <div class="titular">
+      <h3>
+        Perfil de usuario
+      </h3>
+      <h6>
+        Aquí tienes tu información 
+      </h6>
+      <br>
+    </div>
+
   			{% if pagina == "editar" %}
   				{% include "usuario/editar_perfil.html" %}
   			{% elif pagina == "ver" %}

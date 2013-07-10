@@ -1,6 +1,6 @@
 <form action="" method="post" enctype="multipart/form-data">
 	{% csrf_token %}	
-	<hr><h1>INFORMACI&OacuteN</h1>
+	<hr><h4>INFORMACI&OacuteN</h4>
     <div class="fieldWrapper">
     		{% if user_form.first_name.errors %}
     			<script>alert("El campo Nombre es obligatorio");</script>
@@ -58,7 +58,7 @@
 	        <label for="cpostal">Codigo Postal:</label>
 	        {{ perfil_form.cpostal }}
 	</div>
-	<hr><h1>INTERESES</h1>
+	<hr><h4>INTERESES</h4>
 	<div class="fieldWrapper">
 	        <label for="viajes">Intereses:</label>
 	        {{ perfil_form.intereses }}
@@ -71,7 +71,7 @@
 	</div>
 	<a href="/categorias/nueva_compra"><input type="button" value="Crear Compras"/></a>
 	
-	<hr><h1>PRIVACIDAD</h1>
+	<hr><h4>PRIVACIDAD</h4>
 	<div class="fieldWrapper">
 	        <label for="oculatr">Desea Ocultar su perfil:</label>
 	        {{ perfil_form.ocultar_perfil }}

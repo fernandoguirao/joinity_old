@@ -12,11 +12,22 @@
 		{% include "persistentes/buscador.html" %}
 		<div id="unJoinity">
 
-  			<div id="contenedorJoinity">
+  			<div id="contenedorJoinity" class="creareljoinity">
+  			  <div id="loBlanco">
+            <div class="contenidoPagina">
   				<!-- CONTENIDO -->
-				<a href="/joinity/nuevo_joinity/family"><input type="button" value="Family and friends" /></a>
-				<a href="/joinity/nuevo_joinity/aficiones"><input type="button" value="Aficiones" /></a>
-				<a href="/joinity/nuevo_joinity/compras"><input type="button" value="Compras" /></a>
+  				    <div class="titular">
+      <h3>
+        ¿Qué tipo de Joinity quieres crear?
+      </h3>
+      <h6>
+        Selecciona una opción 
+      </h6>
+      <br>
+    </div>
+				<a href="/joinity/nuevo_joinity/family" class="btn botonjoinity claro"><h4>Family and friends</h4><p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus..</p> </a>
+				<a href="/joinity/nuevo_joinity/aficiones" class="btn botonjoinity claro"><h4>Aficiones</h4><p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p></a>
+				<a href="/joinity/nuevo_joinity/compras" class="btn botonjoinity claro"><h4>Compras</h4><p>Cum sociis natoque penatibus et magnis dis parturient montes. Nullam id dolor id nibh ultricies vehicula ut id elit. Nascetur ridiculus mus.</p></a>
 				
 				<!-- FIN CONTENIDO -->
     			<div style="clear:both;width:1px;height:1px;">
@@ -31,3 +42,6 @@
 </div>
 
 {% endblock %}
+
+  </div>
+</div>

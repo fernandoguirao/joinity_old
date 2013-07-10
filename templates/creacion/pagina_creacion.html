@@ -12,8 +12,20 @@
       <div class="span10" id="contenedorPrincipal">
 
 		{% include "persistentes/buscador.html" %}
+		  <div id="unJoinity">
+<div id="contenedorJoinity" class="creareljoinity">
         <div id="loBlanco">
   			<div class="contenidoPagina">
+  			  				<!-- CONTENIDO -->
+  				    <div class="titular">
+      <h3>
+        2. Información del Joinity
+      </h3>
+      <h6>
+        Completa los siguientes campos 
+      </h6>
+      <br>
+    </div>
   			{% if pagina == "invitar" %}
   				{% include "creacion/invitar_usuarios.html" %}
   			{% elif pagina == "lugares" %}
