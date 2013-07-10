@@ -486,9 +486,16 @@ def unirse_evento(request, joinity_id, evento_id):
         nuevo.save()
     return HttpResponseRedirect("/joinity/"+str(evento.joinity.id))
 def mis_eventos(request):
-    subconsulta="SELECT * FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
-    lista_eventos=Usuarios_Evento.objects.filter(usuario=request.user)
-    context={'lista_eventos':lista_eventos, "pagina":"misEventos"}
+    subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
+    consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
+    eventos=Eventos.objects.raw(consulta)
+    context={'eventos':eventos, "pagina":"misEventos", "usuario":request.user}
     return render(request, 'eventos/index.html', context)
-
+def ver_mi_evento(request, evento_id):
+    subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
+    consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
+    eventos=Eventos.objects.raw(consulta)
+    single=get_object_or_404(Eventos, pk=evento_id)
+    context={'eventos':eventos, "pagina":"misEventos", "single":single, "usuario":request.user}
+    return render(request, 'eventos/index.html', context)
 

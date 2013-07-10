@@ -1,9 +1,10 @@
 <div id="timeline">
+{% if formulario %}
   <div id="escribe-main">
     <div class="escribe-input">
       <div class="avatar" style="background-image:url('images/ejemplos/avatar.png');">
       </div>
-      {% if formulario %} 
+       
 	  <form action="" method="post">
 	  {% csrf_token %}
       <div class="input-append">
@@ -19,7 +20,6 @@
         </div>
       </div>
       </form>
-      {% endif %}
     </div>
   </div>
   <div id="cronologia">
@@ -66,5 +66,7 @@
     	No tiene mensajes
     {% endif %}
   </div>
+        {% endif %}
+  
 </div>
 

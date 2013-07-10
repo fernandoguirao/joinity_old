@@ -6,13 +6,18 @@
 -->
 
 <div id="timeline">
+{% if single %}
   <div id="cronologia2">
+  	{% if single.foto %}
     <img src="/media/images/ejemplos/archivo01.png" class="imagen-cabecera" alt="">
+    {% else %}
+    <img src="/media/{{single.foto}}" class="imagen-cabecera" alt="">
+    {% endif %}
     <h3>
-      Fiesta sorpresa para la abuela
+      {{single.titulo}}
     </h3>
     <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+      {{single.descripcion}}
     </p>
 <div class="Flexible-container">
     <iframe width="355" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
@@ -20,7 +25,7 @@
 
   <div id="escribe-main">
    <div class="escribe-input">
-    <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+    <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
     </div>
     
     <div class="input-append">
@@ -106,4 +111,5 @@
 <!-- FIN ACTUALIZACIÓN: TEXTO-->
 
   </div>
+ {% endif %}
 </div>
