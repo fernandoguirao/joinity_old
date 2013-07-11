@@ -12,18 +12,18 @@
   </div>
   <div class="continente">
     <div class="creditos">
-      <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+      <div class="avatar" style="background-image:url('/media/{{contenido.foto.usuario.foto}}');">
       </div>
       <p class="smallTxt">
         <a href="">
-          Fernando Guirao
+          {{contenido.foto.usuario.first_name}} {{contenido.foto.usuario.last_name}}
         </a>
         ha subido una foto
       </p>
     </div>
     <div class="contenido">
       <!-- CONTENIDO ESPECÍFICO -->
-        <div class="foto" style="background-image:url('/media/images/ejemplos/archivo02.png');">
+        <div class="foto" style="background-image:url('/media/{{contenido.foto.contenido}}');">
         </div>
       <!-- FIN CONTENIDO ESPECÍFICO -->
       {% include "single/comentarios.html" %}

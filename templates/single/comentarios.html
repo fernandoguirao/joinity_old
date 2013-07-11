@@ -4,36 +4,30 @@
   </div>
   <!-- INPUT COMENTAR -->
   <div class="escribe-input oculto">
-    <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+    <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
     </div>
+    <form action="?comentar={{contenido.id}}" method="post">
+    {% csrf_token %}
     <div class="input-append">
-      <input class="span2 inputNormal" type="text" placeholder="Cuéntale algo al grupo.">
+      {{comentar.comentario}}
       <div class="elboton">
-        <button class="btn btn-mini" type="button">
-          Enviar
-        </button>
+        <input type="submit" value="Enviar" class="btn btn-small" />
       </div>
     </div>
+    </form>
   </div>
   <!-- FIN INPUT COMENTAR -->
   <div class="respuestas">
+  	{% for comentario in contenido.comentarios.all|dictsortreversed:"id" %}
     <div class="respuesta">
       <i class="iconos">
         y
       </i>
-      <p class="smallTxt"><a href="">Borja Cocheteux</a>, hace una hora</p>
+      <p class="smallTxt"><a href="">{{comentario.usuario.first_name}} {{comentario.usuario.last_name}}</a>, hace una hora</p>
       <p>
-        Lo vamos a pasar genial.
+        {{comentario.comentario}}
       </p>
     </div>
-    <div class="respuesta">
-      <i class="iconos">
-        y
-      </i>
-      <p class="smallTxt"><a href="">Borja Cocheteux</a>, hace media hora</p>
-      <p>
-        Pero no olvidéis comprar el regalo.<br>Y también llevar bañador!
-      </p>
-    </div>
+    {% endfor %}
   </div>
 </div>

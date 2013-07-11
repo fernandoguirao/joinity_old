@@ -87,7 +87,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                if(request.GET["next"]):
+                if(request.GET.get("next", 0)!=0):
                     return HttpResponseRedirect(request.GET["next"])
                 else:
                     return HttpResponseRedirect('/')

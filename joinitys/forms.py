@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
-from models import Joinitys, Comentarios_Joinity, Eventos, Lugares_Evento, Lugares_Tarea, Puntuaciones
-from models import Tareas, Family, Compras, Aficiones, Lugares_Joinity, Fotos_Joinity, Reservas_Empresas
+from models import Joinitys, Texto_Joinity, Eventos, Lugares_Evento, Lugares_Tarea, Puntuaciones, Actualizaciones
+from models import Tareas, Family, Compras, Aficiones, Lugares_Joinity, Foto_Joinity, Reservas_Empresas
+from models import Comentario_Actualizacion
 
 class JoinityForm(forms.ModelForm):
     nombre=forms.CharField()
@@ -74,23 +75,61 @@ class ComprasForm(forms.ModelForm):
             compras.save()
         return compras
         # pago.email = self.cleaned_data["email"]
-
-
-class Comentar(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Cuéntale algo al grupo.', 'id':'appendedInputButton-02', 'class':'span2'}))
+class FormFoto(forms.ModelForm):
+    contenido=forms.ImageField(required=False)
     class Meta:
-        model = Comentarios_Joinity
-        fields = ("comentario",)
+        model=Foto_Joinity
+        fields=("contenido",)
+    def __init__(self, *args, **kwargs):
+        self._joinity=kwargs.pop('joinity')
+        self._usuario=kwargs.pop('usuario')
+        super(FormFoto, self).__init__(*args, **kwargs)
+    def save(self, commit=True):
+        nueva=super(FormFoto, self).save(commit=False)
+        actualizacion=Actualizaciones(joinity=self._joinity, tipo=2)
+        actualizacion.save()
+        nueva.actualizacion=actualizacion
+        nueva.usuario=self._usuario
+        if commit:
+            nueva.save()
+        return nueva
+
+class FormTexto(forms.ModelForm):
+    contenido = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Cuéntale algo al grupo.', 'id':'appendedInputButton-02', 'class':'span2'}))
+    class Meta:
+        model = Texto_Joinity
+        fields = ("contenido",)
 
     def __init__(self, *args, **kwargs):
         self._usuario = kwargs.pop('usuario')
         self._joinity = kwargs.pop('joinity')
-        super(Comentar, self).__init__(*args, **kwargs)
+        super(FormTexto, self).__init__(*args, **kwargs)
         
     def save(self, commit=True):
-        nuevo_comentario = super(Comentar, self).save(commit=False)
+        nuevo_texto = super(FormTexto, self).save(commit=False)
+        actualizacion=Actualizaciones(joinity=self._joinity, tipo=1)
+        actualizacion.save()
+        nuevo_texto.usuario = self._usuario
+        nuevo_texto.actualizacion = actualizacion
+        if commit:
+            nuevo_texto.save()
+            # self.save_m2m()
+        return nuevo_texto
+class FormComentario(forms.ModelForm):
+    comentario = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Cuéntale algo al grupo.', 'class':'span2 inputNormal'}))
+    class Meta:
+        model = Comentario_Actualizacion
+        fields = ("comentario",)
+
+    def __init__(self, *args, **kwargs):
+        self._usuario = kwargs.pop('usuario')
+        self._actualizacion = kwargs.pop('actualizacion')
+        super(FormComentario, self).__init__(*args, **kwargs)
+        
+    def save(self, commit=True):
+        nuevo_comentario = super(FormComentario, self).save(commit=False)
         nuevo_comentario.usuario = self._usuario
-        nuevo_comentario.joinity = self._joinity
+        nuevo_comentario.actualizacion = self._actualizacion
         if commit:
             nuevo_comentario.save()
             # self.save_m2m()
@@ -117,20 +156,7 @@ class Crear_Evento(forms.ModelForm):
             evento.save()
             # self.save_m2m()
         return evento
-class Subir_Foto(forms.ModelForm):
-    foto=forms.ImageField(required=False)
-    class Meta:
-        model=Fotos_Joinity
-        fields=("foto",)
-    def __init__(self, *args, **kwargs):
-        self._joinity=kwargs.pop('joinity')
-        super(Subir_Foto, self).__init__(*args, **kwargs)
-    def save(self, commit=True):
-        nueva=super(Subir_Foto, self).save(commit=False)
-        nueva.joinity=self._joinity
-        if commit:
-            nueva.save()
-        return nueva
+
 class Crear_Tarea(forms.ModelForm):
     nombre=forms.CharField()
     repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)

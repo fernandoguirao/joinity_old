@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from categorias.models import Subcategorias, Subcategorias_Compras, Subcategorias_Family
 from reservas.models import Empresa
-
-# Create your models here.
+#############################################################################
+#                    CLASE PADRE JOINITY                                    #
+#############################################################################
 class Joinitys(models.Model):
     nombre = models.TextField(null=True)
     descripcion = models.TextField(null=True, max_length=400)
@@ -17,6 +18,19 @@ class Joinitys(models.Model):
 #     family=models.OneToOneRel("Family", related_name="family")
     class Meta:
         db_table = "Joinitys"
+    def n_joiners(self):
+        return Usuarios_Joinity.objects.filter(joinity=self).count()
+    def que_soy(self, user):
+        if self.soy_admin(user):
+            return "admin"
+        elif self.soy_miembro(user):
+            return "miembro"
+        elif self.soy_invitado(user):
+            return "invitado"
+        elif self.soy_espera(user):
+            return "espera"
+        else:
+            return "nada"
     def soy_admin(self, user):
         return self.creador==user or self.joinity_usuario.filter(usuario=user, estado='2').count()!=0
     def soy_miembro(self, user):
@@ -58,6 +72,7 @@ class Joinitys(models.Model):
             return "compras"
         elif self.tipo==3:
             return "aficiones"
+# ---------TIPOS DE JOINITY-------------#
 class Family(models.Model):
     joinity=models.OneToOneField(Joinitys, related_name="family")
     subcategoria = models.ForeignKey(Subcategorias_Family)
@@ -67,16 +82,6 @@ class Family(models.Model):
     reserva=models.ManyToManyField(Empresa, through='Reservas_Empresas')
     class Meta:
         db_table="Family"
-
-class Reservas_Empresas(models.Model):
-    family=models.ForeignKey(Family, related_name="family_reserva")
-    empresa=models.ForeignKey(Empresa, related_name="empresa_reserva")
-    comensales=models.IntegerField(default=0)
-    fecha_inicio=models.DateField(null=True)
-    fecha_fin=models.DateField(null=True)
-    estado=models.IntegerField(default=0)
-    class Meta:
-        db_table="Reservas_Empresas"
 class Compras(models.Model):
     joinity=models.OneToOneField(Joinitys, related_name="compras")
     subcategoria=models.ForeignKey(Subcategorias_Compras)
@@ -98,7 +103,12 @@ class Aficiones(models.Model):
     requisitos=models.CharField(max_length=100)
     class Meta:
         db_table="Aficiones"
-        
+#############################################################################
+
+
+#############################################################################
+#                    RELACIONES                                             #
+#############################################################################
 class Usuarios_Joinity(models.Model):
     usuario = models.ForeignKey(User, related_name="usuario_joinity")
     joinity = models.ForeignKey(Joinitys, related_name="joinity_usuario")
@@ -107,6 +117,13 @@ class Usuarios_Joinity(models.Model):
         db_table = "Usuarios_Joinitys"
     def __unicode__(self):
         return self.usuario.first_name
+    
+
+##############################################################################
+#                     COMPONENTES                                            #
+##############################################################################
+   
+
 class Eventos(models.Model):
     titulo=models.TextField()
     descripcion=models.TextField(null=True, max_length=400)
@@ -121,6 +138,7 @@ class Eventos(models.Model):
     usuarios=models.ManyToManyField(User, through='Usuarios_Evento')
     class Meta:
         db_table = "Eventos"
+
 class Tareas(models.Model):
     nombre=models.TextField()
     notas=models.TextField(null=True, max_length=400)
@@ -134,6 +152,19 @@ class Tareas(models.Model):
     padre=models.ForeignKey('Tareas', related_name="hijas", null=True)
     class Meta:
         db_table = "Tareas"
+        
+
+class Reservas_Empresas(models.Model):
+    family=models.ForeignKey(Family, related_name="family_reserva")
+    empresa=models.ForeignKey(Empresa, related_name="empresa_reserva")
+    comensales=models.IntegerField(default=0)
+    fecha_inicio=models.DateField(null=True)
+    fecha_fin=models.DateField(null=True)
+    estado=models.IntegerField(default=0)
+    class Meta:
+        db_table="Reservas_Empresas"
+
+     
 
 class Usuarios_Evento(models.Model):
     usuario = models.ForeignKey(User)
@@ -147,13 +178,23 @@ class Usuarios_Tarea(models.Model):
     estado = models.IntegerField(default=0)
     class Meta:
         db_table = "Usuarios_Tarea"
-        
-class Comentarios_Joinity(models.Model):
+class Actualizaciones(models.Model):
+    joinity=models.ForeignKey(Joinitys, related_name="actualizaciones")
+    tipo=models.IntegerField()
+    class Meta:
+        db_table="Actualizaciones"
+class Texto_Joinity(models.Model):
     usuario=models.ForeignKey(User)
-    joinity=models.ForeignKey(Joinitys, related_name="comentarios")
+    actualizacion=models.OneToOneField(Actualizaciones, related_name="texto")
+    contenido=models.TextField(max_length=400)
+    class Meta:
+        db_table="Texto_Joinitys"
+class Comentario_Actualizacion(models.Model):
+    usuario=models.ForeignKey(User)
+    actualizacion=models.ForeignKey(Actualizaciones, related_name="comentarios")
     comentario=models.TextField(max_length=400)
     class Meta:
-        db_table="Comentarios_Joinitys"
+        db_table="Comentarios_Actualizaciones"
 class Lugares_Joinity(models.Model):
     joinity=models.ForeignKey(Joinitys, related_name="lugares")
     n=models.IntegerField(default=1)
@@ -172,11 +213,13 @@ class Lugares_Tarea(models.Model):
     lugar=models.TextField()
     class Meta:
         db_table="Lugares_Tareas"
-class Fotos_Joinity(models.Model):
-    joinity=models.ForeignKey(Joinitys, related_name="fotos")
-    foto = models.ImageField(max_length=100, upload_to='joinity', blank=True, null=True)
+class Foto_Joinity(models.Model):
+    usuario=models.ForeignKey(User, related_name="foto_usuario_actualizaciones")
+    actualizacion=models.OneToOneField(Actualizaciones, related_name="foto")
+    contenido = models.ImageField(max_length=100, upload_to='joinity', blank=True, null=True)
     class Meta:
-        db_table="Fotos_Joinitys"
+        db_table="Foto_Joinitys"
+
 class Puntuaciones(models.Model):
     joinity = models.ForeignKey(Joinitys, related_name="puntuacion")
     usuario = models.ForeignKey(User, related_name="puntuador_joinitys")

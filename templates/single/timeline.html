@@ -14,13 +14,13 @@
         Inicia una votación
       </li>
     </ul>
-	<form action="?comentar=1" method="post">
+	<form action="?contenido=texto" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
     <div class="escribe-input">
-      <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+      <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
       </div>
       <div class="input-append">
-        {{ comentar.comentario }}
+        {{ form.contenido }}
         <div id="losbotones">
           <input type="submit" value="Enviar" class="btn btn-small" />
           
@@ -38,10 +38,13 @@
     <div id="lineaTiempo">
     </div>
     <!-- INSERTAMOS UPDATES -->
-    {% for comentario in joinity.comentarios.all|dictsortreversed:"id" %}
-    	{% if 1 == 1 %}    
+    {% for contenido in joinity.actualizaciones.all|dictsortreversed:"id" %}
+    	{% if contenido.tipo == 1 %}    
 			{% include "single/updateTexto.html" %}
+		{% elif contenido.tipo == 2 %}
+			{% include "single/updateFoto.html" %}
 		{% endif %}
+		
 	{% endfor %}
   </div>
 </div>

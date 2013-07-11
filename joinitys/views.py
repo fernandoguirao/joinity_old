@@ -1,10 +1,10 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from forms import JoinityForm, Comentar, Crear_Evento, Crear_Tarea, FamilyForm, ComprasForm
-from forms import AficionesForm, Anyadir_Lugar, Subir_Foto, Anyadir_Lugar_Evento, Anyadir_Lugar_Tarea
-from forms import Buscar as Buscar_Reserva, Reservar, Puntuar
+from forms import JoinityForm, FormTexto, Crear_Evento, Crear_Tarea, FamilyForm, ComprasForm
+from forms import AficionesForm, Anyadir_Lugar, FormFoto, Anyadir_Lugar_Evento, Anyadir_Lugar_Tarea
+from forms import Buscar as Buscar_Reserva, Reservar, Puntuar, FormComentario
 from django.contrib.auth.decorators import login_required
-from models import Usuarios_Joinity, Eventos, Tareas, Usuarios_Tarea, Usuarios_Evento, Lugares_Joinity
+from models import Usuarios_Joinity, Eventos, Tareas, Usuarios_Tarea, Usuarios_Evento, Lugares_Joinity, Actualizaciones
 from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys, Joinitys_VIP
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
@@ -29,7 +29,7 @@ def index(request):
     lista_compras=Joinitys.objects.filter(tipo="2")
     lista_family=Joinitys.objects.filter(tipo="1")
     lista_vip=Joinitys_VIP.objects.all()
-    context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":usuario, "pagina":"home", "cinco":{1,2,3,4,5}, "VIP":lista_vip}
+    context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":usuario, "pagina":"home", "cinco":[1,2,3,4,5], "VIP":lista_vip}
     return render(request, 'index/index.html', context)
 
 
@@ -51,43 +51,40 @@ def mis_tareas(request):
 def ver(request, joinity_id):
     # What you want the button to do.
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
+    if request.user.is_authenticated():
+        soy=joinity.que_soy(request.user)
+    else:
+        soy="desconectado"
     if request.POST:
-        param_foto=request.GET.get("foto", 0)
-        param_coment=request.GET.get("comentar", 0)
-        param_punt=request.GET.get("puntua", 0)
-        subir_foto=False
-        comentar=False
-        puntuar=False
-        if param_foto!=0:
-            subir_foto=Subir_Foto(request.POST, request.FILES, joinity=joinity, prefix='subir_foto')
-            if subir_foto.is_valid:
-                subir_foto.save()
+        es_contenido=request.GET.get("contenido", False)
+        es_comentario=request.GET.get("comentar", False)
+        if es_contenido:
+            if es_contenido=="texto":
+                form = FormTexto(request.POST, usuario=request.user, joinity=joinity)
+            elif es_contenido=="foto":
+                form = FormFoto(request.POST, request.FILES, joinity=joinity, usuario=request.user)
+            comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
+            if form.is_valid:
+                form.save()
                 return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
-
-        if param_coment!=0:
-            comentar = Comentar(request.POST, usuario=request.user, joinity=joinity, prefix='enviar_comentario')
+        elif es_comentario:
+            actualizacion=get_object_or_404(Actualizaciones, pk=es_comentario)
+            form = FormTexto(instance=request.user, usuario=request.user, joinity=joinity)
+            comentar=FormComentario(request.POST, usuario=request.user, actualizacion=actualizacion)
             if comentar.is_valid:
                 comentar.save()
                 return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
-        if param_punt!=0:
-            puntuar = Puntuar(request.POST, usuario=request.user, joinity=joinity, prefix="puntuar")
-            if Puntuaciones.objects.filter(usuario=request.user, joinity=joinity).exists():
-                puntuacion = get_object_or_404(Puntuaciones, usuario=request.user, joinity=joinity)
-                puntuacion.delete()
-            if puntuar.is_valid:
-                puntuar.save()
-                return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
+
+        else:
+            form = FormTexto(instance=request.user, usuario=request.user, joinity=joinity)
+            comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
 
     else:
-        comentar = Comentar(instance=request.user, usuario=request.user, joinity=joinity, prefix='enviar_comentario')
-        subir_foto=Subir_Foto(instance=request.user, joinity=joinity, prefix='subir_foto')
-        puntuar = Puntuar(usuario=request.user, joinity=joinity, prefix="puntuar")
-
-  
-    context = {"joinity": joinity, "comentar": comentar, "admin":joinity.soy_admin(request.user), 
-               "miembro":joinity.soy_miembro(request.user), "invitado":joinity.soy_invitado(request.user), 
-               "espera":joinity.soy_espera(request.user), "subir_foto":subir_foto, "puntuar":puntuar, "pagina":"joinity",
-               "usuario":request.user}
+        form = FormTexto(instance=request.user, usuario=request.user, joinity=joinity)
+        comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
+    context = {"joinity": joinity, "form": form, "cinco":[1,2,3,4,5],
+               "pagina":"joinity", "comentar":comentar,
+               "usuario":request.user, "soy":soy}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 
 
@@ -100,14 +97,16 @@ def aceptar(request, joinity_id):
 
 
 def unirse(request, joinity_id):
-    joinity = get_object_or_404(Joinitys, pk=joinity_id)
-    if joinity.privacidad==0:
-        nuevo=Usuarios_Joinity(joinity=joinity, usuario=request.user, estado=1)
-        nuevo.save()
-    elif joinity.privacidad==1:
-        nuevo=Usuarios_Joinity(joinity=joinity, usuario=request.user, estado=-1)
-        nuevo.save()
-    return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
+    if request.user.is_authenticated():
+        joinity = get_object_or_404(Joinitys, pk=joinity_id)
+        if joinity.privacidad==0:
+            nuevo=Usuarios_Joinity(joinity=joinity, usuario=request.user, estado=1)
+            nuevo.save()
+        elif joinity.privacidad==1:
+            nuevo=Usuarios_Joinity(joinity=joinity, usuario=request.user, estado=-1)
+            nuevo.save()
+        return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
+    return HttpResponseRedirect("/")
 
     
 def ver_evento(request, joinity_id, evento_id):

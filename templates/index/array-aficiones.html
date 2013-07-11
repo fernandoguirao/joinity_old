@@ -84,12 +84,12 @@
         </div>
         <div class="valor06">
         {% for i in cinco  %}
-         {% if i <= aficion.puntuacion_media %}
-         	<i class="iconos punto">j</i>
-         {% else %}
-         	<i class="iconos">j</i>
-         {% endif %}
-         {% endfor %}
+        	{% if i <= aficion.puntuacion_media %}
+        		<i class="iconos punto">j</i>
+         	{% else %}
+         		<i class="iconos">j</i>
+         	{% endif %}
+        {% endfor %}
         </div>
         <!-- FIN DE HOVER -->
       </a>

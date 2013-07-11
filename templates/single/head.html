@@ -1,6 +1,14 @@
   <div class="extracto-joinity horizontal unJoinity">
     <div class="left-side" style="background-image:url('/media/images/ejemplos/archivo01.png');">
-      <a class="btn joinit">Únete a este Joinity</a>
+      {% if soy == "nadie" %}
+      	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
+      {% elif soy == "desconectado" %}
+      	<a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">Conectate para unirte a este Joinity</a>
+      {% elif soy == "espera" %}
+      	<div class="btn joinit">Estas a la espera</div>
+      {% elif soy == "nada" and joinity.privacidad != 2 %}
+      	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
+      {% endif %}
     </div>
     <div class="right-side">
       <!-- FILA 01 -->
@@ -52,7 +60,7 @@
           <div class="numero-joiners">
             <p>
               <span class="njoiners">
-                25
+                {{joinity.n_joiners}}
               </span>
               joiners > 
               <span class="djoiners">
@@ -75,11 +83,13 @@
           </div>
         </div>
         <div class="valor06">
-          <i class="punto iconos">j</i>
-          <i class="punto iconos">j</i>
-          <i class="iconos">j</i>
-          <i class="iconos">j</i>
-          <i class="iconos">j</i>
+          {% for i in cinco  %}
+        	{% if i <= joinity.puntuacion_media %}
+        		<i class="iconos punto">j</i>
+         	{% else %}
+         		<i class="iconos">j</i>
+         	{% endif %}
+           {% endfor %}
         </div>
       </div> <!-- FIN FILA 03 -->
       <div class="fila">
@@ -99,26 +109,30 @@
           </a>
         </div>
         <div class="valor09">
+        {% for lugar in joinity.lugares.all|slice:":2" %}
           <div class="etiqueta">
             <i class="iconos">
               l
             </i>
-            Ciudad 1
+            {{lugar.lugar}}
           </div>
+          {% if forloop.first %}
           <div class="trazado">
             <span class="arriba">
             </span>
             <span class="abajo">
             </span>
           </div>
+          {% endif %}
           <div class="etiqueta">
             <span>
-              Ciudad 2
+            	{{lugar.lugar}}
             </span>
             <i class="iconos icoder">
               l
             </i>
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>
