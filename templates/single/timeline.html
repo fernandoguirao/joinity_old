@@ -87,6 +87,7 @@
             2. Opciones
           </label>
           <ul class="laopcion">
+            <!-- Una opción de voto -->
             <li>
               <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción">
               <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
@@ -94,10 +95,19 @@
                   s
                 </i>
               </a>
-              <div class="btn btn-small addopt">+</div>
+              <div class="fotupload">
+                <br>
+                <span class="help-block seghelp">
+                  Sube una fotografía
+                </span>
+                <input class="inputNormal input-small titulopregunta" type="file" placeholder="">
+              </div>
+              <div class="btn btn-small addopt">
+                  Añade una opción más
+              </div>
             </li><!-- Fin de la opción -->
-            
-          </div>
+          </ul>
+        </div>
         <div class="btn btn-small btn-block amarillo crearvot">
           Adelante con esta votación
         </div>

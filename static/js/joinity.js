@@ -97,6 +97,7 @@ escribemens.click(function(){
   /* escribeform.fadeIn(); */
   formupdate.animate({'height':56});
   escribeform.animate({'top':0,'opacity':1});
+  borrarformularios();
 });
 
 iniciavot.click(function(){
@@ -105,25 +106,49 @@ iniciavot.click(function(){
   escribeform.animate({'top':155,'opacity':0});
   votaform.animate({'top':-92,'opacity':1});
   /* escribeform.fadeOut(); */
-  formupdate.animate({'height':251});
+  formupdate.animate({'height':298});
+  crearformularios();
 });
 
-var ul = $('ul.laopcion');
-var contenido = '<li><input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción"><a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button"><i class="iconos">s</i></a><div class="btn btn-small addopt">+</div></li>';
+/* DUPLICAMOS FORMULARIOS */
 
-opcionvotar = function(){
+  var e = $('.laopcion li');
+  for (var i = 0; i < 10; i++) {
+    e.clone().appendTo('.laopcion');
+    e.addClass('displaynone');
+  }
+
+
+function borrarformularios() {
+
+  $('.laopcion li:lt(7)').addClass('displaynone');
+
+}
+
+var indice;
+
   $('.addopt').click(function(){
-    ul.append(contenido);
-    opcionvotar();
-    $('.laopcion .addopt').hide();
-    $('.laopcion .addopt').last().show();
-    formupdate.height(formupdate.height()+46);
+    $(this).parent().next().removeClass('displaynone');
+    $(this).hide();
+    $(this).parent().next().children('.addopt').show();
+    $('#formularios-update').height($('#formularios-update').height()+46);
+    /* opcionvotar(); */
+    indice = $(this).parent().index();
+    if(indice>8) {
+      $('.addopt').hide();
+      $('#formularios-update').height($('#formularios-update').height()-46);
+      
+    }
   })
   
-}
-opcionvotar();
 
+$('.votafoto').click(function(){
+  $(this).hide();
+  $(this).parent().find('.fotupload').addClass('inlinee');
+  $('#formularios-update').height($('#formularios-update').height()+70);
+});
 
+/* COMENTARIOS Y FOTOS */
 $('.cambiafoto').click(function(){
   $('.escribeform.prinform').attr('action', '?contenido=foto');
   $('#appendedInputButton-02').prop("type","file");
