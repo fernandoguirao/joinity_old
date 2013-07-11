@@ -1,3 +1,26 @@
+<!------------------------------------------------------------>
+<!--! Alert para subir fotos a votaciones con dropzone.js  -->
+<!------------------------------------------------------------>
+
+<div id="fotovoto" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
+  <div class="modal-body">
+    <form action="/file-upload" class="dropzone">
+      <div class="fallback">
+        <input name="file" type="file btn" multiple />
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Fin de alert -->
+
+<!--------------------------->
+<!--! Empieza la página  -->
+<!--------------------------->
+
 <div id="timeline">
   <div id="escribe-main">
     <ul id="opciones">
@@ -14,47 +37,61 @@
         Inicia una votación
       </li>
     </ul>
+    
+    <!-- Escribe mensaje y votos: formularios -->
     <div id="formularios-update">
+      <!-- Actualización: texto -->
       <form class="escribeform" action="?contenido=texto" method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-    <div class="escribe-input">
-      <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
-      </div>
-      <div class="input-append">
-        {{ form.contenido }}
-        <div id="losbotones">
-          <input type="submit" value="Enviar" class="btn btn-small" />
-          
-          <button class="btn btn-small" type="button">
-            <i class="iconos">
-              s
-            </i>
-          </button>
+        {% csrf_token %}
+        <div class="escribe-input">
+          <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+          </div>
+          <div class="input-append">
+            {{ form.contenido }}
+            <div id="losbotones">
+              <input type="submit" value="Enviar" class="btn btn-small" />
+              <button class="btn btn-small" type="button">
+                <i class="iconos">
+                  s
+                </i>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    </form>
-    <form class="votaform">
-      <div class="input-append">
-        <label> 1. Pregunta o título de la votación </label>
-<input class="inputNormal input-small titulopregunta" type="text" placeholder="Cuál sería el título de la pregunta">
-<span class="help-block"> Ejemplo: "¿cuál de estas tres fotos os gusta más? </span>
-        <label> 2. Opciones </label>
-        <input class="inputNormal input-small titulopregunta" type="text" placeholder="Opción número uno">
-
-          <button class="btn btn-small votafoto" type="button">
+      </form>
+      <!-- Fin actualización texto -->
+      <!-- Actualización votación -->
+      <form class="votaform">
+        <div class="input-append">
+          <label>
+            1. Pregunta o título de la votación
+          </label>
+          <input class="inputNormal input-small titulopregunta" type="text" placeholder="Cuál sería el título de la pregunta">
+          <span class="help-block">
+            Ejemplo: "¿cuál de estas tres fotos os gusta más?
+          </span>
+          <label>
+            2. Opciones
+          </label>
+          <input class="inputNormal input-small titulopregunta" type="text" placeholder="Opción número uno">
+          <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
             <i class="iconos">
               s
             </i>
-          </button>
-
+          </a>
         <div class="btn btn-small addopt">+</div>
       </div>
-      <div class="btn btn-small btn-block amarillo crearvot">Adelante con esta votación</div>
+      <div class="btn btn-small btn-block amarillo crearvot">
+        Adelante con esta votación
+      </div>
     </form>
-
+    <!-- Fin de actualización votación -->
     </div>
+    <!-- Fin de formularios -->
   </div>
+  <!-- Fin de zona para escribir -->
+
+  <!-- Empieza el muro -->
   <div id="cronologia">
     <div id="lineaTiempo">
     </div>
