@@ -122,31 +122,39 @@ opcionvotar = function(){
   
 }
 opcionvotar();
+
+
+$('.cambiafoto').click(function(){
+  $('.escribeform').attr('action', '?contenido=foto');
+})
+
 /* DROPZONE */
 
-Dropzone.options.dropform = {
-  init: function() {
-  }
-};
+/*
+  Dropzone.options.dropform = {
+    init: function() {
+    }
+  };
+  
+  Dropzone.autoDiscover = false;
+  
+  $(function() {
+  
+    var myDropzone = new Dropzone("#dropform");
+  
+    myDropzone.on("addedfile", function(file) {
 
-Dropzone.autoDiscover = false;
-
-$(function() {
-
-  var myDropzone = new Dropzone("#dropform");
-
-  myDropzone.on("addedfile", function(file) {
-    /* Maybe display some more file information on your page */
-    $('.botonsubir').show();
-  });
-  $('.botonsubir.amarillo').click(function(){
-    myDropzone.removeAllFiles();
-    $('.botonsubir').hide();
-  });
-  $('#fotovoto').on('hidden', function () {
-    myDropzone.removeAllFiles();
-    $('.botonsubir').hide();
+      $('.botonsubir').show();
+    });
+    $('.botonsubir.amarillo').click(function(){
+      myDropzone.removeAllFiles();
+      $('.botonsubir').hide();
+    });
+    $('#fotovoto').on('hidden', function () {
+      myDropzone.removeAllFiles();
+      $('.botonsubir').hide();
+    })
   })
-})
+*/
 
 /* al hacer click en la foto poner input="file" la etiqueta form en  action contenido="foto" */
