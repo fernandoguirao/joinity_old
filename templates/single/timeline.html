@@ -44,18 +44,28 @@
     <!-- Escribe mensaje y votos: formularios -->
     <div id="formularios-update">
       <!-- Actualización: texto -->
-      <form class="escribeform" action="?contenido=texto" method="post" enctype="multipart/form-data">
+      <form class="escribeform prinform" action="?contenido=texto" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="escribe-input">
           <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
           </div>
+          <div id="hazclick">
+              Haz click aquí para subir una foto.
+            </div>
           <div class="input-append">
+            
             {{ form.contenido }}
+            
             <div id="losbotones">
               <input type="submit" value="Enviar" class="btn btn-small" />
               <button class="btn btn-small cambiafoto" type="button">
                 <i class="iconos">
                   s
+                </i>
+              </button>
+              <button class="btn btn-small cambiatexto" type="button">
+                <i class="iconos">
+                  n
                 </i>
               </button>
             </div>

@@ -125,8 +125,24 @@ opcionvotar();
 
 
 $('.cambiafoto').click(function(){
-  $('.escribeform').attr('action', '?contenido=foto');
+  $('.escribeform.prinform').attr('action', '?contenido=foto');
+  $('#appendedInputButton-02').prop("type","file");
+  $('#appendedInputButton-02,.escribe-input').addClass('hayfoto');
+    $('#appendedInputButton-02').addClass('btn');
+    $('#hazclick').addClass('confoto');
+    
 })
+
+$('.cambiatexto').click(function(){
+  $('.escribeform.prinform').attr('action', '?contenido=texto');
+  $('#appendedInputButton-02').prop("type","text");
+  $('#appendedInputButton-02,.escribe-input').removeClass('hayfoto');
+    $('#appendedInputButton-02').removeClass('btn');
+    $('#hazclick').removeClass('confoto');
+})
+
+
+
 
 /* DROPZONE */
 
