@@ -108,6 +108,20 @@ iniciavot.click(function(){
   formupdate.animate({'height':251});
 });
 
+var ul = $('ul.laopcion');
+var contenido = '<li><input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción"><a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button"><i class="iconos">s</i></a><div class="btn btn-small addopt">+</div></li>';
+
+opcionvotar = function(){
+  $('.addopt').click(function(){
+    ul.append(contenido);
+    opcionvotar();
+    $('.laopcion .addopt').hide();
+    $('.laopcion .addopt').last().show();
+    formupdate.height(formupdate.height()+46);
+  })
+  
+}
+opcionvotar();
 /* DROPZONE */
 
 Dropzone.options.dropform = {
@@ -135,4 +149,4 @@ $(function() {
   })
 })
 
-
+/* al hacer click en la foto poner input="file" la etiqueta form en  action contenido="foto" */
