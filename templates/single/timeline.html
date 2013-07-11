@@ -7,10 +7,16 @@
     ×
   </button>
   <div class="modal-body">
-    <form action="/file-upload" class="dropzone">
-      <div class="fallback">
-        <input name="file" type="file btn" multiple />
+    <form action="/file-upload" method="post" class="dropzone dz-clickable" enctype="multipart/form-data">
+      <div class="dz-default dz-message">
+        <span>
+          Arrastra una foto o haz click aquí
+        </span>
       </div>
+      <input type="hidden" name="submitted" value="1">
+        <p>
+          <input type="Submit" class="btn botonsubir" value="Perfecto, sube esta foto">
+        </p>
     </form>
   </div>
 </div>
