@@ -84,6 +84,7 @@ $(".famcat").click(function(){
 
 /* VOTACIONES */
 
+var jei = 0;
 var escribemens = $('.escribe-mensaje');
 var iniciavot = $('.inicia-votacion');
 var votaform = $('.votaform');
@@ -105,7 +106,7 @@ iniciavot.click(function(){
   escribeform.animate({'top':155,'opacity':0});
   votaform.animate({'top':-92,'opacity':1});
   /* escribeform.fadeOut(); */
-  formupdate.animate({'height':298});
+  formupdate.animate({'height':298+jei});
 });
 
 /* DUPLICAMOS FORMULARIOS */
@@ -132,11 +133,13 @@ var indice;
     $(this).hide();
     $(this).parent().next().children('.addopt').show();
     $('#formularios-update').height($('#formularios-update').height()+46);
+    jei = jei+46;
     /* opcionvotar(); */
     indice = $(this).parent().index();
     if(indice>8) {
       $('.addopt').hide();
       $('#formularios-update').height($('#formularios-update').height()-46);
+      jei = jei-46;
       
     }
   })
@@ -146,6 +149,7 @@ $('.votafoto').click(function(){
   $(this).hide();
   $(this).parent().find('.fotupload').addClass('inlinee');
   $('#formularios-update').height($('#formularios-update').height()+70);
+  jei = jei+70;
 });
 
 /* COMENTARIOS Y FOTOS */
