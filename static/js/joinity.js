@@ -97,7 +97,6 @@ escribemens.click(function(){
   /* escribeform.fadeIn(); */
   formupdate.animate({'height':56});
   escribeform.animate({'top':0,'opacity':1});
-  borrarformularios();
 });
 
 iniciavot.click(function(){
@@ -107,7 +106,6 @@ iniciavot.click(function(){
   votaform.animate({'top':-92,'opacity':1});
   /* escribeform.fadeOut(); */
   formupdate.animate({'height':298});
-  crearformularios();
 });
 
 /* DUPLICAMOS FORMULARIOS */
@@ -118,12 +116,14 @@ iniciavot.click(function(){
     e.addClass('displaynone');
   }
 
+/*
 
 function borrarformularios() {
 
   $('.laopcion li:lt(7)').addClass('displaynone');
 
 }
+*/
 
 var indice;
 
