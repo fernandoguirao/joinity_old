@@ -81,3 +81,29 @@ $(".compracat").click(function(){
 $(".famcat").click(function(){
   $('html,body').animate({scrollTop:$(".fandfriends").offset().top});
 });
+
+/* VOTACIONES */
+
+var escribemens = $('.escribe-mensaje');
+var iniciavot = $('.inicia-votacion');
+var votaform = $('.votaform');
+var escribeform = $('.escribeform');
+var formupdate = $('#formularios-update');
+
+escribemens.click(function(){
+  $(this).addClass("activado");
+  iniciavot.removeClass("activado");
+  votaform.animate({'top':0,'opacity':0});
+  /* escribeform.fadeIn(); */
+  formupdate.animate({'height':56});
+  escribeform.animate({'top':0,'opacity':1});
+});
+
+iniciavot.click(function(){
+  $(this).addClass("activado");
+  escribemens.removeClass("activado");
+  escribeform.animate({'top':155,'opacity':0});
+  votaform.animate({'top':-92,'opacity':1});
+  /* escribeform.fadeOut(); */
+  formupdate.animate({'height':251});
+});

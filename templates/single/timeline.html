@@ -1,20 +1,21 @@
 <div id="timeline">
   <div id="escribe-main">
     <ul id="opciones">
-      <li>
+      <li class="escribe-mensaje activado">
         <i class="iconos">
           n
         </i>
         Comparte un mensaje
       </li>
-      <li>
+      <li class="inicia-votacion">
         <i class="iconos">
           j
         </i>
         Inicia una votación
       </li>
     </ul>
-	<form action="?contenido=texto" method="post" enctype="multipart/form-data">
+    <div id="formularios-update">
+      <form class="escribeform" action="?contenido=texto" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
     <div class="escribe-input">
       <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
@@ -33,6 +34,26 @@
       </div>
     </div>
     </form>
+    <form class="votaform">
+      <div class="input-append">
+        <label> 1. Pregunta o título de la votación </label>
+<input class="inputNormal input-small titulopregunta" type="text" placeholder="Cuál sería el título de la pregunta">
+<span class="help-block"> Ejemplo: "¿cuál de estas tres fotos os gusta más? </span>
+        <label> 2. Opciones </label>
+        <input class="inputNormal input-small titulopregunta" type="text" placeholder="Opción número uno">
+
+          <button class="btn btn-small votafoto" type="button">
+            <i class="iconos">
+              s
+            </i>
+          </button>
+
+        <div class="btn btn-small addopt">+</div>
+      </div>
+      <div class="btn btn-small btn-block amarillo crearvot">Adelante con esta votación</div>
+    </form>
+
+    </div>
   </div>
   <div id="cronologia">
     <div id="lineaTiempo">
