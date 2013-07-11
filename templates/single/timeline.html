@@ -7,15 +7,10 @@
     ×
   </button>
   <div class="modal-body">
-    <form action="/file-upload" method="post" class="dropzone dz-clickable" enctype="multipart/form-data">
-      <div class="dz-default dz-message">
-        <span>
-          Arrastra una foto o haz click aquí
-        </span>
-      </div>
+    <form action="/file-upload" method="post" class="dropzone dz-clickable" enctype="multipart/form-data" id="dropform">
       <input type="hidden" name="submitted" value="1">
         <p>
-          <input type="Submit" class="btn botonsubir" value="Perfecto, sube esta foto">
+          <input type="Submit" class="btn botonsubir" value="Perfecto, sube esta foto"><div class="btn botonsubir amarillo btn-mini">No me gusta, bórralo</div>
         </p>
     </form>
   </div>
@@ -79,23 +74,34 @@
           <label>
             2. Opciones
           </label>
-          <input class="inputNormal input-small titulopregunta" type="text" placeholder="Opción número uno">
-          <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
-            <i class="iconos">
-              s
-            </i>
-          </a>
-        <div class="btn btn-small addopt">+</div>
+          <div class="laopcion">
+            <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción">
+            <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
+              <i class="iconos">
+                s
+              </i>
+            </a>
+            <div class="btn btn-small addopt">+</div>
+          </div><!-- Fin de la opción -->
+          <div class="laopcion">
+            <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción">
+            <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
+              <i class="iconos">
+                s
+              </i>
+            </a>
+            <div class="btn btn-small addopt">+</div>
+          </div><!-- Fin de la opción -->
+        </div>
+        <div class="btn btn-small btn-block amarillo crearvot">
+          Adelante con esta votación
+        </div>
+      </form>
+      <!-- Fin de actualización votación -->
       </div>
-      <div class="btn btn-small btn-block amarillo crearvot">
-        Adelante con esta votación
-      </div>
-    </form>
-    <!-- Fin de actualización votación -->
+      <!-- Fin de formularios -->
     </div>
-    <!-- Fin de formularios -->
-  </div>
-  <!-- Fin de zona para escribir -->
+    <!-- Fin de zona para escribir -->
 
   <!-- Empieza el muro -->
   <div id="cronologia">

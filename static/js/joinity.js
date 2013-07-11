@@ -110,15 +110,29 @@ iniciavot.click(function(){
 
 /* DROPZONE */
 
-var Dropzone = require("dropzone");
-
-// "myAwesomeDropzone" is the camelized version of the HTML element's ID
-Dropzone.options.myAwesomeDropzone = {
-  dictDefaultMessage: "yep",
-  accept: function(file, done) {
-    if (file.name == "justinbieber.jpg") {
-      done("Naha, you don't.");
-    }
-    else { done(); }
+Dropzone.options.dropform = {
+  init: function() {
   }
 };
+
+Dropzone.autoDiscover = false;
+
+$(function() {
+
+  var myDropzone = new Dropzone("#dropform");
+
+  myDropzone.on("addedfile", function(file) {
+    /* Maybe display some more file information on your page */
+    $('.botonsubir').show();
+  });
+  $('.botonsubir.amarillo').click(function(){
+    myDropzone.removeAllFiles();
+    $('.botonsubir').hide();
+  });
+  $('#fotovoto').on('hidden', function () {
+    myDropzone.removeAllFiles();
+    $('.botonsubir').hide();
+  })
+})
+
+
