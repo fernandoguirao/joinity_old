@@ -5,7 +5,7 @@ from forms import AficionesForm, Anyadir_Lugar, FormFoto, Anyadir_Lugar_Evento, 
 from forms import Buscar as Buscar_Reserva, Reservar, Puntuar, FormComentario
 from django.contrib.auth.decorators import login_required
 from models import Usuarios_Joinity, Eventos, Tareas, Usuarios_Tarea, Usuarios_Evento, Lugares_Joinity, Actualizaciones
-from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys, Joinitys_VIP
+from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys, Joinitys_VIP, Compras
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from usuario.forms import Buscar
@@ -15,7 +15,7 @@ from usuario.models import Usuarios
 from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
-
+from categorias.models import Subcategorias_Compras, Categorias_Compras
 def index(request):
     if not request.user.is_authenticated():
         usuario=False
@@ -44,13 +44,17 @@ def filtro(request):
     if request.GET:
         tipo=request.GET.get("herolist", -1)
         if tipo==0:
-            categoria=request.GET.get("comprar2", -1)
+            categoria=Categorias_Compras.objects.filter(pk=request.GET.get("comprar2", 0))
+            subcategorias=Subcategorias_Compras.objects.filter(categoria=categoria)
+            compras=Compras.objects.filter(subcategoria_in=subcategorias)
+            lista_joinitys=[]
+            for compra in compras:
+                lista_joinitys.append(compra.joinity)
+                
         elif tipo==1:
             aficiones=1
         elif tipo==3:
             reservas=1
-        
-    lista_joinitys=Usuarios_Joinity.objects.filter(usuario=request.user)
     context={'lista_joinitys':lista_joinitys, "usuario":request.user, "pagina":"joinity"}
     return render(request, 'misjoinitys/misjoinitys.html', context)
 
