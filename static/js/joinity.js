@@ -56,17 +56,21 @@ $('.los-joinity').hover (function(){
 
 var seleccionbtn = $('.primerselect .dropdown-menu a');
 var seleccionPrim = $(".primerselect button").find('span');
+var selector = $('.selectoresgrupo');
 
 seleccionbtn.click(function(){
   if($(this).text()=="Comprar") {
-    $('.selector.comprar').show("fast");
-    $('.selector.aficion,.selector.reserva').hide("fast");
+    selector.animate({'top':'0px'});
+    $('.selector.comprar').fadeTo('slow',1);
+    $('.selector.aficion,.selector.reserva').fadeTo('slow',0);
   } else if ($(this).text()=="Practicar una afición") {
-    $('.selector.aficion').show("fast");
-    $('.selector.comprar,.selector.reserva').hide("fast");
+    selector.animate({'top':'-45px'});
+    $('.selector.aficion').fadeTo('slow',1);
+    $('.selector.comprar,.selector.reserva').fadeTo('slow',0);
   } else if ($(this).text()=="Realizar una reserva"){
-    $('.selector.reserva').show("fast");
-    $('.selector.aficion,.selector.comprar').hide("fast");
+    selector.animate({'top':'-111px'});
+    $('.selector.reserva').fadeTo('slow',1);
+    $('.selector.aficion,.selector.comprar').fadeTo('slow',0);
   }
 });
 

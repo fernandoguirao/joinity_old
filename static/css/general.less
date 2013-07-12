@@ -2510,14 +2510,30 @@ input[type="text"] {
   .carousel {
     margin-bottom:-34px;
   }
+  .barrad {
+    max-height:46px;
+  }
   .selectoresgrupo {
+/*     padding-left:396px; */
+    position:relative;
     .selector {
-      position:relative;
+      display: block!important;
+      height: 69px!important;
+      position: relative;
+      &.aficion,&.reserva {
+        top:-21px;
+        margin-left:403px;
+      }
     }
   }
-  .selector.aficion,.selector.reserva {
-    display:none;
+  .primerselect {
+    position: relative;
+    z-index:2;
   }
+  .selector.aficion,.selector.reserva {
+    .opacity(0);
+  }
+  
   .selector .inputNormal.input-small {
     margin-bottom: 0 !important;
     margin-left: -184px;
