@@ -17,10 +17,11 @@
 			{% include "single/head.html" %}
   			<div id="contenedorJoinity">
   
+			{% if soy == "miembro" or soy == "admin" %}
+    			{% include "single/timeline.html" %}
 
-    		{% include "single/timeline.html" %}
-
-    		{% include "single/rightSideBar.html" %}
+    			{% include "single/rightSideBar.html" %}
+    		{% endif %}
     
     		<div style="clear:both;width:1px;height:1px;">
     	</div> 

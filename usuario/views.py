@@ -81,6 +81,7 @@ def logout_user(request):
 
 def login_user(request):
     pagina="login"
+    state=False
     if request.POST:
         formulario = AuthenticationForm(request.POST)
         user = authenticate(username=request.POST["username"], password=request.POST["password"])
@@ -91,10 +92,13 @@ def login_user(request):
                     return HttpResponseRedirect(request.GET["next"])
                 else:
                     return HttpResponseRedirect('/')
+        else:
+            state="Error: Contraseña incorrecta"
 
     else:
         formulario = AuthenticationForm()
-    return render_to_response('login/login.html', {'pagina':pagina, 'formulario': formulario}, context_instance=RequestContext(request))
+    context={'pagina':pagina, 'formulario': formulario, "state":state}
+    return render_to_response('login/login.html', context, context_instance=RequestContext(request))
     
 def registro(request):
     if request.method == 'POST':

@@ -1,8 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 
 from joinitys import views
 urlpatterns = patterns('',
-    url(r'^nuevo_joinity/$', views.nuevo_joinity, name='nuevo_joinity'),
     url(r'^(?P<joinity_id>\d+)/reserva/$', views.crear_reserva, name='crear_reserva'),
     url(r'^(?P<joinity_id>\d+)/reserva/restaurante/$', views.buscar_restaurante, name='buscar_restaurante'),
     url(r'^(?P<joinity_id>\d+)/reserva/hotel/$', views.buscar_hotel, name='buscar_hotel'),
@@ -10,15 +9,7 @@ urlpatterns = patterns('',
     url(r'^(?P<joinity_id>\d+)/reserva/hotel/crear/(?P<empresa_id>\d+)/$', views.crear_reserva_hotel, name='crear_reserva_hoteles'),
     url(r'^(?P<joinity_id>\d+)/reserva/restaurante/(?P<reserva_id>\d+)/$', views.ver_reserva, name='ver_reserva'),
     url(r'^(?P<joinity_id>\d+)/reserva/hotel/(?P<reserva_id>\d+)/$', views.ver_reserva, name='ver_reserva_hotel'),
-    url(r'^nuevo_joinity/family/$', views.nuevo_family, name='nuevo_family'),
-    url(r'^nuevo_joinity/family/2/(?P<joinity_id>\d+)/$', views.crear_2, name='nuevo_family_2'),
-    url(r'^nuevo_joinity/family/3/(?P<joinity_id>\d+)/$', views.crear_3, name='nuevo_family_3'),
-    url(r'^nuevo_joinity/aficiones/$', views.nuevo_aficiones, name='nuevo_aficiones'),
-    url(r'^nuevo_joinity/aficiones/2/(?P<joinity_id>\d+)/$', views.crear_2, name='nuevo_aficiones_2'),
-    url(r'^nuevo_joinity/aficiones/3/(?P<joinity_id>\d+)/$', views.crear_3, name='nuevo_aficiones_3'),
-    url(r'^nuevo_joinity/compras/$', views.nuevo_compras, name='nuevo_compras'),
-    url(r'^nuevo_joinity/compras/2/(?P<joinity_id>\d+)/$', views.crear_2, name='nuevo_compras_2'),
-    url(r'^nuevo_joinity/compras/3/(?P<joinity_id>\d+)/$', views.crear_3, name='nuevo_compras_3'),
+    url(r'^nuevo_joinity/', include('joinitys.creacion.urls', namespace="creacion")),
     url(r'^ver/(?P<joinity_id>\d+)/$', views.ver, name='ver_joinity'),
     url(r'^(?P<joinity_id>\d+)/$', views.ver, name='ver_joinity2'),
     url(r'^aceptar/(?P<joinity_id>\d+)/$', views.aceptar, name='aceptar_joinity'),

@@ -16,7 +16,7 @@
       </div>
       <p class="smallTxt">
         <a href="">
-          Fernando Guirao
+          {{contenido.texto.usuario.first_name}} {{contenido.texto.usuario.last_name}}
         </a>
         ha subido un vídeo
       </p>
@@ -24,6 +24,8 @@
     <div class="contenido">
       <!-- CONTENIDO ESPECÍFICO -->
         <div class="foto esVideo" style="background-image:url('/media/images/ejemplos/archivo02.png');">
+                <a href="http://www.{{contenido.texto.contenido}}">Ver video</a>
+        
         </div>
       <!-- FIN CONTENIDO ESPECÍFICO -->
       {% include "single/comentarios.html" %}
