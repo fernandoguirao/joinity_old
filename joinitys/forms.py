@@ -8,7 +8,7 @@ from models import Comentario_Actualizacion
 class JoinityForm(forms.ModelForm):
     nombre=forms.CharField()
     descripcion = forms.Textarea()
-    foto=forms.ImageField()
+    foto=forms.ImageField(required=False)
     n_min=forms.IntegerField()
     n_max=forms.IntegerField()
     precio = forms.DecimalField(localize=True)

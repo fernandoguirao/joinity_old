@@ -377,8 +377,7 @@ def ver_reserva(request, joinity_id, reserva_id):
 @login_required
 def nuevo_aficiones(request):
     if request.POST:
-        state = "Creado joinity"
-        formulario = JoinityForm(request.POST, user=request.user, tipo=3)
+        formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=3)
         if formulario.is_valid:
             joinity = formulario.save()
             formaficiones=AficionesForm(request.POST, joinity=joinity)
@@ -388,7 +387,7 @@ def nuevo_aficiones(request):
                 usuario.save()
             return HttpResponseRedirect("/joinity/nuevo_joinity/aficiones/2/"+str(joinity.id))
     else:
-        formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=3)
+        formulario = JoinityForm(user=request.user, tipo=3)
         formaficiones=AficionesForm(joinity=None)
     context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear-aficiones", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
@@ -477,8 +476,7 @@ def aceptar_membresia(request, usuario_joinity_id):
 @login_required
 def nuevo_family(request):
     if request.POST:
-        state = "Creado joinity"
-        formulario = JoinityForm(request.POST, user=request.user, tipo=1)
+        formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=1)
         if formulario.is_valid:
             joinity = formulario.save()
             formfamily=FamilyForm(request.POST, joinity=joinity)
@@ -496,7 +494,7 @@ def nuevo_family(request):
 @login_required
 def nuevo_compras(request):
     if request.POST:
-        formulario = JoinityForm(request.POST, user=request.user, tipo=2)
+        formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=2)
         if formulario.is_valid:
             joinity = formulario.save()
             formcompras=ComprasForm(request.POST, joinity=joinity)
