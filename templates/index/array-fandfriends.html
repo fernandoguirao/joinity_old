@@ -59,10 +59,8 @@
       {% endif %}
       
       <div class="los-joinity">
-        {% for foto in family.fotos.all|slice:":1" %}
-        	<div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
+        	<div class="foto-join" style="background-image:url('/media/{{family.foto}}');">
         	</div>
-        {% endfor %}
         <div class="info-caja">
           <h6>
             {{family.nombre}}

@@ -56,10 +56,8 @@
       {% else %}
       <a class="los-joinity beta-reg" href="">
       {% endif %}
-      	{% for foto in aficion.fotos.all|slice:":1" %}
-        <div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
+        <div class="foto-join" style="background-image:url('/media/{{aficion.foto}}');">
         </div>
-        {% endfor %}
         <div class="info-caja">
           <h6>
             {{aficion.nombre}}

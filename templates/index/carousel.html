@@ -50,11 +50,7 @@
                     </div>
                   </div>
                 </div>
-                {% for foto in joinity.joinity.fotos.all|slice:":1"%}
-                <img src="/media/{{foto.foto}}" alt="Slide{{forloop.counter}}" style="top:-254px;" />
-                {% empty %}
-                <img src="/media/images/ejemplos/escocia.png" alt="Slide{{forloop.counter}}" style="top:-254px;" />
-                {% endfor %}
+                <img src="/media/{{joinity.joinity.foto}}" alt="Slide{{forloop.counter}}" style="top:-254px;" />
             </div>
             {% endfor %}
             <!--

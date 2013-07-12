@@ -57,10 +57,8 @@
     {% endif %}
       <!-- CADA JOINITY -->
       <div class="los-joinity">
-        {% for foto in compra.fotos.all|slice:":1" %}
-        	<div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
+        	<div class="foto-join" style="background-image:url('/media/{{compra.foto}}');">
         	</div>
-        {% endfor %}
         <div class="info-caja">
           <h6>
             {{compra.nombre}}
