@@ -73,10 +73,10 @@
         </div>
         <!-- HOVER -->
         <div class="rueda img-circle">
-          <div class="donutchartcompras" data-percent="50"></div>
+          <div class="donutchartcompras" data-percent="{{compra.get_porcentaje}}"></div>
           <div class="numjoine">
             <span>
-              {{compra.n_min}}/{{compra.n_max}}
+              {{compra.n_joiners}}/{{compra.n_max}}
             </span>
             joiners
           </div>
