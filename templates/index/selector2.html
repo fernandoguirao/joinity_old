@@ -6,6 +6,7 @@
     <p>
       Quiero
     </p>
+    <form action="/filtro/" method="GET">
     <!-- CAMPO SELECT -->
     <div class="campo">
       <select name="herolist" value="X-Men" class="span3 primerselect">
@@ -22,7 +23,7 @@
     </p>
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <select name="herolist2" value="X-Men" class="span3">
+      <select name="comprar2" value="X-Men" class="span3">
         <option value="0" selected="selected">tecnológico</option>
         <option value="1">deportivo</option>
         <option value="2">decorativo</option>
@@ -35,7 +36,7 @@
     </p>
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <select name="herolist3" value="X-Men" class="span3">
+      <select name="comprar3" value="X-Men" class="span3">
         <option value="0" selected="selected">200 o menos</option>
         <option value="1">200-400</option>
         <option value="2">400-1000 </option>
@@ -43,7 +44,11 @@
       </select>
     </div>
     <!-- FIN DE SELECT -->
-    <a class="btn btn-small amarillo adelante" href="">Adelante</a>
+    {% if usuario %}
+    	<input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
+   	{% else %}
+   		<input type="button" class="btn btn-small amarillo adelante beta-reg" value="Adelante">
+   	{% endif %}
     </div><!-- FIN DE COMPRAR -->
     <!-- SI ES UNA AFICIÓN -->
     <div class="selector aficion">
@@ -52,7 +57,7 @@
     </p>
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <select name="herolist4" value="X-Men" class="span3">
+      <select name="aficion2" value="X-Men" class="span3">
         <option value="0" selected="selected">deportes</option>
         <option value="1">juegos</option>
         <option value="2">viajes</option>
@@ -65,11 +70,14 @@
     </p>
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <input type="text" placeholder="tu ciudad" class="inputNormal input-small">
+      <input type="text" placeholder="tu ciudad" class="inputNormal input-small" name="aficion3">
     </div>
     <!-- FIN DE SELECT -->
-    <a class="btn btn-small amarillo adelante" href="">Adelante</a>
-    </div><!-- FIN DE AFICIONES -->
+	{% if usuario %}
+    	<input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
+   	{% else %}
+   		<input type="button" class="btn btn-small amarillo adelante beta-reg" value="Adelante">
+   	{% endif %}    </div><!-- FIN DE AFICIONES -->
     <!-- SI ES UNA RESERVA -->
     <div class="selector reserva">
     <p>
@@ -77,7 +85,7 @@
     </p>
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <select name="herolist5" value="X-Men" class="span3">
+      <select name="reserva2" value="X-Men" class="span3">
         <option value="0" selected="selected">un hotel</option>
         <option value="1">un restaurante</option>
       </select>
@@ -88,10 +96,14 @@
     </p>
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <input type="text" placeholder="tu ciudad" class="inputNormal input-small">
+      <input type="text" placeholder="tu ciudad" class="inputNormal input-small" name="reserva3">
     </div>
     <!-- FIN DE SELECT -->
-    <a class="btn btn-small amarillo adelante" href="">Adelante</a>
-    </div><!-- FIN DE RESERVAS -->
+	{% if usuario %}
+    	<input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
+   	{% else %}
+   		<input type="button" class="btn btn-small amarillo adelante beta-reg" value="Adelante">
+   	{% endif %}    </div><!-- FIN DE RESERVAS -->
+    </form>
   </div>
 </div>
