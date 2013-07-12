@@ -1,17 +1,18 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from forms import FormTexto, Crear_Evento, Crear_Tarea
-from forms import FormFoto, Anyadir_Lugar_Evento, Anyadir_Lugar_Tarea
+from forms import FormTexto, Crear_Tarea
+from forms import FormFoto, Anyadir_Lugar_Tarea
 from forms import Buscar as Buscar_Reserva, Reservar, FormComentario
 from django.contrib.auth.decorators import login_required
-from models import Usuarios_Joinity, Eventos, Tareas, Usuarios_Tarea, Usuarios_Evento, Actualizaciones
-from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Joinitys, Joinitys_VIP, Compras, Aficiones
+from models import Usuarios_Joinity, Tareas, Usuarios_Tarea, Actualizaciones
+from models import Lugares_Tarea, Reservas_Empresas, Joinitys, Joinitys_VIP, Compras, Aficiones
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from django.contrib.auth.models import User
 from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
+from joinitys.eventos.models import Eventos, Usuarios_Evento
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 def index(request):
     if not request.user.is_authenticated():
@@ -149,12 +150,6 @@ def unirse(request, joinity_id):
         return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
     return HttpResponseRedirect("/")
 
-    
-def ver_evento(request, joinity_id, evento_id):
-    evento=get_object_or_404(Eventos, pk=evento_id)
-    lista_admins=Usuarios_Evento.objects.filter(evento=evento, estado=2)
-    context={"evento": evento, "lista_admins": lista_admins}
-    return render_to_response("ver_evento.html", context)
 
 
 def ver_tarea(request, joinity_id, tarea_id):
@@ -162,25 +157,6 @@ def ver_tarea(request, joinity_id, tarea_id):
     lista_admins=Usuarios_Tarea.objects.filter(tarea=tarea, estado=2)
     context={"tarea": tarea, "lista_admins": lista_admins}
     return render_to_response("ver_tarea.html", context)
-
-def invitar_evento(request, joinity_id, evento_id, usuario_id):
-    joinity = get_object_or_404(Joinitys, pk=joinity_id)
-    evento=get_object_or_404(Eventos, pk=evento_id)
-    usuario=get_object_or_404(User, pk=usuario_id)
-    if Usuarios_Evento.objects.filter(usuario=usuario, evento=evento).count()==0:
-        nuevo=Usuarios_Evento(usuario=usuario, evento=evento, estado=0)
-        nuevo.save()
-    return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
-def invitar_todos_evento(request, joinity_id, evento_id):
-    joinity = get_object_or_404(Joinitys, pk=joinity_id)
-    evento=get_object_or_404(Eventos, pk=evento_id)
-    usuarios_joinity=Usuarios_Joinity.objects.filter(joinity=joinity)
-    for usuario in usuarios_joinity:
-        print usuario.usuario.first_name
-        if Usuarios_Evento.objects.filter(usuario=usuario.usuario, evento=evento).count()==0:
-            nuevo=Usuarios_Evento(usuario=usuario.usuario, evento=evento, estado=0)
-            nuevo.save()
-    return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
 
 def crear_tarea(request, joinity_id):
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
@@ -364,18 +340,5 @@ def unirse_evento(request, joinity_id, evento_id):
         nuevo.save()
     return HttpResponseRedirect("/joinity/"+str(evento.joinity.id))
 
-def mis_eventos(request):
-    subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
-    consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
-    eventos=Eventos.objects.raw(consulta)
-    context={'eventos':eventos, "pagina":"misEventos", "usuario":request.user}
-    return render(request, 'eventos/index.html', context)
 
-def ver_mi_evento(request, evento_id):
-    subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)
-    consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
-    eventos=Eventos.objects.raw(consulta)
-    single=get_object_or_404(Eventos, pk=evento_id)
-    context={'eventos':eventos, "pagina":"misEventos", "single":single, "usuario":request.user}
-    return render(request, 'eventos/index.html', context)
 

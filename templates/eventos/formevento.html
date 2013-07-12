@@ -8,13 +8,17 @@
 	        <label for="id_Descripcion">Descripcion:</label>
 	        {{ formulario.descripcion }}
 	</div>
-	<div class="fieldWrapper">
-	        <label for="id_fecha_inicio">Fecha Inicio:</label>
-	        {{ formulario.fecha_inicio }}
+	<div class="control-group">
+  		<div class="input-prepend input-datepicker">
+    		<button type="button" class="btn"><span class="fui-calendar"></span></button>
+    		{{ formulario.fecha_inicio }}
+  		</div>
 	</div>
-	<div class="fieldWrapper">
-	        <label for="id_fecha_inicio">Fecha Fin:</label>
-	        {{ formulario.fecha_fin }}
+	<div class="control-group">
+  		<div class="input-prepend input-datepicker">
+    		<button type="button" class="btn"><span class="fui-calendar"></span></button>
+    		{{ formulario.fecha_fin }}
+  		</div>
 	</div>
 	<div class="fieldWrapper">
 	        <label for="id_foto">Foto:</label>

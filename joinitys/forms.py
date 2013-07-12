@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
-from models import Texto_Joinity, Lugares_Evento, Lugares_Tarea, Puntuaciones, Actualizaciones
+from models import Texto_Joinity, Lugares_Tarea, Puntuaciones, Actualizaciones
 from models import Tareas, Foto_Joinity, Reservas_Empresas
 from models import Comentario_Actualizacion
         # pago.email = self.cleaned_data["email"]
