@@ -52,7 +52,11 @@
       {% for family in lista_family|slice:":8" %}
     
       <!-- CADA JOINITY -->
+      {% if usuario %}
       <a href="/joinity/{{family.id}}">
+      {% else %}
+      <a href="" class="beta-reg">
+      {% endif %}
       
       <div class="los-joinity">
         {% for foto in family.fotos.all|slice:":1" %}
@@ -103,7 +107,11 @@
     <div class="los-join-footer">
       <div class=linea-puntos>
       </div>
+      {% if usuario %}
       <a href="" class="btn amarillo btn-embossed">
+      {% else %}
+      <a href="" class="btn amarillo btn-embossed beta-reg">
+      {% endif %}
         Quiero ver más
       </a>
     </div>

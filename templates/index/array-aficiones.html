@@ -51,7 +51,11 @@
     <div class="contenedor-los-joinitys">
     	{% for aficion in lista_aficiones|slice:":8" %}
       <!-- CADA JOINITY -->
+      {% if usuario %}
       <a class="los-joinity" href="/joinity/{{aficion.id}}">
+      {% else %}
+      <a class="los-joinity beta-reg" href="">
+      {% endif %}
       	{% for foto in aficion.fotos.all|slice:":1" %}
         <div class="foto-join" style="background-image:url('/media/{{foto.foto}}');">
         </div>
@@ -79,7 +83,7 @@
         <div class="lafecha">
           {{aficion.aficiones.fecha_inicio|date:"d"}}
           <span>
-             {{aficion.aficiones.fecha_inicio|date:"m"}}
+             {{aficion.aficiones.fecha_inicio|date:"M"}}
           </span>
         </div>
         <div class="valor06">
@@ -99,7 +103,11 @@
     <div class="los-join-footer">
       <div class=linea-puntos>
       </div>
+      {% if usuario %}
       <a href="" class="btn amarillo btn-embossed">
+      {% else %}
+      <a href="" class="btn amarillo btn-embossed beta-reg">
+      {% endif %}
         Quiero ver más
       </a>
     </div>

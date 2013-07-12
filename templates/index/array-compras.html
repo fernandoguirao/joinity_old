@@ -50,7 +50,11 @@
     </div>
     <div class="contenedor-los-joinitys">
       {% for compra in lista_compras|slice:":8" %}
-    <a href="/joinity/{{compra.id}}">
+     {% if usuario %} 
+    	<a href="/joinity/{{compra.id}}">
+    {% else %}
+    	<a href="" class="beta-reg">
+    {% endif %}
       <!-- CADA JOINITY -->
       <div class="los-joinity">
         {% for foto in compra.fotos.all|slice:":1" %}
@@ -101,7 +105,11 @@
     <div class="los-join-footer">
       <div class=linea-puntos>
       </div>
+      {% if usuario %}
       <a href="" class="btn amarillo btn-embossed">
+      {% else %}
+      <a href="" class="btn amarillo btn-embossed">
+      {% endif %}
         Quiero ver más
       </a>
     </div>

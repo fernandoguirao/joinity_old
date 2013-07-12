@@ -34,13 +34,17 @@
                         Dentro de <i class="iconos">q</i>2 semanas
                       </p>
                       <p>
-                        Por <i class="iconos">j</i>{{joinity.joinity.precion}} euros
+                        Por <i class="iconos">j</i>{{joinity.joinity.precio}} euros
                       </p>
                     </div>
                     <div class="slide-foot">
                       <div class="linea">
                       </div>
+                      {% if usuario %}
                       <a class="btn" href="/joinity/{{joinity.joinity.id}}">
+                      {% else %}
+                      <a class="btn beta-reg" href="">
+                      {% endif %}
                           Suena bien. Quiero verlo.
                       </a>
                     </div>
