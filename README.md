@@ -1,11 +1,25 @@
-JOINITY
+1. RUN SERVER
 =======
 
 Para incializar el servidor: 
 python manage.py runserver
 localhost:8000
 
-ARCHIVO SETTINGS DE FERNANDO
+2. SOBRE EL DATE-PICKER
+====================
+La estructura a copiar/pegar es la siguiente:
+
+<div class="control-group">
+  <div class="input-prepend input-datepicker">
+    <button type="button" class="btn"><span class="fui-calendar"></span></button>
+    <input type="text" class="span2" value="14 March, 2013" id="datepicker-01">
+  </div>
+</div>
+
+El enlace a la documentación del date-pick de jquery-ui es http://api.jqueryui.com/datepicker/
+
+
+3. ARCHIVO SETTINGS DE FERNANDO
 ============================
 
 # Django settings for joinity project.
