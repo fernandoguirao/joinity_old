@@ -5,7 +5,7 @@ from forms import AficionesForm, Anyadir_Lugar, FormFoto, Anyadir_Lugar_Evento, 
 from forms import Buscar as Buscar_Reserva, Reservar, Puntuar, FormComentario
 from django.contrib.auth.decorators import login_required
 from models import Usuarios_Joinity, Eventos, Tareas, Usuarios_Tarea, Usuarios_Evento, Lugares_Joinity, Actualizaciones
-from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys, Joinitys_VIP, Compras
+from models import Lugares_Evento, Lugares_Tarea, Reservas_Empresas, Puntuaciones, Joinitys, Joinitys_VIP, Compras, Aficiones
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from usuario.forms import Buscar
@@ -15,7 +15,7 @@ from usuario.models import Usuarios
 from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
-from categorias.models import Subcategorias_Compras, Categorias_Compras
+from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 def index(request):
     if not request.user.is_authenticated():
         usuario=False
@@ -43,18 +43,44 @@ def mis_joinitys(request):
 def filtro(request):
     if request.GET:
         tipo=request.GET.get("herolist", -1)
-        if tipo==0:
-            categoria=Categorias_Compras.objects.filter(pk=request.GET.get("comprar2", 0))
+        if tipo=="0":
+            categoria=get_object_or_404(Categorias_Compras, pk=request.GET.get("comprar2", 0))
             subcategorias=Subcategorias_Compras.objects.filter(categoria=categoria)
-            compras=Compras.objects.filter(subcategoria_in=subcategorias)
+            compras=Compras.objects.filter(subcategoria__in=subcategorias)
+            rangoprecios=request.GET.get("comprar3", -1)
+            if rangoprecios=="0":
+                precio_min=0
+                precio_max=200
+            elif rangoprecios=="1":
+                precio_min=200
+                precio_max=400
+            elif rangoprecios=="2":
+                precio_min=400
+                precio_max=1000
+            elif rangoprecios=="3":
+                precio_min=1000
+                precio_max=-1
             lista_joinitys=[]
             for compra in compras:
-                lista_joinitys.append(compra.joinity)
-                
-        elif tipo==1:
-            aficiones=1
-        elif tipo==3:
-            reservas=1
+                if compra.joinity.precio>=precio_min and (precio_max==-1 or compra.joinity.precio<=precio_max):
+                    lista_joinitys.append(compra)
+        elif tipo=="1":
+            categoria=get_object_or_404(Categorias, pk=request.GET.get("aficion2", 0))
+            subcategorias=Subcategorias.objects.filter(categoria=categoria)
+            ciudad=request.GET.get("aficion3", "")
+            aficiones=Aficiones.objects.filter(subcategoria__in=subcategorias)
+            if ciudad!="":
+                lista_joinitys=[]
+                for aficion in aficiones:
+                    for lugar in aficion.joinity.lugares.all():
+                        if lugar.lugar==ciudad and aficion not in lista_joinitys:
+                            lista_joinitys.append(aficion)
+            else:
+                lista_joinitys=aficiones
+
+        else:
+            lista_joinitys=Usuarios_Joinity.objects.filter(usuario=request.user)
+
     context={'lista_joinitys':lista_joinitys, "usuario":request.user, "pagina":"joinity"}
     return render(request, 'misjoinitys/misjoinitys.html', context)
 
