@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from categorias.models import Subcategorias, Subcategorias_Compras, Subcategorias_Family
 from reservas.models import Empresa
+from datetime import date
 #############################################################################
 #                    CLASE PADRE JOINITY                                    #
 #############################################################################
@@ -19,6 +20,9 @@ class Joinitys(models.Model):
 #     family=models.OneToOneRel("Family", related_name="family")
     class Meta:
         db_table = "Joinitys"
+    def get_multimedia(self):
+        multimedia=Actualizaciones.objects.filter(tipo__in=[2,3]).all()[:3]
+        return multimedia
     def n_joiners(self):
         return Usuarios_Joinity.objects.filter(joinity=self).count()
     def que_soy(self, user):
@@ -73,6 +77,13 @@ class Joinitys(models.Model):
             return "compras"
         elif self.tipo==3:
             return "aficiones"
+    def sub(self):
+        if self.tipo==1:
+            return self.family
+        elif self.tipo==2:
+            return self.compras
+        elif self.tipo==3:
+            return self.aficiones
     def get_porcentaje(self):
         n=self.n_joiners()
         minimo=self.n_min
@@ -85,7 +96,22 @@ class Joinitys(models.Model):
             return int((n*100)/maximo)
         else:
             return 100
-            
+    def empezo(self):
+        if self.get_tipo()!="compras":
+            return self.sub().fecha_inicio<=date.today()
+    def hasta(self):
+        if self.empezo():
+            return self.hasta_fin()
+        else:
+            return self.hasta_inicio()
+    def hasta_inicio(self):
+        if self.get_tipo()!="compras":
+            return (self.sub().fecha_inicio-date.today()).days
+        return False
+    def hasta_fin(self):
+        if self.get_tipo()!="compras":
+            return (self.sub().fecha_fin-date.today()).days
+        return False
         
 # ---------TIPOS DE JOINITY-------------#
 class Family(models.Model):
@@ -97,6 +123,7 @@ class Family(models.Model):
     reserva=models.ManyToManyField(Empresa, through='Reservas_Empresas')
     class Meta:
         db_table="Family"
+    
 class Compras(models.Model):
     joinity=models.OneToOneField(Joinitys, related_name="compras")
     subcategoria=models.ForeignKey(Subcategorias_Compras)
@@ -118,6 +145,7 @@ class Aficiones(models.Model):
     requisitos=models.CharField(max_length=100)
     class Meta:
         db_table="Aficiones"
+    
 #############################################################################
 
 
@@ -132,6 +160,7 @@ class Usuarios_Joinity(models.Model):
         db_table = "Usuarios_Joinitys"
     def __unicode__(self):
         return self.usuario.first_name
+    
     
 
 ##############################################################################

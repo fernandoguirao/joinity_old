@@ -14,15 +14,16 @@
 	        J
 	      </i>
 	    </div>
-	
+		{% if state %}
+		<script type="text/javascript">alert("{{state}}");</script>
+		{% endif %}
 	    <form action="" method="post" class="login-form">
 	    	{% csrf_token %}
+	    	
 	      <div class="control-group">
-	        <!--<input type="text" class="login-field inputNormal" value="" placeholder="Introduce tu nombre" id="login-name" />-->
 	       	{{ formulario.username }}
 	      </div>
 	      <div class="control-group">
-	        <!--<input type="password" class="login-field inputNormal" value="" placeholder="Tu contraseña" id="login-pass" />-->
 	       	{{ formulario.password }}
 	      </div>
 	      <div class="extras">

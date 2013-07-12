@@ -1,5 +1,5 @@
   <div class="extracto-joinity horizontal unJoinity">
-    <div class="left-side" style="background-image:url('/media/images/ejemplos/archivo01.png');">
+    <div class="left-side" style="background-image:url('/media/{{joinity.foto}}');">
       {% if soy == "nadie" %}
       	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
       {% elif soy == "desconectado" %}
@@ -29,9 +29,9 @@
             i
           </i>
           <p>
-            25
+            {{joinity.hasta}}
             <span>
-              días para empezar
+              días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
             </span>
           </p>
         </div>
@@ -71,7 +71,7 @@
           </div>
           <div class="progreso">
             <div class="progress">
-              <div class="bar" style="width: 45%;">
+              <div class="bar" style="width: {{joinity.get_porcentaje}}%;">
               </div>
             </div>
             <p class="minjoiners">
@@ -101,12 +101,13 @@
       </div>
       <div class="fila">
         <div class="valor08">
-          <a class="thumb-img" href="" alt="" style="background-image:url('/media/images/ejemplos/archivo03.png');">
-          </a>
-          <a class="thumb-img" href="" alt="" style="background-image:url('/media/images/ejemplos/archivo02.png');">
-          </a>
-          <a class="thumb-video" href="" alt="" style="background-image:url('/media/images/ejemplos/archivo01.png');">
-          </a>
+        	{% for multimedia in joinity.get_multimedia.all %}
+        		{% if  multimedia.tipo == 2 %}
+          			<a class="thumb-img" href="" alt="" style="background-image:url('/media/{{multimedia.foto.contenido}}');"></a>
+          		{% else %}
+          			<a class="thumb-video" href="http://www.{{multimedia.texto.contenido}}" alt="" style="background-image:url('/media/images/ejemplos/archivo01.png');"></a>	
+       			{% endif %}
+          {% endfor %}
         </div>
         <div class="valor09">
         {% for lugar in joinity.lugares.all|slice:":2" %}
@@ -116,7 +117,7 @@
             </i>
             {{lugar.lugar}}
           </div>
-          {% if forloop.first %}
+          {% if not forloop.last %}
           <div class="trazado">
             <span class="arriba">
             </span>
@@ -124,14 +125,6 @@
             </span>
           </div>
           {% endif %}
-          <div class="etiqueta">
-            <span>
-            	{{lugar.lugar}}
-            </span>
-            <i class="iconos icoder">
-              l
-            </i>
-          </div>
           {% endfor %}
         </div>
       </div>

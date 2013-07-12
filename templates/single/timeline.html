@@ -107,6 +107,8 @@
 			{% include "single/updateTexto.html" %}
 		{% elif contenido.tipo == 2 %}
 			{% include "single/updateFoto.html" %}
+		{% elif contenido.tipo == 3 %}
+			{% include "single/updateVideo.html" %}
 		{% endif %}
 		
 	{% endfor %}
