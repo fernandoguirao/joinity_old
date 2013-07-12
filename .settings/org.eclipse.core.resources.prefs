@@ -4,6 +4,7 @@ encoding//joinitys/forms.py=utf-8
 encoding//mensajes/forms.py=utf-8
 encoding//templates/creacion/campos.html=UTF-8
 encoding//templates/creacion/crear.html=UTF-8
+encoding//templates/creacion/index.html=UTF-8
 encoding//templates/eventos/evento.html=UTF-8
 encoding//templates/eventos/index.html=UTF-8
 encoding//templates/eventos/mis_eventos.html=UTF-8

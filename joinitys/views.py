@@ -376,7 +376,6 @@ def ver_reserva(request, joinity_id, reserva_id):
 
 @login_required
 def nuevo_aficiones(request):
-    state = "Nuevo joinity..."
     if request.POST:
         state = "Creado joinity"
         formulario = JoinityForm(request.POST, user=request.user, tipo=3)
@@ -391,7 +390,7 @@ def nuevo_aficiones(request):
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=3)
         formaficiones=AficionesForm(joinity=None)
-    context={'state':state, 'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear-aficiones"}
+    context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear-aficiones", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
 
@@ -477,7 +476,6 @@ def aceptar_membresia(request, usuario_joinity_id):
 
 @login_required
 def nuevo_family(request):
-    state = "Nuevo joinity..."
     if request.POST:
         state = "Creado joinity"
         formulario = JoinityForm(request.POST, user=request.user, tipo=1)
@@ -492,13 +490,12 @@ def nuevo_family(request):
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=1)
         formfamily=FamilyForm(joinity=None)
-    return render_to_response('creacion/pagina_creacion.html', {'state':state, 'formulario': formulario, 'formfamily':formfamily, "pagina":"crear-family"}, context_instance=RequestContext(request))
+    context={'formulario': formulario, 'formfamily':formfamily, "pagina":"crear-family", "usuario":request.user}
+    return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
 @login_required
 def nuevo_compras(request):
-    state = "Nuevo joinity..."
     if request.POST:
-        state = "Creado joinity"
         formulario = JoinityForm(request.POST, user=request.user, tipo=2)
         if formulario.is_valid:
             joinity = formulario.save()
@@ -511,7 +508,7 @@ def nuevo_compras(request):
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=2)
         formcompras=ComprasForm(joinity=None)
-    context={'state':state, 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear-compras"}
+    context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear-compras", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html',context , context_instance=RequestContext(request))
 
 def confirmar(request, reserva_id):
