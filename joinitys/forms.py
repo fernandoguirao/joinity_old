@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
-from models import Texto_Joinity, Eventos, Lugares_Evento, Lugares_Tarea, Puntuaciones, Actualizaciones
+from models import Texto_Joinity, Lugares_Evento, Lugares_Tarea, Puntuaciones, Actualizaciones
 from models import Tareas, Foto_Joinity, Reservas_Empresas
 from models import Comentario_Actualizacion
         # pago.email = self.cleaned_data["email"]
@@ -77,28 +77,7 @@ class FormComentario(forms.ModelForm):
             nuevo_comentario.save()
             # self.save_m2m()
         return nuevo_comentario
-class Crear_Evento(forms.ModelForm):
-    titulo=forms.CharField()
-    foto = forms.ImageField(required=False)
-    privacidad=forms.ChoiceField(choices=([("0", "Publico"), ("1", "Privado")]))
-    privilegios=forms.ChoiceField(choices=([("0", "Solo administrador"), ("1", "Todos los participantes")]))
-    repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
-    class Meta:
-        model=Eventos
-        fields=("titulo", "descripcion", "fecha_inicio", "fecha_fin", "foto", "privacidad", "privilegios","repeticion", )
-    def __init__(self, *args, **kwargs):
-        self._user = kwargs.pop('user')
-        self._joinity=kwargs.pop('joinity')
-        super(Crear_Evento, self).__init__(*args, **kwargs)
-        
-    def save(self, commit=True):
-        evento = super(Crear_Evento, self).save(commit=False)
-        evento.creador = self._user
-        evento.joinity=self._joinity
-        if commit:
-            evento.save()
-            # self.save_m2m()
-        return evento
+
 
 class Crear_Tarea(forms.ModelForm):
     nombre=forms.CharField()
@@ -120,11 +99,7 @@ class Crear_Tarea(forms.ModelForm):
             tarea.save()
         return tarea
 
-class Anyadir_Lugar_Evento(forms.Form):
-    lugar=forms.CharField()
-    class Meta:
-        model=Lugares_Evento
-        fields=("lugar")
+
 class Anyadir_Lugar_Tarea(forms.Form):
     lugar=forms.CharField()
     class Meta:

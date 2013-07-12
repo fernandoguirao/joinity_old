@@ -10,11 +10,10 @@ from usuario.models import Usuarios
 from joinitys.models import Usuarios_Joinity, Joinitys, Lugares_Joinity
 from forms import JoinityForm, FamilyForm, ComprasForm, AficionesForm, Anyadir_Lugar
 
-
-
 @login_required
 def nuevo_joinity(request):
     return render_to_response("creacion/index.html")
+
 @login_required
 def nuevo_family(request):
     if request.POST:
@@ -70,7 +69,7 @@ def nuevo_aficiones(request):
     context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear-aficiones", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
-
+@login_required
 def crear_2(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
     if request.POST:
@@ -86,6 +85,7 @@ def crear_2(request, joinity_id):
     context={"joinity": joinity, "formulario":formulario,"pagina":"lugares", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
+@login_required
 def crear_3(request, joinity_id):
     busqueda = Buscar()
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
