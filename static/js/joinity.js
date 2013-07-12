@@ -38,7 +38,7 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
 
 /* Selects */
 
-$("select[name='herolist']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
+$("select[name='herolist'],select[name='herolist2'],select[name='herolist3'],select[name='herolist4'],select[name='herolist5']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
 
 /* EL DIAL */
 
