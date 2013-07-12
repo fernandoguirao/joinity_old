@@ -11,6 +11,19 @@
 </div>
 	{% include "index/selector.html" %}
 	{% include "index/carousel.html" %}
+	<div>
+		{% if usuario %}
+		INTERES AFICIONES
+			{%for interes in usuario.usuario.intereses.all %}
+				{{interes.categoria.nombre}}-{{interes.nombre}}
+			{% endfor %}
+		INTERESES COMPRAS
+			{% for interes in usuario.usuario.intereses_comprar.all %}
+				{{interes.categoria.nombre}}-{{interes.nombre}}
+			{% endfor %}
+		{% endif %}
+		
+	</div>
 	{% include "index/array-aficiones.html" %}
 	{% include "index/array-compras.html" %}
 	{% include "index/array-fandfriends.html" %}
