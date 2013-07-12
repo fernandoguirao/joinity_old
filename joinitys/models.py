@@ -9,6 +9,7 @@ class Joinitys(models.Model):
     nombre = models.TextField(null=True)
     descripcion = models.TextField(null=True, max_length=400)
     tipo=models.IntegerField(default=0)
+    foto = models.ImageField(max_length=100, upload_to='joinity', blank=True, null=True, default="media/defaults/avatar.jpeg")
     n_min=models.IntegerField(default=0)
     n_max=models.IntegerField(default=0)
     precio = models.DecimalField(null=True, decimal_places=2, max_digits=10)
@@ -230,7 +231,7 @@ class Lugares_Tarea(models.Model):
 class Foto_Joinity(models.Model):
     usuario=models.ForeignKey(User, related_name="foto_usuario_actualizaciones")
     actualizacion=models.OneToOneField(Actualizaciones, related_name="foto")
-    contenido = models.ImageField(max_length=100, upload_to='joinity', blank=True, null=True)
+    contenido = models.ImageField(max_length=100, upload_to='joinity/actualizacion', blank=True, null=True)
     class Meta:
         db_table="Foto_Joinitys"
 

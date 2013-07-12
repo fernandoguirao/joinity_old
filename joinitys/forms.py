@@ -8,6 +8,7 @@ from models import Comentario_Actualizacion
 class JoinityForm(forms.ModelForm):
     nombre=forms.CharField()
     descripcion = forms.Textarea()
+    foto=forms.ImageField()
     n_min=forms.IntegerField()
     n_max=forms.IntegerField()
     precio = forms.DecimalField(localize=True)
@@ -15,7 +16,7 @@ class JoinityForm(forms.ModelForm):
     privacidad=forms.ChoiceField(choices=([("0", "Publico"), ("1","Peticion de invitacion"), ("2", "Privado")]))
     class Meta:
         model = Joinitys
-        fields = ('nombre','descripcion', 'n_min', 'n_max', 'precio', 'privacidad')
+        fields = ('nombre','descripcion', 'n_min', 'n_max', 'precio', 'privacidad', 'foto')
     def __init__(self, *args, **kwargs):
         self._user = kwargs.pop('user')
         self._tipo = kwargs.pop('tipo')
