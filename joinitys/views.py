@@ -39,6 +39,20 @@ def mis_joinitys(request):
     lista_joinitys=Usuarios_Joinity.objects.filter(usuario=request.user)
     context={'lista_joinitys':lista_joinitys, "usuario":request.user, "pagina":"joinity"}
     return render(request, 'misjoinitys/misjoinitys.html', context)
+@login_required
+def filtro(request):
+    if request.GET:
+        tipo=request.GET.get("herolist", -1)
+        if tipo==0:
+            categoria=request.GET.get("comprar2", -1)
+        elif tipo==1:
+            aficiones=1
+        elif tipo==3:
+            reservas=1
+        
+    lista_joinitys=Usuarios_Joinity.objects.filter(usuario=request.user)
+    context={'lista_joinitys':lista_joinitys, "usuario":request.user, "pagina":"joinity"}
+    return render(request, 'misjoinitys/misjoinitys.html', context)
 
 
 

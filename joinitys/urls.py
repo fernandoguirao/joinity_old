@@ -40,4 +40,5 @@ urlpatterns = patterns('',
     url(r'^nombrar_admin/(?P<usuario_joinity_id>\d+)/$', views.nombrar_admin, name='nombrar_admin'),
     url(r'^aceptar_membresia/(?P<usuario_joinity_id>\d+)/$', views.aceptar_membresia, name='aceptar_membresia'),
     url(r'^(?P<joinity_id>\d+)/evento/(?P<evento_id>\d+)/unirse/$', views.unirse_evento, name='unirse_evento'),
+    url(r'^filtrar/$', views.filtro, name="filtrar"),
 )
