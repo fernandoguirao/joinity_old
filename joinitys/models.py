@@ -72,6 +72,20 @@ class Joinitys(models.Model):
             return "compras"
         elif self.tipo==3:
             return "aficiones"
+    def get_porcentaje(self):
+        n=self.n_joiners()
+        minimo=self.n_min
+        maximo=self.n_max
+        if maximo==0:
+            maximo=100
+        if n<minimo:
+            return int((n*100)/minimo)
+        elif n<maximo:
+            return int((n*100)/maximo)
+        else:
+            return 100
+            
+        
 # ---------TIPOS DE JOINITY-------------#
 class Family(models.Model):
     joinity=models.OneToOneField(Joinitys, related_name="family")
