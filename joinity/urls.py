@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     url(r'^mis_tareas/(?P<joinity_id>\d+)/$', tareas_views.ver_mi_tarea, name='mis_tareas_joinity'),
     url(r'^mis_eventos/$', eventos_views.mis_eventos, name='mis_eventos'),
     url(r'^mis_eventos/(?P<evento_id>\d+)/$', eventos_views.ver_mi_evento, name='mis_eventos_joinity'),
+    url(r'^solicitar/$', login_views.solicitar, name="solicita_beta"),
 
 
 
