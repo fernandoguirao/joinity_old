@@ -13,6 +13,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from joinity.settings import LOCALHOST
 
 @login_required
 def ver_perfil(request, user_id):
@@ -133,4 +134,10 @@ def editar_perfil(request):
         perfil_form = PerfilForm(instance=request.user.usuario)
     context={ 'user_form': user_form, 'perfil_form': perfil_form, "pagina":"editar" }
     return render_to_response('usuario/perfil.html', context, context_instance=RequestContext(request))
-
+def solicitar(request):
+    if request.method == 'GET' or not LOCALHOST:
+        send_mail("SOLICITUD JOINITY", "El usuario "+str(request.GET.get("solicitaNombre", "Sinnombre")) +" y mail "+ str(request.GET.get("solicitaCorreo", "sinmail")) +" Solicita permanencia", "antoni@bueninvento.es", "fernando@bueninvento.es", fail_silently=False)
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
+        
