@@ -3,8 +3,14 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <div class="modal-body log-reg">
        <!-- Contenidos modal -->
-        <a href="" class="btn btn-mini">Solicita una invitación</a>
-        <a href="" class="btn oscuro btn-mini">Inicia sesión</a>
+        <form action="/solicitar/" method="GET">
+          <div class="campo">
+            <input type="text" placeholder="¿Cómo te llamas?" class="inputNormal input-small" name="solicitaNombre">
+            <input type="text" placeholder="¿Cuál es tu correo electrónico?" class="inputNormal input-small" name="solicitaCorreo">
+            <input type="submit" class="btn btn-mini" value="Solicita una invitación">
+          </div>
+        </form>
+        <a href="/login/" class="btn oscuro btn-mini">Inicia sesión</a>
        <!-- Fin de contenidos modal -->
       </div>
     </div>
