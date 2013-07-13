@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     url(r'^reserva/aprobar/(?P<reserva_id>\d+)/$', joinitys_views.aprobar, name="aprobar_reserva"),
     url(r'^mis_joinitys/$', joinitys_views.mis_joinitys, name='mis_joinitys'),
     url(r'^mis_tareas/$', tareas_views.mis_tareas, name='mis_tareas'),
+    url(r'^mis_tareas/(?P<joinity_id>\d+)/$', tareas_views.ver_mi_tarea, name='mis_tareas_joinity'),
     url(r'^mis_eventos/$', eventos_views.mis_eventos, name='mis_eventos'),
     url(r'^mis_eventos/(?P<evento_id>\d+)/$', eventos_views.ver_mi_evento, name='mis_eventos_joinity'),
 

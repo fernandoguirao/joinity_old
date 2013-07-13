@@ -1,0 +1,9 @@
+{% for lugar in tarea.lugares_tarea.all %}
+	Paso {{lugar.n}}: {{lugar.lugar}}<br>
+{% endfor %}
+<form action="" method="post">
+	{% csrf_token %}
+	{{ formulario }}
+	<input type="submit" value="Anyadir Lugar" />
+</form>	
+<a href="/joinity/{{joinity.id}}/tarea/crear/3/{{tarea.id}}"><input type="button" value="Siguiente"/></a>

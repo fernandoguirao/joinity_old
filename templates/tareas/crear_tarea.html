@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block contenedor %}
+<div id="contenedorMain">
+
+		{% include "persistentes/menuAdaptativo.html" %}  
+  <div class="container-fluid contenedorAdaptativo">
+    <div class="row-fluid">
+      <div class="span2 panelIzquierdo hidden-phone">
+
+		{% include "persistentes/leftMenu.html" %}
+      </div>
+      <div class="span10" id="contenedorPrincipal">
+
+		{% include "persistentes/buscador.html" %}
+		<div id="unJoinity">
+<div id="contenedorJoinity" class="creareljoinity">
+        <div id="loBlanco">
+  			<div class="contenidoPagina">
+  			  				<!-- CONTENIDO -->
+  				    <div class="titular">
+      <h3>
+        Crea una tarea
+      </h3>
+      <h6>
+        Completa los siguientes campos
+      </h6>
+      <br>
+    </div>
+  			{% if pagina == "anyadir_lugares" %}
+  				{% include "tareas/anyadir_lugares.html" %}
+  			{% elif pagina == "invitar" %}
+  				{% include "tareas/invitar_usuarios.html" %}
+  			{% else %}
+  				{% include "tareas/formtarea.html" %}
+  			{% endif %}
+  			</div>
+  		</div>
+    
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+  </div>
+</div>
