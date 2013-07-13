@@ -93,6 +93,8 @@ def login_user(request):
                     return HttpResponseRedirect(request.GET["next"])
                 else:
                     return HttpResponseRedirect('/')
+            else:
+                state="Error: Tu cuenta no ha sido activa, espera a que un administrador la active"
         else:
             state="Error: Contraseña incorrecta"
 
@@ -107,6 +109,8 @@ def registro(request):
         if formulario.is_valid:
             formulario.save()
             u = User.objects.get(username=request.POST['username'])
+            u.is_active=False
+            u.save()
             usuario = Usuarios(usuario=u)
             usuario.save()
             return HttpResponseRedirect('/usuario/editar/')
