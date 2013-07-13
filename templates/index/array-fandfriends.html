@@ -59,16 +59,18 @@
       {% endif %}
       
       <div class="los-joinity">
-        	<div class="foto-join" style="background-image:url('/media/{{family.foto}}');">
-        	</div>
+          <div class="foto-join" style="background-image:url('/media/{{family.foto}}');">
+          </div>
+          <div class="no-foto">
+          </div>
         <div class="info-caja">
           <h6>
             {{family.nombre}}
           </h6>
           <p>
-             {% for lugar in family.lugares.all|slice:":1" %}
-          		En {{lugar.lugar}}, por {{family.precio}} €
-          	{% endfor %}
+           {% for lugar in family.lugares.all|slice:":1" %}
+           En {{lugar.lugar}}, por {{family.precio}} €
+           {% endfor %}
           </p>
         </div>
         <!-- HOVER -->
@@ -90,9 +92,9 @@
         <div class="valor06">
           {% for i in cinco  %}
          {% if i <= family.puntuacion_media %}
-         	<i class="iconos punto">j</i>
+         <i class="iconos punto">j</i>
          {% else %}
-         	<i class="iconos">j</i>
+         <i class="iconos">j</i>
          {% endif %}
          {% endfor %}
         </div>
