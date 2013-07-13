@@ -49,9 +49,11 @@
       {% if usuario %}
       	<input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
      	{% else %}
-     		<input type="button" class="btn btn-small amarillo adelante beta-reg" value="Adelante">
-     	{% endif %}
-      </div><!-- FIN DE COMPRAR -->
+        <a href="#modalInicio" class="btn btn-small amarillo adelante beta-reg" data-toggle="modal">
+          Adelante
+        </a>
+        {% endif %}
+       </div><!-- FIN DE COMPRAR -->
       <!-- SI ES UNA AFICIÓN -->
       <div class="selector aficion">
       <p>
@@ -78,8 +80,11 @@
   	{% if usuario %}
       	<input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
      	{% else %}
-     		<input type="button" class="btn btn-small amarillo adelante beta-reg" value="Adelante">
-     	{% endif %}    </div><!-- FIN DE AFICIONES -->
+        <a href="#modalInicio" class="btn btn-small amarillo adelante beta-reg" data-toggle="modal">
+          Adelante
+        </a>
+        {% endif %}
+      </div><!-- FIN DE AFICIONES -->
       <!-- SI ES UNA RESERVA -->
       <div class="selector reserva">
       <p>
@@ -100,12 +105,15 @@
       <div class="campo">
         <input type="text" placeholder="tu ciudad" class="inputNormal input-small" name="reserva3">
       </div>
-      <!-- FIN DE SELECT -->
-  	{% if usuario %}
-      	<input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
-     	{% else %}
-     		<input type="button" class="btn btn-small amarillo adelante beta-reg" value="Adelante">
-     	{% endif %}    </div><!-- FIN DE RESERVAS -->
+        <!-- FIN DE SELECT -->
+        {% if usuario %}
+        <input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
+        {% else %}
+        <a href="#modalInicio" class="btn btn-small amarillo adelante beta-reg" data-toggle="modal">
+          Adelante
+        </a>
+        {% endif %}
+       </div><!-- FIN DE RESERVAS -->
       </div><!-- Fin selector grupo -->
     </form>
   </div>
