@@ -3,14 +3,28 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <div class="modal-body log-reg">
        <!-- Contenidos modal -->
-        <form action="/solicitar/" method="GET">
-          <div class="campo">
-            <input type="text" placeholder="¿Cómo te llamas?" class="inputNormal input-small" name="solicitaNombre">
-            <input type="text" placeholder="¿Cuál es tu correo electrónico?" class="inputNormal input-small" name="solicitaCorreo">
-            <input type="submit" class="btn btn-mini" value="Solicita una invitación">
-          </div>
-        </form>
-        <a href="/login/" class="btn oscuro btn-mini">Inicia sesión</a>
+        <div class="no-fondo">
+          <h3>
+            Participa en nuestra beta
+          </h3>
+          <p>
+            Ayúdanos a hacer crecer Joinity y conviértete 
+en un miembro de su comunidad antes que nadie.
+          </p>
+          <p>
+Rellena el siguiente formulario y te incluiremos
+en la próxima ronda de invitaciones.
+          </p>
+          <form action="/solicitar/" method="GET">
+            <div class="campo">
+              <input type="text" placeholder="¿Cómo te llamas?" class="inputNormal input-small btn-block" name="solicitaNombre">
+              <input type="text" placeholder="¿Cuál es tu correo electrónico?" class="inputNormal input-small btn-block" name="solicitaCorreo">
+              <input type="submit" class="btn btn-small btn-block" value="Solicita una invitación">
+            </div>
+          </form>
+          <p>¿Ya tienes una cuenta? <a href="/login/" class="btn oscuro btn-mini">Inicia sesión</a></p>
+        </div>
+        
        <!-- Fin de contenidos modal -->
        <div id="fondosolicita">
         <i class="iconos">
