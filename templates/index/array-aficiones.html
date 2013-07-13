@@ -64,8 +64,9 @@
           </h6>
           <p>
           {% for lugar in aficion.lugares.all|slice:":1" %}
-          	En {{lugar.lugar}}, por {{aficion.precio}} €
+          	En {{lugar.lugar}},
           {% endfor %}
+           por {{aficion.precio}} €
           </p>
         </div>
         <!-- HOVER -->

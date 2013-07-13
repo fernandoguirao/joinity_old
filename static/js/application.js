@@ -154,12 +154,21 @@ String.prototype.repeat = function(num) {
     $('#datepicker-01').datepicker({
       showOtherMonths: true,
       selectOtherMonths: true,
-      dateFormat: "d MM, yy",
+      dateFormat: "d/m/yy",
       yearRange: '-1:+1'
     }).prev('.btn').on('click', function (e) {
       e && e.preventDefault();
       $('#datepicker-01').focus();
     });
+    $('#datepicker-02').datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        dateFormat: "d/m/yy",
+        yearRange: '-1:+1'
+      }).prev('.btn').on('click', function (e) {
+        e && e.preventDefault();
+        $('#datepicker-02').focus();
+      });
     $.extend($.datepicker, {_checkOffset:function(inst,offset,isFixed){return offset}});
 
     // Switch

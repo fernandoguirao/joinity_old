@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 from django import forms
-from models import Texto_Joinity, Lugares_Tarea, Puntuaciones, Actualizaciones
-from models import Tareas, Foto_Joinity, Reservas_Empresas
+from models import Texto_Joinity, Puntuaciones, Actualizaciones
+from models import Foto_Joinity, Reservas_Empresas
 from models import Comentario_Actualizacion
         # pago.email = self.cleaned_data["email"]
 class FormFoto(forms.ModelForm):
@@ -77,34 +77,6 @@ class FormComentario(forms.ModelForm):
             nuevo_comentario.save()
             # self.save_m2m()
         return nuevo_comentario
-
-
-class Crear_Tarea(forms.ModelForm):
-    nombre=forms.CharField()
-    repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
-    foto = forms.ImageField(required=False)
-    class Meta:
-        model=Tareas
-        fields=("nombre", "notas", "fecha_inicio", "fecha_fin", "repeticion", "foto" )
-    def __init__(self, *args, **kwargs):
-        self._user = kwargs.pop('user')
-        self._joinity=kwargs.pop('joinity')
-        super(Crear_Tarea, self).__init__(*args, **kwargs)
-        
-    def save(self, commit=True):
-        tarea = super(Crear_Tarea, self).save(commit=False)
-        tarea.creador = self._user
-        tarea.joinity=self._joinity
-        if commit:
-            tarea.save()
-        return tarea
-
-
-class Anyadir_Lugar_Tarea(forms.Form):
-    lugar=forms.CharField()
-    class Meta:
-        model=Lugares_Tarea
-        fields=("lugar")
 class Buscar(forms.Form):
     s = forms.CharField()
 class Reservar(forms.ModelForm):
