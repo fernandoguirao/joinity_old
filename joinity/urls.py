@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from usuario import views as login_views
 from joinitys import views as joinitys_views
 from joinitys.eventos import views as eventos_views
+from joinitys.tareas import views as tareas_views
 from django.contrib import admin
 from django.conf.urls.static import static
 from joinity import settings
@@ -28,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^reserva/confirmar/(?P<reserva_id>\d+)/$', joinitys_views.confirmar, name="confirmar_reserva"),
     url(r'^reserva/aprobar/(?P<reserva_id>\d+)/$', joinitys_views.aprobar, name="aprobar_reserva"),
     url(r'^mis_joinitys/$', joinitys_views.mis_joinitys, name='mis_joinitys'),
-    url(r'^mis_tareas/$', joinitys_views.mis_tareas, name='mis_tareas'),
+    url(r'^mis_tareas/$', tareas_views.mis_tareas, name='mis_tareas'),
     url(r'^mis_eventos/$', eventos_views.mis_eventos, name='mis_eventos'),
     url(r'^mis_eventos/(?P<evento_id>\d+)/$', eventos_views.ver_mi_evento, name='mis_eventos_joinity'),
 
