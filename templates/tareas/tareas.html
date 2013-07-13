@@ -1,4 +1,5 @@
 <div id="timeline">
+{% if single %}
   <div id="escribe-main">
     <ul id="opciones">
       <li>
@@ -35,7 +36,8 @@
     </div>
 
     <!-- EL CHAT -->
-    
+{% for tarea in single.tareas.all %}
+{% if not tarea.padre %}
 <!-- ACTUALIZACIÓN: TAREA -->
 <div class="actualizacion texto">
   <div class="clasificacion">
@@ -52,9 +54,9 @@
     <div class="creditos">
       <p class="smallTxt">
         <a href="">
-          Fernando Guirao
+          {{tarea.creador.first_name}} {{tarea.creador.last_name}}
         </a>
-        te ha asignado una tarea<br>en el joinity <a href="">Cumpleaños de la abuela</a>
+        te ha asignado una tarea<br>en el joinity <a href="">{{single.nombre}}</a>
       </p>
     </div>
     <div class="contenido">
@@ -62,70 +64,30 @@
         <div class="texto">
           <label class="checkbox" for="checkbox1">
             <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>Esto es una tarea</p>
+            <p>{{tarea.nombre}}</p>
           </label>
         </div>
       <!-- FIN CONTENIDO ESPECÍFICO -->
       <div class="subtareas">
+      	  {% for subtarea in tarea.hijas.all %}
           <label class="checkbox" for="checkbox1">
             <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>Esto es una subtarea</p>
+            <p>{{subtarea.nombre}}</p>
           </label>
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>Esto es una subtarea</p>
-          </label>
+          {% endfor %}
       </div>
+      {% if tarea.creador == usuario %}
+      	<a href="/joinity/{{tarea.joinity.id}}/tarea/crear/sub/{{tarea.id}}">Crear Subtarea</a>
+      {% endif %}
       {% include "single/comentarios.html" %}
     </div>
   </div>
 </div>
-<!-- FIN ACTUALIZACIÓN: TAREA-->
-<!-- ACTUALIZACIÓN: TAREA -->
-<div class="actualizacion texto">
-  <div class="clasificacion">
-    <div class="icono">
-      <i class="iconos">
-        q
-      </i>
-    </div>
-    <div class="fecha etiqueta">
-      12 jun
-    </div>
-  </div>
-  <div class="continente">
-    <div class="creditos">
-      <p class="smallTxt">
-        <a href="">
-          Fernando Guirao
-        </a>
-        te ha asignado una tarea<br>en el joinity <a href="">Cumpleaños de la abuela</a>
-      </p>
-    </div>
-    <div class="contenido">
-      <!-- CONTENIDO ESPECÍFICO -->
-        <div class="texto">
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>Esto es una tarea</p>
-          </label>
-        </div>
-      <!-- FIN CONTENIDO ESPECÍFICO -->
-      <div class="subtareas">
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>Esto es una subtarea</p>
-          </label>
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>Esto es una subtarea</p>
-          </label>
-      </div>
-      {% include "single/comentarios.html" %}
-    </div>
-  </div>
-</div>
+{% endif %}
+{% endfor %}
 <!-- FIN ACTUALIZACIÓN: TAREA-->
 
+
   </div>
+  {% endif %}
 </div>
