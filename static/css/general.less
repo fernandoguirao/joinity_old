@@ -2941,14 +2941,20 @@ input[type="text"] {
             }
           }
           &:hover {
+            .datos-hover {
+              position:relative;
+              top:-20px;
+            }
             .rueda {
               .opacity(1);
             }
             .foto-join {
-              margin-top:-120px;
+              margin-top:-100px;
             }
             .info-caja {
               margin-top:-77px;
+              position:relative;
+              top:-20px;
             }
             .lafecha {
               .opacity(1);
@@ -3042,12 +3048,20 @@ input[type="text"] {
       }
     }
   }
+  .container.contenedor-array.fandfriends {
+    z-index: 1;
+    position: relative;
+  }
   footer {
     height:300px;
     background-color:@oscuro;
     margin-top: -55px;
     position: relative;
-    z-index: -1;
+    .soporte span {
+      direction: rtl!important;
+      unicode-bidi: bidi-override;
+      color:@azul;
+    }
   }
   
 }
@@ -3098,14 +3112,14 @@ input[type="text"] {
 }
 
 footer {
-  padding-top:82px;
+  padding-top:110px;
   .columna01, .columna02, .columna03, .columna04 {
-    display: inline-block;
+    display: block;
     max-height: 209px;
-    margin-top: 36px;
     width: 20%;
-    margin:35px 2% 0;
+    margin:101px 2% 0;
     color:@muyoscuro;
+    float:left;
     a {
       color:@claro;
       text-align:left;
@@ -3118,11 +3132,13 @@ footer {
       top:-109px;
       position:relative;
       font-size:12px;
+      min-height:100px!important;
     }
   }
   .columna01 {
     text-transform: uppercase;
     font-size:10.5px;
+    margin-top:9px!important;
     .iconos {
       &.logoimagen {
         color:@muyoscuro;
@@ -3156,6 +3172,7 @@ footer {
     right: 0;
     top: 16px;
     color:@muyoscuro;
+    clear:both;
     a {
       color:@muyoscuro;
     }

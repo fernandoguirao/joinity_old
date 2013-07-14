@@ -70,29 +70,31 @@
           </p>
         </div>
         <!-- HOVER -->
-        <div class="rueda img-circle">
-          <div class="donutchartcompras" data-percent="{{compra.get_porcentaje}}"></div>
-          <div class="numjoine">
-            <span>
-              {{compra.n_joiners}}/{{compra.n_max}}
-            </span>
-            joiners
+        <div class="datos-hover">
+          <div class="rueda img-circle">
+            <div class="donutchartcompras" data-percent="{{compra.get_porcentaje}}"></div>
+            <div class="numjoine">
+              <span>
+                {{compra.n_joiners}}/{{compra.n_max}}
+              </span>
+              joiners
+            </div>
           </div>
-        </div>
-        <div class="lafecha">
-          {{compra.compras.fecha_inicio|date:"d"}}
-          <span>
-             {{compra.compras.fecha_inicio|date:"m"}}
-          </span>
-        </div>
-        <div class="valor06">
-          {% for i in cinco  %}
-         	{% if i <= compra.puntuacion_media %}
-         	<i class="iconos punto">j</i>
-         {% else %}
-         	<i class="iconos">j</i>
-         {% endif %}
-         {% endfor %}
+          <div class="lafecha">
+            {{compra.compras.fecha_inicio|date:"d"}}
+            <span>
+               {{compra.compras.fecha_inicio|date:"M"}}
+            </span>
+          </div>
+          <div class="valor06">
+            {% for i in cinco  %}
+           	{% if i <= compra.puntuacion_media %}
+           	<i class="iconos punto">j</i>
+           {% else %}
+           	<i class="iconos">j</i>
+           {% endif %}
+           {% endfor %}
+          </div>
         </div>
         <!-- FIN DE HOVER -->
       </div>

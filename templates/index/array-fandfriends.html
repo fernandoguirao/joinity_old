@@ -74,29 +74,31 @@
           </p>
         </div>
         <!-- HOVER -->
-        <div class="rueda img-circle">
-          <div class="donutchartfandfriends" data-percent="{{family.get_porcentaje}}"></div>
-          <div class="numjoine">
-            <span>
-              {{family.n_joiners}}/{{family.n_max}}
-            </span>
-            joiners
+        <div class="datos-hover">
+          <div class="rueda img-circle">
+            <div class="donutchartfandfriends" data-percent="{{family.get_porcentaje}}"></div>
+            <div class="numjoine">
+              <span>
+                {{family.n_joiners}}/{{family.n_max}}
+              </span>
+              joiners
+            </div>
           </div>
-        </div>
-        <div class="lafecha">
-          {{family.family.fecha_inicio|date:"d"}}
-          <span>
-            {{family.family.fecha_inicio|date:"m"}}
-          </span>
-        </div>
-        <div class="valor06">
-          {% for i in cinco  %}
-         {% if i <= family.puntuacion_media %}
-         <i class="iconos punto">j</i>
-         {% else %}
-         <i class="iconos">j</i>
-         {% endif %}
-         {% endfor %}
+          <div class="lafecha">
+            {{family.family.fecha_inicio|date:"d"}}
+            <span>
+              {{family.family.fecha_inicio|date:"M"}}
+            </span>
+          </div>
+          <div class="valor06">
+            {% for i in cinco  %}
+           {% if i <= family.puntuacion_media %}
+           <i class="iconos punto">j</i>
+           {% else %}
+           <i class="iconos">j</i>
+           {% endif %}
+           {% endfor %}
+          </div>
         </div>
         <!-- FIN DE HOVER -->
       </div>
