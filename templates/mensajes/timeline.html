@@ -36,7 +36,13 @@
         <div class="icono avatar" style="background-image:url('/media/{{mensaje.remitente.usuario.foto}}');">
         </div>
         <div class="fecha etiqueta">
-          {{mensaje.fecha|date:'H:i'}}
+        {% load mensajes_filters %}
+        
+        {% if mensaje.fecha|es_hoy %}
+        	{{mensaje.fecha|date:'H:i'}}
+        {% else %}
+        	{{mensaje.fecha|date:'d/m/y'}}
+        {% endif %}
         </div>
       </div>
       <!-- / FIN AUTOR Y FECHA -->

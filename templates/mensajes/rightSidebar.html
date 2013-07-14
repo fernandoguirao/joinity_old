@@ -6,20 +6,26 @@
     <!-- FIN BUSCADOR -->
     
     <!-- TODOS LOS MENSAJES -->
+    {% load mensajes_filters %}
+    
     <div class="todosMensajes">
-      {% for usuario in usuarios %}
+      {% for single_user in usuarios %}
       <!-- CADA MENSAJE -->
-      <a href="/mensaje/inbox/{{usuario.id}}">
+      <a href="/mensaje/inbox/{{single_user.id}}">
       <div class="cadaMensaje nuevo">
-        <div class="avatar span3" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+        <div class="avatar span3" style="background-image:url('/media/{{single_user.usuario.foto}}');">
         </div>
         <div class="numeroNotif">
           1
         </div>
         <p class="span9">
-          <b>{{usuario.first_name}} {{usuario.last_name}}</b>
-          <i>27/05/2013</i>
-          <span>Hola, Borja, ¿qué te parece si quedamos a comer mañana y hablamos el resto de asuntos?</span>
+          <b>{{single_user.first_name}} {{single_user.last_name}}</b>
+          {% if single_user|get_ultimo:usuario|get_fecha|es_hoy %}
+          	<i>{{single_user|get_ultimo:usuario|get_fecha|date:'H:i'}}</i>
+          {% else %}
+          	<i>{{single_user|get_ultimo:usuario|get_fecha|date:'d/m/Y'}}</i>
+          {% endif %}
+          <span>{{single_user|get_ultimo:usuario|get_mensaje}}</span>
         </p>
 	
       </div>

@@ -26,7 +26,7 @@ def inbox(request):
     consulta="SELECT * FROM auth_user WHERE id IN ("+subconsulta1+") OR id IN ("+subconsulta2+");"
     usuarios=User.objects.raw(consulta)
     formulario=False
-    context = {"mensajes": lista_mensajes, "usuarios":usuarios, "pagina":"misMensajes", "formulario":formulario}
+    context = {"lista_mensajes": lista_mensajes, "usuarios":usuarios, "pagina":"misMensajes", "formulario":formulario, "usuario":request.user}
     return render_to_response('mensajes/inbox.html', context, context_instance=RequestContext(request))
 def chat(request, user_id):
     conversador=get_object_or_404(User, pk=user_id)
@@ -41,7 +41,7 @@ def chat(request, user_id):
             formulario.save()
     else:
         formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
-    context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario}
+    context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario, "usuario":request.user}
     return render_to_response('mensajes/inbox.html', context, context_instance=RequestContext(request))
 def ver(request, mensaje_id):
     mensaje = get_object_or_404(Mensajes, pk=mensaje_id)
