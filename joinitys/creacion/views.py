@@ -1,10 +1,10 @@
 from datetime import datetime
-from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
 from usuario.forms import Buscar
 from usuario.models import Usuarios
 from joinitys.models import Usuarios_Joinity, Joinitys, Lugares_Joinity
@@ -13,6 +13,7 @@ from forms import JoinityForm, FamilyForm, ComprasForm, AficionesForm, Anyadir_L
 @login_required
 def nuevo_joinity(request):
     return render_to_response("creacion/index.html")
+    
 
 @login_required
 def nuevo_family(request):
