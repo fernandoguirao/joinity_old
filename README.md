@@ -23,11 +23,11 @@ El enlace a la documentación del date-pick de jquery-ui es http://api.jqueryui.
 
 a. Instalamos el paquete de python dajaxice. Podemos descargarlo de: https://github.com/jorgebastida/django-dajaxice y los instalamos como cualquier paquete normal de python.
 
-b. Sustituimos el archivo joinity/settings.py por este (cambiando las rutas de mi ordenador a las tuyas): https://www.dropbox.com/s/xqrmeovbbgnl30h/settings.py
+b. En nuestro proyecto de joinity sustituimos el archivo joinity/settings.py por este (cambiando las rutas de mi ordenador a las tuyas): https://www.dropbox.com/s/xqrmeovbbgnl30h/settings.py
 
-c. Sustituimos el archivo jonity/urls.py por este: https://www.dropbox.com/s/xqrmeovbbgnl30h/settings.py
+c. En nuestro proyecto de joinity sustituimos el archivo jonity/urls.py por este: https://www.dropbox.com/s/xqrmeovbbgnl30h/settings.py
 
-d. En cualquier app instalada creamos un nuevo archivo .py con los datos que tengamos que pasar por ajax. Un ejemplo (lo que se pasa es lo que está en el interior de la string. Yo he usado texto plano pero obviamente podemos pasar cualquier tipo de datos):
+d. En cualquier app instalada de joinity creamos un nuevo archivo .py con los datos que tengamos que pasar por ajax. Un ejemplo (lo que se pasa es lo que está en el interior de la string. Yo he usado texto plano pero obviamente podemos pasar cualquier tipo de datos):
 
 from django.utils import simplejson
 
