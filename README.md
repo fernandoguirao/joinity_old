@@ -18,6 +18,48 @@ La estructura a copiar/pegar es la siguiente:
 
 El enlace a la documentación del date-pick de jquery-ui es http://api.jqueryui.com/datepicker/
 
+3. INSTRUCCIONES PARA QUE FUNCIONE AJAX
+=======================================
+
+a. Instalamos el paquete de python dajaxice. Podemos descargarlo de: https://github.com/jorgebastida/django-dajaxice y los instalamos como cualquier paquete normal de python.
+
+b. Sustituimos el archivo joinity/settings.py por este (cambiando las rutas de mi ordenador a las tuyas): https://www.dropbox.com/s/xqrmeovbbgnl30h/settings.py
+
+c. Sustituimos el archivo jonity/urls.py por este: https://www.dropbox.com/s/xqrmeovbbgnl30h/settings.py
+
+d. En cualquier app instalada creamos un nuevo archivo .py con los datos que tengamos que pasar por ajax. Un ejemplo (lo que se pasa es lo que está en el interior de la string. Yo he usado texto plano pero obviamente podemos pasar cualquier tipo de datos):
+
+from django.utils import simplejson
+
+def sayhello(request):
+    return simplejson.dumps({'message':'Este mensaje esta en el servidor y funciona'})
+from django.utils import simplejson
+from dajaxice.decorators import dajaxice_register
+
+@dajaxice_register
+def sayhello(request):
+    return simplejson.dumps({'message':'Este mensaje esta en el servidor y funciona'})
+
+e. Fase final: los templates.
+  
+  e.1. Editamos el head del html y añadimos:
+
+    -Antes de abrir la etiqueta html:
+      {% load dajaxice_templatetags %}
+      
+    -Antes de cerrar la etiqueta head:
+      {% dajaxice_js_import %}
+      
+  e.2. Donde queramos cargar el contenido ajax, sólo hay que llamarlo a través de una función de javascript, de este modo (de hecho, hazlo así cargándolo en un alert y ya me encargo yo de cargarlo en el html como tendría que ser):
+  
+    <button onclick="Dajaxice.example.sayhello(my_js_callback);" class="btn btn-big" style="margin:200px;">Quiero ver Ajax en acción</button>
+
+  e.3. En el archivo de funciones de javascript (esto ya lo hago yo) añadimos esto:
+    function my_js_callback(data){
+      alert(data.message);
+    }
+
+
 
 3. ARCHIVO SETTINGS DE FERNANDO
 ============================
