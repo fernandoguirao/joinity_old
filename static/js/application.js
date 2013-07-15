@@ -177,8 +177,4 @@ String.prototype.repeat = function(num) {
     $(".table-striped").stacktable({id: "rwd-table"});
   });
 })(jQuery);
-function cargar_mas(data){
-   
-   n=data.n;
-   alert(data.aficiones);
-}
+

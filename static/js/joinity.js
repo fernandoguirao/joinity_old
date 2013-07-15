@@ -1,3 +1,9 @@
+function cargar_mas(data){
+   
+   n=data.n;
+   alert(data.aficiones);
+}
+
 /* Abrir menú lateral en móvil */
 
 $('.abreOculto').toggle(function(){
