@@ -1,41 +1,69 @@
+<legend>
+  1. Información del evento
+</legend>
 <form action="" method="post" enctype="multipart/form-data">
-	{% csrf_token %}
+{% csrf_token %}
+  <div class="fieldWrapper">
+    <label for="id_Titulo">
+      Ponle un nombre
+    </label>
+    {{ formulario.titulo }}
+  </div>
+  <div class="fieldWrapper">
+    <label for="id_Descripcion">
+      Información adicional
+    </label>
+    {{ formulario.descripcion }}
+  </div>
+  <div class="control-group">
+    <label for="id_Titulo">
+      Cuándo
+    </label>
+    <div class="input-prepend input-datepicker">
+      <button type="button" class="btn">
+        <span class="fui-calendar">
+        </span>
+      </button>
+      {{ formulario.fecha_inicio }}
+    </div>
+  </div>
+  <label class="checkbox login-recuerda masdeundia" for="checkbox1">
+    <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+    <span class="txtlabel">
+      ¿Durará más de un día?
+    </span>
+      <div class="control-group diafin">
+    <label for="id_Titulo">
+      ¿Qué día termina?
+    </label>
+    <div class="input-prepend input-datepicker">
+      <button type="button" class="btn">
+        <span class="fui-calendar">
+        </span>
+      </button>
+      {{ formulario.fecha_fin }}
+    </div>
+  </div>
+
+  </label>
 	<div class="fieldWrapper">
-	        <label for="id_Titulo">Titulo:</label>
-	        {{ formulario.titulo }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="id_Descripcion">Descripcion:</label>
-	        {{ formulario.descripcion }}
-	</div>
-	<div class="control-group">
-  		<div class="input-prepend input-datepicker">
-    		<button type="button" class="btn"><span class="fui-calendar"></span></button>
-    		{{ formulario.fecha_inicio }}
-  		</div>
-	</div>
-	<div class="control-group">
-  		<div class="input-prepend input-datepicker">
-    		<button type="button" class="btn"><span class="fui-calendar"></span></button>
-    		{{ formulario.fecha_fin }}
-  		</div>
-	</div>
-	<div class="fieldWrapper">
-	        <label for="id_foto">Foto:</label>
+	        <label for="id_foto">¿Quieres añadir una foto?</label>
 	        {{ formulario.foto }}
 	</div>
 	<div class="fieldWrapper">
-	        <label for="id_privacidad">Privacidad:</label>
+	<br>
+	        <label for="id_privacidad">¿Será público o privado?</label>
 	        {{ formulario.privacidad }}
 	</div>
 	<div class="fieldWrapper">
-	        <label for="id_privilegios">Invitar a participantes:</label>
+	        <label for="id_privilegios">¿Quién puede invitar a otros participantes?</label>
 	        {{ formulario.privilegios }}
 	</div>
 	<div class="fieldWrapper">
-	        <label for="id_repeticion">Repeticion:</label>
+	        <label for="id_repeticion">¿Se repetirá? ¿Con qué frecuencia?</label>
 	        {{ formulario.repeticion }}
 	</div>
-	<input type="submit" value="Crear Evento" />
+	<br>
+	<input type="submit" value="Siguiente paso" class="btn" />
 	
 </form>

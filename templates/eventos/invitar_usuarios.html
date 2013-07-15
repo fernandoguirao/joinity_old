@@ -1,12 +1,30 @@
-{% for usuario in joinity.joinity_usuario.all %}
-	{{usuario.usuario.first_name}}-
-	{% if usuario.usuario not in usuarios_invitados %}
-		<a href="/joinity/{{joinity.id}}/evento/invitar/{{evento.id}}/{{usuario.usuario.id}}">
-	Invitar</a><br>
-	{% else %}
-		Ya invitado<br>
-	{% endif %}
-{% endfor %}
+<legend>
+  3. Invita a los participantes
+</legend>
 
-<a href="/joinity/{{joinity.id}}/evento/invitar/{{evento.id}}/all">Invitar a todos</a><br>
-<a href="/joinity/{{joinity.id}}/"><input type="button" value="Finalizar" /></a>
+<a href="/joinity/{{joinity.id}}/evento/invitar/{{evento.id}}/all" class="btn invitartodos btn-mini amarillo">
+  Invita a todos de una vez
+</a>
+<table class="table table-striped invipar">
+  <tr>
+    <th>Nombre</th>
+    <th class="pequena">Estado</th>
+  </tr>
+  {% for usuario in joinity.joinity_usuario.all %}
+  <tr>
+    <td><p>{{usuario.usuario.first_name}}</p></td>
+    <td>
+      {% if usuario.usuario not in usuarios_invitados %}
+        <a href="/joinity/{{joinity.id}}/evento/invitar/{{evento.id}}/{{usuario.usuario.id}}" class="btn btn-mini verde">
+	Invitar</a>
+      {% else %}
+        <div class="btn btn-mini grisclaro">Ya invitado</div>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="/joinity/{{joinity.id}}/" class="btn">
+  Crea el evento
+</a>

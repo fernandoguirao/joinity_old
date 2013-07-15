@@ -1,9 +1,14 @@
+<legend>
+  2. ¿Dónde tendrá lugar?
+</legend>
 {% for lugar in evento.lugares_evento.all %}
 	Paso {{lugar.n}}: {{lugar.lugar}}<br>
 {% endfor %}
 <form action="" method="post">
 	{% csrf_token %}
 	{{ formulario }}
-	<input type="submit" value="Anyadir Lugar" />
+	<input type="submit" class="btn btn-mini gris" value="¿Ocurre en más de un lugar?" />
 </form>	
-<a href="/joinity/{{joinity.id}}/evento/crear/3/{{evento.id}}"><input type="button" value="Siguiente"/></a>
+<a href="/joinity/{{joinity.id}}/evento/crear/3/{{evento.id}}" class="btn">
+  Continuar
+</a>
