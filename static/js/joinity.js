@@ -207,3 +207,4 @@ $('.cambiatexto').click(function(){
 */
 
 /* al hacer click en la foto poner input="file" la etiqueta form en  action contenido="foto" */
+
