@@ -3,7 +3,6 @@
 String.prototype.repeat = function(num) {
   return new Array(num + 1).join(this);
 };
-
 (function($) {
 
   // Add segments to a slider
@@ -178,3 +177,6 @@ String.prototype.repeat = function(num) {
     $(".table-striped").stacktable({id: "rwd-table"});
   });
 })(jQuery);
+function cargar_mas(data){
+   alert(data.aficiones)
+}

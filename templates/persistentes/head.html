@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load dajaxice_templatetags %}
+
 <html lang="es">
   <head>
     <meta charset="utf-8">
@@ -25,10 +27,11 @@
 
     <!-- Iconos -->
     <link rel="shortcut icon" href="/media/images/favicon32.ico">
-
+	
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
     <![endif]-->
-    
+	{% dajaxice_js_import 'nocsrf' %}
   </head>
   <body id="{{ pagina }}">
+  

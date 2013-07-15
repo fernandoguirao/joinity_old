@@ -1,0 +1,47 @@
+{% for aficion in lista_aficiones|slice:":8" %}
+     
+      <a class="los-joinity" href="/joinity/{{aficion.id}}">
+        <div class="foto-join" style="background-image:url('/media/{{aficion.foto}}');">
+        </div>
+        <div class="info-caja">
+          <h6>
+            {{aficion.nombre}}
+          </h6>
+          <p>
+          {% for lugar in aficion.lugares.all|slice:":1" %}
+          	En {{lugar.lugar}},
+          {% endfor %}
+           por {{aficion.precio}} €
+          </p>
+        </div>
+        <!-- HOVER -->
+        <div class="datos-hover">
+          <div class="rueda img-circle">
+            <div class="donutchart" data-percent="{{aficion.get_porcentaje}}"></div>
+            <div class="numjoine">
+              <span>
+                {{aficion.n_joiners}}/{{aficion.n_max}}
+              </span>
+              joiners
+            </div>
+          </div>
+          <div class="lafecha">
+            {{aficion.aficiones.fecha_inicio|date:"d"}}
+            <span>
+               {{aficion.aficiones.fecha_inicio|date:"M"}}
+            </span>
+          </div>
+          <div class="valor06">
+          {% for i in cinco  %}
+          	{% if i <= aficion.puntuacion_media %}
+          		<i class="iconos punto">j</i>
+           	{% else %}
+           		<i class="iconos">j</i>
+           	{% endif %}
+          {% endfor %}
+          </div>
+        <!-- FIN DE HOVER -->
+        </div>
+      </a>
+      <!-- FIN DE CADA JOINITY -->
+ {% endfor %}

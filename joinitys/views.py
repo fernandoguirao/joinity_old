@@ -12,6 +12,7 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
 from joinitys.eventos.models import Eventos, Usuarios_Evento
+from dajaxice.core import dajaxice_functions
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 def index(request):
     if not request.user.is_authenticated():

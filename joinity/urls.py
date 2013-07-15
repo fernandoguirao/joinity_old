@@ -7,10 +7,15 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from joinity import settings
 from reservas import views as reservas_views
+from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 admin.autodiscover()
+dajaxice_autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     url(r'^$', joinitys_views.index, name="Inicio"),
     url(r'^login/', login_views.login_user, name="login"),
     url(r'^accounts/login/', login_views.login_user, name="login"),
@@ -45,3 +50,4 @@ urlpatterns += patterns('',
         (r'%s(?P<path>.*)$' % settings.STATIC_URL.lstrip('/'), 
             'django.views.static.serve',
             {'document_root' : settings.STATIC_ROOT }),)
+urlpatterns += staticfiles_urlpatterns()
