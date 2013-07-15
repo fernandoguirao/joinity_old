@@ -178,5 +178,7 @@ String.prototype.repeat = function(num) {
   });
 })(jQuery);
 function cargar_mas(data){
-   alert(data.aficiones)
+   
+   n=data.n;
+   alert(data.aficiones);
 }
