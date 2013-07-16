@@ -15,7 +15,7 @@ function cargar_mas(data){
    $('.los-join-footer button').addClass('amarillo');
    $('.losjoin-footer button #fadingBarsG').remove();
    $('.los-join-footer button').html('Quiero ver más');
-   $(".donutchart").donutchart();
+   donutfunction();
     if(data.aficiones.length==0) {
       $('.los-join-footer button').html('No hay más joinitys');
       $('.los-join-footer button').removeClass('amarillo');
@@ -85,7 +85,7 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
 $("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],select[name='aficion2'],select[name='reserva2']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
 
 /* EL DIAL */
-
+function donutfunction(){
 $(".donutchart").donutchart();
 $(".donutchartcompras").donutchart({'bgColor':'#aa252b'});
 $(".donutchartfandfriends").donutchart({'bgColor':'#08705b'});
@@ -94,6 +94,8 @@ $('.los-joinity').hover (function(){
   $(".donutchartcompras",this).stop().donutchart("animate");
   $(".donutchartfandfriends",this).stop().donutchart("animate");
 })
+}
+donutfunction();
 
 /* SELECTOR HOME */
 
