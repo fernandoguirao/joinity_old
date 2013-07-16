@@ -1,7 +1,37 @@
+function cargador(contenedor) {
+  $(contenedor).html('');
+  $('.ocultarcargador #fadingBarsG').clone().appendTo(contenedor);
+  $(contenedor).addClass('grisclaro');
+  $(contenedor).removeClass('amarillo');
+}
+
 function cargar_mas(data){
    
-   n=data.n;
+
+    n=data.n;
    $('.contenedor-los-joinitys').append(data.aficiones);
+      $('.los-join-footer button').removeClass('grisclaro');
+   $('.los-join-footer button').addClass('amarillo');
+   $('.losjoin-footer button #fadingBarsG').remove();
+   $('.los-join-footer button').html('Quiero ver más');
+
+/*
+var sync = function(fn, millisec){
+    var m = millisec ? millisec : 0; //in face, 0 is enough
+    return setTimeout(fn,m);
+};
+
+$('.los-join-footer button').html('Cargando');
+var code2 = function(){
+    $('.contenedor-los-joinitys').append(data.aficiones);
+   $('.los-join-footer button').html('ver más');
+
+};
+
+sync(code2);
+*/
+
+
 }
 
 /* Abrir menú lateral en móvil */
