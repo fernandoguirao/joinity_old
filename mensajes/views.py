@@ -27,13 +27,13 @@ def inbox(request):
     conversador=get_object_or_404(User, pk=usuarios[0].id)
     lista_mensajes=Mensajes.objects.raw("SELECT * FROM Mensajes WHERE (destinatario_id="+str(request.user.id)+" AND remitente_id="+str(conversador.id)+") OR (remitente_id="+str(request.user.id)+" AND destinatario_id="+str(conversador.id)+") ORDER BY id DESC;")
 
-    if request.POST:
-        formulario = Mandar_Mensaje_Form(request.POST, user=request.user, destinatario=conversador)
-        if formulario.is_valid:
-            formulario.save()
-    else:
-        formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
-    context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario, "usuario":request.user}
+    #if request.POST:
+    #    formulario = Mandar_Mensaje_Form(request.POST, user=request.user, destinatario=conversador)
+    #    if formulario.is_valid:
+    #        formulario.save()
+    #else:
+    formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
+    context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario, "usuario":request.user, "conversador":conversador}
     return render_to_response('mensajes/inbox.html', context, context_instance=RequestContext(request))
 def chat(request, user_id):
     conversador=get_object_or_404(User, pk=user_id)

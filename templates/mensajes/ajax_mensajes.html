@@ -1,28 +1,3 @@
-<div id="timeline">
-{% if formulario %}
-  <div id="escribe-main">
-    <div class="escribe-input">
-      <div class="avatar" style="background-image:url('images/ejemplos/avatar.png');">
-      </div>
-	  <form id="formulario_mensaje">
-	  {% csrf_token %}
-      <div class="input-append">
-        {{formulario.mensaje}}
-        <div id="losbotones">
-          <input type="button" value="Enviar" class="btn btn-small" onclick="Dajaxice.mensajes.enviar_mensaje(enviar_mensaje, {'formulario':$('#formulario_mensaje').serializeObject(), 'conversador_id':{{conversador.id}}});"/>
-          
-          <button class="btn btn-small" type="button">
-            <i class="iconos">
-              s
-            </i>
-          </button>
-        </div>
-      </div>
-      </form>
-      <div id="mensaje_error"></div>
-    </div>
-  </div>
-  <div id="cronologia">
     <div id="lineaTiempo">
     </div>
 
@@ -71,8 +46,3 @@
     {% else %}
     	No tiene mensajes
     {% endif %}
-  </div>
-        {% endif %}
-  
-</div>
-

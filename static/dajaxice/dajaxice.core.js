@@ -7,6 +7,23 @@ var Dajaxice = {
     
 
     
+    mensajes: {
+    
+    refrescar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('mensajes.refrescar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    enviar_mensaje: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('mensajes.enviar_mensaje', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
     joinitys: {
     
     filtrar: function(callback_function, argv, custom_settings){

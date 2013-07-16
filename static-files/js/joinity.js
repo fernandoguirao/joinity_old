@@ -1,3 +1,32 @@
+$.fn.serializeObject = function()
+{
+   var o = {};
+   var a = this.serializeArray();
+   $.each(a, function() {
+       if (o[this.name]) {
+           if (!o[this.name].push) {
+               o[this.name] = [o[this.name]];
+           }
+           o[this.name].push(this.value || '');
+       } else {
+           o[this.name] = this.value || '';
+       }
+   });
+   return o;
+};
+function refrescar(data){
+	$("#cronologia").html(data.mensajes);
+}
+function enviar_mensaje(data){
+	if (data.error){
+		for (error in data.error){
+			$("#mensaje_error").append("<p><b>"+error+"</b></p>");
+		}
+	}
+	else{
+		Dajaxice.mensajes.refrescar(refrescar, {'conversador_id':data.conversador_id})
+	}
+}
 function cargador(contenedor) {
   $(contenedor).html('');
   $('.ocultarcargador #fadingBarsG').clone().appendTo(contenedor);
