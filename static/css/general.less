@@ -2823,6 +2823,13 @@ input[type="text"] {
           text-transform: uppercase;
           display:inline-block;
           margin:0 40px;
+          cursor:pointer;
+          &:hover {
+            color:@oscuro;
+          }
+          &.activo {
+            cursor:default;
+          }
           i {
             font-size:17px!important;
             top:3px;
@@ -3592,8 +3599,19 @@ text-transform: uppercase !important;
 /* CARGADOR */
 
 .ocultarcargador {
-  display:none;
+  display: none;
+  position: fixed;
+  background-color: rgba(248,245,233,0.55);
+  padding: 50px;
+  .border-radius(5px);
+  top: 140px;
+  z-index: 10;
+  border:11px solid rgba(77,77,77,0.64);
+  text-align:center;
+  width:10%;
+  left:40%;
 }
+
 #fadingBarsG{
 position:relative;
 width:83px;
