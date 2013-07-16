@@ -8,19 +8,17 @@ function filtrar(data){
     n=data.n;
     order=data.order;
     alert(order);
-  }
+ }
 function cargar_mas(data){
 
-  
-
   n=data.n;
-  $('.contenedor-los-joinitys').append(data.aficiones);
+  $('.contenedor-los-joinitys').append(data.joinitys);
   $('.los-join-footer button').removeClass('grisclaro');
   $('.los-join-footer button').addClass('amarillo');
   $('.losjoin-footer button #fadingBarsG').remove();
   $('.los-join-footer button').html('Quiero ver más');
   donutfunction();
-  if(data.aficiones.length==0) {
+  if(data.joinitys.length==0) {
     $('.los-join-footer button').html('No hay más joinitys');
     $('.los-join-footer button').removeClass('amarillo');
     $('.los-join-footer button').removeClass('btn-embossed');
