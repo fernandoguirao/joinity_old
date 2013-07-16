@@ -9,11 +9,18 @@ function cargar_mas(data){
    
 
     n=data.n;
+
    $('.contenedor-los-joinitys').append(data.aficiones);
-      $('.los-join-footer button').removeClass('grisclaro');
+   $('.los-join-footer button').removeClass('grisclaro');
    $('.los-join-footer button').addClass('amarillo');
    $('.losjoin-footer button #fadingBarsG').remove();
    $('.los-join-footer button').html('Quiero ver más');
+    if(data.aficiones.length==0) {
+      $('.los-join-footer button').html('No hay más joinitys');
+      $('.los-join-footer button').removeClass('amarillo');
+      $('.los-join-footer button').removeClass('btn-embossed');
+      $('.los-join-footer button').addClass('claro');
+    }
 
 /*
 var sync = function(fn, millisec){
