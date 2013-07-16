@@ -9,41 +9,20 @@ function filtrar(data){
 	order=data.order;
 	alert(order);
 }
-function cargar_mas(data){
-   
-
-    n=data.n;
-
-   $('.contenedor-los-joinitys').append(data.aficiones);
-   $('.los-join-footer button').removeClass('grisclaro');
-   $('.los-join-footer button').addClass('amarillo');
-   $('.losjoin-footer button #fadingBarsG').remove();
-   $('.los-join-footer button').html('Quiero ver más');
-   $(".donutchart").donutchart();
-    if(data.aficiones.length==0) {
-      $('.los-join-footer button').html('No hay más joinitys');
-      $('.los-join-footer button').removeClass('amarillo');
-      $('.los-join-footer button').removeClass('btn-embossed');
-      $('.los-join-footer button').addClass('claro');
-    }
-
-/*
-var sync = function(fn, millisec){
-    var m = millisec ? millisec : 0; //in face, 0 is enough
-    return setTimeout(fn,m);
-};
-
-$('.los-join-footer button').html('Cargando');
-var code2 = function(){
-    $('.contenedor-los-joinitys').append(data.aficiones);
-   $('.los-join-footer button').html('ver más');
-
-};
-
-sync(code2);
-*/
-
-
+function cargar_mas(data, categoria){
+  n=data.n;
+  $('.contenedor-los-joinitys').append(data.categoria);
+  $('.los-join-footer button').removeClass('grisclaro');
+  $('.los-join-footer button').addClass('amarillo');
+  $('.losjoin-footer button #fadingBarsG').remove();
+  $('.los-join-footer button').html('Quiero ver más');
+  donutfunction();
+  if(data.aficiones.length==0) {
+    $('.los-join-footer button').html('No hay más joinitys');
+    $('.los-join-footer button').removeClass('amarillo');
+    $('.los-join-footer button').removeClass('btn-embossed');
+    $('.los-join-footer button').addClass('claro');
+  }
 }
 
 /* Abrir menú lateral en móvil */
@@ -89,7 +68,7 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
 $("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],select[name='aficion2'],select[name='reserva2']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
 
 /* EL DIAL */
-
+function donutfunction(){
 $(".donutchart").donutchart();
 $(".donutchartcompras").donutchart({'bgColor':'#aa252b'});
 $(".donutchartfandfriends").donutchart({'bgColor':'#08705b'});
@@ -98,6 +77,8 @@ $('.los-joinity').hover (function(){
   $(".donutchartcompras",this).stop().donutchart("animate");
   $(".donutchartfandfriends",this).stop().donutchart("animate");
 })
+}
+donutfunction();
 
 /* SELECTOR HOME */
 
