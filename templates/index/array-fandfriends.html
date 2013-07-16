@@ -72,8 +72,10 @@
           </h6>
           <p>
            {% for lugar in family.lugares.all|slice:":1" %}
-           En {{lugar.lugar}}, por {{family.precio}} €
+           En {{lugar.lugar}}, 
            {% endfor %}
+           por {{family.precio}} €
+           
           </p>
         </div>
         <!-- HOVER -->
