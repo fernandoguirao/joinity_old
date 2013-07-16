@@ -15,6 +15,7 @@ function cargar_mas(data){
    $('.los-join-footer button').addClass('amarillo');
    $('.losjoin-footer button #fadingBarsG').remove();
    $('.los-join-footer button').html('Quiero ver más');
+   $(".donutchart").donutchart();
     if(data.aficiones.length==0) {
       $('.los-join-footer button').html('No hay más joinitys');
       $('.los-join-footer button').removeClass('amarillo');
