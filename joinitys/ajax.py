@@ -8,7 +8,7 @@ def cargar_mas(request, categoria, n, order):
     if order==1:
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-id")[n:n+8]
     elif order==2:
-        lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-precio")[n:n+8]
+        lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("precio")[n:n+8]
     elif order==3:
         if categoria==3:
             lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__in=request.user.usuario.intereses.all).order_by("-id")[n:n+8]
@@ -23,7 +23,7 @@ def filtrar(request, categoria, order):
     if order==1:
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-id")[:8]
     elif order==2:
-        lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-precio")[:8]
+        lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("precio")[:8]
     elif order==3:
         if categoria==3:
             lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__in=request.user.usuario.intereses.all).order_by("-id")[:8]
