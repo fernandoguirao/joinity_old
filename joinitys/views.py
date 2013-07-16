@@ -12,7 +12,6 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
 from joinitys.eventos.models import Eventos, Usuarios_Evento
-from dajaxice.core import dajaxice_functions
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 def index(request):
     if not request.user.is_authenticated():
@@ -23,9 +22,9 @@ def index(request):
             return HttpResponseRedirect('/usuario/editar/')
     # lista_pagos = Pagos.objects.filter(usuarios=request.user.id).order_by('id')
     #lista_joinitys = Usuarios_Joinity.objects.filter(usuario=request.user)
-    lista_aficiones=Joinitys.objects.filter(tipo="3")
-    lista_compras=Joinitys.objects.filter(tipo="2")
-    lista_family=Joinitys.objects.filter(tipo="1")
+    lista_aficiones=Joinitys.objects.filter(tipo="3").order_by('-id')[:8]
+    lista_compras=Joinitys.objects.filter(tipo="2").order_by('-id')[:8]
+    lista_family=Joinitys.objects.filter(tipo="1").order_by('-id')[:8]
     lista_vip=Joinitys_VIP.objects.all()
     context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":usuario, "pagina":"home", "cinco":[1,2,3,4,5], "VIP":lista_vip}
     return render(request, 'index/index.html', context)

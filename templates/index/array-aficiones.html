@@ -49,7 +49,7 @@
       </a>
     </div>
     <div class="contenedor-los-joinitys">
-      <script type="text/javascript">var n=0;</script>
+      <script type="text/javascript">var n=0; var order=1</script>
     	{% for aficion in lista_aficiones|slice:":8" %}
     	<script type="text/javascript">n++</script>
       <!-- CADA JOINITY -->
@@ -107,7 +107,7 @@
       <div class=linea-puntos>
       </div>
       
-      <button onclick="Dajaxice.joinitys.cargar_mas(cargar_mas, {'categoria':3, 'n':n});" class="btn amarillo btn-embossed">Quiero ver más</button>
+      <button onclick="Dajaxice.joinitys.cargar_mas(cargar_mas, {'categoria':3, 'n':n, 'order':order});" class="btn amarillo btn-embossed">Quiero ver más</button>
     </div>
   </div>
 </div>
