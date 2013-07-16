@@ -1,7 +1,7 @@
 function cargar_mas(data){
    
    n=data.n;
-   alert(data.aficiones);
+   $('.contenedor-los-joinitys').append(data.aficiones);
 }
 
 /* Abrir menú lateral en móvil */
