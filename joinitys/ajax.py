@@ -18,18 +18,12 @@ def cargar_mas(request, categoria, n, order):
     aficiones=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()+n
     return simplejson.dumps({'aficiones':aficiones, 'n':n})
+
+@dajaxice_register
 def filtar(request, categoria, order):
     if order==1:
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-id")[:8]
-    elif order==2:
-        lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-precio")[:8]
-    elif order==3:
-        if categoria==3:
-            #Si es aficiones
-            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__in=request.user.intereses)[:8]
-        elif categoria==2:
-            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__in=request.user.intereses_compras)[:8]
     aficiones=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()
-    return simplejson.dumps({'aficiones':aficiones, 'n':n})
+    return simplejson.dumps({'aficiones':aficiones, 'n':n, 'order':order})
     

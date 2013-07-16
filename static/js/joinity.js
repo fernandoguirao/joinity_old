@@ -5,7 +5,14 @@ function cargador(contenedor) {
   $(contenedor).removeClass('amarillo');
 }
 
-function cargar_mas(data,aficiones){
+function cargar_mas(data){
+
+  function filtrar(data){
+    n=data.n;
+    order=data.order;
+    alert(order);
+  }
+
   n=data.n;
   $('.contenedor-los-joinitys').append(data.aficiones);
   $('.los-join-footer button').removeClass('grisclaro');
