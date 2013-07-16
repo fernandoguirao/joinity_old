@@ -4,7 +4,11 @@ function cargador(contenedor) {
   $(contenedor).addClass('grisclaro');
   $(contenedor).removeClass('amarillo');
 }
-
+function filtrar(data){
+	n=data.n;
+	order=data.order;
+	alert(order);
+}
 function cargar_mas(data){
    
 
