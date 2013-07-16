@@ -5,9 +5,9 @@ function cargador(contenedor) {
   $(contenedor).removeClass('amarillo');
 }
 
-function cargar_mas(data,categoria){
+function cargar_mas(data){
   n=data.n;
-  $('.contenedor-los-joinitys').append(data.categoria);
+  $('.contenedor-los-joinitys').append(data.aficiones);
   $('.los-join-footer button').removeClass('grisclaro');
   $('.los-join-footer button').addClass('amarillo');
   $('.losjoin-footer button #fadingBarsG').remove();
