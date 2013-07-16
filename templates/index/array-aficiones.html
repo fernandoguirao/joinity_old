@@ -22,31 +22,33 @@
   <div class="contenedor-elarray">
     <div class="contenedor-filtro">
       <div class="container">
-        <a class="filtros activo" onclick="Dajaxice.joinitys.filtrar(filtrar, {'categoria':3, 'order':1});">
+<!--         <div class="filtros activo" onclick="Dajaxice.joinitys.filtrar(filtrar, {'categoria':3, 'order':1},filtrar(this));"> -->
+        <div class="filtros activo" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':1})">
+
           <i class="iconos">
             i
           </i>
           Más recientes
-        </a>
-        <a class="filtros" onclick="Dajaxice.joinitys.filtrar(filtrar, {'categoria':3, 'order':2});">
+        </div>
+        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':2})">
           <i class="iconos otro2">
             j
           </i>
           Mejores ofertas
-        </a>
-        <a class="filtros" onclick="Dajaxice.joinitys.filtrar(filtrar, {'categoria':3, 'order':3});">
+        </div>
+        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':3})">
           <i class="iconos">
             c
           </i>
           Para mí
-        </a>
-        <a class="filtros">
+        </div>
+        <div class="filtros">
           <i class="iconos otros">
             0
           </i>
           Más
         </div>
-      </a>
+      </div>
     </div>
     <div class="contenedor-los-joinitys">
       <script type="text/javascript">var n=0; var order=1</script>

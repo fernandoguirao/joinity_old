@@ -4,21 +4,36 @@ function cargador(contenedor) {
   $(contenedor).addClass('grisclaro');
   $(contenedor).removeClass('amarillo');
 }
+
+var identificador;
+var textoidentificador;
+var identificadorprev;
+
+function cargarfiltro() {
+  $(identificadorprev).html(textoidentificador);
+  identificadorprev = identificador;
+  var contain = $(identificador);
+  textoidentificador = contain.html();
+  contain.html('');
+  $('.ocultarcargador #fadingBarsG').clone().appendTo(identificador);
+  contain.parent().children('.filtros').removeClass('activo');
+}
+
 function filtrar(data){
-    n=data.n;
-    order=data.order;
-    $('.contenedor-los-joinitys').html(data.joinitys);
-    $('.los-join-footer button').removeClass('grisclaro');
-    $('.los-join-footer button').addClass('amarillo');
-    $('.losjoin-footer button #fadingBarsG').remove();
-    $('.los-join-footer button').html('Quiero ver más');
-    donutfunction();
+  n=data.n;
+  order=data.order;
+  var contain = $(identificador);
+  contain.addClass('activo');
+  contain.parent().parent().parent().children('.contenedor-los-joinitys').html(data.joinitys);
+  $('#fadingBarsG',identificador).remove();
+  contain.html(textoidentificador);
+  donutfunction();
     if(data.joinitys.length==0) {
-      $('.los-join-footer button').html('No hay más joinitys');
-      $('.los-join-footer button').removeClass('amarillo');
-      $('.los-join-footer button').removeClass('btn-embossed');
-      $('.los-join-footer button').addClass('claro');
-    } }
+    contain.parent().parent().parent().children('.contenedor-los-joinitys').html('No hay joinitys que coincidan con esta selección :(');
+  }
+}
+
+
 function cargar_mas(data){
 
   n=data.n;
