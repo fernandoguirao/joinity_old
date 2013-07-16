@@ -7,8 +7,18 @@ function cargador(contenedor) {
 function filtrar(data){
     n=data.n;
     order=data.order;
-    alert(order);
- }
+    $('.contenedor-los-joinitys').html(data.joinitys);
+    $('.los-join-footer button').removeClass('grisclaro');
+    $('.los-join-footer button').addClass('amarillo');
+    $('.losjoin-footer button #fadingBarsG').remove();
+    $('.los-join-footer button').html('Quiero ver más');
+    donutfunction();
+    if(data.joinitys.length==0) {
+      $('.los-join-footer button').html('No hay más joinitys');
+      $('.los-join-footer button').removeClass('amarillo');
+      $('.los-join-footer button').removeClass('btn-embossed');
+      $('.los-join-footer button').addClass('claro');
+    } }
 function cargar_mas(data){
 
   n=data.n;

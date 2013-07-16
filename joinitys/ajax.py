@@ -11,19 +11,25 @@ def cargar_mas(request, categoria, n, order):
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-precio")[n:n+8]
     elif order==3:
         if categoria==3:
-            #Si es aficiones
-            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__in=request.user.intereses)
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__in=request.user.usuario.intereses.all).order_by("-id")[n:n+8]
         elif categoria==2:
-            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__in=request.user.intereses_compras)
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, compras__subcategoria__in=request.user.usuario.intereses_compras.all).order_by("-id")[n:n+8]
     joinitys=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()+n
     return simplejson.dumps({'joinitys':joinitys, 'n':n})
 
 @dajaxice_register
-def filtar(request, categoria, order):
+def filtrar(request, categoria, order):
     if order==1:
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-id")[:8]
-    aficiones=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "cinco":[1,2,3,4,5]})
+    elif order==2:
+        lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-precio")[:8]
+    elif order==3:
+        if categoria==3:
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__in=request.user.usuario.intereses.all).order_by("-id")[:8]
+        elif categoria==2:
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, compras__subcategoria__in=request.user.usuario.intereses_compras.all).order_by("-id")[:8]
+    joinitys=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "order":order, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()
-    return simplejson.dumps({'aficiones':aficiones, 'n':n, 'order':order})
+    return simplejson.dumps({'joinitys':joinitys, 'n':n, 'order':order})
     
