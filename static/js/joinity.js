@@ -20,8 +20,18 @@ function cargarfiltro() {
 }
 
 function filtrar(data){
-  n=data.n;
-  order=data.order;
+  if (data.categoria==3){
+	  n=data.n;
+	  order=data.order;
+  }
+  else if (data.categoria==2){
+	  n_compras=data.n;
+	  order_compras=data.order;
+  }
+  else{
+	  n_family=data.n;
+	  order_family=data.order;
+  }
   var contain = $(identificador);
   contain.addClass('activo');
   contain.parent().parent().parent().children('.contenedor-los-joinitys').html(data.joinitys);
@@ -35,8 +45,16 @@ function filtrar(data){
 
 
 function cargar_mas(data){
-
-  n=data.n;
+  if (data.categoria==3){
+	  alert("Aficiones");
+  	n=data.n;
+  }
+  else if (data.categoria==2){
+	  n_compras=data.n;
+  }
+  else{
+	  n_family=data.n;
+  }
   $('.contenedor-los-joinitys').append(data.joinitys);
   $('.los-join-footer button').removeClass('grisclaro');
   $('.los-join-footer button').addClass('amarillo');
