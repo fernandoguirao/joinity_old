@@ -5,41 +5,20 @@ function cargador(contenedor) {
   $(contenedor).removeClass('amarillo');
 }
 
-function cargar_mas(data){
-   
-
-    n=data.n;
-
-   $('.contenedor-los-joinitys').append(data.aficiones);
-   $('.los-join-footer button').removeClass('grisclaro');
-   $('.los-join-footer button').addClass('amarillo');
-   $('.losjoin-footer button #fadingBarsG').remove();
-   $('.los-join-footer button').html('Quiero ver más');
-   donutfunction();
-    if(data.aficiones.length==0) {
-      $('.los-join-footer button').html('No hay más joinitys');
-      $('.los-join-footer button').removeClass('amarillo');
-      $('.los-join-footer button').removeClass('btn-embossed');
-      $('.los-join-footer button').addClass('claro');
-    }
-
-/*
-var sync = function(fn, millisec){
-    var m = millisec ? millisec : 0; //in face, 0 is enough
-    return setTimeout(fn,m);
-};
-
-$('.los-join-footer button').html('Cargando');
-var code2 = function(){
-    $('.contenedor-los-joinitys').append(data.aficiones);
-   $('.los-join-footer button').html('ver más');
-
-};
-
-sync(code2);
-*/
-
-
+function cargar_mas(data,categoria){
+  n=data.n;
+  $('.contenedor-los-joinitys').append(data.categoria);
+  $('.los-join-footer button').removeClass('grisclaro');
+  $('.los-join-footer button').addClass('amarillo');
+  $('.losjoin-footer button #fadingBarsG').remove();
+  $('.los-join-footer button').html('Quiero ver más');
+  donutfunction();
+  if(data.aficiones.length==0) {
+    $('.los-join-footer button').html('No hay más joinitys');
+    $('.los-join-footer button').removeClass('amarillo');
+    $('.los-join-footer button').removeClass('btn-embossed');
+    $('.los-join-footer button').addClass('claro');
+  }
 }
 
 /* Abrir menú lateral en móvil */
