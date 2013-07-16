@@ -4,14 +4,14 @@ function cargador(contenedor) {
   $(contenedor).addClass('grisclaro');
   $(contenedor).removeClass('amarillo');
 }
-
-function cargar_mas(data){
-
-  function filtrar(data){
+function filtrar(data){
     n=data.n;
     order=data.order;
     alert(order);
   }
+function cargar_mas(data){
+
+  
 
   n=data.n;
   $('.contenedor-los-joinitys').append(data.aficiones);
