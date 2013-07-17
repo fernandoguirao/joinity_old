@@ -10,7 +10,7 @@
           {% for lugar in joinity.lugares.all|slice:":1" %}
           	En {{lugar.lugar}},
           {% endfor %}
-           por {{joinity.precio}} €
+           por {{joinity.precio|floatformat}} €
           </p>
         </div>
         <!-- HOVER -->

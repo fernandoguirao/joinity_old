@@ -70,7 +70,7 @@
           {% for lugar in aficion.lugares.all|slice:":1" %}
           	En {{lugar.lugar}},
           {% endfor %}
-           por {{aficion.precio}} €
+           por {{aficion.precio|floatformat}} €
           </p>
         </div>
         <!-- HOVER -->

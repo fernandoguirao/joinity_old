@@ -1,3 +1,64 @@
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+<script type="text/javascript">
+function initialize() {
+	  //VARIABLES
+	  var input = /** @type {HTMLInputElement} */(document.getElementById('id_lugar'));
+	  var autocomplete;
+	  var infowindow = new google.maps.InfoWindow();
+
+	  // GEOLOCALIZACION
+	  if(navigator.geolocation) {
+		 navigator.geolocation.getCurrentPosition(setBounds);
+  	   }
+	  else {
+		  autocomplete= new google.maps.places.Autocomplete(input);
+	  }
+	  function setBounds(position){
+	  	var mi_posicion= new google.maps.LatLngBounds(
+			new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+		);
+	  	var options = {
+	  		  bounds: mi_posicion
+	  	};
+	  	autocomplete= new google.maps.places.Autocomplete(input, options);
+	  }
+	  
+	  //Listener 
+	  
+	  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+	    infowindow.close();
+	    input.className = '';
+	    var place = autocomplete.getPlace();
+	    if (!place.geometry) {
+	      // Inform the user that the place was not found and return.
+	      input.className = 'notfound';
+	      return;
+	    }
+
+	    // If the place has a geometry, then present it on a map.
+
+	    var address = '';
+	    if (place.address_components) {
+	      address = [
+	        (place.address_components[0] && place.address_components[0].short_name || ''),
+	        (place.address_components[1] && place.address_components[1].short_name || ''),
+	        (place.address_components[2] && place.address_components[2].short_name || '')
+	      ].join(' ');
+	    }
+
+	    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+	  });
+	  
+	 
+	}
+	//ARRANCA
+	google.maps.event.addDomListener(window, 'load', initialize);
+
+
+</script>
+
+
 {% for lugar in joinity.lugares.all %}
 	Paso {{lugar.n}}: {{lugar.lugar}}<br>
 {% endfor %}
