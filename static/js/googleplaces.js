@@ -6,7 +6,12 @@ function initialize() {
 	  var infowindow = new google.maps.InfoWindow();
 
 	  // GEOLOCALIZACION
-	  if(navigator.geolocation) {
+	  
+	  if(ubicacion_dinamica==false){
+		  autocomplete= new google.maps.places.Autocomplete(input);
+		  autocomplete2= new google.maps.places.Autocomplete(input2);
+	  }
+	  else if(navigator.geolocation) {
 		 navigator.geolocation.getCurrentPosition(setBounds);
   	   }
 	  else {
@@ -14,6 +19,7 @@ function initialize() {
 		  autocomplete2= new google.maps.places.Autocomplete(input2);
 
 	  }
+	  
 	  function setBounds(position){
 	  	var mi_posicion= new google.maps.LatLngBounds(
 			new google.maps.LatLng(position.coords.latitude, position.coords.longitude)

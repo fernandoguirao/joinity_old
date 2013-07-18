@@ -30,7 +30,7 @@ def nuevo_family(request):
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=1)
         formfamily=FamilyForm(joinity=None)
-    context={'formulario': formulario, 'formfamily':formfamily, "pagina":"crear-family", "usuario":request.user}
+    context={'formulario': formulario, 'formfamily':formfamily, "pagina":"crear", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
 @login_required
@@ -48,7 +48,7 @@ def nuevo_compras(request):
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=2)
         formcompras=ComprasForm(joinity=None)
-    context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear-compras", "usuario":request.user}
+    context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html',context , context_instance=RequestContext(request))
 
 
@@ -67,7 +67,7 @@ def nuevo_aficiones(request):
     else:
         formulario = JoinityForm(user=request.user, tipo=3)
         formaficiones=AficionesForm(joinity=None)
-    context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear-aficiones", "usuario":request.user}
+    context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear", "usuario":request.user}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
 @login_required
