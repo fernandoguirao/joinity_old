@@ -12,8 +12,8 @@ def enviar_mensaje(request, formulario, conversador_id):
     form = Mandar_Mensaje_Form(formulario, user=request.user, destinatario=conversador)
     if form.is_valid():
         form.save()
-        return simplejson.dumps({'status':False, 'conversador_id':conversador_id})
-    return simplejson.dumps({'status':'Error al enviar'})
+        return simplejson.dumps({'error':False, 'conversador_id':conversador_id})
+    return simplejson.dumps({'error':'Error al enviar'})
 
 @dajaxice_register
 def refrescar(request, conversador_id):

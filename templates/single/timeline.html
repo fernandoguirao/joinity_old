@@ -23,7 +23,7 @@
     <!-- Escribe mensaje y votos: formularios -->
     <div id="formularios-update">
       <!-- Actualización: texto -->
-      <form class="escribeform prinform" action="?contenido=texto" method="post" enctype="multipart/form-data">
+      <form class="escribeform prinform" action="?contenido=texto" method="post" enctype="multipart/form-data" id="formulario_posteo">
         {% csrf_token %}
         <div class="escribe-input">
           <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
@@ -36,7 +36,8 @@
             {{ form.contenido }}
             
             <div id="losbotones">
-              <input type="submit" value="Enviar" class="btn btn-small" />
+              <input type="button" value="Enviar" class="btn btn-small" onclick="Dajaxice.joinitys.postear(postear, {'formulario':$('#formulario_posteo').serializeObject(), 'joinity_id':{{joinity.id}}});"/>
+              
               <button class="btn btn-small cambiafoto" type="button">
                 <i class="iconos">
                   s

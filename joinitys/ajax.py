@@ -1,8 +1,9 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from joinitys.models import Joinitys
+from models import Joinitys
 from django.template.loader import render_to_string
-
+from forms import FormTexto, FormFoto
+from django.shortcuts import get_object_or_404
 
 @dajaxice_register
 def cargar_mas(request, categoria, n, order):
@@ -34,6 +35,19 @@ def filtrar(request, categoria, order):
     joinitys=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "order":order, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()
     return simplejson.dumps({'joinitys':joinitys, 'n':n, 'order':order, 'categoria':categoria})
+
+@dajaxice_register
+def postear(request, formulario, joinity_id):
+    print "esto es ajax"
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    form = FormTexto(formulario, usuario=request.user, joinity=joinity)
+    if form.is_valid():
+        form.save()
+        return simplejson.dumps({'status':False, 'joinity_id':joinity_id})
+    return simplejson.dumps({'status': 'Error al enviar'})
+
+
+    
 
 
     

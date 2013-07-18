@@ -26,6 +26,10 @@ var Dajaxice = {
     
     joinitys: {
     
+    postear: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.postear', 'POST', callback_function, argv, custom_settings);
+    },
+
     filtrar: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.filtrar', 'POST', callback_function, argv, custom_settings);
     },

@@ -22,12 +22,18 @@ function refrescar(data){
 }
 function enviar_mensaje(data){
 	if (data.error){
-		for (error in data.error){
-			$("#mensaje_error").append("<p><b>"+error+"</b></p>");
-		}
+			$("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
 	}
 	else{
 		Dajaxice.mensajes.refrescar(refrescar, {'conversador_id':data.conversador_id})
+	}
+}
+function postear(data){
+	if (data.error){
+			alert(data.error);
+	}
+	else{
+		alert("enviado");
 	}
 }
 function cargador(contenedor) {
