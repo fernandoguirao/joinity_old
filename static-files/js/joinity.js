@@ -179,13 +179,13 @@ seleccionbtn.click(function(){
 /* AUTOSCROLL HOME */
 
 $(".aficat").click(function(){
-  $('html,body').animate({scrollTop:$(".faficiones").offset().top});
+  $('html,body').animate({scrollTop:$(".faficiones").offset().top},1200);
 });
 $(".compracat").click(function(){
-  $('html,body').animate({scrollTop:$(".fcompras").offset().top});
+  $('html,body').animate({scrollTop:$(".fcompras").offset().top},1200);
 });
 $(".famcat").click(function(){
-  $('html,body').animate({scrollTop:$(".fandfriends").offset().top});
+  $('html,body').animate({scrollTop:$(".fandfriends").offset().top},1200);
 });
 
 /* VOTACIONES */
@@ -276,7 +276,9 @@ $('.cambiatexto').click(function(){
     $('#hazclick').removeClass('confoto');
 })
 
+/* CAROUSEL */
 
+$('.carousel').carousel({interval:5000,pause:false});
 
 
 /* DROPZONE */
