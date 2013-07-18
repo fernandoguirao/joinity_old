@@ -48,11 +48,17 @@ function postear(data){
 function refrescar_joinitys(data){
 	$("#cronologia").html(data.muro);
 }
-function cargador(contenedor) {
-  $(contenedor).html('');
-  $('.ocultarcargador #fadingBarsG').clone().appendTo(contenedor);
-  $(contenedor).addClass('grisclaro');
-  $(contenedor).removeClass('amarillo');
+
+var identificador;
+var textoidentificador;
+var identificadorprev;
+
+function cargador() {
+  var contain = $(identificador);
+  contain.html('');
+  $('.ocultarcargador #fadingBarsG').clone().appendTo(contain);
+  contain.addClass('grisclaro');
+  contain.removeClass('amarillo');
 }
 
 var identificador;
@@ -104,17 +110,18 @@ function cargar_mas(data){
   else{
 	  n_family=data.n;
   }
+  var contain = $(identificador);
   $('.contenedor-los-joinitys').append(data.joinitys);
-  $('.los-join-footer button').removeClass('grisclaro');
-  $('.los-join-footer button').addClass('amarillo');
-  $('.losjoin-footer button #fadingBarsG').remove();
-  $('.los-join-footer button').html('Quiero ver más');
+  contain.removeClass('grisclaro');
+  contain.addClass('amarillo');
+  contain.children('#fadingBarsG').remove();
+  contain.html('Quiero ver más');
   donutfunction();
   if(data.joinitys.length==0) {
-    $('.los-join-footer button').html('No hay más joinitys');
-    $('.los-join-footer button').removeClass('amarillo');
-    $('.los-join-footer button').removeClass('btn-embossed');
-    $('.los-join-footer button').addClass('claro');
+    contain.html('No hay más joinitys');
+    contain.removeClass('amarillo');
+    contain.removeClass('btn-embossed');
+    contain.addClass('claro');
   }
 }
 
