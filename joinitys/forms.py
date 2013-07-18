@@ -6,7 +6,7 @@ from models import Foto_Joinity, Reservas_Empresas
 from models import Comentario_Actualizacion
         # pago.email = self.cleaned_data["email"]
 class FormFoto(forms.ModelForm):
-    contenido=forms.ImageField(required=False)
+    contenido=forms.ImageField(widget=forms.ClearableFileInput(attrs={'id':'appendedInputButton-02', 'class':'span2 hayfoto btn'}))
     class Meta:
         model=Foto_Joinity
         fields=("contenido",)

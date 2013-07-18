@@ -1,0 +1,30 @@
+<form class="escribeform prinform" action="?contenido=foto" method="post" enctype="multipart/form-data" id="formulario_posteo">
+        {% csrf_token %}
+        <div class="escribe-input hayfoto">
+          <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+          </div>
+          <div id="hazclick" class="confoto">
+              Haz click aquí para subir una foto.
+            </div>
+          <div class="input-append">
+            patata
+            {{ form.contenido }}
+            
+            <div id="losbotones">
+              <input type="submit" id="btn-enviar" value="Enviar" class="btn btn-small"/>
+              
+              <button class="btn btn-small cambiafoto" type="button" onclick="Dajaxice.joinitys.cargaformfoto(cargaform, {'joinity_id':{{joinity.id}}});">
+                <i class="iconos">
+                  s
+                </i>
+              </button>
+              <button class="btn btn-small cambiatexto" type="button" onclick="Dajaxice.joinitys.cargaformtexto(cargaform, {'joinity_id':{{joinity.id}}});">
+                <i class="iconos">
+                  n
+                </i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="mensaje_error"></div>

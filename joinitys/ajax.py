@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from models import Joinitys
 from django.template.loader import render_to_string
-from forms import FormTexto
+from forms import FormTexto, FormFoto
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 
@@ -50,6 +50,19 @@ def refrescar(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
     muro=render_to_string('single/ajax_muro.html', {"joinity":joinity,},context_instance=RequestContext(request))
     return simplejson.dumps({'muro':muro})
+
+@dajaxice_register
+def cargaformfoto(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    form=FormFoto(usuario=request.user, joinity=joinity)
+    formulario=render_to_string('single/ajax_formulario_foto.html', {"joinity":joinity, "form":form, "usuario":request.user}, context_instance=RequestContext(request))
+    return simplejson.dumps({'paginaformulario':formulario})
+@dajaxice_register
+def cargaformtexto(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    form=FormTexto(usuario=request.user, joinity=joinity)
+    formulario=render_to_string('single/ajax_formulario_texto.html', {"joinity":joinity, "form":form, "usuario":request.user}, context_instance=RequestContext(request))
+    return simplejson.dumps({'paginaformulario':formulario})
     
 
 

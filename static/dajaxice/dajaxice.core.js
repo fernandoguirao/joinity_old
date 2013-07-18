@@ -26,10 +26,6 @@ var Dajaxice = {
     
     joinitys: {
     
-    refrescar: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('joinitys.refrescar', 'POST', callback_function, argv, custom_settings);
-    },
-
     postear: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.postear', 'POST', callback_function, argv, custom_settings);
     },
@@ -40,6 +36,18 @@ var Dajaxice = {
 
     cargar_mas: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.cargar_mas', 'POST', callback_function, argv, custom_settings);
+    },
+
+    refrescar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.refrescar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    cargaformfoto: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.cargaformfoto', 'POST', callback_function, argv, custom_settings);
+    },
+
+    cargaformtexto: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.cargaformtexto', 'POST', callback_function, argv, custom_settings);
     },
 
 

@@ -23,6 +23,7 @@
     <!-- Escribe mensaje y votos: formularios -->
     <div id="formularios-update">
       <!-- Actualización: texto -->
+      <div class="contenedor_formularios">
       <form class="escribeform prinform" action="?contenido=texto" method="post" enctype="multipart/form-data" id="formulario_posteo">
         {% csrf_token %}
         <div class="escribe-input">
@@ -36,14 +37,14 @@
             {{ form.contenido }}
             
             <div id="losbotones">
-              <input type="button" value="Enviar" class="btn btn-small" onclick="Dajaxice.joinitys.postear(postear, {'formulario':$('#formulario_posteo').serializeObject(), 'joinity_id':{{joinity.id}}});"/>
+              <input type="button" id="btn-enviar" value="Enviar" class="btn btn-small" onclick="Dajaxice.joinitys.postear(postear, {'formulario':$('#formulario_posteo').serializeObject(), 'joinity_id':{{joinity.id}}});"/>
               
-              <button class="btn btn-small cambiafoto" type="button">
+              <button class="btn btn-small cambiafoto" type="button" onclick="Dajaxice.joinitys.cargaformfoto(cargaform, {'joinity_id':{{joinity.id}}});">
                 <i class="iconos">
                   s
                 </i>
               </button>
-              <button class="btn btn-small cambiatexto" type="button">
+              <button class="btn btn-small cambiatexto" type="button" onclick="Dajaxice.joinitys.cargaformtexto(cargaform, {'joinity_id':{{joinity.id}}});">
                 <i class="iconos">
                   n
                 </i>
@@ -53,6 +54,7 @@
         </div>
       </form>
       <div id="mensaje_error"></div>
+      </div>
       <!-- Fin actualización texto -->
       <!-- Actualización votación -->
       <form class="votaform">

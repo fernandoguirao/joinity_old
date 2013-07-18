@@ -85,13 +85,14 @@
   </div>
 </div>
 {% endif %}
+{% empty %}
+<div>AQUI SI HAY JOINITY SELECCIONADO PERO ESTE NO TIENE TAREAS</div>
 {% endfor %}
 <!-- FIN ACTUALIZACIÓN: TAREA-->
-
-
   </div>
-  {% endif %}
+  {% else %}
   <div id="not-tareas">
+  AQUI SI NO HAY TAREAS DE NINGUN TIPO
     <h5>
       Selecciona<br>una tarea
     </h5>
@@ -102,4 +103,5 @@
       L
     </i>
   </div>
+  {% endif %}
 </div>

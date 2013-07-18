@@ -2,6 +2,12 @@
 function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }
+
+function cargaform(data){
+	$(".contenedor_formularios").html(data.paginaformulario);
+
+}
+
 $.fn.serializeObject = function()
 {
    var o = {};
@@ -90,7 +96,6 @@ function filtrar(data){
 
 function cargar_mas(data){
   if (data.categoria==3){
-	  alert("Aficiones");
   	n=data.n;
   }
   else if (data.categoria==2){
@@ -274,7 +279,7 @@ $('.votafoto').click(function(){
 });
 
 /* COMENTARIOS Y FOTOS */
-$('.cambiafoto').click(function(){
+/*$('.cambiafoto').click(function(){
   $('.escribeform.prinform').attr('action', '?contenido=foto');
   $('#appendedInputButton-02').prop("type","file");
   $('#appendedInputButton-02,.escribe-input').addClass('hayfoto');
@@ -290,7 +295,7 @@ $('.cambiatexto').click(function(){
     $('#appendedInputButton-02').removeClass('btn');
     $('#hazclick').removeClass('confoto');
 })
-
+*/
 /* CAROUSEL */
 
 $('.carousel').carousel({interval:5000,pause:false});
