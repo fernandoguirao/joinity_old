@@ -19,6 +19,7 @@ class Usuarios_Tarea(models.Model):
     usuario = models.ForeignKey(User)
     tarea = models.ForeignKey(Tareas)
     estado = models.IntegerField(default=0)
+    completada = models.BooleanField(default=False)
     class Meta:
         db_table = "Usuarios_Tarea"
 class Lugares_Tarea(models.Model):

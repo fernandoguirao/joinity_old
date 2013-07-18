@@ -96,7 +96,7 @@
         <!-- CADA TAREA -->
         <div class="unaTarea">
           <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox">
+            <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});">
             {{tarea.nombre}}
           </label>
         </div> <!-- FIN DE TAREA -->

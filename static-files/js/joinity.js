@@ -1,3 +1,6 @@
+function marcar(data){
+	alert("Pon aqui lo que quieras Fernando");
+}
 $.fn.serializeObject = function()
 {
    var o = {};

@@ -32,9 +32,25 @@ var Dajaxice = {
 
     cargar_mas: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.cargar_mas', 'POST', callback_function, argv, custom_settings);
+    },
+
+
+    
+    
+    
+        tareas: {
+    
+    marcar_tarea: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.tareas.marcar_tarea', 'POST', callback_function, argv, custom_settings);
     }
 
 
+    
+    
+    }
+    
+
+    
     
     
     }

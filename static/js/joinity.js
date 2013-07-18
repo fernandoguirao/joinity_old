@@ -1,3 +1,6 @@
+function marcar(data){
+	alert("Pon aqui lo que quieras Fernando");
+}
 $.fn.serializeObject = function()
 {
    var o = {};
@@ -179,13 +182,13 @@ seleccionbtn.click(function(){
 /* AUTOSCROLL HOME */
 
 $(".aficat").click(function(){
-  $('html,body').animate({scrollTop:$(".faficiones").offset().top});
+  $('html,body').animate({scrollTop:$(".faficiones").offset().top},1200);
 });
 $(".compracat").click(function(){
-  $('html,body').animate({scrollTop:$(".fcompras").offset().top});
+  $('html,body').animate({scrollTop:$(".fcompras").offset().top},1200);
 });
 $(".famcat").click(function(){
-  $('html,body').animate({scrollTop:$(".fandfriends").offset().top});
+  $('html,body').animate({scrollTop:$(".fandfriends").offset().top},1200);
 });
 
 /* VOTACIONES */
@@ -276,37 +279,17 @@ $('.cambiatexto').click(function(){
     $('#hazclick').removeClass('confoto');
 })
 
+/* CAROUSEL */
+
+$('.carousel').carousel({interval:5000,pause:false});
 
 
+/* FUNCIÓN COMPROBAR CHECK */
 
-/* DROPZONE */
-
-/*
-  Dropzone.options.dropform = {
-    init: function() {
-    }
-  };
-  
-  Dropzone.autoDiscover = false;
-  
-  $(function() {
-  
-    var myDropzone = new Dropzone("#dropform");
-  
-    myDropzone.on("addedfile", function(file) {
-
-      $('.botonsubir').show();
-    });
-    $('.botonsubir.amarillo').click(function(){
-      myDropzone.removeAllFiles();
-      $('.botonsubir').hide();
-    });
-    $('#fotovoto').on('hidden', function () {
-      myDropzone.removeAllFiles();
-      $('.botonsubir').hide();
-    })
-  })
-*/
-
-/* al hacer click en la foto poner input="file" la etiqueta form en  action contenido="foto" */
+function comprobarCheck(este)
+{
+  if(este.is(':checked') {
+    
+  }
+}
 
