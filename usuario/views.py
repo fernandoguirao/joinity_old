@@ -140,8 +140,11 @@ def editar_perfil(request):
     return render_to_response('usuario/perfil.html', context, context_instance=RequestContext(request))
 def solicitar(request):
     if not LOCALHOST:
-        send_mail("SOLICITUD JOINITY", "El usuario "+str(request.GET.get("solicitaNombre", "Sinnombre")) +" y mail "+ str(request.GET.get("solicitaCorreo", "sinmail")) +" Solicita permanencia", "joinity@joinity.com", ["golpesbajos@gmail.com", "borjadegregor@hotmail.com", "antoniespinosa@me.com"], fail_silently=False)
-        return HttpResponseRedirect('/')
+        try:
+            send_mail("SOLICITUD JOINITY", "El usuario "+str(request.GET.get("solicitaNombre", "Sinnombre")) +" y mail "+ str(request.GET.get("solicitaCorreo", "sinmail")) +" Solicita permanencia", "joinity@joinity.com", ["golpesbajos@gmail.com", "borjadegregor@hotmail.com", "antoniespinosa@me.com"], fail_silently=False)
+        except Exception as detail:
+            return HttpResponseRedirect('/?send=2&error='+detail)
+        return HttpResponseRedirect('/?send=1')
     else:
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/?send=2&error=Localhost')
         

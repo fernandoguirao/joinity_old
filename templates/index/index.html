@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 
 {% block contenedor %}
+{% if send %}
+  {% if send == 1 %}
+    <div>Mensaje mandado</div>
+  {% elif send == 2 %}
+    <div>Mensaje no mandado</div>
+    <div>Error:{{error}}</div>
+{% endif %}
 <div id="contenedorMain">
 	{% include "persistentes/menuAdaptativo.html" %}  
 	<div class="container-fluid contenedorAdaptativo">

@@ -26,7 +26,10 @@ def index(request):
     lista_compras=Joinitys.objects.filter(tipo="2").order_by('-id')[:8]
     lista_family=Joinitys.objects.filter(tipo="1").order_by('-id')[:8]
     lista_vip=Joinitys_VIP.objects.all()
-    context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras, 'lista_family':lista_family, "usuario":usuario, "pagina":"home", "cinco":[1,2,3,4,5], "VIP":lista_vip}
+    context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras,
+               'lista_family':lista_family, "usuario":usuario, "pagina":"home",
+               "cinco":[1,2,3,4,5], "VIP":lista_vip, "send":request.GET.get("send",False),
+               "error":request.GET.get("error", False)}
     return render(request, 'index/index.html', context)
 
 
