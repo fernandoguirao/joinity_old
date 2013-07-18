@@ -38,15 +38,17 @@ def filtrar(request, categoria, order):
 
 @dajaxice_register
 def postear(request, formulario, joinity_id):
-    print "esto es ajax"
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
     form = FormTexto(formulario, usuario=request.user, joinity=joinity)
     if form.is_valid():
         form.save()
         return simplejson.dumps({'status':False, 'joinity_id':joinity_id})
     return simplejson.dumps({'status': 'Error al enviar'})
-
-
+@dajaxice_register
+def refrescar(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    muro=render_to_string('single/ajax_muro.html', {"joinity":joinity,})
+    return simplejson.dumps({'muro':muro})
     
 
 
