@@ -1,3 +1,4 @@
+
 function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }
@@ -25,6 +26,7 @@ function enviar_mensaje(data){
 			$("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
 	}
 	else{
+		$("#appendedInputButton-02").val("");
 		Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':data.conversador_id})
 	}
 }

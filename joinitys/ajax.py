@@ -2,7 +2,8 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from models import Joinitys
 from django.template.loader import render_to_string
-from forms import FormTexto, FormFoto
+from forms import FormTexto
+from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 
 @dajaxice_register
@@ -47,7 +48,7 @@ def postear(request, formulario, joinity_id):
 @dajaxice_register
 def refrescar(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
-    muro=render_to_string('single/ajax_muro.html', {"joinity":joinity,})
+    muro=render_to_string('single/ajax_muro.html', {"joinity":joinity,},context_instance=RequestContext(request))
     return simplejson.dumps({'muro':muro})
     
 

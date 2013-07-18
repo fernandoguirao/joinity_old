@@ -25,4 +25,9 @@
     	</div>
   	</div> 		
 </div>
+<script type="text/javascript">
+setInterval(function() {
+	Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':{{conversador.id}},});
+}, 10000);
+</script>
 {% endblock %}

@@ -1,3 +1,4 @@
+
 function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }
@@ -17,7 +18,7 @@ $.fn.serializeObject = function()
    });
    return o;
 };
-function refrescar(data){
+function refrescar_mensajes(data){
 	$("#cronologia").html(data.mensajes);
 }
 function enviar_mensaje(data){
@@ -25,16 +26,21 @@ function enviar_mensaje(data){
 			$("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
 	}
 	else{
-		Dajaxice.mensajes.refrescar(refrescar, {'conversador_id':data.conversador_id})
+		$("#appendedInputButton-02").val("");
+		Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':data.conversador_id})
 	}
 }
 function postear(data){
 	if (data.error){
-			alert(data.error);
+		$("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
 	}
 	else{
-		alert("enviado");
+		$("#appendedInputButton-02").val("");
+		Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
 	}
+}
+function refrescar_joinitys(data){
+	$("#cronologia").html(data.muro);
 }
 function cargador(contenedor) {
   $(contenedor).html('');
