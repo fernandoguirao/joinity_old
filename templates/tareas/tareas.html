@@ -36,6 +36,7 @@
     </div>
 
     <!-- EL CHAT -->
+ {% load tareas_filters %}
 {% for tarea in single.tareas.all %}
 {% if not tarea.padre %}
 <!-- ACTUALIZACIÓN: TAREA -->
@@ -63,7 +64,7 @@
       <!-- CONTENIDO ESPECÍFICO -->
         <div class="texto">
           <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+            <input type="checkbox" value="" id="checkbox1" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" data-toggle="checkbox" {% if tarea|completada:usuario %}checked{% endif %}>
             <p>{{tarea.nombre}}</p>
           </label>
         </div>

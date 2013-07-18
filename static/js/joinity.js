@@ -1,4 +1,4 @@
-function marcar(data){
+function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }
 $.fn.serializeObject = function()
@@ -284,12 +284,5 @@ $('.cambiatexto').click(function(){
 $('.carousel').carousel({interval:5000,pause:false});
 
 
-/* FUNCIÓN COMPROBAR CHECK */
 
-function comprobarCheck(este)
-{
-  if(este.is(':checked') {
-    
-  }
-}
 

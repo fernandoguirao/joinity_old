@@ -91,12 +91,13 @@
       </div>
       </a>
       <div class="misTareas">
+      {% load tareas_filters %}
       	{% for tarea in joinity.tareas.all %}
       	{% if not tarea.padre %}
         <!-- CADA TAREA -->
         <div class="unaTarea">
           <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});">
+            <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" {% if tarea|completada:usuario %}checked{%endif%}>
             {{tarea.nombre}}
           </label>
         </div> <!-- FIN DE TAREA -->
