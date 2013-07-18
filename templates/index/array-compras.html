@@ -34,12 +34,21 @@
           </i>
           Mejores ofertas
         </div>
+         {% if usuario %}
         <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':2, 'order':3})">
           <i class="iconos">
             c
           </i>
           Para mí
         </div>
+        {% else %}
+        <a class="filtros beta-reg" href="#modalInicio" data-toggle="modal" >
+          <i class="iconos">
+            c
+          </i>
+          Para mí
+        </a>
+        {% endif %}
         <!--
 <div class="filtros">
           <i class="iconos otros">
