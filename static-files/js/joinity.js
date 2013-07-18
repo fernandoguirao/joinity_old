@@ -283,11 +283,10 @@ $('.carousel').carousel({interval:5000,pause:false});
 
 /* FUNCIÓN COMPROBAR CHECK */
 
-$('form #mycheckbox').is(':checked');
-
-var checkbox = $('#elcheckboxencuestion');
-checkbox.click(function(){
-  if(checkbox.is(':checked')){
-    alert('Has hecho check, enhorabuena');
+function comprobarCheck(este)
+{
+  if(este.is(':checked') {
+    
   }
-})
+}
+
