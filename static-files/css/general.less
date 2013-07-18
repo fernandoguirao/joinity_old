@@ -2668,6 +2668,7 @@ input[type="text"] {
       width: 100%; /*img width*/
       position:relative;
       z-index:-1;
+      .opacity(.9);
   }
   /*full width container*/
   @media (max-width: 767px) {
@@ -2759,6 +2760,8 @@ input[type="text"] {
       text-algin:center;
       .la-categoria {
         cursor:pointer;
+        .transition(background-color,.3s);
+        .transition(color,.3s);
         &:hover {
           color:@gris;
           background-color:rgba(0,0,0,.05);
