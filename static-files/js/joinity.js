@@ -281,34 +281,13 @@ $('.cambiatexto').click(function(){
 $('.carousel').carousel({interval:5000,pause:false});
 
 
-/* DROPZONE */
+/* FUNCIÓN COMPROBAR CHECK */
 
-/*
-  Dropzone.options.dropform = {
-    init: function() {
-    }
-  };
-  
-  Dropzone.autoDiscover = false;
-  
-  $(function() {
-  
-    var myDropzone = new Dropzone("#dropform");
-  
-    myDropzone.on("addedfile", function(file) {
+$('form #mycheckbox').is(':checked');
 
-      $('.botonsubir').show();
-    });
-    $('.botonsubir.amarillo').click(function(){
-      myDropzone.removeAllFiles();
-      $('.botonsubir').hide();
-    });
-    $('#fotovoto').on('hidden', function () {
-      myDropzone.removeAllFiles();
-      $('.botonsubir').hide();
-    })
-  })
-*/
-
-/* al hacer click en la foto poner input="file" la etiqueta form en  action contenido="foto" */
-
+var checkbox = $('#elcheckboxencuestion');
+checkbox.click(function(){
+  if(checkbox.is(':checked')){
+    alert('Has hecho check, enhorabuena');
+  }
+})
