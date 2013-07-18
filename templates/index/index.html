@@ -2,7 +2,7 @@
 
 {% block contenedor %}
 {% if send %}
-  {% if send == 1 %}
+  {% if send == "1" %}
     <div class="alert unaAlerta">
       <button type="button" class="close" data-dismiss="alert">
         &times;
@@ -12,7 +12,7 @@
       </strong>
       En breve recibiras noticias nuestas...
     </div>
-  {% elif send == 2 %}
+  {% elif send == "2" %}
     <div class="alert unaAlerta">
       <button type="button" class="close" data-dismiss="alert">
         &times;
