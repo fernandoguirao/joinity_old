@@ -1,0 +1,31 @@
+<div class="iconos notificaciones {% if usuario.usuario.tiene_notificaciones %}si-notif{% else %}no-notif{% endif %}" data-toggle="dropdown">
+  <div class="notificacion">
+    <span class="img-rounded">
+      {{usuario.usuario.n_notificaciones}}
+    </span>
+  </div>
+  <div class="alarma">
+    k
+  </div>
+</div>
+<!-- SUBMENÚ NOTIFICACIONES-->
+<ul class="dropdown-menu" role="menu">
+  <li class="notifTitulo">
+    Notificaciones
+  </li>
+  {% for notificacion in usuario.usuario.get_notificaciones %}
+  <li {% if notificacion.estado == 0 %} class="noLeido" {% endif %}>
+     {% if notificacion.tipo == 0 %}
+       <a href="/mensaje/inbox/{{notificacion.objeto.id}}">
+          {{notificacion.objeto.first_name}} {{notificacion.objeto.last_name}} te ha escrito
+       <i class="fui-arrow-right pull-right"></i>
+       </a>
+     {% endif %}
+  </li>
+  {% empty %}
+  <li>
+  No tiene notificaciones
+  </li>
+  {% endfor %}
+</ul>
+<!-- FIN DE SUBMEN� NOTIFICACIONES-->

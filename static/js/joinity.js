@@ -1,4 +1,7 @@
-
+function refresca_notificaciones(data){
+	if (data.menu)
+		$("#menu_notificaciones").html(data.menu);
+}
 function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }
@@ -48,16 +51,18 @@ function postear(data){
 function refrescar_joinitys(data){
 	$("#cronologia").html(data.muro);
 }
-function cargador(contenedor) {
-  $(contenedor).html('');
-  $('.ocultarcargador #fadingBarsG').clone().appendTo(contenedor);
-  $(contenedor).addClass('grisclaro');
-  $(contenedor).removeClass('amarillo');
-}
 
 var identificador;
 var textoidentificador;
 var identificadorprev;
+
+function cargador() {
+  var contain = $(identificador);
+  contain.html('');
+  $('.ocultarcargador #fadingBarsG').clone().appendTo(contain);
+  contain.addClass('grisclaro');
+  contain.removeClass('amarillo');
+}
 
 function cargarfiltro() {
   $(identificadorprev).html(textoidentificador);
@@ -104,17 +109,18 @@ function cargar_mas(data){
   else{
 	  n_family=data.n;
   }
-  $('.contenedor-los-joinitys').append(data.joinitys);
-  $('.los-join-footer button').removeClass('grisclaro');
-  $('.los-join-footer button').addClass('amarillo');
-  $('.losjoin-footer button #fadingBarsG').remove();
-  $('.los-join-footer button').html('Quiero ver más');
+  var contain = $(identificador);
+  contain.parent().prev().append(data.joinitys);
+  contain.removeClass('grisclaro');
+  contain.addClass('amarillo');
+  contain.children('#fadingBarsG').remove();
+  contain.html('Quiero ver más');
   donutfunction();
   if(data.joinitys.length==0) {
-    $('.los-join-footer button').html('No hay más joinitys');
-    $('.los-join-footer button').removeClass('amarillo');
-    $('.los-join-footer button').removeClass('btn-embossed');
-    $('.los-join-footer button').addClass('claro');
+    contain.html('No hay más joinitys');
+    contain.removeClass('amarillo');
+    contain.removeClass('btn-embossed');
+    contain.addClass('claro');
   }
 }
 
@@ -298,8 +304,20 @@ $('.cambiatexto').click(function(){
 */
 /* CAROUSEL */
 
-$('.carousel').carousel({interval:5000,pause:false});
+$('.carousel').carousel({interval:7000,pause:false});
 
+/* ZOOM CAROUSEL */
 
+/*
+var ddiv = $('#home .carousel .item img');
+var sizeNowH = ddiv.height();
+var sizeNowW = ddiv.width();
 
-
+$('#myCarousel').bind('slid', function() {
+  ddiv.stop().animate({
+    'width':sizeNowW+150,
+    'height':sizeNowH+150,
+    'left':'-100'
+  },7000);
+  })
+*/

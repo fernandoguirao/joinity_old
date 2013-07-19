@@ -2,7 +2,7 @@
 {% if formulario %}
   <div id="escribe-main">
     <div class="escribe-input">
-      <div class="avatar" style="background-image:url('images/ejemplos/avatar.png');">
+      <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
       </div>
 	  <form id="formulario_mensaje">
 	  {% csrf_token %}

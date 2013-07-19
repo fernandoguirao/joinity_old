@@ -5,6 +5,7 @@ from django.shortcuts import  get_object_or_404
 from django.contrib.auth.models import User
 from mensajes.models import Mensajes
 from django.template.loader import render_to_string
+from notificaciones.models import Notificaciones
 
 @dajaxice_register
 def enviar_mensaje(request, formulario, conversador_id):
@@ -19,5 +20,9 @@ def enviar_mensaje(request, formulario, conversador_id):
 def refrescar(request, conversador_id):
     conversador=get_object_or_404(User, pk=conversador_id)
     lista_mensajes=Mensajes.objects.raw("SELECT * FROM Mensajes WHERE (destinatario_id="+str(request.user.id)+" AND remitente_id="+str(conversador.id)+") OR (remitente_id="+str(request.user.id)+" AND destinatario_id="+str(conversador.id)+") ORDER BY id DESC;")
+    notificacion=Notificaciones.objects.filter(usuario=request.user,tipo=0, estado=0, id_notificacion=conversador.id)
+    if notificacion:
+        notificacion[0].estado=1
+        notificacion[0].save()
     mensajes=render_to_string('mensajes/ajax_mensajes.html', {"mensajes":lista_mensajes,})
     return simplejson.dumps({'mensajes':mensajes})

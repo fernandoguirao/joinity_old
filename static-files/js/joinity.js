@@ -1,4 +1,7 @@
-
+function refresca_notificaciones(data){
+	if (data.menu)
+		$("#menu_notificaciones").html(data.menu);
+}
 function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }

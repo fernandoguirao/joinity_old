@@ -1,5 +1,10 @@
 {% include "persistentes/head.html" %}
 {% if usuario %}
+<script type="text/javascript">
+setInterval(function() {
+	Dajaxice.notificaciones.refrescar(refresca_notificaciones);
+}, 10000);
+</script>
 {% include "persistentes/topmenu.html" %}
 {% else %}
 {% include "persistentes/topMenuUnloged.html" %}

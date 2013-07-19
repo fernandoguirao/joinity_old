@@ -24,6 +24,19 @@ var Dajaxice = {
     
 ,
     
+    notificaciones: {
+    
+    refrescar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('notificaciones.refrescar', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
     joinitys: {
     
     postear: function(callback_function, argv, custom_settings){

@@ -48,7 +48,7 @@ def chat(request, user_id):
             formulario.save()
     else:
         formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
-    context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario, "usuario":request.user}
+    context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario, "usuario":request.user, "conversador":conversador}
     return render_to_response('mensajes/inbox.html', context, context_instance=RequestContext(request))
 def ver(request, mensaje_id):
     mensaje = get_object_or_404(Mensajes, pk=mensaje_id)

@@ -18,11 +18,11 @@
                   Crea un joinity
                 </a>
               </li>
-              <li class="dropdown notificar">
-                <div class="iconos notificaciones no-notif" data-toggle="dropdown">
+              <li class="dropdown notificar" id="menu_notificaciones">
+                <div class="iconos notificaciones {% if usuario.usuario.tiene_notificaciones %}si-notif{% else %}no-notif{% endif %}" data-toggle="dropdown">
                   <div class="notificacion">
                     <span class="img-rounded">
-                      1
+                      {{usuario.usuario.n_notificaciones}}
                     </span>
                   </div>
                   <div class="alarma">
@@ -34,27 +34,20 @@
                   <li class="notifTitulo">
                     Notificaciones
                   </li>
+                  {% for notificacion in usuario.usuario.get_notificaciones %}
+                  <li {% if notificacion.estado == 0 %} class="noLeido" {% endif %}>
+                     {% if notificacion.tipo == 0 %}
+                       <a href="/mensaje/inbox/{{notificacion.objeto.id}}">
+                          {{notificacion.objeto.first_name}} {{notificacion.objeto.last_name}} te ha escrito
+                       <i class="fui-arrow-right pull-right"></i>
+                       </a>
+                     {% endif %}
+                  </li>
+                  {% empty %}
                   <li>
-                    <a href="#fakelink">
-                      Fernando Guirao te ha invitado a un evento
-                      <i class="fui-arrow-right pull-right">
-                      </i>
-                    </a>
+                  No tiene notificaciones
                   </li>
-                  <li class="noLeido">
-                    <a href="#fakelink">
-                      Tienes tres tareas nuevas
-                      <i class="fui-arrow-right pull-right">
-                      </i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#fakelink">
-                      Esta es una notificación en dos líneas para comprobar cómo queda cuando hay dos líneas
-                      <i class="fui-arrow-right pull-right">
-                      </i>
-                    </a>
-                  </li>
+                  {% endfor %}
                 </ul>
                 <!-- FIN DE SUBMENÚ NOTIFICACIONES-->
               </li>
