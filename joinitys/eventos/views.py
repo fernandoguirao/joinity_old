@@ -7,6 +7,7 @@ from joinitys.models import Joinitys, Usuarios_Joinity
 from forms import Crear_Evento, Anyadir_Lugar
 from models import Eventos, Usuarios_Evento, Lugares_Evento
 from django.contrib.auth.models import User
+from notificaciones.models import Notificaciones
  
 def ver(request, joinity_id, evento_id):
     evento=get_object_or_404(Eventos, pk=evento_id)
@@ -69,6 +70,8 @@ def invitar(request, joinity_id, evento_id, usuario_id):
     if Usuarios_Evento.objects.filter(usuario=usuario, evento=evento).count()==0:
         nuevo=Usuarios_Evento(usuario=usuario, evento=evento, estado=0)
         nuevo.save()
+        notificacion=Notificaciones(usuario=usuario, tipo=2, id_notificacion=evento.id)
+        notificacion.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
 def invitar_todos(request, joinity_id, evento_id):
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
@@ -79,6 +82,8 @@ def invitar_todos(request, joinity_id, evento_id):
         if Usuarios_Evento.objects.filter(usuario=usuario.usuario, evento=evento).count()==0:
             nuevo=Usuarios_Evento(usuario=usuario.usuario, evento=evento, estado=0)
             nuevo.save()
+            notificacion=Notificaciones(usuario=usuario, tipo=2, id_notificacion=evento.id)
+            notificacion.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/evento/crear/3/"+str(evento.id))
 def mis_eventos(request):
     subconsulta="SELECT evento_id FROM Usuarios_Eventos WHERE usuario_id ="+str(request.user.id)

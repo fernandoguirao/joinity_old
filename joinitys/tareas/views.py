@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from joinitys.models import Joinitys, Usuarios_Joinity
 from models import Usuarios_Tarea, Tareas, Lugares_Tarea
 from forms import Crear, Anyadir_Lugar
-
+from notificaciones.models import Notificaciones
 @login_required
 def mis_tareas(request):
     subconsulta="SELECT tarea_id FROM Usuarios_Tarea WHERE usuario_id ="+str(request.user.id)
@@ -103,6 +103,8 @@ def invitar(request, joinity_id, tarea_id, usuario_id):
     if Usuarios_Tarea.objects.filter(usuario=usuario, tarea=tarea).count()==0:
         nuevo=Usuarios_Tarea(usuario=usuario, tarea=tarea, estado=0)
         nuevo.save()
+        notificacion=Notificaciones(usuario=usuario, tipo=3, id_notificacion=tarea.id)
+        notificacion.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/tarea/crear/3/"+str(tarea.id))
 @login_required
 def invitar_todos(request, joinity_id, tarea_id):
@@ -114,5 +116,7 @@ def invitar_todos(request, joinity_id, tarea_id):
         if Usuarios_Tarea.objects.filter(usuario=usuario.usuario, tarea=tarea).count()==0:
             nuevo=Usuarios_Tarea(usuario=usuario.usuario, tarea=tarea, estado=0)
             nuevo.save()
+            notificacion=Notificaciones(usuario=usuario, tipo=3, id_notificacion=tarea.id)
+            notificacion.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/tarea/crear/3/"+str(tarea.id))
 

@@ -12,6 +12,7 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from reservas.models import Empresa
 from joinitys.eventos.models import Eventos, Usuarios_Evento
+from notificaciones.models import Notificaciones
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 def index(request):
     if not request.user.is_authenticated():
@@ -217,8 +218,10 @@ def invitar_usuario(request, joinity_id, usuario_id):
     if not usuario.usuario.invitado_joinity(joinity):
         u = Usuarios_Joinity(usuario_id=usuario.id, joinity_id=joinity.id)
         u.save()
+        notificacion=Notificaciones(usuario=usuario, tipo=1, id_notificacion=joinity.id)
+        notificacion.save()
         if not LOCALHOST:
-            send_mail('INVITACION A JOINITY ', "Se le ha invitado al joinity\nhttp://prueba1.bueninvento.net/joinity/ver/" + str(joinity.id), 'antoni@bueninvento.es',
+            send_mail('INVITACION A JOINITY ', "Se le ha invitado al joinity\nhttp://prueba1.bueninvento.net/joinity/ver/" + str(joinity.id), 'joinity@joinity.com',
                               [usuario.email], fail_silently=False)
     return HttpResponseRedirect(request.GET["next"])
 
