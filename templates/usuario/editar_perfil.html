@@ -2,7 +2,7 @@
   {% csrf_token %}	
   <hr>
   <h4>
-    INFORMACIÓN
+    INFORMACIÓN PRINCIPAL
   </h4>
   <div class="campo">
     {% if user_form.first_name.errors %}
@@ -39,18 +39,29 @@
     </div>
     <div class="span5">
       <label for="foto">
-        Sube una foto de perfil
+        Añade –o cambia– tu foto de perfil
       </label>
       {{ perfil_form.foto }}
     </div>
   </div>
-	<div class="campo">
-	        <label for="dni">DNI:</label>
-	        {{ perfil_form.dni }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="telefono">Telefono:</label>
-	        {{ perfil_form.telefono }}
+  <h4>
+    DATOS ADICIONALES
+  </h4>
+  <div class="campo">
+    <label for="dni">
+      Tu DNI
+    </label>
+    {{ perfil_form.dni }}
+    <span class="help-block">
+      *Sólo necesario si vas a vender.
+    </span>
+  </div>
+  <div class="fieldWrapper">
+    <label for="telefono">Tu teléfono</label>
+    {{ perfil_form.telefono }}
+    <span class="help-block">
+      *Sólo necesario si vas a vender.
+    </span>
 	</div>
 	<div class="fieldWrapper">
 	        <label for="universidad">Universidad:</label>
