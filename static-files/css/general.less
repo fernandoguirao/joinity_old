@@ -2694,6 +2694,20 @@ input[type="text"] {
       color:white;
       line-height:1;
       .text-shadow(0px 0px 1px rgba(0,0,0,.5));
+      left:inherit;
+      right:inherit;
+      position:inherit;
+      .opacity(1);
+    }
+    .claseizquierda,.clasederecha {
+      left: -300px;
+      position: relative;
+      .opacity(0);
+      .transition(all,.5s);
+    }
+    .clasederecha {
+      left:0;
+      right:300px;
     }
     p {
       text-transform:uppercase;
