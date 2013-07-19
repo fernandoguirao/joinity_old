@@ -2,6 +2,7 @@
 
 from django import forms
 from models import Mensajes
+from notificaciones.models import Notificaciones
 
 class Mandar_Mensaje_Form(forms.ModelForm):
     mensaje=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Dile algo a tu amigo.', 'id':'appendedInputButton-02', 'class':'span2'}))
@@ -21,6 +22,8 @@ class Mandar_Mensaje_Form(forms.ModelForm):
         mensaje.asunto="sin"
         if commit:
             mensaje.save()
+            notificacion=Notificaciones(usuario=self._destinatario, tipo=0, id_notificacion=mensaje.id)
+            notificacion.save()
             # self.save_m2m()
         return mensaje
         # pago.email = self.cleaned_data["email"]
