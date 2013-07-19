@@ -301,5 +301,20 @@ $('.cambiatexto').click(function(){
 */
 /* CAROUSEL */
 
-$('.carousel').carousel({interval:5000,pause:false});
+$('.carousel').carousel({interval:7000,pause:false});
 
+/* ZOOM CAROUSEL */
+
+/*
+var ddiv = $('#home .carousel .item img');
+var sizeNowH = ddiv.height();
+var sizeNowW = ddiv.width();
+
+$('#myCarousel').bind('slid', function() {
+  ddiv.stop().animate({
+    'width':sizeNowW+150,
+    'height':sizeNowH+150,
+    'left':'-100'
+  },7000);
+  })
+*/
