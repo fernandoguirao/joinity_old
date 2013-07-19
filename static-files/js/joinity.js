@@ -315,11 +315,15 @@ var ddiv = $('#home .carousel .item img');
 var sizeNowH = ddiv.height();
 var sizeNowW = ddiv.width();
 
+
+*/
+
+/*
 $('#myCarousel').bind('slid', function() {
-  ddiv.stop().animate({
-    'width':sizeNowW+150,
-    'height':sizeNowH+150,
-    'left':'-100'
-  },7000);
+  $('#myCarousel h1').removeClass('claseizquierda');
+  $('#myCarousel p').removeClass('clasederecha');
+  },function(){
+      $('#myCarousel h1').addClass('claseizquierda');
+  $('#myCarousel p').addClass('clasederecha');
   })
 */
