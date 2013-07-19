@@ -5,15 +5,12 @@
     		{% if user_form.first_name.errors %}
     			<script>alert("El campo Nombre es obligatorio");</script>
     		{% endif %}
-	        <label for="nombre">Nombre:</label>
+	        <label for="nombre">¿Cómo te llamas?</label>
 	        {{ user_form.first_name }}
-	</div>
-	<div class="fieldWrapper">
-			{% if user_form.last_name.errors %}
+	        {% if user_form.last_name.errors %}
     			<script>alert("El campo Apellidos es obligatorio");</script>
-    		{% endif %}
-	        <label for="apellidos">Apellidos:</label>
-	        {{ user_form.last_name }}
+          {% endif %}
+          {{ user_form.last_name }}
 	</div>
 	<div class="fieldWrapper">
 	        <label for="email">Email:</label>

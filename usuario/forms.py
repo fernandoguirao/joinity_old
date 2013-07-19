@@ -19,9 +19,9 @@ class UserCreateForm(UserCreationForm):
         return user
 
 class UserForm(forms.ModelForm):
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
+    first_name = forms.CharField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small inputNombre","placeholder":"Tu nombre"}))
+    last_name = forms.CharField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small inputApellido","placeholder":"Tus apellidos"}))
+    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"email@ejemplo.com"}))
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
