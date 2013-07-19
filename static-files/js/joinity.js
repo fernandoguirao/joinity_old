@@ -61,10 +61,6 @@ function cargador() {
   contain.removeClass('amarillo');
 }
 
-var identificador;
-var textoidentificador;
-var identificadorprev;
-
 function cargarfiltro() {
   $(identificadorprev).html(textoidentificador);
   identificadorprev = identificador;
@@ -111,7 +107,7 @@ function cargar_mas(data){
 	  n_family=data.n;
   }
   var contain = $(identificador);
-  $('.contenedor-los-joinitys').append(data.joinitys);
+  contain.parent().prev().append(data.joinitys);
   contain.removeClass('grisclaro');
   contain.addClass('amarillo');
   contain.children('#fadingBarsG').remove();
@@ -305,8 +301,20 @@ $('.cambiatexto').click(function(){
 */
 /* CAROUSEL */
 
-$('.carousel').carousel({interval:5000,pause:false});
+$('.carousel').carousel({interval:7000,pause:false});
 
+/* ZOOM CAROUSEL */
 
+/*
+var ddiv = $('#home .carousel .item img');
+var sizeNowH = ddiv.height();
+var sizeNowW = ddiv.width();
 
-
+$('#myCarousel').bind('slid', function() {
+  ddiv.stop().animate({
+    'width':sizeNowW+150,
+    'height':sizeNowH+150,
+    'left':'-100'
+  },7000);
+  })
+*/
