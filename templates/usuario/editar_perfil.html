@@ -2,7 +2,7 @@
   {% csrf_token %}	
   <hr>
   <h4>
-    INFORMACIÓN
+    INFORMACIÓN PRINCIPAL
   </h4>
   <div class="campo">
     {% if user_form.first_name.errors %}
@@ -28,27 +28,40 @@
     {{ user_form.email }}
   </div>
   <div class="campo fotoEditarUsuario">
-    <div class="span4">
+    <div class="span2">
       {% if usuario.usuario.foto %}
-      <img src="/media/{{usuario.usuario.foto}}" alt="">
+      <div class="imgl" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+      </div>
       {% else %}
-      <img src="/media/{{usuario.usuario.foto}}" alt="">
+      <div class="imgl" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+      </div>
       {% endif %}
     </div>
-    <div class="span5"
+    <div class="span5">
       <label for="foto">
-        Tu foto
+        Añade –o cambia– tu foto de perfil
       </label>
       {{ perfil_form.foto }}
     </div>
   </div>
-	<div class="fieldWrapper">
-	        <label for="dni">DNI:</label>
-	        {{ perfil_form.dni }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="telefono">Telefono:</label>
-	        {{ perfil_form.telefono }}
+  <h4>
+    DATOS ADICIONALES
+  </h4>
+  <div class="campo">
+    <label for="dni">
+      Tu DNI
+    </label>
+    {{ perfil_form.dni }}
+    <span class="help-block">
+      *Sólo necesario si vas a vender.
+    </span>
+  </div>
+  <div class="fieldWrapper">
+    <label for="telefono">Tu teléfono</label>
+    {{ perfil_form.telefono }}
+    <span class="help-block">
+      *Sólo necesario si vas a vender.
+    </span>
 	</div>
 	<div class="fieldWrapper">
 	        <label for="universidad">Universidad:</label>

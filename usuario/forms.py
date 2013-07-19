@@ -27,7 +27,7 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 class PerfilForm(forms.ModelForm):
-    dni = forms.CharField(required=False)
+    dni = forms.CharField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small inputEmail","placeholder":"Tu DNI"}))
     universidad = forms.CharField(required=False)
     empresa = forms.CharField(required=False)
     ciudad = forms.CharField(required=True)
