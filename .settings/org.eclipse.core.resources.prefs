@@ -24,6 +24,7 @@ encoding//templates/mensajes/inbox.html=UTF-8
 encoding//templates/mensajes/rightSidebar.html=UTF-8
 encoding//templates/mensajes/timeline.html=UTF-8
 encoding//templates/misjoinitys/joinity.html=UTF-8
+encoding//templates/persistentes/ajax_notificaciones.html=UTF-8
 encoding//templates/persistentes/buscador.html=UTF-8
 encoding//templates/persistentes/leftMenu.html=UTF-8
 encoding//templates/persistentes/menuAdaptativo.html=UTF-8

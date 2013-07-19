@@ -2597,7 +2597,7 @@ input[type="text"] {
   }
   .primerselect {
     position: relative;
-    z-index:2;
+    z-index:3;
   }
   .selector.aficion,.selector.reserva {
     .opacity(0);
@@ -2940,7 +2940,7 @@ input[type="text"] {
             .transition(all,.2s);
           }
           .info-caja {
-            padding:32px 34px 0;
+            padding:32px 32px 0;
             color:@claro!important;
             height:66px!important;
             .transition(all,.3s);
@@ -3826,4 +3826,75 @@ h6 {
   width: 161px;
   text-transform:none;
 }
+}
+
+/* CAROUSEL */
+
+/*
+.carousel .item {
+  .transition(opacity, 6s);
+}
+.carousel .active.left {
+  left:0;
+  .opacity(0);
+  z-index:2;
+}
+.carousel .next {
+  left:0;
+  .opacity(1);
+  z-index:1;
+}
+*/
+
+.carousel.fade
+{
+    opacity: 1;
+
+    .item
+    {
+        .transition(opacity,2s,ease-in-out);
+        left: 0 !important;
+        .opacity(0);
+        top:0;
+        position:absolute;
+        width: 100%;
+        display:block !important;
+        z-index:1;
+        &:first-child{
+            top:auto;
+            position:relative;
+        }
+
+        &.active
+        {
+            .opacity(1);
+            .transition(opacity,2s,ease-in-out);
+            z-index:2;
+        }
+    }
+}
+
+/*
+.inputNormal.input-small.input-lugar {
+  
+  .transition(all,.5s);
+  left:0;
+  &:focus {
+    left: -16px;
+  width: 178px!important;
+  }
+}
+*/
+
+.inputNombre,.inputEmail {
+  width: 31%!important;
+  margin-right: 1.8%;
+}
+
+.inputApellido {
+  width:64%!important;
+}
+
+.inputFoto {
+  
 }

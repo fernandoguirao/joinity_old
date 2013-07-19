@@ -3,6 +3,7 @@
 from django import forms
 from models import Mensajes
 from notificaciones.models import Notificaciones
+from datetime import datetime
 
 class Mandar_Mensaje_Form(forms.ModelForm):
     mensaje=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Dile algo a tu amigo.', 'id':'appendedInputButton-02', 'class':'span2'}))
@@ -22,7 +23,8 @@ class Mandar_Mensaje_Form(forms.ModelForm):
         mensaje.asunto="sin"
         if commit:
             mensaje.save()
-            notificacion=Notificaciones(usuario=self._destinatario, tipo=0, id_notificacion=mensaje.id)
+            notificacion=Notificaciones.objects.get_or_create(usuario=self._destinatario, tipo=0, id_notificacion=mensaje.remitente.id, estado=0)[0]
+            notificacion.fecha=datetime.now()
             notificacion.save()
             # self.save_m2m()
         return mensaje

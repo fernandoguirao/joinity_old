@@ -4,6 +4,7 @@ from categorias.models import Subcategorias, Subcategorias_Compras
 from amigos.models import Amigos
 from mensajes.models import Mensajes
 from joinitys.models import Usuarios_Joinity
+from notificaciones.models import Notificaciones
 class Puntuaciones(models.Model):
     usuario = models.ForeignKey(User, related_name="usuario_puntuado")
     puntuador = models.ForeignKey(User, related_name="usuario_puntuador")
@@ -69,5 +70,10 @@ class Usuarios(models.Model):
             return total / n
         else:
             return 0
-    
+    def tiene_notificaciones(self):
+        return Notificaciones.objects.filter(usuario=self, estado=0).exists()
+    def n_notificaciones(self):
+        return Notificaciones.objects.filter(usuario=self, estado=0).count()
+    def get_notificaciones(self):
+        return Notificaciones.objects.filter(usuario=self).order_by("-estado", "-fecha")[:7]
         
