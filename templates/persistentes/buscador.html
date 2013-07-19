@@ -3,7 +3,7 @@
     <div class="input-append buscaform">
       <input id="appendedInputButton-01" class="span2" type="text" placeholder="Busca amigos, productos, lugares, aficiones...">
       <br>
-        <button class="btn btn-embossed buscarbtn" type="button">
+        <button class="btn btn-embossed buscarbtn" type="button" onclick="Dajaxice.buscador.buscador(busqueda, {'s':$('#appendedInputButton-01').val()});">
           Buscar
         </button>
 <!--
@@ -11,5 +11,7 @@
       </button>
 -->
     </div>
+    <div id="contenedor-resultados"></div>
+    
   </div>
 </div>

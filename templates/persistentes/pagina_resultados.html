@@ -1,0 +1,30 @@
+{% if usuarios %}
+USUARIOS QUE COINCIDEN CON TU BUSQUEDA:<br>
+{% for usuario in usuarios %}
+<a href="/usuario/{{usuario.id}}">{{usuario.first_name}} {{usuario.last_name}}</a><br>
+{% endfor %}
+{% endif %}
+{% if joinitys %}
+JOINITYS QUE COINCIDEN CON TU BUSQUEDA:<br>
+{% for joinity in joinitys %}
+<a href="/joinity/{{joinity.id}}">{{joinity.nombre}}</a><br>
+{% endfor %}
+{% endif %}
+{% if categoria_compras %}
+JOINITYS DE COMPRAS QUE CONTIENEN LA SUBCATEGORIA BUSCADA:<br>
+{% for joinity in categoria_compras %}
+<a href="/joinity/{{joinity.id}}">{{joinity.nombre}}</a><br>
+{% endfor %}
+{% endif %}
+{% if categoria_aficiones %}
+JOINITYS DE AFICIONES QUE CONTIENEN LA SUBCATEGORIA BUSCADA:<br>
+{% for joinity in categoria_aficiones %}
+<a href="/joinity/{{joinity.id}}">{{joinity.nombre}}</a><br>
+{% endfor %}
+{% endif %}
+{% if eventos %}
+EVENTOS QUE COINCIDEN CON LA BUSQUEDA:<br>
+{% for evento in eventos %}
+<a href="/joinity/{{evento.joinity.id}}/evento/{{evento.id}}">{{evento.titulo}}</a><br>
+{% endfor %}
+{% endif %}

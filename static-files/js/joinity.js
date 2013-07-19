@@ -5,7 +5,9 @@ function refresca_notificaciones(data){
 function marca(data){
 	alert("Pon aqui lo que quieras Fernando");
 }
-
+function busqueda(data){
+	$("#contenedor-resultados").html(data.resultados);
+}
 function cargaform(data){
 	$(".contenedor_formularios").html(data.paginaformulario);
 
