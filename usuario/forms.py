@@ -21,7 +21,7 @@ class UserCreateForm(UserCreationForm):
 class UserForm(forms.ModelForm):
     first_name = forms.CharField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small inputNombre","placeholder":"Tu nombre"}))
     last_name = forms.CharField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small inputApellido","placeholder":"Tus apellidos"}))
-    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"email@ejemplo.com"}))
+    email = forms.EmailField(required=True,widget=forms.TextInput(attrs={"class":"inputNormal input-small inputEmail","placeholder":"email@ejemplo.com"}))
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
@@ -31,7 +31,7 @@ class PerfilForm(forms.ModelForm):
     universidad = forms.CharField(required=False)
     empresa = forms.CharField(required=False)
     ciudad = forms.CharField(required=True)
-    foto = forms.ImageField(required=False)
+    foto = forms.ImageField(required=False,widget=forms.FileInput({"class":"inputFoto"}))
     telefono = forms.IntegerField(required=False)
     nacimiento = forms.DateField(required=False)
     cpostal = forms.IntegerField(required=False)

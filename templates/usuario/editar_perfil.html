@@ -1,25 +1,47 @@
 <form action="" method="post" enctype="multipart/form-data">
-	{% csrf_token %}	
-	<hr><h4>INFORMACI&OacuteN</h4>
-    <div class="fieldWrapper">
-    		{% if user_form.first_name.errors %}
-    			<script>alert("El campo Nombre es obligatorio");</script>
-    		{% endif %}
-	        <label for="nombre">¿Cómo te llamas?</label>
-	        {{ user_form.first_name }}
-	        {% if user_form.last_name.errors %}
-    			<script>alert("El campo Apellidos es obligatorio");</script>
-          {% endif %}
-          {{ user_form.last_name }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="email">Email:</label>
-	        {{ user_form.email }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="foto">Foto:</label>
-	        {{ perfil_form.foto }}
-	</div>
+  {% csrf_token %}	
+  <hr>
+  <h4>
+    INFORMACIÓN
+  </h4>
+  <div class="campo">
+    {% if user_form.first_name.errors %}
+    <script>
+      alert("Necesitamos saber cómo te llamas");
+    </script>
+    {% endif %}
+    <label for="nombre">
+      ¿Cómo te llamas?
+    </label>
+    {{ user_form.first_name }}
+    {% if user_form.last_name.errors %}
+    <script>
+      alert("Has olvidado introducir tus apellidos");
+    </script>
+    {% endif %}
+    {{ user_form.last_name }}
+  </div>
+  <div class="campo">
+    <label for="email">
+      Tu correo electrónico
+    </label>
+    {{ user_form.email }}
+  </div>
+  <div class="campo fotoEditarUsuario">
+    <div class="span4">
+      {% if usuario.usuario.foto %}
+      <img src="/media/{{usuario.usuario.foto}}" alt="">
+      {% else %}
+      <img src="/media/{{usuario.usuario.foto}}" alt="">
+      {% endif %}
+    </div>
+    <div class="span5"
+      <label for="foto">
+        Tu foto
+      </label>
+      {{ perfil_form.foto }}
+    </div>
+  </div>
 	<div class="fieldWrapper">
 	        <label for="dni">DNI:</label>
 	        {{ perfil_form.dni }}
