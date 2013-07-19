@@ -28,21 +28,23 @@
     {{ user_form.email }}
   </div>
   <div class="campo fotoEditarUsuario">
-    <div class="span4">
+    <div class="span2">
       {% if usuario.usuario.foto %}
-      <img src="/media/{{usuario.usuario.foto}}" alt="">
+      <div class="imgl" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+      </div>
       {% else %}
-      <img src="/media/{{usuario.usuario.foto}}" alt="">
+      <div class="imgl" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+      </div>
       {% endif %}
     </div>
-    <div class="span5"
+    <div class="span5">
       <label for="foto">
-        Tu foto
+        Sube una foto de perfil
       </label>
       {{ perfil_form.foto }}
     </div>
   </div>
-	<div class="fieldWrapper">
+	<div class="campo">
 	        <label for="dni">DNI:</label>
 	        {{ perfil_form.dni }}
 	</div>
