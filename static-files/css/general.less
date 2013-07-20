@@ -3961,6 +3961,7 @@ h6 {
 
 .row.campo {
   margin-bottom:15px;
+  color:@oscuro;
   label {
   float: left;
   width: 34%;
@@ -3973,5 +3974,159 @@ h6 {
   .help-block {
     margin-left: 216px;
   }
+  p {
+    font-size: 14px!important;
+    color:@oscuro;
+  }
 }
 
+/* VER PERFIL */
+
+#ver {
+  .btn-small i.iconos {
+    font-size: 15px!important;
+    position: relative;
+    top: 2px;
+    margin-right: 0px;
+  }
+  .row.campo {
+    color:@gris;
+    text-transform:uppercase;
+    /* border-bottom:1px dotted @grisclaro; */
+    margin-bottom:7px;
+    label {
+      font-size:11px;
+    }
+    p {
+      font-size:14px!important;
+      text-transform:none;
+    }
+  }
+  #opcionesPrevVerPerfil {
+    float:right;
+  }
+  h4 {
+    clear:both;
+    margin-top:10px;
+  }
+
+  .modal-header {
+    border-bottom:0px;
+    h5 i {
+      top: 5px!important;
+      position: relative;
+      border-radius: 50px;
+      padding: 12px 0 12px 15px;
+      color:@grisclaro;
+      font-size:32px !important;
+    }
+    h5 {
+      font-size: 17px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.5);
+      border-bottom: 1px dotted;
+      padding-bottom: 17px;
+      margin-left: 22px;
+      margin-right: 26px;
+    }
+  }
+  .modal-body {
+    padding:0px 10px 5px 37px;
+  }
+}
+
+.thumb {
+  .background-size();
+  display: inline-block;
+  height: 191px;
+  width: 50%;
+}
+
+p.color {
+  color:@elcolor!important;
+}
+
+.color.rojo {
+  color:@rojo!important;
+  background-color:transparent!important;
+}
+
+.color.oscuro {
+  color:@oscuro!important;
+  background-color:transparent!important;
+}
+
+.listainteres {
+  color: @elcolor;
+  font-size: 13px;
+  line-height: 2.5;
+  text-transform: none;
+  display:inline;
+}
+
+.listaintereses {
+  margin-left: 36%;
+  position: relative;
+  top: -4px;
+  margin-bottom:5px;
+}
+
+.tab-content {
+  border:0;
+}
+
+.nav.nav-tabs li a {
+  background-color: @grisclaro;
+  border: 0;
+  border-radius: 5px;
+  color: @oscuro;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin-right:10px;
+  &:hover {
+    background-color:@gris;
+    color:@claro;
+  }
+}
+
+.nav.nav-tabs li.active a {
+  background-color: @elcolor;
+  border: 0;
+  border-radius: 5px;
+  color: @claro;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.nav-tabs {
+  border:0;
+}
+
+.modal {
+  background-color: @claro;
+  .table-striped tbody > tr:nth-child(2n) > td, .table-striped tbody > tr.selected-row > td, .table-striped tbody > tr:nth-child(2n) > th, .table-striped tbody > tr.selected-row > th {
+    background-color:@grisclaro;
+  }
+  .table th, .table td {
+    border-color:@gris;
+  }
+  .thumbAmigo {
+    background-color: @grisclaro;
+    background-size: cover;
+    display: inline-block;
+    height: 29px;
+    position: absolute;
+    margin-top: 0px;
+    width: 29px;
+    margin: 0!important;
+    border-radius: 4px;
+  }
+  .btn.btn-mini.btnAmigo {
+    margin-left:25px;
+  }
+  .buscarAmig {
+    display:block;
+  }
+}

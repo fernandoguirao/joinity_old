@@ -1,79 +1,240 @@
 {% load staticfiles %}{% load mathfilters %}
 
+  <div id="opcionesPrevVerPerfil">
+    {% if not logeado and not amigos %}
+    <a href="/amigo/invitar/{{usuario.id}}" class="btn">
+      Solicitar amistad
+    </a>
+    {% endif %}
+    
+    {% if logeado or not usuario.usuario.oculto or amigos %}
+    
+    {% if logeado %}
+    <a href="/usuario/editar/" class="btn btn-small grisclaro">
+      <i class="iconos">
+        n
+      </i>
+      Edita tu perfil
+    </a>
+    <a href="#modalContactos" class="btn btn-small grisclaro" data-toggle="modal">
+      <i class="iconos">
+        5
+      </i>
+      Gestiona tus contactos
+    </a>
+    {% endif %}
+  </div>
 
-{% if not logeado and not amigos %}
-	<a href="/amigo/invitar/{{usuario.id}}"><input type="button" value="Solicitar Amistad"/></a>
-{% endif %}
+  <h4>
+    Acerca de {{usuario.first_name}}
+  </h4>
+  <hr>
+  
+  <div class="row campo">
+    <label for="">
+      Nombre
+    </label>
+    <p class="color">
+      {{usuario.first_name}} {{usuario.last_name}}
+    </p>
+  </div>
+  <div class="row campo">
+    <label for="">
+      Foto
+    </label>
+    <div class="thumb" style="background-image:url('/media/{{usuario.usuario.foto}}')">
+    </div>
+  </div>
+  
+  <div class="row campo">
+    <label for="">
+      Correo electrónico
+    </label>
+    <p>
+      {{usuario.email}}
+    </p>
+  </div>
+    <div class="row campo">
+    <label for="">
+      Sexo
+    </label>
+    <p>
+      {% if usuario.usuario.es_hombre %}Hombre{% else %}Mujer{% endif %}
+    </p>
+  </div>
+    <div class="row campo">
+    <label for="">
+      Edad
+    </label>
+    <p>
+      {{usuario.usuario.nacimiento}}
+    </p>
+  </div>
+  <div class="row campo">
+    <label for="">
+      Ciudad
+    </label>
+    <p>
+      {{usuario.usuario.ciudad}}
+    </p>
+  </div>
+  <div class="row campo">
+    <label for="">
+      Código postal
+    </label>
+    <p>
+      {{usuario.usuario.cpostal}}
+    </p>
+  </div>
+    <div class="row campo">
+    <label for="">
+      Teléfono
+    </label>
+    <p>
+      {{usuario.usuario.telefono}}
+    </p>
+  </div>
+    <div class="row campo">
+    <label for="">
+      DNI
+    </label>
+    <p>
+      {{usuario.usuario.dni}}
+    </p>
+  </div>
+    <div class="row campo">
+    <label for="">
+      Universidad
+    </label>
+    <p>
+      {{usuario.usuario.universidad}}
+    </p>
+  </div>
+    <div class="row campo">
+    <label for="">
+      Empresa
+    </label>
+    <p>
+      {{usuario.usuario.empresa}}
+    </p>
+  </div>
+  
+  <div class="row campo">
+    <label for="">
+      Puntuación<br>(según la valoración de otros joiners)
+    </label>
+    <p>
+      {{usuario.usuario.puntuacion_media}}
+    </p>
+  </div>
+  
+  {% if not logeado %}
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ formulario }}
+      <input type="submit" value="Puntuar" />
+    </form>
+  {% endif %}
 
+  <h4>
+    Intereses y contactos de {{usuario.first_name}}
+  </h4>
+  <hr>
 
-{% if logeado or not usuario.usuario.oculto or amigos %}
-	
-	{% if logeado %}
-		<a href="/usuario/editar/" class="btn gris-claro">Editar perfil</a>
-		<br><br>
-	
-		{% if usuario.usuario.mensajes != 0 %}
-			{% if usuario.usuario.mensajes == 1 %}
-				<p><a href="/mensaje/inbox" class="btn">Tienes {{usuario.usuario.mensajes}} mensaje</a></p>
-			{% else %}
-				<p><a href="/mensaje/inbox" class="btn">Tienes {{usuario.usuario.mensajes}} mensajes</a></p>
-			{% endif %}
-		{% endif %}
-		{% if usuario.usuario.solicitudes != 0 %}
-			{% if usuario.usuario.solicitudes == 1 %}}
-				<p><a href="/amigo/">Tiene {{usuario.usuario.solicitudes}} solicitud de amistad</a></p>
-			{% else %}
-				<p><a href="/amigo/">Tiene {{usuario.usuario.solicitudes}} solicitudes de amistad</a></p>
-			{% endif %}
-		{% endif %}
-	{% endif %}
-	<hr>
-	<h5>Puntuacion: {{usuario.usuario.puntuacion_media}}</h5>
-	{% if not logeado %}
-		<form action="" method="post">
-			{% csrf_token %}
-			{{ formulario }}
-			<input type="submit" value="Puntuar" />
-		</form>
-	{% endif %}
-	<h4>INFORMACI&OacuteN</h4>
-	<p>Foto: <img src="/media/{{usuario.usuario.foto}}"></p>
-    <p>Nombre: {{usuario.first_name}}</p>
-    <p>Apellidos: {{usuario.last_name}}</p>
-    <p>Email: {{usuario.email}}</p>
-    <p>DNI: {{usuario.usuario.dni}} </p>
-    <p>Telefono: {{usuario.usuario.telefono}}</p>
-    <p>Universidad: {{usuario.usuario.universidad}}</p>
-    <p>Empresa: {{usuario.usuario.empresa}}</p>
-    <p>Fecha nacimiento: {{usuario.usuario.nacimiento}}</p>
-    <p>Sexo: {% if usuario.usuario.es_hombre %}Hombre{% else %}Mujer{% endif %}</p>
-    <p>Ciudad: {{usuario.usuario.ciudad}}</p>
-    <p>Codigo Postal: {{usuario.usuario.cpostal}}</p>
-    <hr>
-    <h4>INTERESES:</h4>
-    <p>Intereses:</p>
+  <div class="row campo">
+    <label for="">
+      Intereses de {{usuario.first_name}}
+    </label>
+    <div class="listaintereses">
     {% for interes in usuario.usuario.intereses.all %}
-    	<li>{{interes.categoria.nombre}}-{{interes.nombre}}</li>
+      <div class="listainteres">
+        <span class="btn btn-mini azul">
+          {{interes.categoria.nombre}}-{{interes.nombre}}
+        </span>
+      </div>
     {% endfor %}
-    <p>Comprar:</p>
+    </div>
+  </div>
+  <div class="row campo">
+    <label for="">
+      Cosas que le gustaría tener a {{usuario.first_name}}
+    </label>
+    <div class="listaintereses">
     {% for interes in usuario.usuario.intereses_comprar.all %}
-    	<li>{{interes.categoria.nombre}}-{{interes.nombre}}</li>
+      <div class="listainteres">
+        <span class="btn btn-mini verde">
+        {{interes.categoria.nombre}}-{{interes.nombre}}
+        </span>
+      </div>
     {% endfor %}
-    <hr>
-    <h4>CONTACTOS</h4>
+    </div>
+  </div>
+  <div class="row campo">
+    <label for="">
+      Contactos
+    </label>
+    <div class="listaintereses">
     {% if lista_amigos %}
-		{% for amigo in lista_amigos %}
-			<p>{{amigo.amigo.first_name}} {{amigo.amigo.last_name}}<a href="/usuario/{{amigo.amigo.id}}">ver perfil</a></p>
-		{% endfor %}
-	{% else %}
-		No tiene amigos
-	{% endif %}
-	{% if busqueda %}
-	<form action="/usuario/buscar/" method="get">
-		{{ busqueda }}
-		<input type="submit" value="Buscar" />
-	</form>	
-	{% endif %}
-{% else %}
-    <p>Perfil no visible.</p>
-{% endif %}
+    {% for amigo in lista_amigos %}
+      <div class="listainteres">
+        <a class="btn btn-mini rojo" href="/usuario/{{amigo.amigo.id}}">
+        {{amigo.amigo.first_name}} {{amigo.amigo.last_name}}
+        </a>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p>
+        Parece que aún no ha hecho amigos en Joinity.
+      </p>
+      {% endif %}
+    </div>
+  </div>
+
+    <!-- MODAL CONTACTOS -->
+    <div id="modalContactos" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tuscontactos">Tus contactos</a></li>
+          <li class=""><a href="#buscanuevoscontactos">Busca nuevos contactos</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tuscontactos">
+            <table class="table table-striped">
+              {% if lista_amigos %}
+              {% for amigo in lista_amigos %}
+              <tr>
+                <td>
+                  <div class="thumbAmigo" style="background-image:url('/media/{{amigo.amigo.foto}}'); display:none;">
+                  </div>
+                  <a class="btn btn-mini rojo btnAmigo" href="/usuario/{{amigo.amigo.id}}">
+                    {{amigo.amigo.first_name}} {{amigo.amigo.last_name}}
+                  </a>
+                </td>
+                <td>
+                  <a href="" class="color oscuro">
+                    Eliminar amigo
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+              {% endif %}
+            </table>
+          </div>
+          <div class="tab-pane" id="buscanuevoscontactos">
+            {% if busqueda %}
+            <form action="/usuario/buscar/" method="get">
+              {{ busqueda }}
+              <input type="submit" value="Buscar" class="btn buscarAmig" />
+            </form> 
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN DE MODAL -->
+
+  {% endif %}
+
