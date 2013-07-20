@@ -3900,32 +3900,49 @@ h6 {
 }
 */
 
-.inputNombre,.inputEmail {
-  width: 31%!important;
-  margin-right: 1.8%;
-}
+/* PERFIL DE USUARIO */
 
-.inputApellido {
-  width:64%!important;
-}
-
-.campo.fotoEditarUsuario {
-  display: inline-block;
-  margin: 0 0 30px;
-}
-.fotoEditarUsuario {
-  margin-bottom:10px;
-  .imgl {
-    width: 100%!important;
-    height: 110px!important;
-    background-color: @gris;
+#editar #perfil {
+  .inputNombre,.inputEmail {
+    width: 20%!important;
+    margin-right: 1.8%;
+    min-width: inherit;
+  }
+  
+  .inputEmail {
+    width:40%!important;
+  }
+  .inputApellido {
+    width:40%!important;
+  }
+  
+  .campo.fotoEditarUsuario {
     display: inline-block;
-    .border-radius(5px);
+    margin: 0 0 30px;
   }
-  label {
+  .fotoEditarUsuario {
     margin-bottom:10px;
+    .imgl {
+      width: 100%!important;
+      height: 110px!important;
+      background-color: @gris;
+      display: inline-block;
+      .border-radius(5px);
+    }
+    label {
+      margin-bottom:10px;
+    }
+    .inputFoto {
+      margin-top:50px;
+    }
   }
-  .inputFoto {
-    margin-top:50px;
+
+  .campo {
+    margin-bottom:15px;
   }
+  
+  hr {
+    margin-top:10px;
+  }
+
 }
