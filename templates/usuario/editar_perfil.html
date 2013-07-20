@@ -5,7 +5,7 @@
     INFORMACIÓN PRINCIPAL
   </h4>
   <hr>
-  <div class="campo">
+  <div class="row campo">
     {% if user_form.first_name.errors %}
     <script>
       alert("Necesitamos saber cómo te llamas");
@@ -21,34 +21,57 @@
     </script>
     {% endif %}
     {{ user_form.last_name }}
-  </div>
-  <div class="campo">
+  </div> <!-- Fin de row -->
+
+  <div class="row campo">
     <label for="email">
       Tu correo electrónico
     </label>
     {{ user_form.email }}
-  </div>
-  <div class="campo fotoEditarUsuario">
-    <div class="span2">
-      {% if usuario.usuario.foto %}
-      <div class="imgl" style="background-image:url('/media/{{usuario.usuario.foto}}');">
-      </div>
-      {% else %}
-      <div class="imgl" style="background-image:url('/media/{{usuario.usuario.foto}}');">
-      </div>
-      {% endif %}
-    </div>
-    <div class="span5">
+  </div><!-- Fin de row -->
+
+  <div class="row campo fotoEditarUsuario">
       <label for="foto">
-        Añade –o cambia– tu foto de perfil
+        Tu foto
       </label>
-      {{ perfil_form.foto }}
-    </div>
+      <div class="fileinput">
+        <div class="customFileInput btn btn-azul">
+          Haz click para subir una foto
+        </div>
+        {{ perfil_form.foto }}
+      </div>
+  </div> <!-- Fin de row foto -->
+
+  <div class="row campo">
+    {% if perfil_form.ciudad.errors %}
+    <script>
+      alert("El campo Ciudad es obligatorio");
+    </script>
+    {% endif %}
+    <label for="ciudad">
+      Ciudad
+    </label>
+    {{ perfil_form.ciudad }}
   </div>
+  <div class="row campo">
+    <label for="nacimiento">
+      ¿En qué año naciste?
+    </label>
+    {{ perfil_form.nacimiento }}
+  </div>
+  <div class="row campo">
+    <label for="sexo">
+      Sexo
+    </label>
+    {{ perfil_form.sexo }}
+  </div>
+
   <h4>
-    DATOS ADICIONALES
+    OTROS DATOS
   </h4>
-  <div class="campo">
+  <hr>
+
+  <div class="row campo">
     <label for="dni">
       Tu DNI
     </label>
@@ -72,21 +95,7 @@
 	        <label for="empresa">Empresa:</label>
 	        {{ perfil_form.empresa }}
 	</div>
-	<div class="fieldWrapper">
-			{% if perfil_form.ciudad.errors %}
-    			<script>alert("El campo Ciudad es obligatorio");</script>
-    		{% endif %}
-	        <label for="ciudad">Ciudad:</label>
-	        {{ perfil_form.ciudad }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="nacimiento">Fecha de Nacimiento:</label>
-	        {{ perfil_form.nacimiento }}
-	</div>
-	<div class="fieldWrapper">
-	        <label for="sexo">Sexo:</label>
-	        {{ perfil_form.sexo }}
-	</div>
+
 	<div class="fieldWrapper">
 	        <label for="cpostal">Codigo Postal:</label>
 	        {{ perfil_form.cpostal }}

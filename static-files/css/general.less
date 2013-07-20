@@ -3806,6 +3806,26 @@ background-color:transparent;
 
 }
 
+/* CUSTOM FILE INPUT */
+.fileinput {
+  width:255px;
+  input {
+    background: none repeat scroll 0 0 red;
+    cursor: pointer;
+    margin-top: -74px;
+    min-height: 53px !important;
+    opacity: 0;
+    max-width:100%;
+    min-width:100%;
+  }
+  .customFileInput.btn.btn-azul {
+    max-height: 19px;
+    overflow: hidden;
+    line-height: 1;
+  }
+}
+/* Fin de custom file input */
+
 /* FIN CARGADOR */
 
 #timeline {
@@ -3903,46 +3923,46 @@ h6 {
 /* PERFIL DE USUARIO */
 
 #editar #perfil {
-  .inputNombre,.inputEmail {
+  .inputNombre {
     width: 20%!important;
     margin-right: 1.8%;
     min-width: inherit;
   }
   
-  .inputEmail {
-    width:40%!important;
-  }
   .inputApellido {
     width:40%!important;
   }
   
-  .campo.fotoEditarUsuario {
-    display: inline-block;
-    margin: 0 0 30px;
-  }
   .fotoEditarUsuario {
-    margin-bottom:10px;
     .imgl {
-      width: 100%!important;
+      width: 110px!important;
       height: 110px!important;
       background-color: @gris;
       display: inline-block;
       .border-radius(5px);
     }
-    label {
-      margin-bottom:10px;
+    .fileinput {
+      width:60%;
+      display:inline;
     }
-    .inputFoto {
-      margin-top:50px;
-    }
+    
   }
-
-  .campo {
-    margin-bottom:15px;
-  }
-  
   hr {
     margin-top:10px;
   }
-
 }
+
+/* PÁGINAS DE EDICIÓN GENERAL */
+
+.row.campo {
+  margin-bottom:15px;
+  label {
+  float: left;
+  width: 36%;
+  cursor:default;
+  }
+  input {
+    width:63%;
+  }
+}
+

@@ -327,3 +327,20 @@ $('#myCarousel').bind('slid', function() {
   $('#myCarousel p').addClass('clasederecha');
   })
 */
+
+/*
+$(function(){
+		$('#fotoinput').customFileInput();	
+});
+*/
+
+$(function() {
+
+$('input[type=file]').change(function(){
+  var data=$(this).val();
+  var esto = $(this);
+  var nuevo = esto.parent().find('.customFileInput');
+  nuevo.text(data);
+  esto.parent().width(nuevo.width()+40);
+})
+});
