@@ -4381,7 +4381,36 @@ p.color {
     }
   }
   .modal {
-    margin-top:50px;
+    margin-top:50px!important;
+  }
+}
+#datos-abajo {
+  display: inline-block;
+  vertical-align: bottom;
+  position: absolute;
+  bottom: -44px;
+  left: 4px;
+  .opacity(0);
+  .transition(all,.3s);
+}
+#datos-arriba {
+  display: inline-block;
+  vertical-align: bottom;
+  position: absolute;
+  top: -44px;
+  right: 4px;
+  .opacity(0);
+  .transition(all,.3s);
+}
+
+.unJoinity:hover {
+  #datos-abajo {
+    bottom:4px;
+    .opacity(1);
+  }
+  #datos-arriba {
+    top:4px;
+    .opacity(1);
   }
 }
 
