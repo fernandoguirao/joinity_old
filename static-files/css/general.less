@@ -4130,3 +4130,136 @@ p.color {
     display:block;
   }
 }
+
+/* ARREGLAR ESTILOS BARRA TOP */
+
+/*
+.navbar .nav > li {
+  margin-top: 1px;
+  position: relative;
+}
+
+.iconos.notificaciones.si-notif {
+  margin-top: -1px;
+  padding-bottom: 19px !important;
+}
+*/
+
+/* ESTILOS BUSCADOR */
+
+#buscador-principal {
+  #appendedInputButton-01 {
+    display: block;
+    clear: both;
+  }
+  .span2.busc-peq.inputNormal {
+    height: 55px!important;
+    margin-right:10px;
+    width:300px!important;
+  }
+  .busc-peq {
+    display:none;
+  }
+  .nav-tabs > li {
+    position: relative;
+    clear: both;
+    margin: 2px 0;
+    width: 134px;
+  }
+  
+  #contenedor-resultados {
+    display:none;
+    & > div {
+      display: inline-block;
+    }
+    #resultados {
+      text-align: left;
+      width: 607px;
+      top:-125px;
+      position:relative;
+      height:600px;
+    }
+    #filtros {
+      margin-top:16px;
+    }
+    .nav.nav-tabs.tab-vertical {
+      text-align: center;
+      display: inline-block!important;
+    }
+    #filtros > h3 {
+      font-family: @font;
+      text-transform: uppercase;
+      font-size: 19px;
+      font-weight: normal;
+      color: @elcolor;
+      text-align:left;
+      margin-bottom:20px;
+    }
+     #resultados > h3 {
+      font-family: @font;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: normal;
+      color: @elcolor;
+      margin-left:37px;
+      position:relative;
+      top:-115px;
+    }
+    .tab-content {
+      position: fixed;
+      top: 184px;
+      width: 400px;
+      a {
+        .transition(none,0s);
+        border-bottom:1px dotted @elcolor;
+        padding:10px 20px;
+        display:inline-block;
+        min-width:377px;
+        .imag-res {
+          background-position: center center;
+          background-size: cover;
+          border-radius: 3px 3px 3px 3px;
+          height: 60px;
+          width: 60px;
+          display:inline-block;
+        }
+        .resto-res {
+          display: inline-block;
+          margin-top: 0;
+          text-align: left;
+          margin-left: 12px;
+          top:-4px;
+          position:relative;
+          h4 {
+            font-size:14px;
+            font-weight:bold;
+            font-family:@fonthead;
+            color:@elcolor;
+            margin:0 0 3px;
+          }
+          p {
+            font-size:11px;
+            color:@gris;
+            line-height: 1.9;
+            margin: 0;
+            i {
+              color:@gris!important;
+              font-size:13px!important;
+              margin:0 7px 0 6px;
+              &.primero {
+                margin-left:0px;
+              }
+            }
+          }
+        }
+      &:hover {
+          background-color: rgba(red(@elcolor),green(@elcolor),blue(@elcolor),0.7);
+          color:@claro;
+          h4,p,p i{
+            color:@claro!important;
+          }
+        }
+      }
+    }
+  }
+}

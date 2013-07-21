@@ -149,9 +149,14 @@ $('html').click(function() {
   $('.buscaform').removeClass('zoomout');
 });
 
-$('#appendedInputButton-01,.buscarbtn,.zoomout button,a.iconos.buscador').click(function(event){
+$('#appendedInputButton-01,.buscarbtn,.zoomout button,a.iconos.buscador,#contenedor-resultados a,.busc-peq').click(function(event){
   event.stopPropagation();
 });
+
+$('.buscarbtn').click(function(){
+  $('#appendedInputButton-01').hide();
+  $('#contenedor-resultados,.busc-peq').show();
+})
 
 /* Comentar: ocultar/mostrar */
 

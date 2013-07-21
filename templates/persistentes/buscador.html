@@ -2,16 +2,131 @@
   <div class="control-group huge">
     <div class="input-append buscaform">
       <input id="appendedInputButton-01" class="span2" type="text" placeholder="Busca amigos, productos, lugares, aficiones...">
-      <br>
-        <button class="btn btn-embossed buscarbtn" type="button" onclick="Dajaxice.buscador.buscador(busqueda, {'s':$('#appendedInputButton-01').val()});">
+      <input id="" class="span2 busc-peq inputNormal" type="text" placeholder="Sigue buscando...">
+
+      <button class="btn btn-embossed buscarbtn" type="button" onclick="Dajaxice.buscador.buscador(busqueda, {'s':$('#appendedInputButton-01').val()});">
           Buscar
-        </button>
+      </button>
 <!--
         </span>
       </button>
 -->
     </div>
-    <div id="contenedor-resultados"></div>
+    <div id="contenedor-resultados">
     
+<!--       div#filtros>h3{Filtros}+(div.unfiltro>{Todos los resultados}+i.iconos{x})*6 -->
+      <div id="filtros">
+        <h3>Filtros</h3>
+        <ul class="nav nav-tabs tab-vertical" id="tabFiltro">
+          <li class="active"><a href="#res-joinitys">Joinitys</a></li>
+          <li><a href="#res-usuarios">Usuarios</a></li>
+          <li><a href="#res-eventos">Eventos</a></li>
+          <li><a href="#res-aficiones">Aficiones</a></li>
+          <li><a href="#res-lugares">Lugares</a></li>
+        </ul>
+      </div>
+
+      <div id="resultados">
+        <h3>Resultados</h3>
+        <div class="tab-content">
+          <!-- JOINITYS -->
+          <div class="tab-pane active" id="res-joinitys">
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/2012-05-27_17.07.18.jpg')"></div>
+              <div class="resto-res">
+                <h4>Título de este joinity</h4>
+                <p><i class="iconos primero">d</i>En Valencia, por<i class="iconos">h</i>500 euros</p>
+                <p><i class="iconos primero">5</i>35 joiners <i class="iconos">q</i>Empieza el 25/07/2013</p>
+              </div>
+            </a>
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/299131_10150337445639743_2065391734_n.jpg')"></div>
+              <div class="resto-res">
+                <h4>Título de este joinity</h4>
+                <p><i class="iconos primero">d</i>En Valencia, por<i class="iconos">h</i>500 euros</p>
+                <p><i class="iconos primero">5</i>35 joiners <i class="iconos">q</i>Empieza el 25/07/2013</p>
+              </div>
+            </a>
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/2012-05-27_17.07.18.jpg')"></div>
+              <div class="resto-res">
+                <h4>Título de este joinity</h4>
+                <p><i class="iconos primero">d</i>En Valencia, por<i class="iconos">h</i>500 euros</p>
+                <p><i class="iconos primero">5</i>35 joiners <i class="iconos">q</i>Empieza el 25/07/2013</p>
+              </div>
+            </a>
+          </div><!--  Fin de joinitys -->
+          <!-- USUARIOS -->
+          <div class="tab-pane" id="res-usuarios">
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/2012-05-27_17.07.18.jpg')"></div>
+              <div class="resto-res">
+                <h4>Nombre de este usuario</h4>
+                <p>En Joinity desde el 24/05/2004</p>
+                <p>Participa en 14 joinitys</p>
+              </div>
+            </a>
+          </div> <!-- Fin de usuarios -->
+          <!-- EVENTOS -->
+          <div class="tab-pane" id="res-eventos">
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/2012-05-27_17.07.18.jpg')"></div>
+              <div class="resto-res">
+                <h4>Título de este evento</h4>
+                <p><i class="iconos primero">d</i>En Valencia</p>
+                <p><i class="iconos primero">5</i>35 joiners <i class="iconos">q</i>Empieza el 25/07/2013</p>
+              </div>
+            </a>
+          </div> <!-- Fin de eventos -->
+          <!-- AFICIONES -->
+          <div class="tab-pane" id="res-aficiones">
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/2012-05-27_17.07.18.jpg')"></div>
+              <div class="resto-res">
+                <h4>Nombre de esta afición</h4>
+                <p>Hay 500 joinitys para esta afición</p>
+                <p>Les gusta a 4000 joiners</p>
+              </div>
+            </a>
+          </div><!--  Fin de aficiones -->
+          <!-- LUGARES -->
+          <div class="tab-pane" id="res-lugares">
+            <a href="usuario/1">
+              <div class="imag-res" style="background-image:url('/media/avatars/2012-05-27_17.07.18.jpg')"></div>
+              <div class="resto-res">
+                <h4>Nombre de este lugar</h4>
+                <p>Hay 500 joinitys en este lugar</p>
+                <p>Hay 400 joiners aquí</p>
+              </div>
+            </a>
+          </div><!-- Fin de lugares -->
+        </div>
+      </div>
+<!--
+      USUARIOS QUE COINCIDEN CON TU BUSQUEDA:
+      <a href="/usuario/1">
+        Antoni Espinosa
+      </a>
+      <a href="/usuario/26">
+        Toni Espinosa
+      </a>
+      JOINITYS QUE COINCIDEN CON TU BUSQUEDA:
+      <a href="">
+        Surf para principiantes en Tarifa
+      </a>
+      <a href="">
+        KiteSurf en la Costa Brava
+      </a>
+      <a href="">
+        Clases de windsurf en Tarifa
+      </a>
+      EVENTOS QUE COINCIDEN CON TU BUSQUEDA:
+      <a href="">
+        Surf para principiantes en Tarifa
+      </a>
+      <a href="">KiteSurf en la Costa Brava</a>
+      <a href="">Clases de windsurf en Tarifa</a>
+-->
+    </div>
   </div>
 </div>
