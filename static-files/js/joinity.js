@@ -349,3 +349,13 @@ $('input[type=file]').change(function(){
   esto.parent().width(nuevo.width()+40);
 })
 });
+
+var altor = $('.right-side').height();
+$('.left-side').height(altor+56);
+$('.valor06 .btn.azul').toggle(function(){
+  $('.lefti').animate({"opacity":"0"});
+  $(this).addClass('menos');
+},function(){
+  $('.lefti').animate({"opacity":"1"});
+  $(this).removeClass('menos');
+})

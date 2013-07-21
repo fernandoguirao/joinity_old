@@ -109,6 +109,14 @@ ex- --> ejemplo
   background-size: cover;
 }
 
+.rotate(@grados:45deg) {
+  behavior:url(-ms-transform.htc);
+  -moz-transform:rotate(@grados);
+  -webkit-transform:rotate(@grados);
+  -o-transform:rotate(@grados);
+  -ms-transform:rotate(@grados);
+}
+
 .gradient(@colorinicial,@colorfinal) {
   background: @colorinicial; /* Old browsers */
   background: -moz-linear-gradient(top,  @colorinicial 0%, @colorfinal 100%); /* FF3.6+ */
@@ -285,7 +293,7 @@ label {
     background-color:lighten(@elcolor,7%);
   }
   &:active {
-    .box-shadow(0px 0px 70px rgba(0,0,0,0.4) inset);
+    .box-shadow(0px 0px 70px rgba(0,0,0,0.05) inset);
   }
   &.degradado:active {
     .box-shadow(0 1px 0 rgba(0,0,0,0.1));
@@ -4253,7 +4261,7 @@ p.color {
           }
         }
       &:hover {
-          background-color: rgba(red(@elcolor),green(@elcolor),blue(@elcolor),0.7);
+          background-color: rgba(red(@elcolor),green(@elcolor),blue(@elcolor),1);
           color:@claro;
           h4,p,p i{
             color:@claro!important;
@@ -4263,3 +4271,122 @@ p.color {
     }
   }
 }
+
+#header-aficiones {
+  .valor01 {
+    p {
+      font-size:14px;
+      text-transform:uppercase;
+      line-height:1.7;
+      color:rgba(0,0,0,0.35);
+      margin:-14px 0 0;
+      span {
+        font-size:20px;
+        font-family:@fonthead;
+        font-weight:bold;
+        display:block;
+        color:rgba(0,0,0,0.35);
+      }
+    }
+  }
+  .valor02 {
+    float:right!important;
+    margin-top:-2px;
+    p {
+      font-size: 46px;
+      margin-left: 13px;
+      margin-top: -30px;
+      position: relative;
+      span {
+        top:-4px;
+      }
+    }
+  }
+  .valor03 {
+    height:inherit;
+  }
+  .valor04 {
+    margin-top:10px;
+    i.iconos {
+      font-size:15px!important;
+      margin-right:3px;
+    }
+  }
+  .valor05 {
+    width:inherit;
+    margin-top:20px;
+    p {
+      font-size:9.5px;
+      span {
+        line-height:1;
+        display:block;
+        font-size:25.5px;
+      }
+    }
+  }
+  .valor06 {
+    margin-left: 35px;
+    margin-top: 15px;
+    .azul {
+      background-color:rgba(255,255,255,.2);
+      padding:14px 20px 14px 40px !important;
+      .transition(background-color,.3s);
+      &.hover {
+        background-color:rgba(255,255,255,.3);
+      }
+      &.menos {
+        i {
+          .rotate(0deg);
+        }
+        background-color:rgba(0,0,0,.2);
+      }
+      i {
+        color:@claro!important;
+        font-size: 12px !important;
+        left: -22px;
+        top: 10px !important;
+        .rotate();
+        .transition(transform,.3s);
+      }
+    }
+  }
+  .left-side, .right-side {
+    display: inline-block;
+    height: auto;
+    vertical-align: top;
+  }
+  &.extracto-joinity {
+    height: auto !important;
+  }
+  .left-side {
+    .background-size();
+    z-index:1;
+  }
+  .side-oculto {
+    position:absolute;
+    margin-left:-802px;
+    color:@claro;
+    font-size:11px;
+    z-index:0;
+    p {
+      color:@claro;
+      font-size:11px;
+      text-transform:uppercase;
+      margin:36px 30px 0 41px;
+      span {
+        color:rgba(0,0,0,.3);
+        display:block;
+        margin-top:10px;
+      }
+    }
+  }
+  .modal {
+    margin-top:50px;
+  }
+}
+
+/*
+.left-side,#header-aficiones,#unJoinity,#contenedorPrincipal,.row-fluid,.container-fluid,#contenedorMain,body,html {
+  height: 100%!important;
+}
+*/

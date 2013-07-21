@@ -14,7 +14,16 @@
         
         <div id="unJoinity">
 
-			{% include "single/head.html" %}
+        {% if joinity.get_tipo == "aficiones" %}
+          {% include "single/head-aficiones.html" %}
+        {% endif %}
+        {% if joinity.get_tipo == "compras" %}
+          {% include "single/head-compras.html" %}
+        {% endif %}
+        {% if joinity.get_tipo == "family" %}
+          {% include "single/head-family.html" %}
+        {% endif %}
+
   			<div id="contenedorJoinity">
   
 			{% if soy == "miembro" or soy == "admin" %}

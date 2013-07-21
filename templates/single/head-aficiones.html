@@ -1,0 +1,179 @@
+  <div id="header-aficiones" class="extracto-joinity horizontal unJoinity">
+    <!-- EMPIEZA LADO IZQUIERDO -->
+    <div class="left-side lefti" style="background-image:url('/media/{{joinity.foto}}');">
+      {% if soy == "nadie" %}
+      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+        Únete a este Joinity
+      </a>
+      {% elif soy == "desconectado" %}
+      <a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">
+        Conectate para unirte a este Joinity
+      </a>
+      {% elif soy == "espera" %}
+      <div class="btn joinit">
+        Invitación pendiente
+      </div>
+      {% elif soy == "nada" and joinity.privacidad != 2 %}
+      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+        Únete a este Joinity
+      </a>
+      {% endif %}
+    </div>
+    <!-- FIN DE LADO IZQUIERDO -->
+    <!-- EMPIEZA EL LADO DERECHO -->
+    <div class="right-side">
+      <!-- FILA 01 -->
+      <div class="fila">
+        <div class="valor01">
+          <p>
+            {{joinity.get_categoria}}
+            <span>
+              {{joinity.get_subcategoria}}
+            </span>
+          </p>
+        </div>
+        <div class="valor02">
+          <i class="iconos">
+            i
+          </i>
+          <p>
+            {{joinity.hasta}}
+            <span>
+              días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
+            </span>
+          </p>
+        </div>
+      </div> <!-- FIN FILA 01 -->
+      <!-- FILA 02 -->
+      <div class="fila">
+        <div class="valor03">
+          <h3>
+            {{joinity.nombre}}
+          </h3>
+        </div>
+        <div class="valor04">
+          {% for i in cinco  %}
+        	{% if i <= joinity.puntuacion_media %}
+        		<i class="iconos punto">j</i>
+         	{% else %}
+         		<i class="iconos">j</i>
+         	{% endif %}
+           {% endfor %}
+        </div>
+      </div> <!-- FIN FILA 02 -->
+      <!-- FILA 03 -->
+      <div class="fila">
+        <div class="valor05">
+          <div class="numero-joiners">
+            <p>
+              <span class="njoiners">
+                {{joinity.n_joiners}}
+              </span>
+              joiners
+            </p>
+          </div>
+        </div>
+        <div class="valor06">
+          <div class="btn btn-small btn-block btn-icono azul">
+            <i class="iconos"> x </i>
+            Información
+          </div>
+        </div>
+      </div> <!-- FIN FILA 03 -->
+      <div class="fila">
+        <div class="valor07">
+          <p>
+            {{joinity.descripcion}}
+          </p>
+        </div>
+      </div>
+      <div class="fila">
+        <div class="valor08">
+        	{% for multimedia in joinity.get_multimedia.all %}
+        		{% if  multimedia.tipo == 2 %}
+          			<a class="thumb-img" href="#modalImagen02" alt="" style="background-image:url('/media/{{multimedia.foto.contenido}}');" data-toggle="modal"></a>
+          		{% else %}
+          			<a class="thumb-video" href="#modalImagen01" alt="" style="background-image:url('/media/images/ejemplos/archivo01.png');" data-toggle="modal"></a>	
+       			{% endif %}
+          {% endfor %}
+        </div>
+        <div class="valor09">
+        {% for lugar in joinity.lugares.all|slice:":2" %}
+          <div class="etiqueta">
+            <i class="iconos">
+              l
+            </i>
+            {{lugar.lugar}}
+          </div>
+          {% if not forloop.last %}
+          <div class="trazado">
+            <span class="arriba">
+            </span>
+            <span class="abajo">
+            </span>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- FIN DE LADO IZQUIERDO -->
+    <!-- EMPIEZA LADO OCULTO -->
+    <div class="left-side side-oculto">
+      <p>
+      <span>
+        Administrador
+      </span>
+      Fernando Guirao
+      <span>
+        Fecha de creación
+      </span>
+      27 de junio de 2013
+      <span>
+        Requisitos
+      </span>
+      Hablar inglés con fluidez y polaco.
+      <span>
+        Nivel necesario
+      </span>
+      Básico
+      </p>
+    </div>
+    <!-- FIN DE LADO OCULTO -->
+  </div>
+  
+<!-- MODALES PARA IMÁGENES Y VÍDEO -->
+  <!-- Imagen 01 -->
+  <div id="modalImagen01" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="modal-body">
+      <img src="/media/images/ejemplos/archivo01.png" alt="">
+    </div>
+  </div>
+  <!-- Fin imagen 01 -->
+  <!-- Imagen 02 -->
+  <div id="modalImagen02" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="modal-body">
+      <img src="/media/images/ejemplos/archivo01.png" alt="">
+    </div>
+  </div>
+  <!-- Fin imagen 02 -->
+  <!-- Imagen 03 -->
+  <div id="modalImagen03" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="modal-body">
+      <img src="/media/images/ejemplos/archivo01.png" alt="">
+    </div>
+  </div>
+  <!-- Fin imagen 03 -->
+  <!-- Vídeo -->
+  <div id="modalVideo" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <div class="modal-body">
+      <img src="/media/images/ejemplos/archivo01.png" alt="">
+    </div>
+  </div>
+  <!-- Fin vídeo -->
+
+<!-- FIN DE MODAL PARA IMÁGENES Y VÍDEO -->
