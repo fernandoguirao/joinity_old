@@ -29,7 +29,16 @@
 			{% if soy == "miembro" or soy == "admin" %}
     			{% include "single/timeline.html" %}
 
-    			{% include "single/rightSideBar.html" %}
+        {% if joinity.get_tipo == "aficiones" %}
+          {% include "single/rightSideBar-aficiones.html" %}
+        {% endif %}
+        {% if joinity.get_tipo == "compras" %}
+          {% include "single/rightSideBar-compras.html" %}
+        {% endif %}
+        {% if joinity.get_tipo == "family" %}
+          {% include "single/rightSideBar-family.html" %}
+        {% endif %}
+        
     		{% endif %}
     
     		<div style="clear:both;width:1px;height:1px;">
