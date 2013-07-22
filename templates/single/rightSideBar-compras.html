@@ -1,10 +1,10 @@
 <div id="rightSideBar" class="compra-right">
   <div id="contenidoSide">
     <div class="buscaProducto">
-      <div class="btn btn-small btn-block btn-icono btn-embossed">
-        <div class="logo-marca" style="background-image:url('media/images/logo-apple.png');">
+      <div class="logo-m btn btn-small btn-block btn-icono btn-embossed">
+        <div class="logo-marca" style="background-image:url('/media/images/logo-apple.png');">
         </div>
-        Apple Inc. en Joinity
+        Apple Inc. <span>en <b>Joinity</b></span>
       </div>
     </div>
     <!-- PRODUCTOS SIMILARES -->
@@ -29,7 +29,27 @@
           <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
             <div class="btn btn-mini btn-icono gris">
               <i class="iconos">
-                c
+                f
+              </i>
+              Me interesa
+            </div>
+          </a>
+        </div><!-- FIN DE PRODUCTO -->
+        <!-- CADA PRODUCTO -->
+        <div class="unEvento">
+          <div class="fechaEvento" style="background-image:url('/media/images/fondo-compras.jpg">
+          </div>
+          <p>
+            Apple iPad 2 Wi-Fi 3G 16GB (Negro)
+            <span>
+              Precio: <b>250 euros</b><br>
+              Descuento: <b>15%</b>
+            </span>
+          </p>
+          <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
+            <div class="btn btn-mini btn-icono gris">
+              <i class="iconos">
+                f
               </i>
               Me interesa
             </div>
@@ -37,83 +57,5 @@
         </div><!-- FIN DE PRODUCTO -->
       </div>
     </div><!-- FIN DE PRODUCTOS SIMILARES -->
-    <div class="losEventos">
-      <div class="tituloSide">
-        <div class="lineaCirculo">
-        </div>
-        Eventos
-      </div>
-      <a href="/joinity/{{joinity.id}}/evento/crear">
-	      <div class="btn btn-mini btn-embossed">
-	        Crea un evento
-	      </div>
-      </a>
-      <div class="eventosLista">
-      	{% for evento in joinity.eventos.all %}
-        <!-- UN EVENTO -->
-        <div class="unEvento">
-          <div class="fechaEvento">
-            30
-            <span>
-              jun
-            </span>
-          </div>
-          <p>
-            {{evento.titulo}}
-          </p>
-          <div class="participan">
-            Con
-            {% for participante in evento.usuarios.all|slice:":3" %}
-            <div class="participante" style="background-image:url('/media/{{participante.usuario.foto}}');">
-            </div>
-            {% endfor %}
-            <!-- y <b data-toggle="tooltip" data-placement="bottom" data-container=".toolt" data-html="true" title="Fernando Guirao<br>Adriano Celentano<br>Borja Garc�a">30 más</b> -->
-            y <b>30 más</b>
-            <div class="toolt"></div>
-            
-            
-          </div>
-          {% if usuario not in evento.usuarios.all %}
-          <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
-          <div class="btn btn-mini btn-icono gris">
-            <i class="iconos">
-              q
-            </i>
-            Me apunto
-          </div>
-          </a>
-          {% endif %} 
-        </div>
-        <!-- FIN DE UN EVENTO -->
-        
-        {% endfor %}
-      </div>
-    </div>
-    <div class="lasTareas">
-      <div class="tituloSide">
-        <div class="lineaCirculo">
-        </div>
-        Mis tareas aquí
-      </div>
-      <a href="/joinity/{{joinity.id}}/tarea/crear/">
-      <div class="btn btn-mini btn-embossed">
-        Crea una tarea
-      </div>
-      </a>
-      <div class="misTareas">
-      {% load tareas_filters %}
-      	{% for tarea in joinity.tareas.all %}
-      	{% if not tarea.padre %}
-        <!-- CADA TAREA -->
-        <div class="unaTarea">
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" {% if tarea|completada:usuario %}checked{%endif%}>
-            {{tarea.nombre}}
-          </label>
-        </div> <!-- FIN DE TAREA -->
-        {% endif %}
-       {% endfor %}
-      </div>
-    </div>
   </div>
 </div>
