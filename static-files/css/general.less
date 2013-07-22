@@ -102,11 +102,11 @@ ex- --> ejemplo
   transition: @transicion @tiempo @easing;
 }
 
-.background-size() {
-  -webkit-background-size: cover;
-  -moz-background-size: cover; 
-  -o-background-size: cover; 
-  background-size: cover;
+.background-size(@cover:cover) {
+  -webkit-background-size: @cover;
+  -moz-background-size: @cover; 
+  -o-background-size: @cover; 
+  background-size: @cover;
 }
 
 .rotate(@grados:45deg) {
@@ -4384,6 +4384,7 @@ p.color {
     margin-top:50px!important;
   }
 }
+
 #datos-abajo {
   display: inline-block;
   vertical-align: bottom;
@@ -4403,6 +4404,67 @@ p.color {
   .transition(all,.3s);
 }
 
+#datos-centro {
+  text-align: center;
+  margin-top: 37px;
+  .btn:hover {
+    .foto-producto {
+      .background-size(200%)!important;
+      background-color:transparent;
+      .opacity(.5);
+    }
+    p {
+      .opacity(1);
+    }
+  }
+  p {
+    font-weight: bold;
+    margin-top: -194px;
+    position: absolute;
+    width: 168px;
+    font-size:22px;
+    padding:73px 0;
+    background-color:rgba(0, 0, 0, 0.3);
+    .opacity(0);
+    .transition(opacity,.3s);
+    span {
+      background-color: transparent;
+      color: @claro;
+      display: block;
+      font-size: 11px;
+      font-weight: normal;
+      margin-left: 0;
+      margin-top: -7px;
+      padding: 0;
+      width:100%!important;
+    }
+  }
+
+  span {
+  background-color: rgba(255,255,255,0.3);
+  color: rgba(0, 0, 0, 0.4);
+  display: block !important;
+  line-height: 1;
+  margin-left: -3%;
+  margin-top: 7px;
+  padding: 8px 6%;
+  width: 93% !important;
+  font-weight:bold;
+  font-size:10px;
+}
+  
+  b {
+    font-size:20px;
+  }
+  .btn{
+    border-radius: 2px 2px 2px 2px !important;
+    padding: 3px 3px 0px !important;
+    overflow:hidden;
+    font-size:11.5px!important;
+    min-width:168px;
+  }
+}
+
 .unJoinity:hover {
   #datos-abajo {
     bottom:4px;
@@ -4419,3 +4481,88 @@ p.color {
   height: 100%!important;
 }
 */
+
+#header-compras {
+ .valor01 p span {
+    display: block;
+    top: -9px;
+    width: inherit;
+  }
+  .valor02 p span {
+  top: -1px;
+  left:5px;
+}
+.valor02 p {
+  font-size: 37px;
+  margin-left: 13px;
+  margin-top: -24px;
+  position: relative;
+  max-width:130px;
+}
+ .valor01 p {
+  font-size: 35px;
+  margin-left: 13px;
+  margin-top: -22px;
+  width: 178px!important;
+  overflow: hidden;
+  position: relative;
+}
+ .valor01 p span {
+  display: block;
+  top: -13px;
+  width: inherit;
+}
+.valor02 {
+  float:right!important;
+}
+
+.foto-producto {
+  height: 188px;
+  width: 100%;
+  .background-size(100%);
+  background-position: center;
+  margin-bottom:6px;
+  background-repeat:no-repeat;
+  background-color:white;
+  .transition(all,.3s);
+}
+
+/* COMUNES A LOS TRES JOINITYS */
+  .left-side, .right-side {
+    display: inline-block;
+    height: auto;
+    vertical-align: top;
+  }
+  &.extracto-joinity {
+    height: auto !important;
+  }
+  .left-side {
+    .background-size();
+    z-index:1;
+  }
+  .side-oculto {
+    position:absolute;
+    margin-left:-802px;
+    color:@claro;
+    font-size:11px;
+    z-index:0;
+    p {
+      color:@claro;
+      font-size:11px;
+      text-transform:uppercase;
+      margin:36px 30px 0 41px;
+      span {
+        color:rgba(0,0,0,.3);
+        display:block;
+        margin-top:10px;
+      }
+    }
+  }
+  .modal {
+    margin-top:50px!important;
+  }
+/*   FIN DE COMUNES A LOS TRES JOINITYS */
+
+
+}
+

@@ -1,5 +1,5 @@
-  <div class="extracto-joinity horizontal unJoinity">
-    <div class="left-side" style="background-image:url('/media/{{joinity.foto}}');">
+  <div id="header-compras" class="extracto-joinity horizontal unJoinity">
+    <div class="left-side" style="background-image:url('/media/images/fondo-compras.jpg');">
       {% if soy == "nadie" %}
       	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
       {% elif soy == "desconectado" %}
@@ -9,6 +9,26 @@
       {% elif soy == "nada" and joinity.privacidad != 2 %}
       	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
       {% endif %}
+      <div id="datos-abajo">
+        <div class="btn btn-mini btn-embossed gris">
+          Abandona este joinity
+        </div>
+        <div class="btn btn-mini btn-embossed amarillo">
+          Administra este joinity
+        </div>
+      </div>
+      <div id="datos-arriba">
+        <div class="btn btn-mini btn-embossed">
+          Invita a más joiners
+        </div>
+      </div>
+      <div id="datos-centro">
+        <a href="" class="btn btn-small btn-embossed">
+          <div class="foto-producto" style="background-image:url('/media/{{joinity.foto}}');"></div>
+          <p>{{joinity.precio}} <span>euros</span></p>
+          Cómpralo ya<span>14% descuento</span>
+        </a>
+      </div>
     </div>
     <div class="right-side">
       <!-- FILA 01 -->
@@ -78,7 +98,7 @@
               Mín. {{joinity.n_min}} joiners
             </p>
             <p class="maxjoiners">
-              Míx. {{joinity.n_max}} joiners
+              Máx. {{joinity.n_max}} joiners
             </p>
           </div>
         </div>
@@ -129,4 +149,5 @@
         </div>
       </div>
     </div>
+    
   </div>
