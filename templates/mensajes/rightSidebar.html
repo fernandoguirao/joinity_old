@@ -1,38 +1,42 @@
 <div id="rightSideBar">
   <div id="contenidoSide">
-  
     <!-- BUSCADOR -->
     <input type="text" placeholder="Busca en tus mensajes" class="inputNormal input-small">
     <!-- FIN BUSCADOR -->
-    
     <!-- TODOS LOS MENSAJES -->
     {% load mensajes_filters %}
-    
     <div class="todosMensajes">
       {% for single_user in usuarios %}
       <!-- CADA MENSAJE -->
       <a href="/mensaje/inbox/{{single_user.id}}">
-      <div class="cadaMensaje nuevo">
-        <div class="avatar span3" style="background-image:url('/media/{{single_user.usuario.foto}}');">
-        </div>
+        <div class="cadaMensaje nuevo">
+          <div class="avatar span3" style="background-image:url('/media/{{single_user.usuario.foto}}');">
+          </div>
         <div class="numeroNotif">
           1
         </div>
         <p class="span9">
-          <b>{{single_user.first_name}} {{single_user.last_name}}</b>
-          {% if single_user|get_ultimo:usuario|get_fecha|es_hoy %}
-          	<i>{{single_user|get_ultimo:usuario|get_fecha|date:'H:i'}}</i>
-          {% else %}
-          	<i>{{single_user|get_ultimo:usuario|get_fecha|date:'d/m/Y'}}</i>
-          {% endif %}
-          <span>{{single_user|get_ultimo:usuario|get_mensaje}}</span>
-        </p>
-	
-      </div>
+          <b>
+            {{single_user.first_name}} {{single_user.last_name}}
+          </b>
+            {% if single_user|get_ultimo:usuario|get_fecha|es_hoy %}
+            <i>
+              {{single_user|get_ultimo:usuario|get_fecha|date:'H:i'}}
+            </i>
+            {% else %}
+            <i>
+              {{single_user|get_ultimo:usuario|get_fecha|date:'d/m/Y'}}
+            </i>
+            {% endif %}
+            <span>
+              {{single_user|get_ultimo:usuario|get_mensaje}}
+            </span>
+          </p>
+        </div>
       </a>
       <!-- FIN DE CADA MENSAJE -->
-      {% endfor %}
+    {% endfor %}
     </div>
     <!-- FIN DE TODOS LOS MENSAJES -->
-   </div>
+  </div>
 </div>
