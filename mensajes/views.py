@@ -24,15 +24,20 @@ def inbox(request):
     subconsulta2="SELECT destinatario_id FROM Mensajes WHERE remitente_id="+str(request.user.id)
     consulta="SELECT * FROM auth_user WHERE id IN ("+subconsulta1+") OR id IN ("+subconsulta2+");"
     usuarios=User.objects.raw(consulta)
-    conversador=get_object_or_404(User, pk=usuarios[0].id)
-    lista_mensajes=Mensajes.objects.raw("SELECT * FROM Mensajes WHERE (destinatario_id="+str(request.user.id)+" AND remitente_id="+str(conversador.id)+") OR (remitente_id="+str(request.user.id)+" AND destinatario_id="+str(conversador.id)+") ORDER BY id DESC;")
+    try:
+        conversador=get_object_or_404(User, pk=usuarios[0].id)    
+        lista_mensajes=Mensajes.objects.raw("SELECT * FROM Mensajes WHERE (destinatario_id="+str(request.user.id)+" AND remitente_id="+str(conversador.id)+") OR (remitente_id="+str(request.user.id)+" AND destinatario_id="+str(conversador.id)+") ORDER BY id DESC;")
+        formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
+    except:
+        conversador=False
+        lista_mensajes=False
+        formulario=False
 
     #if request.POST:
     #    formulario = Mandar_Mensaje_Form(request.POST, user=request.user, destinatario=conversador)
     #    if formulario.is_valid:
     #        formulario.save()
     #else:
-    formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
     context = {"mensajes": lista_mensajes, "pagina":"misMensajes", "usuarios":usuarios, "formulario":formulario, "usuario":request.user, "conversador":conversador}
     return render_to_response('mensajes/inbox.html', context, context_instance=RequestContext(request))
 def chat(request, user_id):
