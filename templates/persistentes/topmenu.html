@@ -3,12 +3,14 @@
     <div class="navbar-inner">
       <div class="nav-centrador">
         <div class="container">
-<!--
+          <!--
           SI ADAPTATIVO
           <button type="button" class="btn btn-navbar abreOculto">
           </button>
--->
-          <a href="/" class="brand logoIcon">J</a>
+          -->
+          <a href="/" class="brand logoIcon">
+            J
+          </a>
           <div class="" id="">
             <ul class="nav pull-right">
                 <!-- SI ADAPTATIVO -->
@@ -36,16 +38,16 @@
                   </li>
                   {% for notificacion in usuario.usuario.get_notificaciones %}
                   <li {% if notificacion.estado == 0 %} class="noLeido" {% endif %}>
-                     {% if notificacion.tipo == 0 %}
-                       <a href="/mensaje/inbox/{{notificacion.objeto.id}}">
-                          {{notificacion.objeto.first_name}} {{notificacion.objeto.last_name}} te ha escrito
-                       <i class="fui-arrow-right pull-right"></i>
-                       </a>
-                     {% endif %}
+                    {% if notificacion.tipo == 0 %}
+                    <a href="/mensaje/inbox/{{notificacion.objeto.id}}">
+                      {{notificacion.objeto.first_name}} {{notificacion.objeto.last_name}} te ha escrito
+                      <i class="fui-arrow-right pull-right"></i>
+                    </a>
+                    {% endif %}
                   </li>
                   {% empty %}
                   <li>
-                  No tiene notificaciones
+                    No tiene notificaciones
                   </li>
                   {% endfor %}
                 </ul>
