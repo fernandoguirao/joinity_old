@@ -13,7 +13,10 @@ def mis_tareas(request):
     consulta="SELECT joinity_id FROM Tareas WHERE id IN ("+subconsulta+")"
     consulta="SELECT * FROM Joinitys WHERE id IN ("+consulta+")"
     joinitys=Joinitys.objects.raw(consulta)
-    single=joinitys[0]
+    try:
+        single=joinitys[0]
+    except:
+        single=False
     context={'joinitys':joinitys, "pagina":"misTareas", "usuario":request.user, "single":single}
     return render(request, 'tareas/mistareas.html', context)
 @login_required
