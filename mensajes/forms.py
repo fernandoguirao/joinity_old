@@ -6,7 +6,7 @@ from notificaciones.models import Notificaciones
 from datetime import datetime
 
 class Mandar_Mensaje_Form(forms.ModelForm):
-    mensaje=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Dile algo a tu amigo.', 'id':'appendedInputButton-02', 'class':'span2'}))
+    mensaje=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Dile algo a tu amigo.', 'id':'appendedInputButton-02', 'class':'span2 inputajax'}))
     class Meta:
         model = Mensajes
         fields = ("mensaje",)

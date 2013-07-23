@@ -359,3 +359,15 @@ $('.valor06 .btn.azul').toggle(function(){
   $('.lefti').animate({"opacity":"1"});
   $(this).removeClass('menos');
 })
+
+/* MENSAJES ENTER */
+
+$(function() {
+  $('.inputajax').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      $('#ajaxbtn').click();
+      return false;
+    }
+  });
+})
