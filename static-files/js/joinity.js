@@ -29,18 +29,38 @@ $.fn.serializeObject = function()
    });
    return o;
 };
+
+var hasescrito = false;
+
 function refrescar_mensajes(data){
-	$("#cronologia").html(data.mensajes);
+  $("#cronologia").html(data.mensajes);
+  if(hasescrito) {
+    var contain = $('#ajaxbtn');
+    contain.attr('value','Enviar');
+    contain.removeClass('grisclaro');
+    contain.addClass('verde').delay(1000).queue(function(next){
+    $(this).removeClass("verde");
+    next();
+    });
+    $('#fadingBarsG',contain.parent()).remove();
+    hasescrito=false;
+  }
 }
 function enviar_mensaje(data){
-	if (data.error){
-			$("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
-	}
-	else{
-		$("#appendedInputButton-02").val("");
-		Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':data.conversador_id})
-	}
+  if (data.error){
+    $("#mensaje_error").show();
+    var contain = $('#ajaxbtn');
+    contain.attr('value','Enviar');
+    contain.removeClass('grisclaro');
+    $('#fadingBarsG',contain.parent()).remove();
+  }
+  else {
+    $("#appendedInputButton-02").val("");
+    Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':data.conversador_id});
+    hasescrito=true;
+  }
 }
+
 function postear(data){
 	if (data.error){
 		$("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
@@ -48,6 +68,7 @@ function postear(data){
 	else{
 		$("#appendedInputButton-02").val("");
 		Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
+		
 	}
 }
 function refrescar_joinitys(data){
@@ -57,6 +78,13 @@ function refrescar_joinitys(data){
 var identificador;
 var textoidentificador;
 var identificadorprev;
+
+function cargadormensajes() {
+  var contain = $('#ajaxbtn');
+  contain.attr('value','');
+  $('.ocultarcargador #fadingBarsG').clone().appendTo(contain.parent());
+  contain.addClass('grisclaro');
+}
 
 function cargador() {
   var contain = $(identificador);

@@ -1703,6 +1703,7 @@ input[type="text"] {
   top: 0;
   width: 100%;
   z-index: 1001;
+  display:none;
   #appendedInputButton-01 {
     border: 10px solid @elcolor;
     height: 85px;
@@ -1955,6 +1956,7 @@ input[type="text"] {
           width: 398px !important;
           border-color:@elcolor;
           .border-radius(5px);
+          z-index:1;
           
         }
         input[type="text"] {
@@ -4683,4 +4685,21 @@ p.color {
 
 #misMensajes #contenedorJoinity #timeline #escribe-main .escribe-input #losbotones .btn {
   width: 120px !important;
+}
+
+#mensaje_error {
+  width: 397px;
+  margin-top: -16px;
+  z-index: 2;
+  position: relative;
+  margin-bottom: -29px;
+  display:none;
+  .alert {
+    .opacity(1);
+  }
+}
+
+#losbotones #fadingBarsG {
+  margin-left: -109px;
+  margin-top: 12px;
 }
