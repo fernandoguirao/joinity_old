@@ -1,6 +1,5 @@
     <div id="lineaTiempo">
     </div>
-
     <!-- EL CHAT -->
     {% if mensajes %}
     {% for mensaje in mensajes %}
@@ -12,11 +11,10 @@
         </div>
         <div class="fecha etiqueta">
         {% load mensajes_filters %}
-        
         {% if mensaje.fecha|es_hoy %}
         	{{mensaje.fecha|date:'H:i'}}
         {% else %}
-        	{{mensaje.fecha|date:'d/m/y'}}
+          {{mensaje.fecha|date:'d/m/y'}}
         {% endif %}
         </div>
       </div>
@@ -44,5 +42,5 @@
     <!-- FIN MENSAJE -->
     {% endfor %}
     {% else %}
-    	No tiene mensajes
+      No hay mensajes
     {% endif %}

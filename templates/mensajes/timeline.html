@@ -32,16 +32,15 @@
   <div id="cronologia">
     <div id="lineaTiempo">
     </div>
+    <!--
     <div id="lineaTiempo" class="l-der">
     </div>
+    -->
     <!-- EL CHAT -->
     {% if mensajes %}
     {% for mensaje in mensajes %}
     <!-- INICIO MENSAJE -->
-    <div class="actualizacion texto 
-    {% if mensaje.remitente.first_name = usuario.first_name %}
-    rem-usuario
-    {% endif %}">
+    <div class="actualizacion texto">
       <!-- AUTOR Y FECHA -->
       <div class="clasificacion">
         <div class="icono avatar" style="background-image:url('/media/{{mensaje.remitente.usuario.foto}}');">
