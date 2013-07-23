@@ -43,6 +43,9 @@ class Usuarios(models.Model):
     def son_amigos(self, user_id):
         amigos = Amigos.objects.filter(usuario=user_id, amigo=self.usuario, estado=1).count()
         return amigos != 0
+    def solicitud_amistad(self, user_id):
+        amigos = Amigos.objects.filter(usuario=user_id, amigo=self.usuario, estado=0)
+        return amigos.count() != 0
     def solicitudes(self):
         n_solicitudes = Amigos.objects.filter(amigo=self.usuario, estado=0).count()
         return n_solicitudes

@@ -21,7 +21,8 @@ class Joinitys(models.Model):
     class Meta:
         db_table = "Joinitys"
     def get_multimedia(self):
-        multimedia=Actualizaciones.objects.filter(tipo__in=[2,3]).all()[:3]
+        multimedia=Actualizaciones.objects.filter(tipo__in=[2,3], joinity_id=self.id)[:3]
+        print multimedia
         return multimedia
     def n_joiners(self):
         return Usuarios_Joinity.objects.filter(joinity=self).count()

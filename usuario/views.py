@@ -20,6 +20,7 @@ def ver_perfil(request, user_id):
     usuario = get_object_or_404(User, pk=user_id)
     logeado = request.user.id == usuario.id;
     son_amigos = usuario.usuario.son_amigos(request.user.id)
+    solicitud=usuario.usuario.solicitud_amistad(request.user.id)
     lista_amigos = Amigos.objects.filter(usuario=request.user, estado=1)
     if request.POST:
         formulario = Puntuar(request.POST, puntuador=request.user, puntuado=usuario)
@@ -30,14 +31,14 @@ def ver_perfil(request, user_id):
             formulario.save()
     else:
         formulario = Puntuar(instance=request.user, puntuador=request.user, puntuado=usuario)
-    context = {'usuario': usuario, 'logeado':logeado, 'amigos':son_amigos, 'lista_amigos':lista_amigos, 'formulario':formulario, "pagina":"ver"}
+    context = {'perfil': usuario, 'logeado':logeado, 'solicitud':solicitud,'amigos':son_amigos, 'lista_amigos':lista_amigos, 'formulario':formulario, "pagina":"ver", "usuario":request.user}
     return render_to_response('usuario/perfil.html', context, context_instance=RequestContext(request))  # Create your views here.
 def mi_perfil(request):
     usuario = get_object_or_404(User, pk=request.user.id)
     logeado = request.user.id == usuario.id;
     lista_amigos = Amigos.objects.filter(usuario=request.user, estado=1)
     busqueda = Buscar()
-    context = {'usuario': usuario, 'logeado':logeado, 'lista_amigos':lista_amigos, 'busqueda':busqueda, "pagina":"ver"}
+    context = {'perfil': usuario, 'logeado':logeado, 'lista_amigos':lista_amigos, 'busqueda':busqueda, "pagina":"ver", "usuario":request.user}
     return render_to_response('usuario/perfil.html', context)  # Create your views here.
 def busqueda(request):
     state = ""
@@ -136,7 +137,7 @@ def editar_perfil(request):
         # formulario inicial
         user_form = UserForm(instance=request.user)
         perfil_form = PerfilForm(instance=request.user.usuario)
-    context={ 'user_form': user_form, 'perfil_form': perfil_form, "pagina":"editar" }
+    context={ 'user_form': user_form, 'perfil_form': perfil_form, "pagina":"editar" , "usuario":request.user}
     return render_to_response('usuario/perfil.html', context, context_instance=RequestContext(request))
 def solicitar(request):
     nombre=request.GET.get("solicitaNombre", "")

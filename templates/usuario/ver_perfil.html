@@ -1,11 +1,16 @@
 {% load staticfiles %}{% load mathfilters %}
 
   <div id="opcionesPrevVerPerfil">
-    {% if not logeado and not amigos %}
-    <a href="/amigo/invitar/{{usuario.id}}" class="btn">
+    {% if not logeado and not amigos and not solicitud %}
+    <a href="/amigo/invitar/{{perfil.id}}" class="btn">
       Solicitar amistad
     </a>
+    {% elif not logeado and solicitud %}
+    <a href="/amigo/invitar/{{perfil.id}}" class="btn">
+      Solicitud de amistad enviada
+    </a>
     {% endif %}
+    
     
     {% if logeado or not usuario.usuario.oculto or amigos %}
     
@@ -26,7 +31,7 @@
   </div>
 
   <h4>
-    Acerca de {{usuario.first_name}}
+    Acerca de {{perfil.first_name}}
   </h4>
   <hr>
   
@@ -35,14 +40,14 @@
       Nombre
     </label>
     <p class="color">
-      {{usuario.first_name}} {{usuario.last_name}}
+      {{perfil.first_name}} {{perfil.last_name}}
     </p>
   </div>
   <div class="row campo">
     <label for="">
       Foto
     </label>
-    <div class="thumb" style="background-image:url('/media/{{usuario.usuario.foto}}')">
+    <div class="thumb" style="background-image:url('/media/{{perfil.usuario.foto}}')">
     </div>
   </div>
   
@@ -51,7 +56,7 @@
       Correo electrónico
     </label>
     <p>
-      {{usuario.email}}
+      {{perfil.email}}
     </p>
   </div>
     <div class="row campo">
@@ -59,7 +64,7 @@
       Sexo
     </label>
     <p>
-      {% if usuario.usuario.es_hombre %}Hombre{% else %}Mujer{% endif %}
+      {% if perfil.usuario.es_hombre %}Hombre{% else %}Mujer{% endif %}
     </p>
   </div>
     <div class="row campo">
@@ -67,7 +72,7 @@
       Edad
     </label>
     <p>
-      {{usuario.usuario.nacimiento}}
+      {{perfil.usuario.nacimiento}}
     </p>
   </div>
   <div class="row campo">
@@ -75,7 +80,7 @@
       Ciudad
     </label>
     <p>
-      {{usuario.usuario.ciudad}}
+      {{perfil.usuario.ciudad}}
     </p>
   </div>
   <div class="row campo">
@@ -83,7 +88,7 @@
       Código postal
     </label>
     <p>
-      {{usuario.usuario.cpostal}}
+      {{perfil.usuario.cpostal}}
     </p>
   </div>
     <div class="row campo">
@@ -91,7 +96,7 @@
       Teléfono
     </label>
     <p>
-      {{usuario.usuario.telefono}}
+      {{perfil.usuario.telefono}}
     </p>
   </div>
     <div class="row campo">
@@ -99,7 +104,7 @@
       DNI
     </label>
     <p>
-      {{usuario.usuario.dni}}
+      {{perfil.usuario.dni}}
     </p>
   </div>
     <div class="row campo">
@@ -107,7 +112,7 @@
       Universidad
     </label>
     <p>
-      {{usuario.usuario.universidad}}
+      {{perfil.usuario.universidad}}
     </p>
   </div>
     <div class="row campo">
@@ -115,7 +120,7 @@
       Empresa
     </label>
     <p>
-      {{usuario.usuario.empresa}}
+      {{perfil.usuario.empresa}}
     </p>
   </div>
   
@@ -124,7 +129,7 @@
       Puntuación<br>(según la valoración de otros joiners)
     </label>
     <p>
-      {{usuario.usuario.puntuacion_media}}
+      {{perfil.usuario.puntuacion_media}}
     </p>
   </div>
   
@@ -137,16 +142,16 @@
   {% endif %}
 
   <h4>
-    Intereses y contactos de {{usuario.first_name}}
+    Intereses y contactos de {{perfil.first_name}}
   </h4>
   <hr>
 
   <div class="row campo">
     <label for="">
-      Intereses de {{usuario.first_name}}
+      Intereses de {{perfil.first_name}}
     </label>
     <div class="listaintereses">
-    {% for interes in usuario.usuario.intereses.all %}
+    {% for interes in perfil.usuario.intereses.all %}
       <div class="listainteres">
         <span class="btn btn-mini azul">
           {{interes.categoria.nombre}}-{{interes.nombre}}
@@ -157,10 +162,10 @@
   </div>
   <div class="row campo">
     <label for="">
-      Cosas que le gustaría tener a {{usuario.first_name}}
+      Cosas que le gustaría tener a {{perfil.first_name}}
     </label>
     <div class="listaintereses">
-    {% for interes in usuario.usuario.intereses_comprar.all %}
+    {% for interes in perfil.usuario.intereses_comprar.all %}
       <div class="listainteres">
         <span class="btn btn-mini verde">
         {{interes.categoria.nombre}}-{{interes.nombre}}

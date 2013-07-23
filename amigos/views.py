@@ -21,8 +21,9 @@ def invitar(request):
     return render_to_response('invitar.html', context, context_instance=RequestContext(request))  # Create your views here.
 def invitar_usuario(request, amigo_id):
     amigo = get_object_or_404(User, pk=amigo_id)
-    nuevo_amigo = Amigos(usuario=request.user, amigo=amigo, estado=0)
-    nuevo_amigo.save()
+    if not (Amigos.objects.filter(usuario=request.user, amigo=amigo).exists() or Amigos.objects.filter(usuario=amigo, amigo=request.user).exists()):
+        nuevo_amigo = Amigos(usuario=request.user, amigo=amigo, estado=0)
+        nuevo_amigo.save()
     return HttpResponseRedirect('/usuario/' + amigo_id)
 
 def lista_amigos(request):

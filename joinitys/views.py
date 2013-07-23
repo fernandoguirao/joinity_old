@@ -14,6 +14,7 @@ from reservas.models import Empresa
 from joinitys.eventos.models import Eventos, Usuarios_Evento
 from notificaciones.models import Notificaciones
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
+from joinitys.tareas.models import Tareas
 def index(request):
     if not request.user.is_authenticated():
         usuario=False
@@ -92,10 +93,8 @@ def filtro(request):
 def ver(request, joinity_id):
     # What you want the button to do.
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
-    if request.user.is_authenticated():
-        soy=joinity.que_soy(request.user)
-    else:
-        soy="desconectado"
+    soy=joinity.que_soy(request.user)
+    mis_tareas=Tareas.objects.filter(joinity=joinity, usuarios_tarea__usuario=request.user)
     if request.POST:
         es_contenido=request.GET.get("contenido", False)
         es_comentario=request.GET.get("comentar", False)
@@ -125,7 +124,7 @@ def ver(request, joinity_id):
         comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
     context = {"joinity": joinity, "form": form, "cinco":[1,2,3,4,5],
                "pagina":"joinity", "comentar":comentar,
-               "usuario":request.user, "soy":soy}
+               "usuario":request.user, "soy":soy, "mis_tareas":mis_tareas}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 
 

@@ -92,7 +92,8 @@
       </a>
       <div class="misTareas">
       {% load tareas_filters %}
-      	{% for tarea in joinity.tareas.all %}
+      {% if mis_tareas %}
+      	{% for tarea in mis_tareas.all %}
       	{% if not tarea.padre %}
         <!-- CADA TAREA -->
         <div class="unaTarea">
@@ -103,6 +104,7 @@
         </div> <!-- FIN DE TAREA -->
         {% endif %}
        {% endfor %}
+       {% endif %}
       </div>
     </div>
   </div>

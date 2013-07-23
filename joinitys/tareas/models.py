@@ -17,7 +17,7 @@ class Tareas(models.Model):
         db_table = "Tareas"
 class Usuarios_Tarea(models.Model):
     usuario = models.ForeignKey(User)
-    tarea = models.ForeignKey(Tareas)
+    tarea = models.ForeignKey(Tareas, related_name="usuarios_tarea")
     estado = models.IntegerField(default=0)
     completada = models.BooleanField(default=False)
     class Meta:
