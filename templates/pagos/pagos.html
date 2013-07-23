@@ -1,26 +1,93 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<body>
-	{{ state }}
-	<form action="" method="post">
-		{% csrf_token %}
-		<div class="fieldWrapper">
-	        <label for="id_Email">Cuenta de Ebay del vendedor:</label>
-	        {{ formulario.correo }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_username">Producto:</label>
-	        {{ formulario.nombre }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_precio">Precio:</label>
-	        {{ formulario.precio }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_usuarios">Usuarios:</label>
-	        {{ formulario.usuarios }}
-	    </div>
+<div id="timeline">
 
-		<input type="submit" value="Crear Pago" />
-	</form>
-</body>
-</html>
+  <div id="escribe-main">
+    <ul id="opciones">
+      <li>
+        <i class="iconos">
+          n
+        </i>
+        Todas las tareas
+      </li>
+      <li>
+        <i class="iconos">
+          j
+        </i>
+        Ocultar completadas
+      </li>
+    </ul>
+    <div class="escribe-input">
+      <div class="avatar">
+        <i class="iconos">
+          a
+        </i>
+      </div>
+      <div class="input-append">
+        <input id="appendedInputButton-02" class="span2" type="text" placeholder="Busca una de tus tareas.">
+        <div id="losbotones">
+          <button class="btn btn-small" type="button">
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="cronologia">
+    <div id="lineaTiempo">
+    </div>
+
+    <!-- EL CHAT -->
+<!-- ACTUALIZACIÓN: TAREA -->
+<div class="actualizacion texto">
+  <div class="clasificacion">
+    <div class="icono">
+      <i class="iconos">
+        q
+      </i>
+    </div>
+    <div class="fecha etiqueta">
+      12 jun
+    </div>
+  </div>
+  <div class="continente">
+    <div class="creditos">
+      <p class="smallTxt">
+        <a href="">
+          Fernando Guirao
+        </a>
+        te ha asignado una tarea<br>en el joinity <a href="">nombre_joinity</a>
+      </p>
+    </div>
+    <div class="contenido">
+      <!-- CONTENIDO ESPECÍFICO -->
+        <div class="texto">
+          <label class="checkbox" for="checkbox1">
+            <input type="checkbox" value="" id="checkbox1"  data-toggle="checkbox" >
+            <p>nombre_tarea</p>
+          </label>
+        </div>
+      <!-- FIN CONTENIDO ESPECÍFICO -->
+      <div class="subtareas">
+          <label class="checkbox" for="checkbox1">
+            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+            <p>soy_una_subtarea</p>
+          </label>
+      </div>
+      	<a href="#">Crear Subtarea</a>
+    </div>
+  </div>
+</div>
+<div>AQUI SI HAY JOINITY SELECCIONADO PERO ESTE NO TIENE TAREAS</div>
+<!-- FIN ACTUALIZACIÓN: PAGOS-->
+  </div>
+  <div id="not-tareas">
+    <h5>
+      Selecciona<br>una tarea
+    </h5>
+    <h6>
+      En el menú de la derecha
+    </h6>
+    <i class="iconos">
+      L
+    </i>
+  </div>
+</div>

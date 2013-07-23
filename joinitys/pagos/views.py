@@ -6,7 +6,7 @@ from django.template import RequestContext
 from forms import PagosForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import  render, get_object_or_404
-from pagos.models import Pagos, Usuarios_Pagos
+from models import Pagos, Usuarios_Pagos
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -76,3 +76,7 @@ def pagar(request, pago_id):
     context = {"form": form.sandbox(), "usuarios":usuarios_pago,
                "pago":pago, "admin": admin, "pagado": usuario_pago.ha_pagado}
     return render_to_response("paypal.html", context)
+
+def mis_pagos(request):
+    context={}
+    return render_to_response("pagos/mis_pagos.html", context)

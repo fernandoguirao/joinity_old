@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from pagos import views
+from joinitys.pagos import views
 urlpatterns = patterns('',
     url(r'^paypal/$', 'pagos.views.paypal', name='paypal'),
     url(r'^crear_pago/', views.crear_pagos, name='crear_pagos'),
