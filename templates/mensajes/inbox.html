@@ -1,33 +1,31 @@
-{% extends "base.html" %}
-{% block contenedor %}
-
-<div id="contenedorMain">
-	{% include "persistentes/menuAdaptativo.html" %}
-	<div class="container-fluid contenedorAdaptativo">
-	    <div class="row-fluid">
-	      <div class="span2 panelIzquierdo hidden-phone">
-	       		{% include "persistentes/leftMenu.html" %}
-	      </div>
-      	  <div class="span10" id="contenedorPrincipal">
-      	  		{% include "persistentes/buscador.html" %}
-      	  		<!-- INDEX -->
-      	  		<div id="unJoinity">
-  					<div id="contenedorJoinity">
-  						{% include "mensajes/timeline.html" %}
-    					{% include "mensajes/rightSidebar.html" %}
-    					<div style="clear:both;width:1px;height:1px;">
-    					</div>
-    					
-  					</div>
-				</div>
-				<!-- ENDINDEX -->
-	      </div>
-    	</div>
-  	</div> 		
+  {% extends "base.html" %}
+    {% block contenedor %}
+    <div id="contenedorMain">
+    {% include "persistentes/menuAdaptativo.html" %}
+      <div class="container-fluid contenedorAdaptativo">
+        <div class="row-fluid">
+          <div class="span2 panelIzquierdo hidden-phone">
+            {% include "persistentes/leftMenu.html" %}
+          </div>
+          <div class="span10" id="contenedorPrincipal">
+            {% include "persistentes/buscador.html" %}
+            <!-- INDEX -->
+            <div id="unJoinity">
+            <div id="contenedorJoinity">
+              {% include "mensajes/timeline.html" %}
+              {% include "mensajes/rightSidebar.html" %}
+            <div style="clear:both;width:1px;height:1px;">
+            </div>
+          </div>
+        </div>
+        <!-- ENDINDEX -->
+      </div>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
-setInterval(function() {
-	Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':{{conversador.id}}});
-}, 3000);
+  setInterval(function() {
+    Dajaxice.mensajes.refrescar(refrescar_mensajes, {'conversador_id':{{conversador.id}}});
+  }, 3000);
 </script>
 {% endblock %}
