@@ -32,18 +32,22 @@
   <div id="cronologia">
     <div id="lineaTiempo">
     </div>
+    <div id="lineaTiempo" class="l-der">
+    </div>
     <!-- EL CHAT -->
     {% if mensajes %}
     {% for mensaje in mensajes %}
     <!-- INICIO MENSAJE -->
-    <div class="actualizacion texto">
+    <div class="actualizacion texto 
+    {% if mensaje.remitente.first_name = usuario.first_name %}
+    rem-usuario
+    {% endif %}">
       <!-- AUTOR Y FECHA -->
       <div class="clasificacion">
         <div class="icono avatar" style="background-image:url('/media/{{mensaje.remitente.usuario.foto}}');">
         </div>
         <div class="fecha etiqueta">
         {% load mensajes_filters %}
-        
         {% if mensaje.fecha|es_hoy %}
         	{{mensaje.fecha|date:'H:i'}}
         {% else %}
@@ -57,7 +61,7 @@
         <div class="creditos">
           <p class="smallTxt">
             <a href="/usuario/{{mensaje.remitente.id}}">
-            	{{mensaje.remitente.first_name}}
+              {{mensaje.remitente.first_name}}
             </a>
             ha dicho:
           </p>
