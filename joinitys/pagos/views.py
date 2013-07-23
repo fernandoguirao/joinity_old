@@ -78,5 +78,5 @@ def pagar(request, pago_id):
     return render_to_response("paypal.html", context)
 
 def mis_pagos(request):
-    context={}
+    context={"pagina":"misCompras"}
     return render_to_response("pagos/mis_pagos.html", context)
