@@ -1,39 +1,84 @@
-	<form action="" method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		<div class="fieldWrapper">
-	        <label for="id_Nombre">Nombre del joinity:</label>
-	        {{ formulario.nombre }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_descripcion">Descripcion:</label>
-	        {{ formulario.descripcion }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_foto">Foto:</label>
-	        {{ formulario.foto }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_nmin">Participantes Minimos:</label>
-	        {{ formulario.n_min }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_nmax">Participantes Maximos:</label>
-	        {{ formulario.n_max }}
-	    </div>
-	    <div class="fieldWrapper">
-	        <label for="id_precio">Precio:</label>
-	        {{ formulario.precio }}
-	    </div>
-	    {% if pagina == "crear-aficiones" %}
-	    	{% include "creacion/formaficiones.html" %}
-	    {% elif pagina == "crear-family" %}
-	    	{% include "creacion/formfamily.html" %}
-	    {% elif pagina == "crear-compras" %}
-	    	{% include "creacion/formcompras.html" %}
-	    {% endif %}
-	    <div class="fieldWrapper">
-	        <label for="id_privacidad">Privacidad:</label>
-	        {{ formulario.privacidad }}
-	    </div>
-		<input type="submit" class="btn" value="Crear Joinity" />
-	</form>
+<legend>
+  1. Información general del joinity
+</legend>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="fieldWrapper">
+    <label for="id_Nombre">
+      Dale un nombre a este joinity
+    </label>
+    {{ formulario.nombre }}
+    <span class="help-block">
+      *Consejo: elige un nombre breve y descriptivo de la actividad que llevaréis a cabo.
+    </span>
+  </div>
+  <div class="fieldWrapper">
+    <label for="id_descripcion">
+      Información adicional (o descripción)
+    </label>
+    {{ formulario.descripcion }}
+    <span class="help-block">
+      *Añade aquí cualquier dato importante para los participantes.
+    </span>
+  </div>
+  <div class="campo fotoEditarUsuario">
+      <label for="foto">
+        Sube una imagen de cabecera
+      </label>
+      <div class="fileinput">
+        <div class="customFileInput btn btn-azul">
+          Haz click para subir una foto
+        </div>  
+        {{ formulario.foto }}
+      </div>
+      <span class="help-block">
+        *Te recomendamos que subas una imagen de calidad y coherente con la actividad del grupo.
+      </span>
+    </div>
+    <legend>
+      2. Participantes
+    </legend>
+    <div class="fieldWrapper participantes">
+      <label for="id_nmin">
+        Número mínimo
+      </label>
+      {{ formulario.n_min }}
+      <span class="help-block">
+        *Déjalo vacío si no hay mínimo
+      </span>
+    </div>
+    <div class="fieldWrapper participantes">
+      <label for="id_nmax">
+        Número máximo
+      </label>
+      {{ formulario.n_max }}
+      <span class="help-block">
+        *Déjalo vacío si no hay máximo
+      </span>
+    </div>
+    
+    {% if pagina == "crear-compras" %}
+    <div class="fieldWrapper">
+      <label for="id_precio">
+        Precio
+      </label>
+      {{ formulario.precio }}
+    </div>
+    {% endif %}
+
+    {% if pagina == "crear-aficiones" %}
+      {% include "creacion/formaficiones.html" %}
+    {% elif pagina == "crear-family" %}
+      {% include "creacion/formfamily.html" %}
+    {% elif pagina == "crear-compras" %}
+      {% include "creacion/formcompras.html" %}
+    {% endif %}
+    <div class="fieldWrapper">
+      <label for="id_privacidad">
+        Privacidad
+      </label>
+      {{ formulario.privacidad }}
+    </div>
+    <br>
+    <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
+  </form>

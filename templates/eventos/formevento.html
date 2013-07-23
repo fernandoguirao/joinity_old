@@ -46,10 +46,18 @@
   </div>
 
   </label>
-	<div class="fieldWrapper">
-	        <label for="id_foto">¿Quieres añadir una foto?</label>
-	        {{ formulario.foto }}
-	</div>
+  <div class="fotoEditarUsuario editafotoevento">
+      <label for="foto">
+        Añade una imagen al evento
+      </label>
+      <div class="fileinput">
+        <div class="customFileInput btn btn-azul">
+          Haz click para subir una foto
+        </div>  
+        {{ formulario.foto }}
+      </div>
+    </div>
+
 	<div class="fieldWrapper">
 	<br>
 	        <label for="id_privacidad">¿Será público o privado?</label>
@@ -64,6 +72,6 @@
 	        {{ formulario.repeticion }}
 	</div>
 	<br>
-	<input type="submit" value="Siguiente paso" class="btn" />
+	<input type="submit" value="Siguiente paso" class="btn amarillo btn-embossed" />
 	
 </form>

@@ -1,12 +1,39 @@
-{% for usuario in joinity.joinity_usuario.all %}
-	{{usuario.usuario.first_name}}-
-	{% if usuario.usuario not in usuarios_invitados %}
-		<a href="/joinity/{{joinity.id}}/tarea/invitar/{{tarea.id}}/{{usuario.usuario.id}}">
-	Invitar</a><br>
-	{% else %}
-		Ya invitado<br>
-	{% endif %}
-{% endfor %}
-
-<a href="/joinity/{{joinity.id}}/tarea/invitar/{{tarea.id}}/all">Invitar a todos</a><br>
-<a href="/joinity/{{joinity.id}}/"><input type="button" value="Finalizar" /></a>
+<legend>
+  3. Asigna esta tarea
+</legend>
+<a href="/joinity/{{joinity.id}}/tarea/invitar/{{tarea.id}}/all" class="btn invitartodos btn-mini amarillo">
+  Asígnasela a todos de una vez
+</a>
+<table class="table table-striped invipar">
+  <tr>
+    <th>
+      Nombre
+    </th>
+    <th class="pequena">
+      Estado
+    </th>
+  </tr>
+  {% for usuario in joinity.joinity_usuario.all %}
+  <tr>
+    <td>
+      <p>
+        {{usuario.usuario.first_name}}
+      </p>
+    </td>
+    <td>
+      {% if usuario.usuario not in usuarios_invitados %}
+      <a href="/joinity/{{joinity.id}}/tarea/invitar/{{tarea.id}}/{{usuario.usuario.id}}" class="btn btn-mini verde">
+        Asignar
+      </a>
+      {% else %}
+      <div class="btn btn-mini grisclaro">
+        Se le ha asignado
+      </div>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/joinity/{{joinity.id}}/" class="btn">
+  Crea la tarea
+</a>

@@ -1,44 +1,39 @@
 {% extends "base.html" %}
 {% block contenedor %}
 <div id="contenedorMain">
-
-		{% include "persistentes/menuAdaptativo.html" %}  
+  {% include "persistentes/menuAdaptativo.html" %}  
   <div class="container-fluid contenedorAdaptativo">
     <div class="row-fluid">
       <div class="span2 panelIzquierdo hidden-phone">
-
-		{% include "persistentes/leftMenu.html" %}
+      {% include "persistentes/leftMenu.html" %}
       </div>
       <div class="span10" id="contenedorPrincipal">
-
-		{% include "persistentes/buscador.html" %}
-		  <div id="unJoinity">
-<div id="contenedorJoinity" class="creareljoinity">
-        <div id="loBlanco">
-  			<div class="contenidoPagina">
-  			  				<!-- CONTENIDO -->
-  				    <div class="titular">
-      <h3>
-        2. Información del Joinity
-      </h3>
-      <h6>
-        Completa los siguientes campos 
-      </h6>
-      <br>
-    </div>
-  			{% if pagina == "invitar" %}
-  				{% include "creacion/invitar_usuarios.html" %}
-  			{% elif pagina == "lugares" %}
-  				{% include "creacion/anyadir_lugares.html" %}
-  			{% else %}
-  				{% include "creacion/form.html" %}
-  			{% endif %}
-  			</div>
-  		</div>
-    
-
+      {% include "persistentes/buscador.html" %}
+      <div id="unJoinity">
+        <div id="contenedorJoinity" class="creareljoinity">
+          <div id="loBlanco">
+            <div class="contenidoPagina">
+            <!-- CONTENIDO -->
+              <div class="titular">
+                <h3>
+                  Crea un nuevo joinity
+                </h3>
+                <h6>
+                  Completa los siguientes campos
+                </h6>
+                <br>
+              </div>
+              {% if pagina == "invitar" %}
+                {% include "creacion/invitar_usuarios.html" %}
+              {% elif pagina == "lugares" %}
+                {% include "creacion/anyadir_lugares.html" %}
+              {% else %}
+                {% include "creacion/form.html" %}
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-{% endblock %}
+    {% endblock %}

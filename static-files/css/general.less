@@ -729,6 +729,20 @@ label {
   }
 }
 
+textarea.inputNormal {
+  &.input-small {
+    min-height:80px!important;
+    max-height:80px!important;
+    padding:7px 10px;
+  }
+}
+
+.participantes {
+  width: 150px;
+  display: inline-block;
+  margin-right: 34px;
+}
+
 /* b. Vídeos */
 
 .esVideo {
@@ -3396,7 +3410,44 @@ th {
 .botonjoinity {
   /* max-width:125px; */
   text-transform:none;
-  margin:15px;
+  margin:5px;
+  width:24%;
+  vertical-align: top;
+  height:285px;
+  i {
+    color: rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    font-size: 86px !important;
+    margin: 21px 0 25px;
+    .transition(color,.2s);
+  }
+  p {
+    color: rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 0px;
+    font-size: 11px;
+  }
+&:nth-child(2) {
+    &:hover {
+      i {
+        color:@verde;
+      }
+    }
+  }
+  &:nth-child(3) {
+    &:hover {
+      i {
+        color:@azul;
+      }
+    }
+  }
+&:nth-child(4) {
+    &:hover {
+      i {
+        color:@rojo;
+      }
+    }
+  }
 }
 
 .contenidoPagina {
@@ -4061,6 +4112,16 @@ p.color {
   background-color:transparent!important;
 }
 
+.color.verde {
+  color:@verde!important;
+  background-color:transparent!important;
+}
+
+.color.azul {
+  color:@azul!important;
+  background-color:transparent!important;
+}
+
 .color.oscuro {
   color:@oscuro!important;
   background-color:transparent!important;
@@ -4603,4 +4664,9 @@ p.color {
   .logo-m span {
     color:rgba(0,0,0,.4)!important;
   }
+}
+
+.editafotoevento {
+  position:relative;
+  top:10px;
 }

@@ -2,8 +2,8 @@ from django import forms
 from models import Eventos, Lugares_Evento
 from datetime import date
 class Crear_Evento(forms.ModelForm):
-    titulo=forms.CharField()
-    foto = forms.ImageField(required=False)
+    titulo=forms.CharField(widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: 'Fiesta de graduacion de la promocion 2013-2014'"}))
+    foto = forms.ImageField(required=False,widget=forms.FileInput({"class":"inputFoto","id":"fotoinput"}))
     privacidad=forms.ChoiceField(choices=([("0", "Publico"), ("1", "Privado")]))
     privilegios=forms.ChoiceField(choices=([("0", "Solo administrador"), ("1", "Todos los participantes")]))
     repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)

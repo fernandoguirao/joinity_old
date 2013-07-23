@@ -1,9 +1,20 @@
+<legend>
+  2. ¿Dónde tendrá lugar?
+</legend>
 {% for lugar in tarea.lugares_tarea.all %}
-	Paso {{lugar.n}}: {{lugar.lugar}}<br>
+<div class="btn claro">
+  Paso {{lugar.n}}: 
+  <b>
+    {{lugar.lugar}}
+  </b>
+</div>
+<br>
 {% endfor %}
 <form action="" method="post">
-	{% csrf_token %}
-	{{ formulario }}
-	<input type="submit" value="Anyadir Lugar" />
+  {% csrf_token %}
+  {{ formulario }}
+  <input type="submit" class="btn btn-mini gris" value="¿Ocurre en más de un lugar?" />
 </form>	
-<a href="/joinity/{{joinity.id}}/tarea/crear/3/{{tarea.id}}"><input type="button" value="Siguiente"/></a>
+<a href="/joinity/{{joinity.id}}/tarea/crear/3/{{tarea.id}}" class="btn">
+  Continuar
+</a>

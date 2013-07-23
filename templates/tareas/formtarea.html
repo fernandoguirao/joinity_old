@@ -1,11 +1,14 @@
+<legend>
+  1. Datos de la tarea
+</legend>
 <form action="" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="fieldWrapper">
-	        <label for="id_Titulo">Titulo:</label>
+	        <label for="id_Titulo">Título de la tarea</label>
 	        {{ formulario.nombre }}
 	</div>
 	<div class="fieldWrapper">
-	        <label for="id_Descripcion">Descripcion:</label>
+	        <label for="id_Descripcion">Descríbela brevemente</label>
 	        {{ formulario.notas }}
 	</div>
 	<div class="control-group">
@@ -21,13 +24,13 @@
   		</div>
 	</div>
 	<div class="fieldWrapper">
-	        <label for="id_foto">Foto:</label>
+	        <label for="id_foto">¿Quieres añadir una foto?</label>
 	        {{ formulario.foto }}
 	</div>
 	<div class="fieldWrapper">
-	        <label for="id_repeticion">Repeticion:</label>
+	        <label for="id_repeticion">¿Se repetirá esta tarea?</label>
 	        {{ formulario.repeticion }}
 	</div>
-	<input type="submit" value="Crear Tarea" />
+	<input type="submit" class="btn btn-embossed amarillo" value="Siguiente paso: asignarla a un usuario" />
 	
 </form>
