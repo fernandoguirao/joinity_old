@@ -15,17 +15,18 @@
   </li>
   {% for notificacion in usuario.usuario.get_notificaciones %}
   <li {% if notificacion.estado == 0 %} class="noLeido" {% endif %}>
-     {% if notificacion.tipo == 0 %}
-       <a href="/mensaje/inbox/{{notificacion.objeto.id}}">
-          {{notificacion.objeto.first_name}} {{notificacion.objeto.last_name}} te ha escrito
-       <i class="fui-arrow-right pull-right"></i>
-       </a>
-     {% endif %}
+    {% if notificacion.tipo == 0 %}
+    <a href="/mensaje/inbox/{{notificacion.objeto.id}}">
+      {{notificacion.objeto.first_name}} {{notificacion.objeto.last_name}} te ha escrito
+      <i class="fui-arrow-right pull-right">
+      </i>
+    </a>
+    {% endif %}
   </li>
-  {% empty %}
+    {% empty %}
   <li>
-  No tiene notificaciones
+    No tiene notificaciones
   </li>
-  {% endfor %}
+    {% endfor %}
 </ul>
 <!-- FIN DE SUBMEN� NOTIFICACIONES-->

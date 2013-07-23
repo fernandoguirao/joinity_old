@@ -1,9 +1,9 @@
     <script type="text/javascript">
-    	{% if pagina == "lugares" %}
-    	var ubicacion_dinamica=true;
-    	{% else %}
-    	var ubicacion_dinamica=false;
-    	{% endif %}
+      {% if pagina == "lugares" %}
+      var ubicacion_dinamica=true;
+      {% else %}
+      var ubicacion_dinamica=false;
+      {% endif %}
     </script>
     <script src="/static/js/jquery-1.8.3.min.js"></script>
     <script src="/static/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -17,8 +17,6 @@
     <script src="/static/js/jquery.placeholder.js"></script>
     <script src="/static/js/jquery.stacktable.js"></script>
     <script src="/static/js/jquery.knob.js"></script>
-<!--     <script src="/static/js/jquery.fileinput.js"></script> -->
-<!--     <script src="/static/js/dropzone.js"></script> -->
     <script src="/static/js/application.js"></script>
     <script src="/static/js/application.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
@@ -29,11 +27,12 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
       ga('create', 'UA-42249427-1', 'joinity.com');
       ga('send', 'pageview');
     </script>
-<script src="//static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">try{ clicky.init(100634124); }catch(e){}</script>
+    <script src="//static.getclicky.com/js" type="text/javascript"></script>
+    <script type="text/javascript">
+      try{ clicky.init(100634124); }catch(e){}
+    </script>
   </body>
 </html>
