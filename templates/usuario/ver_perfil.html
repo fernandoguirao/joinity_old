@@ -9,6 +9,10 @@
     <a href="/amigo/invitar/{{perfil.id}}" class="btn">
       Solicitud de amistad enviada
     </a>
+    {% elif not logeado %}
+    <a href=" /mensaje/inbox/{{perfil.id}}" class="btn">
+      Escríbele un mensaje a {{perfil.first_name}}
+    </a>
     {% endif %}
     
     
