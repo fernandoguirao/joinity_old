@@ -1,103 +1,103 @@
 <div id="timeline">
 {% if single %}
   <div id="escribe-main">
-    <ul id="opciones">
-      <li>
-        <i class="iconos">
-          n
-        </i>
-        Todas las tareas
-      </li>
-      <li>
-        <i class="iconos">
-          j
-        </i>
-        Ocultar completadas
-      </li>
-    </ul>
-    <div class="escribe-input">
-      <div class="avatar">
-        <i class="iconos">
-          a
-        </i>
-      </div>
-      <div class="input-append">
-        <input id="appendedInputButton-02" class="span2" type="text" placeholder="Busca una de tus tareas.">
-        <div id="losbotones">
-          <button class="btn btn-small" type="button">
-            Buscar
-          </button>
-        </div>
-      </div>
-    </div>
+    <h4>Tareas en el joinity</h4>
+    <h3>{{single.nombre}}</h3>
   </div>
   <div id="cronologia">
-    <div id="lineaTiempo">
-    </div>
-
-    <!-- EL CHAT -->
- {% load tareas_filters %}
-{% for tarea in single.tareas.all %}
-{% if not tarea.padre %}
-<!-- ACTUALIZACIÓN: TAREA -->
-<div class="actualizacion texto">
-  <div class="clasificacion">
-    <div class="icono">
-      <i class="iconos">
-        q
-      </i>
-    </div>
-    <div class="fecha etiqueta">
-      12 jun
-    </div>
-  </div>
-  <div class="continente">
-    <div class="creditos">
-      <p class="smallTxt">
-        <a href="">
-          {{tarea.creador.first_name}} {{tarea.creador.last_name}}
-        </a>
-        te ha asignado una tarea<br>en el joinity <a href="">{{single.nombre}}</a>
-      </p>
-    </div>
-    <div class="contenido">
-      <!-- CONTENIDO ESPECÍFICO -->
-        <div class="texto">
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" data-toggle="checkbox" {% if tarea|completada:usuario %}checked{% endif %}>
-            <p>{{tarea.nombre}}</p>
-          </label>
+    {% load tareas_filters %}
+    {% for tarea in single.tareas.all %}
+    {% if not tarea.padre %}
+    <!-- ACTUALIZACIÓN: TAREA -->
+    <div class="actualizacion texto">
+      <div class="clasificacion">
+        <div class="icono">
+          <i class="iconos">
+            q
+          </i>
         </div>
-      <!-- FIN CONTENIDO ESPECÍFICO -->
-      <div class="subtareas">
-      	  {% for subtarea in tarea.hijas.all %}
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-            <p>{{subtarea.nombre}}</p>
-          </label>
-          {% endfor %}
+        <div class="fecha etiqueta">
+          12 jun
+        </div>
       </div>
-      {% if tarea.creador == usuario %}
-      	<a href="/joinity/{{tarea.joinity.id}}/tarea/crear/sub/{{tarea.id}}">Crear Subtarea</a>
-      {% endif %}
-      {% include "single/comentarios.html" %}
+      <div class="continente">
+        <div class="creditos">
+          <p class="smallTxt">
+            {% if tarea.creador.id = usuario.id %}
+            Eres el administrador de esta tarea
+            {% else %}
+            <a href="">
+              {{tarea.creador.first_name}} {{tarea.creador.last_name}}
+            </a>
+            te ha asignado una tarea
+            {% endif %}
+          </p>
+        </div>
+        <div class="contenido">
+          <!-- CONTENIDO ESPECÍFICO -->
+          <div class="texto">
+            <label class="checkbox" for="checkbox1">
+              <input type="checkbox" value="" id="checkbox1" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" data-toggle="checkbox" {% if tarea|completada:usuario %}checked{% endif %}>
+              <p>
+                {{tarea.nombre}}
+              </p>
+            </label>
+          </div>
+          <!-- FIN CONTENIDO ESPECÍFICO -->
+          <div class="subtareas estados">
+            <!-- Cada usuario al que se le ha asignado -->
+            <p>Esta tarea se le ha asignado a:</p>
+            <label class="checkbox" for="checkbox1">
+              <i class="no-completada iconos">
+                x
+              </i>
+              <div class="assign-user" style="background-image: url('/media/joinity/depo-2.jpg');">
+              </div>
+              <p>
+                {{usuario.first_name}} (tú)
+              </p>
+            </label><!-- Fin de usuario asignado -->
+            <!-- Cada usuario al que se le ha asignado -->
+            <label class="checkbox" for="checkbox1">
+              <i class="completada iconos">
+                1
+              </i>
+              <div class="assign-user" style="background-image: url('/media/joinity/depo-2.jpg');">
+              </div>
+              <p>
+                Fernando Guirao
+              </p>
+            </label><!-- Fin de usuario asignado -->
+            <!-- Cada usuario al que se le ha asignado -->
+            <label class="checkbox" for="checkbox1">
+              <i class="no-completada iconos">
+                x
+              </i>
+              <div class="assign-user" style="background-image: url('/media/joinity/depo-2.jpg');">
+              </div>
+              <p>
+                Roberto Ramírez
+              </p>
+            </label><!-- Fin de usuario asignado -->
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-{% endif %}
-{% empty %}
-<div>AQUI SI HAY JOINITY SELECCIONADO PERO ESTE NO TIENE TAREAS</div>
-{% endfor %}
-<!-- FIN ACTUALIZACIÓN: TAREA-->
+    {% endif %}
+    {% empty %}
+    <div>
+      AQUI SI HAY JOINITY SELECCIONADO PERO ESTE NO TIENE TAREAS
+    </div>
+    {% endfor %}
+    <!-- FIN ACTUALIZACIÓN: TAREA-->
   </div>
   {% else %}
   <div id="not-tareas">
-  AQUI SI NO HAY TAREAS DE NINGUN TIPO
     <h5>
-      Selecciona<br>una tarea
+      No tienes tareas<br>asignadas
     </h5>
     <h6>
-      En el menú de la derecha
+      En ninguno de tus joinitys
     </h6>
     <i class="iconos">
       L

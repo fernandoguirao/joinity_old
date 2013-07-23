@@ -3164,7 +3164,8 @@ input[type="text"] {
       position: relative;
       top: 2px;
     }
-    padding-left:31px;
+    padding-left: 0px;
+    margin-left: -5px;
   }
 }
 
@@ -4731,5 +4732,60 @@ p.color {
   }
   #cronologia {
     margin-top: -28px !important;
+  }
+}
+
+#misTareas {
+  .assign-user {
+background-position: center center;
+.background-size();
+border-radius: 3px 3px 3px 3px;
+display: inline-block;
+height: 23px;
+width: 23px;
+float: left;
+margin: 0 9px 0 13px;
+  }
+  .estados {
+    i.completada.iconos,i.no-completada.iconos {
+      background-color: @verde;
+      color: lighten(@gris,40%);
+      display: inline-block !important;
+      float: left;
+      font-size: 33px !important;
+      height: 22px !important;
+      width: 22px !important;
+    }
+    i.no-completada.iconos {
+      color: @rojo;
+      background-color:lighten(@gris,40%);
+      width:16px!important;
+      padding-left:7px;
+      font-size:16px!important;
+      line-height:1.4;
+    }
+    p {
+      margin-left: 37px;
+    }
+  }
+  #escribe-main > h4 {
+    margin-bottom: 0;
+    margin-top: 13px;
+  }
+  #cronologia {
+    margin-top:16px;
+  }
+  .actualizacion.texto {
+    background-color:lighten(@gris,40%);
+    display: block;
+    margin: 10px 0 5px -11px;
+    padding: 15px 18px !important;
+  }
+  .continente {
+    display: inline-block!important;
+    float: none!important;
+  }
+  #timeline .contenido .texto {
+    margin-top:0px!important;
   }
 }
