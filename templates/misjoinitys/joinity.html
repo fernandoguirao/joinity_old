@@ -1,85 +1,44 @@
-<div class="extracto-joinity horizontal azul">
-  <div class="left-side" style="background-image:url('/media/images/ejemplos/archivo01.png');">
-  </div>
-  <div class="right-side">
-    <!-- FILA 01 -->
-    <div class="fila">
-      <div class="valor01">
-        <i class="iconos">
-          h
-        </i>
-        <p>
-          {{joinity.joinity.precio}}
-          <!--
-          <span>
-            euros/ persona
-          </span>
-          -->
-        </p>
-      </div>
-      <div class="valor02" style="margin-left:43px;">
-        <i class="iconos">
-          i
-        </i>
-        <p>
-          25
-          <span>
-            días para empezar
-          </span>
-        </p>
-      </div>
-    </div> <!-- FIN FILA 01 -->
-    <!-- FILA 02 -->
-    <div class="fila">
-      <div class="valor03">
-        <h3>
-          {{joinity.joinity.nombre}}
-        </h3>
-      </div>
-      <div class="valor04">
-        <div class="etiqueta">
-          {{joinity.joinity.get_categoria}}
+
+      <!-- CADA JOINITY -->
+      <a class="los-joinity beta-reg" href="#modalInicio" data-toggle="modal">
+        <div class="foto-join" style="background-image:url('/media/{{joinity.joinity.foto}}');">
         </div>
-        <div class="etiqueta">
-          {{joinity.joinity.get_subcategoria}}
-        </div>
-      </div>
-    </div> <!-- FIN FILA 02 -->
-    <!-- FILA 03 -->
-    <div class="fila">
-      <div class="valor05">
-        <div class="numero-joiners">
+        <div class="info-caja">
+          <h6>
+            {{joinity.joinity.nombre}}
+          </h6>
           <p>
-            <span class="njoiners">
-              25
-            </span>
-            joiners > 
-            <span class="djoiners">
-              15%
-            </span>
-            de descuento
+          	En {{joinity.joinity.lugar}},
+           por {{joinity.joinity.precio}} €
           </p>
         </div>
-        <div class="progreso">
-          <div class="progress">
-            <div class="bar" style="width: 45%;">
+        <!-- HOVER -->
+        <div class="datos-hover">
+          <div class="rueda img-circle">
+            <div class="donutchart" data-percent="{{aficion.get_porcentaje}}"></div>
+            <div class="numjoine">
+              <span>
+                {{joinity.joinity.n_joiners}}/{{joinity.joinity.n_max}}
+              </span>
+              joiners
             </div>
           </div>
-          <p class="minjoiners">
-            Mín. {{joinity.joinity.n_min}} joiners
-          </p>
-          <p class="maxjoiners">
-            Máx. {{joinity.joinity.n_max}} joiners
-          </p>
+          <div class="lafecha">
+            {{joinity.joinity.fecha_inicio|date:"d"}}
+            <span>
+               {{joinity.joinity.fecha_inicio|date:"M"}}
+            </span>
+          </div>
+          <div class="valor06">
+          {% for i in cinco  %}
+          	{% if i <= aficion.puntuacion_media %}
+          		<i class="iconos punto">j</i>
+           	{% else %}
+           		<i class="iconos">j</i>
+           	{% endif %}
+          {% endfor %}
+          </div>
+        <!-- FIN DE HOVER -->
         </div>
-      </div>
-      <div class="valor06">
-        <i class="punto iconos">j</i>
-        <i class="punto iconos">j</i>
-        <i class="iconos">j</i>
-        <i class="iconos">j</i>
-        <i class="iconos">j</i>
-      </div>
-    </div> <!-- FIN FILA 03 -->
-  </div>
-</div>
+      </a>
+      <!-- FIN DE CADA JOINITY -->
