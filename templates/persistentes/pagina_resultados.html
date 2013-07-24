@@ -34,7 +34,6 @@
       <div id="resultados">
         <h3>Resultados</h3>
         <div class="tab-content">
-          {% if joinitys %}
           {% for joinity in joinitys %}
           <!-- SI EL RESULTADO SON JOINITYS -->
           <div class="tab-pane active" id="res-joinitys">
@@ -72,9 +71,7 @@
             </a>
           </div><!--  Fin de joinitys -->
           {% endfor %}
-          {% endif %}
           <!-- SI EL RESULTADO SON USUARIOS -->
-          {% if usuarios %}
              {% for usuario in usuarios %}
                   <div class="tab-pane" id="res-usuarios">
                      <a href="/usuario/{{usuario.id}}">
@@ -94,9 +91,7 @@
                       </a>
                   </div> <!-- Fin de usuarios -->
              {% endfor %}
-          {% endif %}
          
-         {% if eventos %}
          {% for evento in eventos %}
           <!-- SI EL RESULTADO SON EVENTOS -->
           <div class="tab-pane" id="res-eventos">
@@ -129,9 +124,7 @@
             </a>
           </div> <!-- Fin de eventos -->
           {% endfor %}
-          {% endif %}
           <!-- SI EL RESULTADO SON AFICIONES -->
-          {% if categoria_aficiones %}
           {% for joinity in categoria_aficiones %}
           <div class="tab-pane" id="res-aficiones">
             <a href="/joinity/{{joinity.id}}">
@@ -168,9 +161,7 @@
             </a>
           </div><!--  Fin de aficiones -->
           {% endfor %}
-          {% endif %}
            <!-- SI EL RESULTADO SON COMPRAS -->
-          {% if categoria_aficiones %}
           {% for joinity in categoria_compras %}
           <div class="tab-pane" id="res-compras">
             <a href="/joinity/{{joinity.id}}">
@@ -207,7 +198,6 @@
             </a>
           </div><!--  Fin de compras -->
           {% endfor %}
-          {% endif %}
           <!-- SI EL RESULTADO SON LUGARES -->
           {% for joinity in lugares %}
           <div class="tab-pane" id="res-lugares">
@@ -244,6 +234,6 @@
               </div>
             </a>
           </div><!-- Fin de lugares -->
-
+          {% endfor %}
         </div>
       </div><!-- Fin lista de resultados -->
