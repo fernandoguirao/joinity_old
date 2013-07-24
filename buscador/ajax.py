@@ -13,6 +13,7 @@ def buscador(request, s):
     resultados_categorias_aficiones=[]
     resultados_categorias_compras=[]
     resultados_eventos=[]
+    resultados_lugares=[]
     for palabra in frase:
         for usuario in User.objects.filter(first_name__icontains=palabra):
             if usuario not in resultados_usuarios:
@@ -38,10 +39,13 @@ def buscador(request, s):
         for evento in Usuarios_Evento.objects.filter(usuario=request.user, evento__titulo__icontains=palabra):
             if evento.evento not in resultados_eventos:
                 resultados_eventos.append(evento.evento)
+        for lugar in Joinitys.objects.filter(lugares__lugar__icontains=palabra):
+            if lugar not in resultados_lugares:
+                resultados_lugares.append(lugar)
             
                 
     context={"usuarios":resultados_usuarios, "joinitys":resultados_joinitys, 
              "categorias_compras":resultados_categorias_compras, "categoria_aficiones":resultados_categorias_aficiones,
-             "eventos": resultados_eventos}
+             "eventos": resultados_eventos, "lugares": resultados_lugares}
     pagina_resultados=render_to_string("persistentes/pagina_resultados.html", context)
     return simplejson.dumps({'resultados':pagina_resultados})

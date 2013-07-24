@@ -16,6 +16,8 @@ class Eventos(models.Model):
     usuarios=models.ManyToManyField(User, through='Usuarios_Evento')
     class Meta:
         db_table = "Eventos"
+    def n_joiners(self):
+        return Usuarios_Evento.objects.filter(evento=self).count()
 class Usuarios_Evento(models.Model):
     usuario = models.ForeignKey(User)
     evento = models.ForeignKey(Eventos, related_name="usuarios_evento")

@@ -8,15 +8,17 @@ function initialize() {
 	  // GEOLOCALIZACION
 	  
 	  if(ubicacion_dinamica==false){
-		  autocomplete= new google.maps.places.Autocomplete(input);
-		  autocomplete2= new google.maps.places.Autocomplete(input2);
+		  autocomplete= new google.maps.places.Autocomplete(input, {types: ['(cities)'],componentRestrictions: {country: "es"}});
+		  autocomplete2= new google.maps.places.Autocomplete(input2, {types: ['(cities)'],componentRestrictions: {country: "es"}});
 	  }
+	  
+	
 	  else if(navigator.geolocation) {
 		 navigator.geolocation.getCurrentPosition(setBounds);
   	   }
 	  else {
-		  autocomplete= new google.maps.places.Autocomplete(input);
-		  autocomplete2= new google.maps.places.Autocomplete(input2);
+		  autocomplete= new google.maps.places.Autocomplete(input, {types: ['(cities)'],componentRestrictions: {country: "es"}});
+		  autocomplete2= new google.maps.places.Autocomplete(input2, {types: ['(cities)'],componentRestrictions: {country: "es"}});
 
 	  }
 	  
@@ -25,7 +27,9 @@ function initialize() {
 			new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
 		);
 	  	var options = {
-	  		  bounds: mi_posicion
+	  		  bounds: mi_posicion,
+	  		  types: ['(cities)'],
+	  		  componentRestrictions: {country: "es"}
 	  	};
 	  	autocomplete= new google.maps.places.Autocomplete(input, options);
 	  	autocomplete2= new google.maps.places.Autocomplete(input2, options);
