@@ -203,14 +203,27 @@ $("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],selec
 
 /* EL DIAL */
 function donutfunction(){
-$(".donutchart").donutchart();
-$(".donutchartcompras").donutchart({'bgColor':'#aa252b'});
-$(".donutchartfandfriends").donutchart({'bgColor':'#08705b'});
-$('.los-joinity').hover (function(){
-  $(".donutchart",this).stop().donutchart("animate");
-  $(".donutchartcompras",this).stop().donutchart("animate");
-  $(".donutchartfandfriends",this).stop().donutchart("animate");
-})
+  var home = $('#home');
+  var misJoinitys = $('#misJoinitys');
+  if (home.length > 0) {
+    $(".donutchart").donutchart();
+    $(".donutchartcompras").donutchart({'bgColor':'#aa252b'});
+    $(".donutchartfandfriends").donutchart({'bgColor':'#08705b'});
+    $('.los-joinity').hover (function(){
+      $(".donutchart",this).stop().donutchart("animate");
+      $(".donutchartcompras",this).stop().donutchart("animate");
+      $(".donutchartfandfriends",this).stop().donutchart("animate");
+    })
+  } else if (misJoinitys.length > 0) {
+    $(".donutchart").donutchart({'bgColor':'rgba(0,0,0,.2)'});
+    $('.los-joinity').hover (function(){
+      $(".donutchart",this).stop().donutchart("animate");
+      $(".donutchartcompras",this).stop().donutchart("animate");
+      $(".donutchartfandfriends",this).stop().donutchart("animate");
+    })
+  } else {
+    
+  }
 }
 donutfunction();
 

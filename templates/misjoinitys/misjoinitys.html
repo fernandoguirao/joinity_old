@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block contenedor %}
 <div id="contenedorMain">
-
-{% include "persistentes/menuAdaptativo.html" %}  
+  {% include "persistentes/menuAdaptativo.html" %}  
   <div class="container-fluid contenedorAdaptativo">
     <div class="row-fluid">
       <div class="span2 panelIzquierdo">
@@ -11,9 +10,29 @@
       <div class="span10" id="contenedorPrincipal">
 
         {% include "persistentes/buscador.html" %}
+        <div class="container contenedor-array faficiones">
+          <h3>
+            Joinitys en los que participas
+          </h3>
+          <div class="contenedor-categoria">
+    <div class="la-categoria activa aficat btn btn-embossed grisclaro">
+      Aficiones
+    </div>
+    <div class="la-categoria compracat btn btn-embossed grisclaro">
+      Compras
+    </div>
+    <div class="la-categoria famcat btn btn-embossed grisclaro">
+      F. & friends
+    </div>
+  </div>
+          <div class="contenedor-elarray">
+            <div class="contenedor-los-joinitys">
 		{% for joinity in lista_joinitys %}
         	{% include "misjoinitys/joinity.html" %}
 		{% endfor %}
+        </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

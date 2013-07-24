@@ -4791,14 +4791,28 @@ margin: 0 9px 0 13px;
 }
 
 
+
 /* MIS JOINITYS */
 #misJoinitys {
   /* ARRAY JOINITYS */
+  .container.contenedor-array.faficiones {
+    width: 100%;
+    h3 {
+      font-family: @font;
+      font-size: 20px;
+      margin: 28px 37px;
+      text-align: center;
+      text-transform: uppercase;
+      color:@gris;
+    }
+  }
+
   .contenedor-array {
     .contenedor-categoria {
-      height:112px;
+      height:44px;
       margin: 30px 0;
-      text-algin:center;
+      text-align:center;
+      width:100%;
       .la-categoria {
         cursor:pointer;
         .transition(background-color,.3s);
@@ -4820,84 +4834,46 @@ margin: 0 9px 0 13px;
             margin-bottom:14px;
           }
         }
-        font-size:13.6px;
+        font-size:11.6px;
         font-weight:bold;
         display:inline-block;
-        margin: 0 30px;
-        color:@oscuro;
-        padding:26px 22px 17px;
+        margin: 0 13px;
+        color:@gris;
+        padding:17px 22px 17px;
         .border-radius(5px);
-        &.activa {
-          color:@elcolor;
-          background-color:@oscuro;
-          
+        &.activa.aficat {
+          color:@claro;
+          background-color:@azul;
+        }
+        &.activa.famicat {
+          color:@claro;
+          background-color:@verde;
+        }
+        &.activa.compracat {
+          color:@claro;
+          background-color:@rojo;
         }
       }
     }
     .contenedor-elarray {
       padding-bottom:28px;
       background-color:@claro;
-      border-top:5px solid @elcolor;
-      &:before {
-        background-color: transparent;
-        border-bottom: 9px solid @elcolor;
-        border-left: 9px solid transparent;
-        border-right: 9px solid transparent;
-        content: "";
-        height: 2px;
-        position: absolute;
-        width: 1px;
-        margin-top: -16px;
-        margin-left:-200px;
-        }
       
-      .contenedor-filtro {
-        background-color:@grisclaro;
-        position:absolute;
-        left:0px;
-        width:100%;
-        height:40px;
-        margin-top:21px;
-        .container {
-          margin-top:11px;
-        }
-        .filtros {
-          color:white;
-          font-size:11px;
-          text-transform: uppercase;
-          display:inline-block;
-          margin:0 40px;
-          cursor:pointer;
-          &:hover {
-            color:@oscuro;
-          }
-          &.activo {
-            cursor:default;
-          }
-          i {
-            font-size:17px!important;
-            top:3px;
-            position:relative;
-            &.otros {
-              top:1px;
-            }
-            &.otro2 {
-              top:2px;
-            }
-          }
-          &.activo {
-            color:@oscuro;
-            i {
-              color:@oscuro;
-            }
-          }
-        }
-      }
       .contenedor-los-joinitys {
-        padding:79px 34px 34px;
+        padding:16px 34px 34px;
         .los-joinity {
-          background-color:@elcolor;
-          .esquina(@elcolor);
+          &.tipo3 {
+            background-color:@azul;
+            .esquina(@azul);
+          }
+          &.tipo2 {
+            background-color:@rojo;
+            .esquina(@rojo);
+          }
+          &.tipo1 {
+            background-color:@verde;
+            .esquina(@verde);
+          }
           display: inline-block;
           margin: 6px;
           overflow:hidden;
@@ -4905,23 +4881,12 @@ margin: 0 9px 0 13px;
             top:inherit;
             left:inherit;
             z-index:1;
-            /* .transition(border-color,.3s) */
           }
           width:221px;
           height:215px;
           .dial {
             display:none;
           }
-/*
-          .no-foto {
-            margin-top: -65px;
-            position: relative;
-            width: 221px;
-            .iconos {
-              font-size: 68px!important;
-            }
-          }
-*/
           .rueda {
             .opacity(0);
             .transition(opacity,.5s);

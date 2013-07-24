@@ -39,7 +39,7 @@ def index(request):
 @login_required
 def mis_joinitys(request):
     lista_joinitys=Usuarios_Joinity.objects.filter(usuario=request.user)
-    context={'lista_joinitys':lista_joinitys, "usuario":request.user, "pagina":"joinity"}
+    context={'lista_joinitys':lista_joinitys, "usuario":request.user, "pagina":"misJoinitys"}
     return render(request, 'misjoinitys/misjoinitys.html', context)
 @login_required
 def filtro(request):

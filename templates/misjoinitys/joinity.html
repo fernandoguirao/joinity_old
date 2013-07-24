@@ -1,44 +1,43 @@
-
-      <!-- CADA JOINITY -->
-      <a class="los-joinity beta-reg" href="#modalInicio" data-toggle="modal">
-        <div class="foto-join" style="background-image:url('/media/{{joinity.joinity.foto}}');">
-        </div>
-        <div class="info-caja">
-          <h6>
-            {{joinity.joinity.nombre}}
-          </h6>
-          <p>
-          	En {{joinity.joinity.lugar}},
-           por {{joinity.joinity.precio}} €
-          </p>
-        </div>
-        <!-- HOVER -->
-        <div class="datos-hover">
-          <div class="rueda img-circle">
-            <div class="donutchart" data-percent="{{aficion.get_porcentaje}}"></div>
-            <div class="numjoine">
-              <span>
-                {{joinity.joinity.n_joiners}}/{{joinity.joinity.n_max}}
-              </span>
-              joiners
-            </div>
-          </div>
-          <div class="lafecha">
-            {{joinity.joinity.fecha_inicio|date:"d"}}
-            <span>
-               {{joinity.joinity.fecha_inicio|date:"M"}}
-            </span>
-          </div>
-          <div class="valor06">
-          {% for i in cinco  %}
-          	{% if i <= aficion.puntuacion_media %}
-          		<i class="iconos punto">j</i>
-           	{% else %}
-           		<i class="iconos">j</i>
-           	{% endif %}
-          {% endfor %}
-          </div>
-        <!-- FIN DE HOVER -->
-        </div>
-      </a>
-      <!-- FIN DE CADA JOINITY -->
+<!-- CADA JOINITY -->
+<a class="los-joinity beta-reg tipo{{joinity.joinity.tipo}}" href="#modalInicio" data-toggle="modal">
+  <div class="foto-join" style="background-image:url('/media/{{joinity.joinity.foto}}');">
+  </div>
+  <div class="info-caja">
+    <h6>
+      {{joinity.joinity.nombre}}
+    </h6>
+    <p>
+      En {{joinity.joinity.lugar}},
+      por {{joinity.joinity.precio}} €
+    </p>
+  </div>
+  <!-- HOVER -->
+  <div class="datos-hover">
+    <div class="rueda img-circle">
+      <div class="donutchart" data-percent="{{joinity.joinity.get_porcentaje}}"></div>
+      <div class="numjoine">
+        <span>
+          {{joinity.joinity.n_joiners}}/{{joinity.joinity.n_max}}
+        </span>
+        joiners
+      </div>
+    </div>
+    <div class="lafecha">
+      {{joinity.joinity.fecha_inicio|date:"d"}}
+      <span>
+         {{joinity.joinity.fecha_inicio|date:"M"}}
+      </span>
+    </div>
+    <div class="valor06">
+    {% for i in cinco  %}
+      {% if i <= aficion.puntuacion_media %}
+      <i class="iconos punto">j</i>
+      {% else %}
+      <i class="iconos">j</i>
+      {% endif %}
+    {% endfor %}
+    </div>
+  <!-- FIN DE HOVER -->
+  </div>
+</a>
+<!-- FIN DE CADA JOINITY -->
