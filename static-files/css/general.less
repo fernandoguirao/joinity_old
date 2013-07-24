@@ -4794,6 +4794,9 @@ margin: 0 9px 0 13px;
 
 /* MIS JOINITYS */
 #misJoinitys {
+  #contenedorPrincipal {
+    min-height:800px;
+  }
   /* ARRAY JOINITYS */
   .container.contenedor-array.faficiones {
     width: 100%;
@@ -4841,11 +4844,15 @@ margin: 0 9px 0 13px;
         color:@gris;
         padding:17px 22px 17px;
         .border-radius(5px);
+        &.activa.todascat {
+          color:@oscuro;
+          background-color:@amarillo;
+        }
         &.activa.aficat {
           color:@claro;
           background-color:@azul;
         }
-        &.activa.famicat {
+        &.activa.famcat {
           color:@claro;
           background-color:@verde;
         }
@@ -4903,6 +4910,7 @@ margin: 0 9px 0 13px;
             width: 220px;
             font-size:11px;
             text-transform:uppercase;
+            text-align:center;
             span {
               color: @claro;
               display: block;

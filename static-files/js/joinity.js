@@ -1,3 +1,6 @@
+var ishome = $('#home');
+var ismisJoinitys = $('#misJoinitys');
+
 function refresca_notificaciones(data){
 	if (data.menu)
 		$("#menu_notificaciones").html(data.menu);
@@ -203,9 +206,7 @@ $("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],selec
 
 /* EL DIAL */
 function donutfunction(){
-  var home = $('#home');
-  var misJoinitys = $('#misJoinitys');
-  if (home.length > 0) {
+  if (ishome.length > 0) {
     $(".donutchart").donutchart();
     $(".donutchartcompras").donutchart({'bgColor':'#aa252b'});
     $(".donutchartfandfriends").donutchart({'bgColor':'#08705b'});
@@ -214,7 +215,7 @@ function donutfunction(){
       $(".donutchartcompras",this).stop().donutchart("animate");
       $(".donutchartfandfriends",this).stop().donutchart("animate");
     })
-  } else if (misJoinitys.length > 0) {
+  } else if (ismisJoinitys.length > 0) {
     $(".donutchart").donutchart({'bgColor':'rgba(0,0,0,.2)'});
     $('.los-joinity').hover (function(){
       $(".donutchart",this).stop().donutchart("animate");
@@ -252,15 +253,41 @@ seleccionbtn.click(function(){
 
 /* AUTOSCROLL HOME */
 
-$(".aficat").click(function(){
-  $('html,body').animate({scrollTop:$(".faficiones").offset().top},1200);
-});
-$(".compracat").click(function(){
-  $('html,body').animate({scrollTop:$(".fcompras").offset().top},1200);
-});
-$(".famcat").click(function(){
-  $('html,body').animate({scrollTop:$(".fandfriends").offset().top},1200);
-});
+if(ishome.length > 0) {
+  $(".aficat").click(function(){
+    $('html,body').animate({scrollTop:$(".faficiones").offset().top},1200);
+  });
+  $(".compracat").click(function(){
+    $('html,body').animate({scrollTop:$(".fcompras").offset().top},1200);
+  });
+  $(".famcat").click(function(){
+    $('html,body').animate({scrollTop:$(".fandfriends").offset().top},1200);
+  });
+} else if (ismisJoinitys.length > 0){
+  $(".todascat").click(function(){
+    $('.famcat,.compracat,.aficat').removeClass('activa');
+    $(this).addClass('activa');
+    $('.tipo2,.tipo1,.tipo3').slideDown();
+  });
+  $(".aficat").click(function(){
+    $('.famcat,.compracat,.todascat').removeClass('activa');
+    $(this).addClass('activa');
+    $('.tipo3').slideDown();
+    $('.tipo2,.tipo1').slideUp();
+  });
+  $(".compracat").click(function(){
+    $('.famcat,.aficat,.todascat').removeClass('activa');
+    $(this).addClass('activa');
+    $('.tipo2').slideDown();
+    $('.tipo3,.tipo1').slideUp();
+  });
+  $(".famcat").click(function(){
+    $('.compracat,.aficat,.todascat').removeClass('activa');
+    $(this).addClass('activa');
+    $('.tipo1').slideDown();
+    $('.tipo3,.tipo2').slideUp();
+  });
+}
 
 /* VOTACIONES */
 
