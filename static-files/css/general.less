@@ -4862,6 +4862,9 @@ margin: 0 9px 0 13px;
         }
       }
     }
+    .invisible {
+      .opacity(0);
+    }
     .contenedor-elarray {
       padding-bottom:28px;
       background-color:@claro;
@@ -4869,6 +4872,7 @@ margin: 0 9px 0 13px;
       .contenedor-los-joinitys {
         padding:16px 34px 34px;
         .los-joinity {
+          .transition(all,.2s);
           &.tipo3 {
             background-color:@azul;
             .esquina(@azul);
