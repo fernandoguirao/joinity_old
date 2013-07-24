@@ -1,30 +1,239 @@
-{% if usuarios %}
-USUARIOS QUE COINCIDEN CON TU BUSQUEDA:<br>
-{% for usuario in usuarios %}
-<a href="/usuario/{{usuario.id}}">{{usuario.first_name}} {{usuario.last_name}}</a><br>
-{% endfor %}
-{% endif %}
-{% if joinitys %}
-JOINITYS QUE COINCIDEN CON TU BUSQUEDA:<br>
-{% for joinity in joinitys %}
-<a href="/joinity/{{joinity.id}}">{{joinity.nombre}}</a><br>
-{% endfor %}
-{% endif %}
-{% if categoria_compras %}
-JOINITYS DE COMPRAS QUE CONTIENEN LA SUBCATEGORIA BUSCADA:<br>
-{% for joinity in categoria_compras %}
-<a href="/joinity/{{joinity.id}}">{{joinity.nombre}}</a><br>
-{% endfor %}
-{% endif %}
-{% if categoria_aficiones %}
-JOINITYS DE AFICIONES QUE CONTIENEN LA SUBCATEGORIA BUSCADA:<br>
-{% for joinity in categoria_aficiones %}
-<a href="/joinity/{{joinity.id}}">{{joinity.nombre}}</a><br>
-{% endfor %}
-{% endif %}
-{% if eventos %}
-EVENTOS QUE COINCIDEN CON LA BUSQUEDA:<br>
-{% for evento in eventos %}
-<a href="/joinity/{{evento.joinity.id}}/evento/{{evento.id}}">{{evento.titulo}}</a><br>
-{% endfor %}
-{% endif %}
+<!-- FILTROS -->
+      <div id="filtros">
+        <h3>Filtros</h3>
+        <ul class="nav nav-tabs tab-vertical" id="tabFiltro">
+          <li class="active">
+            <a href="#res-joinitys">
+              Joinitys
+            </a>
+          </li>
+          <li>
+            <a href="#res-usuarios">
+              Usuarios
+            </a>
+          </li>
+          <li>
+            <a href="#res-eventos">
+              Eventos
+            </a>
+          </li>
+          <li>
+            <a href="#res-aficiones">
+              Aficiones
+            </a>
+          </li>
+          <li>
+            <a href="#res-lugares">
+              Lugares
+            </a>
+          </li>
+        </ul>
+      </div><!-- FIN DE FILTROS -->
+
+      <!-- RESULTADOS -->
+      <div id="resultados">
+        <h3>Resultados</h3>
+        <div class="tab-content">
+          {% for joinity in joinitys %}
+          <!-- SI EL RESULTADO SON JOINITYS -->
+          <div class="tab-pane active" id="res-joinitys">
+            <a href="/joinity/{{joinity.id}}">
+              <div class="imag-res" style="background-image:url('/media/{{joinity.foto}}')">
+              </div>
+              <div class="resto-res">
+                <h4>
+                  {{joinity.nombre}}
+                </h4>
+                <p>
+                  <i class="iconos primero">
+                    d
+                  </i>
+                 {% for lugar in joinity.lugares.all|slice:":1" %}
+                  
+                  En {{lugar}}, 
+                  {% endfor %}por
+                  <i class="iconos">
+                    h
+                  </i>
+                  {{joinity.precio}} euros
+                </p>
+                <p>
+                  <i class="iconos primero">
+                    5
+                  </i>
+                  {{joinity.n_joiners}} joiners 
+                  <i class="iconos">
+                    q
+                  </i>
+                  Empieza el {{joinity.sub.fecha_inicio}}
+                </p>
+              </div>
+            </a>
+          </div><!--  Fin de joinitys -->
+          {% endfor %}
+          <!-- SI EL RESULTADO SON USUARIOS -->
+             {% for usuario in usuarios %}
+                  <div class="tab-pane" id="res-usuarios">
+                     <a href="/usuario/{{usuario.id}}">
+                        <div class="imag-res" style="background-image:url('/media/{{usuario.usuario.foto}}')">
+                        </div>
+                        <div class="resto-res">
+                            <h4>
+                                {{usuario.first_name}} {{usuario.last_name}}
+                            </h4>
+                            <p>
+                                En Joinity desde el {{usuario.date_joined}}
+                            </p>
+                            <p>
+                                Participa en {{usuario.usuario_joinity.count}} joinitys
+                            </p>
+                         </div> 
+                      </a>
+                  </div> <!-- Fin de usuarios -->
+             {% endfor %}
+         
+         {% for evento in eventos %}
+          <!-- SI EL RESULTADO SON EVENTOS -->
+          <div class="tab-pane" id="res-eventos">
+            <a href="/joinity/{{evento.joinity.id}}/evento/{{evento.id}}">
+              <div class="imag-res" style="background-image:url('/media/{{evento.foto}}')">
+              </div>
+              <div class="resto-res">
+                <h4>
+                  {{evento.titulo}}
+                </h4>
+                <p>
+                  <i class="iconos primero">
+                    d
+                  </i>
+                 {% for lugar in evento.lugares_evento.all|slice:":1" %}
+                  En {{lugar}}
+                  {% endfor %}
+                </p>
+                <p>
+                  <i class="iconos primero">
+                    5
+                  </i>
+                  {{evento.n_joiners}} joiners 
+                  <i class="iconos">
+                    q
+                  </i>
+                  Empieza el {{evento.fecha_inicio}}
+                </p>
+              </div>
+            </a>
+          </div> <!-- Fin de eventos -->
+          {% endfor %}
+          <!-- SI EL RESULTADO SON AFICIONES -->
+          {% for joinity in categoria_aficiones %}
+          <div class="tab-pane" id="res-aficiones">
+            <a href="/joinity/{{joinity.id}}">
+              <div class="imag-res" style="background-image:url('/media/{{joinity.foto}}')">
+              </div>
+              <div class="resto-res">
+                <h4>
+                  {{joinity.nombre}}
+                </h4>
+                <p>
+                  <i class="iconos primero">
+                    d
+                  </i>
+                 {% for lugar in joinity.lugares.all|slice:":1" %}
+                  
+                  En {{lugar}}, 
+                  {% endfor %}por
+                  <i class="iconos">
+                    h
+                  </i>
+                  {{joinity.precio}} euros
+                </p>
+                <p>
+                  <i class="iconos primero">
+                    5
+                  </i>
+                  {{joinity.n_joiners}} joiners 
+                  <i class="iconos">
+                    q
+                  </i>
+                  Empieza el {{joinity.sub.fecha_inicio}}
+                </p>
+              </div>
+            </a>
+          </div><!--  Fin de aficiones -->
+          {% endfor %}
+           <!-- SI EL RESULTADO SON COMPRAS -->
+          {% for joinity in categoria_compras %}
+          <div class="tab-pane" id="res-compras">
+            <a href="/joinity/{{joinity.id}}">
+              <div class="imag-res" style="background-image:url('/media/{{joinity.foto}}')">
+              </div>
+              <div class="resto-res">
+                <h4>
+                  {{joinity.nombre}}
+                </h4>
+                <p>
+                  <i class="iconos primero">
+                    d
+                  </i>
+                 {% for lugar in joinity.lugares.all|slice:":1" %}
+                  
+                  En {{lugar}}, 
+                  {% endfor %}por
+                  <i class="iconos">
+                    h
+                  </i>
+                  {{joinity.precio}} euros
+                </p>
+                <p>
+                  <i class="iconos primero">
+                    5
+                  </i>
+                  {{joinity.n_joiners}} joiners 
+                  <i class="iconos">
+                    q
+                  </i>
+                  Empieza el {{joinity.sub.fecha_inicio}}
+                </p>
+              </div>
+            </a>
+          </div><!--  Fin de compras -->
+          {% endfor %}
+          <!-- SI EL RESULTADO SON LUGARES -->
+          {% for joinity in lugares %}
+          <div class="tab-pane" id="res-lugares">
+            <a href="/joinity/{{joinity.id}}">
+              <div class="imag-res" style="background-image:url('/media/{{joinity.foto}}')">
+              </div>
+              <div class="resto-res">
+                <h4>
+                  {{joinity.nombre}}
+                </h4>
+                <p>
+                  <i class="iconos primero">
+                    d
+                  </i>
+                 {% for lugar in joinity.lugares.all|slice:":1" %}
+                  
+                  En {{lugar}}, 
+                  {% endfor %}por
+                  <i class="iconos">
+                    h
+                  </i>
+                  {{joinity.precio}} euros
+                </p>
+                <p>
+                  <i class="iconos primero">
+                    5
+                  </i>
+                  {{joinity.n_joiners}} joiners 
+                  <i class="iconos">
+                    q
+                  </i>
+                  Empieza el {{joinity.sub.fecha_inicio}}
+                </p>
+              </div>
+            </a>
+          </div><!-- Fin de lugares -->
+          {% endfor %}
+        </div>
+      </div><!-- Fin lista de resultados -->

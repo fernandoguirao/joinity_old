@@ -28,13 +28,17 @@
                     </h1>
                     <div class="sub-info">
                       <p class="">
-                        Desde <i class="iconos">l</i>Madrid
+                      {% for lugar in joinity.joinity.lugares.all|slice:":1"%}
+                        Desde <i class="iconos">l</i>{{lugar.lugar}}
+                        {% endfor %}
                       </p>
                       <p>
-                        Dentro de <i class="iconos">q</i>2 semanas
+                        Dentro de <i class="iconos">q</i>{{joinity.joinity.hasta}} dias
                       </p>
                       <p>
+                      {% if joinity.joinity.precio and joinity.joinity.precio != 0 %}
                         Por <i class="iconos">j</i>{{joinity.joinity.precio}} euros
+                        {% endif %}
                       </p>
                     </div>
                     <div class="slide-foot">
