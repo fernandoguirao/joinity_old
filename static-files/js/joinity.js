@@ -268,31 +268,31 @@ if(ishome.length > 0) {
     $('.famcat,.compracat,.aficat').removeClass('activa');
     $(this).addClass('activa');
     $('.tipo3,.tipo2,.tipo1').removeClass('invisible');
-/*     $('.tipo2,.tipo1,.tipo3').slideDown(); */
+    $('.tipo2,.tipo1,.tipo3').slideDown();
   });
   $(".aficat").click(function(){
     $('.famcat,.compracat,.todascat').removeClass('activa');
     $(this).addClass('activa');
     $('.tipo3').removeClass('invisible');
-/*     $('.tipo3').slideDown(); */
+    $('.tipo3').slideDown();
     $('.tipo1,.tipo2').addClass('invisible');
-/*     $('.tipo2,.tipo1').slideUp(); */
+    $('.tipo2,.tipo1').slideUp();
   });
   $(".compracat").click(function(){
     $('.famcat,.aficat,.todascat').removeClass('activa');
     $(this).addClass('activa');
     $('.tipo2').removeClass('invisible');
-/*     $('.tipo2').slideDown(); */
+    $('.tipo2').slideDown();
     $('.tipo3,.tipo1').addClass('invisible');
-/*     $('.tipo3,.tipo1').slideUp(); */
+    $('.tipo3,.tipo1').slideUp();
   });
   $(".famcat").click(function(){
     $('.compracat,.aficat,.todascat').removeClass('activa');
     $(this).addClass('activa');
     $('.tipo1').removeClass('invisible');
-/*     $('.tipo1').slideDown(); */
+    $('.tipo1').slideDown();
     $('.tipo3,.tipo2').addClass('invisible');
-/*     $('.tipo3,.tipo2').slideUp(); */
+    $('.tipo3,.tipo2').slideUp();
   });
 }
 
