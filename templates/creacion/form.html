@@ -79,6 +79,13 @@
       </label>
       {{ formulario.privacidad }}
     </div>
+    {% if formcompras %}
+      {% include "creacion/formcompras.html" %}
+    {% elif formaficiones %}
+      {% include "creacion/formaficiones.html" %}
+    {% elif formfamily %}
+      {% include "creacion/formfamily.html" %}
+    {% endif %}
     <br>
     <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
   </form>
