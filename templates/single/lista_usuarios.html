@@ -1,0 +1,14 @@
+{% for resultado in lista_usuarios %}
+ {{resultado.first_name}} {{resultado.last_name}}
+ <div id="estadousuario_lista_{{resultado.id}}">
+ {% if resultado in usuarios_invitados %}
+  Ya invitado
+ {% else %}
+
+  	<input type="button" value="Invitar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.invitar(actualiza_usuario, {'invitado':{{resultado.id}}, 'joinity_id':{{joinity.id}}});"/>
+ {% endif %}
+ </div>
+ <br>
+{% empty %}
+ No hay nada en la lista
+{% endfor %}

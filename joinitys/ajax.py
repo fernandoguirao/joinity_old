@@ -1,10 +1,15 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from models import Joinitys
+from models import Joinitys, Usuarios_Joinity
 from django.template.loader import render_to_string
 from forms import FormTexto, FormFoto
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from notificaciones.models import Notificaciones
+from joinity.settings import LOCALHOST
+from django.core.mail import send_mail
+
 
 @dajaxice_register
 def cargar_mas(request, categoria, n, order):
@@ -63,7 +68,22 @@ def cargaformtexto(request, joinity_id):
     form=FormTexto(usuario=request.user, joinity=joinity)
     formulario=render_to_string('single/ajax_formulario_texto.html', {"joinity":joinity, "form":form, "usuario":request.user}, context_instance=RequestContext(request))
     return simplejson.dumps({'paginaformulario':formulario})
+
+@dajaxice_register
+def invitar(request, invitado, joinity_id):
+    joinity = get_object_or_404(Joinitys, pk=joinity_id)
+    usuario = get_object_or_404(User, pk=invitado)
+    if not usuario.usuario.invitado_joinity(joinity):
+        u = Usuarios_Joinity(usuario_id=usuario.id, joinity_id=joinity.id)
+        u.save()
+        notificacion=Notificaciones(usuario=usuario, tipo=1, id_notificacion=joinity.id)
+        notificacion.save()
+        if not LOCALHOST:
+            send_mail('INVITACION A JOINITY ', "Se le ha invitado al joinity\nhttp://prueba1.bueninvento.net/joinity/ver/" + str(joinity.id), 'joinity@joinity.com',
+                              [usuario.email], fail_silently=False)
     
+        return simplejson.dumps({'id_usuario':usuario.id})
+
 
 
     

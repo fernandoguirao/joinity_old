@@ -11,6 +11,12 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+function actualiza_usuario(data){
+	$("#estadousuario_lista_"+data.id_usuario).html("Ya invitado");
+}
+function busquedausuarios(data){
+	$("#resultadosbusquedausuarios").html(data.resultados);
+}
 
 function anyadir_lugar(data){
 	$("#lista_lugares").html(data.lista);

@@ -1,0 +1,15 @@
+<h1>Usuarios Invitados</h1>
+
+{% for miembro in joinity.joinity_usuario.all %}
+ {{miembro.usuario.first_name}} {{miembro.usuario.last_name}}<br>
+{% empty %}
+ No hay nada en la lista
+{% endfor %}
+
+<h1>Busqueda de usuarios</h1>
+  <input type="text" id="busqueda_usuarios">
+  <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.usuario.buscar(busquedausuarios, {'usuario':$('#busqueda_usuarios').val(), 'joinity_id':{{joinity.id}}});"/>
+
+<br>
+<div id="resultadosbusquedausuarios">
+</div>
