@@ -1,205 +1,207 @@
 {% include "single/modal_invita.html" %}
 
-  <div id="header-aficiones" class="extracto-joinity horizontal unJoinity">
-    <!-- EMPIEZA LADO IZQUIERDO -->
-    <div class="left-side lefti" style="background-image:url('/media/{{joinity.foto}}');">
-      {% if soy == "nadie" %}
-      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
-        Únete a este Joinity
-      </a>
-      {% elif soy == "desconectado" %}
-      <a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">
-        Conectate para unirte a este Joinity
-      </a>
-      {% elif soy == "espera" %}
-      <div class="btn joinit">
-        Invitación pendiente
+<div id="header-aficiones" class="extracto-joinity horizontal unJoinity">
+  <!-- EMPIEZA LADO IZQUIERDO -->
+  <div class="left-side lefti" style="background-image:url('/media/{{joinity.foto}}');">
+    {% if soy == "nadie" %}
+    <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+      Únete a este Joinity
+    </a>
+    {% elif soy == "desconectado" %}
+    <a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">
+      Conectate para unirte a este Joinity
+    </a>
+    {% elif soy == "espera" %}
+    <div class="btn joinit">
+      Invitación pendiente
+    </div>
+    {% elif soy == "nada" and joinity.privacidad != 2 %}
+    <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+      Únete a este Joinity
+    </a>
+    {% endif %}
+    <div id="datos-abajo">
+    {% if soy == "miembro" or soy == "admin" %}
+      <a href="/joinity/abandonar/{{joinity.id}}">
+      <div class="btn btn-mini btn-embossed gris">
+        Abandona este joinity
       </div>
-      {% elif soy == "nada" and joinity.privacidad != 2 %}
-      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
-        Únete a este Joinity
       </a>
       {% endif %}
-      <div id="datos-abajo">
-      {% if soy == "miembro" or soy == "admin" %}
-        <a href="/joinity/abandonar/{{joinity.id}}">
-        <div class="btn btn-mini btn-embossed gris">
-          Abandona este joinity
-        </div>
-        </a>
-        {% endif %}
-        {% if soy == "admin" %}
-        <a href="/joinity/editar/{{joinity.id}}">
-        <div class="btn btn-mini btn-embossed amarillo">
-          Administra este joinity
-        </div>
-        </a>
-        {% endif %}
+      {% if soy == "admin" %}
+      <a href="/joinity/editar/{{joinity.id}}">
+      <div class="btn btn-mini btn-embossed amarillo">
+        Administra este joinity
       </div>
-      {% if soy == "admin" or soy == "miembro" %}
-      <div id="datos-arriba">
-        <a href="#modalInvitados" class="btn btn-mini btn-embossed" data-toggle="modal">
-          Invita a más joiners
-        </a>
-      </div>
+      </a>
       {% endif %}
     </div>
-    <!-- FIN DE LADO IZQUIERDO -->
-    <!-- EMPIEZA EL LADO DERECHO -->
-    <div class="right-side">
-      <!-- FILA 01 -->
-      <div class="fila">
-        <div class="valor01">
-          <p>
-            {{joinity.get_categoria}}
-            <span>
-              {{joinity.get_subcategoria}}
-            </span>
-          </p>
-        </div>
-        <div class="valor02">
-          <i class="iconos">
-            i
-          </i>
-          <p>
-          {% if joinity.hasta == 0 %}
-          {% else %}
-            {{joinity.hasta}}
-          {% endif %}
-            <span>
-              {% if joinity.hasta == 0 %}
-                sin fecha definida
-              {% else %}
-                días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
-              {% endif %}
-            </span>
-          </p>
-        </div>
-      </div> <!-- FIN FILA 01 -->
-      <!-- FILA 02 -->
-      <div class="fila">
-        <div class="valor03">
-          <h3>
-            {{joinity.nombre}}
-          </h3>
-        </div>
-        <div class="valor04">
-          {% for i in cinco  %}
-        	{% if i <= joinity.puntuacion_media %}
-        		<i class="iconos punto">j</i>
-         	{% else %}
-         		<i class="iconos">j</i>
-         	{% endif %}
-           {% endfor %}
-        </div>
-      </div> <!-- FIN FILA 02 -->
-      <!-- FILA 03 -->
-      <div class="fila">
-        <div class="valor05">
-          <div class="numero-joiners">
-            <p>
-              <span class="njoiners">
-                {{joinity.n_joiners}}
-              </span>
-              joiners
-            </p>
-          </div>
-        </div>
-        <div class="valor06">
-          <div class="btn btn-small btn-block btn-icono azul">
-            <i class="iconos"> x </i>
-            Información
-          </div>
-        </div>
-      </div> <!-- FIN FILA 03 -->
-      <div class="fila">
-        <div class="valor07">
-          <p>
-            {{joinity.descripcion}}
-          </p>
-        </div>
-      </div>
-      <div class="fila">
-        <div class="valor08">
-        	{% for multimedia in joinity.get_multimedia.all %}
-        		{% if  multimedia.tipo == 2 %}
-          			<a class="thumb-img" href="#modalImagen{{forloop.counter}}" alt="" style="background-image:url('/media/{{multimedia.foto.contenido}}');" data-toggle="modal"></a>
-          		{% else %}
-          			<a class="thumb-video" href="#modalImagen{{forloop.counter}}" alt="" style="background-image:url('/media/images/ejemplos/archivo01.png');" data-toggle="modal"></a>	
-       			{% endif %}
-          {% endfor %}
-        </div>
-        <div class="valor09">
-        {% for lugar in joinity.lugares.all|slice:":2" %}
-          <div class="etiqueta">
-            <i class="iconos">
-              l
-            </i>
-            {{lugar.get_ciudad}}
-          </div>
-          {% if not forloop.last %}
-          <div class="trazado">
-            <span class="arriba">
-            </span>
-            <span class="abajo">
-            </span>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
+    {% if soy == "admin" or soy == "miembro" %}
+    <div id="datos-arriba">
+      <a href="#modalInvitados" class="btn btn-mini btn-embossed" data-toggle="modal">
+        Invita a más joiners
+      </a>
     </div>
-    <!-- FIN DE LADO IZQUIERDO -->
-    <!-- EMPIEZA LADO OCULTO -->
-    <div class="left-side side-oculto">
-      <p>
-      <span>
-        Administrador
-      </span>
-      {{joinity.creador.first_name}} {{joinity.creador.last_name}}
-      <span>
-        Fecha de creación
-      </span>
-      27 de junio de 2013
-      <span>
-        Requisitos
-      </span>
-      {{joinity.sub.requisitos}}
-      <span>
-        Nivel necesario
-      </span>
-      {{joinity.sub.get_nivel}}
-      <span>
-        ¿Se repite?
-      </span>
-      {{joinity.sub.get_repeticion}}
-      </p>
-    </div>
-    <!-- FIN DE LADO OCULTO -->
+    {% endif %}
   </div>
-  
-<!-- MODALES PARA IMÁGENES Y VÍDEO -->
-         {% for multimedia in joinity.get_multimedia.all %}
-          {% if  multimedia.tipo == 2 %}
-                <!-- Imagen 01 -->
-                   <div id="modalImagen{{forloop.counter}}" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                     <div class="modal-body">
-                       <img src="/media/{{multimedia.foto.contenido}}" alt="">
-                     </div>
-                   </div>
-                <!-- Fin imagen 01 -->
+  <!-- FIN DE LADO IZQUIERDO -->
+  <!-- EMPIEZA EL LADO DERECHO -->
+  <div class="right-side">
+    <!-- FILA 01 -->
+    <div class="fila">
+      <div class="valor01">
+        <p>
+          {{joinity.get_categoria}}
+          <span>
+            {{joinity.get_subcategoria}}
+          </span>
+        </p>
+      </div>
+      <div class="valor02">
+        <i class="iconos">
+          i
+        </i>
+        <p>
+        {% if joinity.hasta == 0 %}
+        {% else %}
+          {{joinity.hasta}}
+        {% endif %}
+          <span>
+            {% if joinity.hasta == 0 %}
+              sin fecha definida
             {% else %}
-               <!-- Vídeo -->
-               <div id="modalImagen{{forloop.counter}}" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                 <div class="modal-body">
-                   <img src="/media/images/ejemplos/archivo01.png" alt="">
-                 </div>
-                </div>
-               <!-- Fin vídeo -->
-          {% endif %}
-          {% endfor %}
- 
+              días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
+            {% endif %}
+          </span>
+        </p>
+      </div>
+    </div> <!-- FIN FILA 01 -->
+    <!-- FILA 02 -->
+    <div class="fila">
+      <div class="valor03">
+        <h3>
+          {{joinity.nombre}}
+        </h3>
+      </div>
+      <div class="valor04">
+        {% for i in cinco  %}
+      	{% if i <= joinity.puntuacion_media %}
+      		<i class="iconos punto">j</i>
+       	{% else %}
+       		<i class="iconos">j</i>
+       	{% endif %}
+         {% endfor %}
+      </div>
+    </div> <!-- FIN FILA 02 -->
+    <!-- FILA 03 -->
+    <div class="fila">
+      <div class="valor05">
+        <div class="numero-joiners">
+          <p>
+            <span class="njoiners">
+              {{joinity.n_joiners}}
+            </span>
+            joiners
+          </p>
+        </div>
+      </div>
+      <div class="valor06">
+        <div class="btn btn-small btn-block btn-icono azul">
+          <i class="iconos"> x </i>
+          Información
+        </div>
+      </div>
+    </div> <!-- FIN FILA 03 -->
+    <div class="fila">
+      <div class="valor07">
+        <p>
+          {{joinity.descripcion}}
+        </p>
+      </div>
+    </div>
+    <div class="fila">
+      <div class="valor08">
+      	{% for multimedia in joinity.get_multimedia.all %}
+      		{% if  multimedia.tipo == 2 %}
+        			<a class="thumb-img" href="#modalImagen{{forloop.counter}}" alt="" style="background-image:url('/media/{{multimedia.foto.contenido}}');" data-toggle="modal"></a>
+        		{% else %}
+        			<a class="thumb-video" href="#modalImagen{{forloop.counter}}" alt="" style="background-image:url('/media/images/ejemplos/archivo01.png');" data-toggle="modal"></a>	
+     			{% endif %}
+        {% endfor %}
+      </div>
+      <div class="valor09">
+      {% for lugar in joinity.lugares.all|slice:":2" %}
+        <div class="etiqueta">
+          <i class="iconos">
+            l
+          </i>
+          {{lugar.get_ciudad}}
+        </div>
+        {% if not forloop.last %}
+        <div class="trazado">
+          <span class="arriba">
+          </span>
+          <span class="abajo">
+          </span>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- FIN DE LADO IZQUIERDO -->
+  <!-- EMPIEZA LADO OCULTO -->
+  <div class="left-side side-oculto">
+    <p>
+    <span>
+      Administrador
+    </span>
+    {{joinity.creador.first_name}} {{joinity.creador.last_name}}
+    <span>
+      Fecha de creación
+    </span>
+    27 de junio de 2013
+    <span>
+      Requisitos
+    </span>
+    {{joinity.sub.requisitos}}
+    <span>
+      Nivel necesario
+    </span>
+    {{joinity.sub.get_nivel}}
+    <span>
+      ¿Se repite?
+    </span>
+    {{joinity.sub.get_repeticion}}
+    </p>
+  </div>
+  <!-- FIN DE LADO OCULTO -->
+</div>
 
+<!-- MODALES PARA IMÁGENES Y VÍDEO -->
+{% for multimedia in joinity.get_multimedia.all %}
+{% if  multimedia.tipo == 2 %}
+<!-- Imagen 01 -->
+<div id="modalImagen{{forloop.counter}}" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
+  <div class="modal-body">
+    <img src="/media/{{multimedia.foto.contenido}}" alt="">
+  </div>
+</div>
+<!-- Fin imagen 01 -->
+{% else %}
+<!-- Vídeo -->
+<div id="modalImagen{{forloop.counter}}" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
+  <div class="modal-body">
+    <img src="/media/images/ejemplos/archivo01.png" alt="">
+  </div>
+</div>
+<!-- Fin vídeo -->
+{% endif %}
+{% endfor %}
 <!-- FIN DE MODAL PARA IMÁGENES Y VÍDEO -->

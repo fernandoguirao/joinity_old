@@ -11,6 +11,8 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+
+
 function actualiza_usuario(data){
 	$("#estadousuario_lista_"+data.id_usuario).html("Ya invitado");
 }

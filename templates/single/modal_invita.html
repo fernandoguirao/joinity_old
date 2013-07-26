@@ -1,23 +1,52 @@
-<!-- Modal invitados -->
+<!-- MODAL INVITADOS -->
 <div id="modalInvitados" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   <div class="modal-body">
-    <h3>
-      Usuarios Invitados
-    </h3>
-    {% for miembro in joinity.joinity_usuario.all %}
-     {{miembro.usuario.first_name}} {{miembro.usuario.last_name}}<br>
-    {% empty %}
-     No hay nada en la lista
-    {% endfor %}
-    <h3>
-      Busqueda de usuarios
-    </h3>
-      <input type="text" id="busqueda_usuarios">
-      <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.usuario.buscar(busquedausuarios, {'usuario':$('#busqueda_usuarios').val(), 'joinity_id':{{joinity.id}}});"/>
-    <br>
-    <div id="resultadosbusquedausuarios">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#tuscontactos">
+          Participantes en este joinity
+        </a>
+      </li>
+      <li class="">
+        <a href="#buscanuevoscontactos">
+          Invita nuevos joiners
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tuscontactos">
+        <table class="table table-striped">
+        {% for miembro in joinity.joinity_usuario.all %}
+          <tr>
+            <td>
+              <div class="thumbAmigo" style="background-image:url('/media/{{miembro.usuario.foto}}');">
+              </div>
+              <a class="btn btn-mini rojo btnAmigo" href="/usuario/{{miembro.usuario.id}}">
+                {{miembro.usuario.first_name}} {{miembro.usuario.last_name}}
+              </a>
+            </td>
+            {% if soy == "admin" %}
+            <td>
+              <a href="" class="color oscuro">
+                Eliminar joiner
+              </a>
+            </td>
+            {% endif %}
+          </tr>
+          {% empty %}
+          No hay nada en la lista
+          {% endfor %}
+        </table>
+      </div>
+      <div class="tab-pane" id="buscanuevoscontactos">
+        <input type="text" id="busqueda_usuarios" class="inputNormal input-small">
+        <input type="button" value="Busca un usuario" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.usuario.buscar(busquedausuarios, {'usuario':$('#busqueda_usuarios').val(), 'joinity_id':{{joinity.id}}});"/>
+        <br>
+        <div id="resultadosbusquedausuarios">
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<!-- Modal invitados -->
+<!-- FIN DE MODAL -->

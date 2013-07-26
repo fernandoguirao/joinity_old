@@ -4196,7 +4196,7 @@ p.color {
     margin-top: 0px;
     width: 29px;
     margin: 0!important;
-    border-radius: 4px;
+    .border-radius(4px 0 0 4px);
   }
   .btn.btn-mini.btnAmigo {
     margin-left:25px;
@@ -5030,6 +5030,22 @@ margin: 0 9px 0 13px;
   /* FIN DE ARRAY JOINITYS */
   }
   /* FIN DE MIS JOINITYS */
-  .left-side.lefti {
-    background-color:lighten(@elcolor,10%);
+.left-side.lefti {
+  background-color:lighten(@elcolor,10%);
+}
+
+#joinity {
+  .inputNormal.input-small {
+    padding-top: 2px;
+    position: relative;
+    top: 5px;
+    padding-bottom: 2px;
+    width:50%!important;
   }
+  #ajaxbtn {
+    .border-radius(3px);
+  }
+  .table.table-striped tr {
+    display: inline;
+  }
+}
