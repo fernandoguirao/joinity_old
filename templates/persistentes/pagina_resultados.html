@@ -1,4 +1,7 @@
 <!-- FILTROS -->
+{% for usuario in usuarios %}
+{{usuario.first_name}}
+{% endfor %}
       <div id="filtros">
         <h3>Filtros</h3>
         <ul class="nav nav-tabs tab-vertical" id="tabFiltro">
@@ -34,7 +37,7 @@
       <div id="resultados">
         <h3>Resultados</h3>
         <div class="tab-content">
-          {% for joinity in joinitys %}
+          {% for joinity in joinitys %}      
           <!-- SI EL RESULTADO SON JOINITYS -->
           <div class="tab-pane active" id="res-joinitys">
             <a href="/joinity/{{joinity.id}}">
