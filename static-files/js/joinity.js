@@ -12,7 +12,9 @@ var ismensajes = $('#misMensajes');
 //! FUNCIONES AJAX
 //======================
 
-
+function anyadir_lugar(data){
+	$("#lista_lugares").html(data.lista);
+}
 function cargar_subcategoria(data){
   $("#select_subcategorias").html(data.select);
 }

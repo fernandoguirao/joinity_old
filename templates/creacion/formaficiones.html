@@ -1,4 +1,30 @@
-{% if categorias %}
+{% if pagina == "editar" %}
+ <!-- CAMPO SELECT -->
+    <div class="campo">
+      <!-- TITULO -->
+      <label>
+          SELECCIONA CATEGORIA
+      </label>
+      <select id="selectcategoria" value="X-Men" class="select-block span3" onChange="Dajaxice.joinitys.creacion.cargar_subcategoria(cargar_subcategoria, {'categoria':$(this).val(), 'tipo':1});">
+        {% for categoria in categorias %}
+          <option value="{{categoria.id}}" {% if categoria.nombre == joinity.get_categoria %}selected="selected"{% endif %} >{{categoria.nombre}}</option>
+        {% endfor %}
+      </select>
+      <div id="select_subcategorias">
+         <div class="campo">
+            <!-- TITULO -->
+            <label>
+               Selecciona Subcategoria
+            </label>
+            <select id="id_subcategoria" name="subcategoria" value="X-Men" class="select-block span3" >
+               {% for subcategoria in subcategorias %}
+                  <option value="{{subcategoria.id}}" {% if forloop.first %}selected="selected"{% endif %}>{{subcategoria.nombre}}</option>
+               {% endfor %}
+            </select>
+         </div>
+      </div>
+    </div>
+{% else %}
   <!-- CAMPO SELECT -->
     <div class="campo">
       <!-- TITULO -->
@@ -13,9 +39,10 @@
       </select>
       
     </div>
+    <div id="select_subcategorias">
+    </div>
+    
 {% endif %}
-<div id="select_subcategorias">
-</div>
 <a href="/categorias/nuevo_interes/?next=/joinity/nuevo_joinity/aficiones/"><input type="button" value="Crear Subcategoria" /></a>
 
 <div class="fieldWrapper">

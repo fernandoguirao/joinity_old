@@ -9,13 +9,66 @@ from usuario.forms import Buscar
 from usuario.models import Usuarios
 from joinitys.models import Usuarios_Joinity, Joinitys, Lugares_Joinity
 from forms import JoinityForm, FamilyForm, ComprasForm, AficionesForm, Anyadir_Lugar
-from categorias.models import Categorias, Categorias_Compras
+from categorias.models import Categorias, Categorias_Compras, Subcategorias, Subcategorias_Compras
 
 @login_required
 def nuevo_joinity(request):
     context={"usuario":request.user}
     return render_to_response("creacion/index.html", context)
     
+@login_required
+def editar(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    formlugares=Anyadir_Lugar()
+    if not joinity.soy_admin(request.user):
+        return HttpResponseRedirect("/joinity/"+str(joinity.id))
+    
+    if joinity.tipo==3:
+        subcategorias=Subcategorias.objects.filter(categoria=joinity.sub().subcategoria)
+        if request.POST:
+            formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=3)
+            if formulario.is_valid:
+                print "formulario valido"
+                joinityform = formulario.save()
+                formaficiones=AficionesForm( request.POST, instance=joinity.sub(),joinity=joinityform)
+                if formaficiones.is_valid:
+                    formaficiones.save()
+        else:
+            formulario=JoinityForm(instance=joinity, user=request.user, tipo=3)
+            formaficiones=AficionesForm(instance=joinity.aficiones, joinity=None)
+        context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"editar", "usuario":request.user, "categorias":Categorias.objects.all().order_by('id'), "joinity":joinity, "subcategorias":subcategorias, "formlugares":formlugares}
+    if joinity.tipo==2:
+        subcategorias=Subcategorias_Compras.objects.filter(categoria=joinity.sub().subcategoria)
+
+        if request.POST:
+            formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=2)
+            
+            if formulario.is_valid:
+                joinityform = formulario.save()
+                formcompras=ComprasForm(request.POST, instance=joinity.sub(), joinity=joinityform)
+                if formcompras.is_valid:
+                    formcompras.save()
+        else:
+            formulario = JoinityForm(instance=joinity, user=request.user, tipo=2)
+            formcompras=ComprasForm(instance=joinity.sub, joinity=None)
+        context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear", "usuario":request.user, "categorias":Categorias_Compras.objects.all().order_by('id'), "joinity":joinity, "subcategorias": subcategorias, "formlugares":formlugares}
+    if joinity.tipo==1:
+        if request.POST:
+            formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=1)
+            if formulario.is_valid:
+                joinityform = formulario.save()
+                formfamily=FamilyForm(request.POST, instance=joinity.sub(), joinity=joinityform)
+                if formfamily.is_valid:
+                    formfamily.save()
+        else:
+            formulario = JoinityForm(instance=joinity, user=request.user, tipo=1)
+            formfamily=FamilyForm(intance=joinity.sub, joinity=None)
+        context={'formulario': formulario, 'formfamily':formfamily, "pagina":"crear", "usuario":request.user, "joinity":joinity, "formlugares":formlugares}
+        
+
+    return render_to_response('creacion/pagina_edicion.html', context, context_instance=RequestContext(request))
+        
+
 
 @login_required
 def nuevo_family(request):

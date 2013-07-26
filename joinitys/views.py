@@ -15,6 +15,7 @@ from joinitys.eventos.models import Eventos, Usuarios_Evento
 from notificaciones.models import Notificaciones
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 from joinitys.tareas.models import Tareas
+
 def index(request):
     if not request.user.is_authenticated():
         usuario=False

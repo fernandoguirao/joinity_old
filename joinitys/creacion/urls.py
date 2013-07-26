@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     url(r'^compras/$', views.nuevo_compras, name='nuevo_compras'),
     url(r'^compras/2/(?P<joinity_id>\d+)/$', views.crear_2, name='nuevo_compras_2'),
     url(r'^compras/3/(?P<joinity_id>\d+)/$', views.crear_3, name='nuevo_compras_3'),
-
+    url(r'^(?P<joinity_id>\d+)/$', views.editar, name='editar_joinity'),
 )

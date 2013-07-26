@@ -78,5 +78,5 @@ class Usuarios(models.Model):
     def n_notificaciones(self):
         return Notificaciones.objects.filter(usuario=self, estado=0).count()
     def get_notificaciones(self):
-        return Notificaciones.objects.filter(usuario=self).order_by("-estado", "-fecha")[:7]
+        return Notificaciones.objects.filter(usuario=self).order_by("estado", "-fecha")[:7]
         

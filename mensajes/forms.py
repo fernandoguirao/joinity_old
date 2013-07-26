@@ -23,8 +23,9 @@ class Mandar_Mensaje_Form(forms.ModelForm):
         mensaje.asunto="sin"
         if commit:
             mensaje.save()
-            notificacion=Notificaciones.objects.get_or_create(usuario=self._destinatario, tipo=0, id_notificacion=mensaje.remitente.id, estado=0)[0]
+            notificacion=Notificaciones.objects.get_or_create(usuario=self._destinatario, tipo=0, id_notificacion=mensaje.remitente.id)[0]
             notificacion.fecha=datetime.now()
+            notificacion.estado=0
             notificacion.save()
             # self.save_m2m()
         return mensaje

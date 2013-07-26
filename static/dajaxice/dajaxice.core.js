@@ -98,6 +98,10 @@ var Dajaxice = {
     
         creacion: {
     
+    anyadir_lugar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.creacion.anyadir_lugar', 'POST', callback_function, argv, custom_settings);
+    },
+
     cargar_subcategoria: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.creacion.cargar_subcategoria', 'POST', callback_function, argv, custom_settings);
     }

@@ -86,6 +86,20 @@
     {% elif formfamily %}
       {% include "creacion/formfamily.html" %}
     {% endif %}
+    {% if formlugares %}
+       LUGARES: 
+       <div id="lista_lugares">
+        {% for lugar in joinity.lugares.all %}
+        	Paso {{lugar.n}}: {{lugar.lugar}}<br>
+        {% endfor %}
+        </div>
+        <form action="" method="post" id="form_anyadir_lugar">
+        	{% csrf_token %}
+        	{{ formlugares.lugar }}
+            <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
+        </form>	
+
+    {% endif %}
     <br>
     <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
   </form>
