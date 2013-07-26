@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block contenedor %}
+
 <div id="contenedorMain">
 	{% include "persistentes/menuAdaptativo.html" %} 
   <div class="container-fluid contenedorAdaptativo">
@@ -54,6 +55,6 @@
 <script type="text/javascript">
 setInterval(function() {
  Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':{{joinity.id}},});
-}, 10000);
+}, 30000);
 </script>
 {% endblock %}

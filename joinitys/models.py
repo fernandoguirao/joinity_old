@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from categorias.models import Subcategorias, Subcategorias_Compras, Subcategorias_Family
 from reservas.models import Empresa
-from datetime import date
+from datetime import date, datetime
 #############################################################################
 #                    CLASE PADRE JOINITY                                    #
 #############################################################################
@@ -38,7 +38,7 @@ class Joinitys(models.Model):
         else:
             return "nada"
     def soy_admin(self, user):
-        return self.creador==user or self.joinity_usuario.filter(usuario=user, estado='2').count()!=0
+        return self.creador==user or self.joinity_usuario.filter(usuario=user, estado='2').exists()
     def soy_miembro(self, user):
         return self.joinity_usuario.filter(usuario=user, estado='1').count()!=0
     def soy_invitado(self, user):
@@ -146,6 +146,28 @@ class Aficiones(models.Model):
     requisitos=models.CharField(max_length=100)
     class Meta:
         db_table="Aficiones"
+    def get_nivel(self):
+        if self.nivel==0:
+            return "Indiferente"
+        elif self.nivel==1:
+            return "Amateur"
+        elif self.nivel==2:
+            return "Intermedio"
+        elif self.nivel==3:
+            return "Pro"
+    def get_repeticion(self):
+        if self.repeticion==0:
+            return "Puntual"
+        elif self.repeticion==1:
+            return "Diario"
+        elif self.repeticion==2:
+            return "Semanal"
+        elif self.repeticion==3:
+            return "2 semanas"
+        elif self.repeticion==4:
+            return "Mensual"
+        elif self.repeticion==5:
+            return "Anual"
     
 #############################################################################
 
@@ -188,6 +210,7 @@ class Reservas_Empresas(models.Model):
 class Actualizaciones(models.Model):
     joinity=models.ForeignKey(Joinitys, related_name="actualizaciones")
     tipo=models.IntegerField()
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
     class Meta:
         db_table="Actualizaciones"
 class Texto_Joinity(models.Model):
@@ -200,14 +223,24 @@ class Comentario_Actualizacion(models.Model):
     usuario=models.ForeignKey(User)
     actualizacion=models.ForeignKey(Actualizaciones, related_name="comentarios")
     comentario=models.TextField(max_length=400)
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
     class Meta:
         db_table="Comentarios_Actualizaciones"
+   
 class Lugares_Joinity(models.Model):
     joinity=models.ForeignKey(Joinitys, related_name="lugares")
     n=models.IntegerField(default=1)
     lugar=models.TextField()
     class Meta:
         db_table="Lugares_Joinitys"
+    def get_ciudad(self):
+        ciudad=""
+        for letra in self.lugar:
+            if letra!=",":
+                ciudad+=letra
+            else:
+                break
+        return ciudad
 
 
 class Foto_Joinity(models.Model):

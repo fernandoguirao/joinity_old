@@ -255,6 +255,29 @@ def unirse_evento(request, joinity_id, evento_id):
         nuevo=Usuarios_Evento(usuario=request.user, evento=evento, estado=1)
         nuevo.save()
     return HttpResponseRedirect("/joinity/"+str(evento.joinity.id))
+@login_required
+def abandonar(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    if not joinity.soy_admin(request.user):
+        Usuarios_Joinity.objects.filter(joinity=joinity, usuario=request.user).delete()
+    else:
+        if Usuarios_Joinity.objects.filter(joinity=joinity, estado=2).count()>1:
+            Usuarios_Joinity.objects.filter(joinity=joinity, usuario=request.user).delete()
+            if joinity.creador==request.user:
+                otro=Usuarios_Joinity.objects.filter(joinity=joinity, estado=2)[0]
+                joinity.creador=otro
+                joinity.save()
+        else:
+            if Usuarios_Joinity.objects.filter(joinity=joinity, estado=1).count()>1:
+                Usuarios_Joinity.objects.filter(joinity=joinity, usuario=request.user).delete()
+                nuevo_admin=Usuarios_Joinity.objects.filter(joinity=joinity, estado=1)[0]
+                nuevo_admin.estado=2
+                nuevo_admin.save()
+                joinity.creador=nuevo_admin
+                joinity.save()
+    return HttpResponseRedirect("/joinity/"+str(joinity.id))
+
+                
 
 
 

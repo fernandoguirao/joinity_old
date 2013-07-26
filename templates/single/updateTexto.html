@@ -1,3 +1,4 @@
+
 <!-- ACTUALIZACIÓN: TEXTO -->
 <div class="actualizacion texto">
   <div class="clasificacion">
@@ -7,12 +8,19 @@
       </i>
     </div>
     <div class="fecha etiqueta">
-      12 jun
+      {% load actualizaciones_filters %}
+      
+        {% if contenido.fecha|es_hoy %}
+         {{contenido.fecha|date:'H:i'}}
+        {% else %}
+         {{contenido.fecha|date:'d/m/y'}}
+        {% endif %}
+      
     </div>
   </div>
   <div class="continente">
     <div class="creditos">
-      <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+      <div class="avatar" style="background-image:url('/media/{{contenido.texto.usuario.usuario.foto}}');">
       </div>
       <p class="smallTxt">
         <a href="/usuario/{{comentario.usuario.id}}">

@@ -11,6 +11,12 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+function actualiza_usuario(data){
+	$("#estadousuario_lista_"+data.id_usuario).html("Ya invitado");
+}
+function busquedausuarios(data){
+	$("#resultadosbusquedausuarios").html(data.resultados);
+}
 
 function anyadir_lugar(data){
 	$("#lista_lugares").html(data.lista);
@@ -93,6 +99,15 @@ function postear(data){
     Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
   }
 }
+function comentar(data){
+	  if (data.error){
+		  alert("No se pudo procesar la solicitud");
+	  }
+	  else{
+	    $(".inputcomentario").val("");
+	    Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
+	  }
+	}
 
 function refrescar_joinitys(data){
   $("#cronologia").html(data.muro);

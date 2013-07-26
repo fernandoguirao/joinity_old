@@ -59,7 +59,7 @@ class FormTexto(forms.ModelForm):
             
         return nuevo_texto
 class FormComentario(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Cuéntale algo al grupo.', 'class':'span2 inputNormal'}))
+    comentario = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Cuéntale algo al grupo.', 'class':'span2 inputNormal inputcomentario'}))
     class Meta:
         model = Comentario_Actualizacion
         fields = ("comentario",)

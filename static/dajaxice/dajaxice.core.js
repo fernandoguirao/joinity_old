@@ -24,6 +24,19 @@ var Dajaxice = {
     
 ,
     
+    usuario: {
+    
+    buscar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('usuario.buscar', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
     buscador: {
     
     buscador: function(callback_function, argv, custom_settings){
@@ -52,8 +65,16 @@ var Dajaxice = {
     
     joinitys: {
     
+    invitar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.invitar', 'POST', callback_function, argv, custom_settings);
+    },
+
     postear: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.postear', 'POST', callback_function, argv, custom_settings);
+    },
+
+    comentar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.comentar', 'POST', callback_function, argv, custom_settings);
     },
 
     filtrar: function(callback_function, argv, custom_settings){

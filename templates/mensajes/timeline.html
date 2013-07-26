@@ -1,4 +1,5 @@
 
+{% load mensajes_filters %}
 
 <div id="timeline">
 {% if formulario %}
@@ -46,7 +47,6 @@
         <div class="icono avatar" style="background-image:url('/media/{{mensaje.remitente.usuario.foto}}');">
         </div>
         <div class="fecha etiqueta">
-        {% load mensajes_filters %}
         {% if mensaje.fecha|es_hoy %}
         	{{mensaje.fecha|date:'H:i'}}
         {% else %}

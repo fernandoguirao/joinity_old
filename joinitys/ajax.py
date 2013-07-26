@@ -1,8 +1,8 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from models import Joinitys, Usuarios_Joinity
+from models import Joinitys, Usuarios_Joinity, Actualizaciones
 from django.template.loader import render_to_string
-from forms import FormTexto, FormFoto
+from forms import FormTexto, FormFoto, FormComentario
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
@@ -53,7 +53,8 @@ def postear(request, formulario, joinity_id):
 @dajaxice_register
 def refrescar(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
-    muro=render_to_string('single/ajax_muro.html', {"joinity":joinity,},context_instance=RequestContext(request))
+    comentar=FormComentario(usuario=request.user, actualizacion=0)
+    muro=render_to_string('single/ajax_muro.html', {"joinity":joinity, "comentar":comentar,},context_instance=RequestContext(request))
     return simplejson.dumps({'muro':muro})
 
 @dajaxice_register
@@ -84,6 +85,14 @@ def invitar(request, invitado, joinity_id):
     
         return simplejson.dumps({'id_usuario':usuario.id})
 
+@dajaxice_register
+def comentar(request, formulario, actualizacion_id):
+    actualizacion=get_object_or_404(Actualizaciones, pk=actualizacion_id)
+    form = FormComentario(formulario, usuario=request.user, actualizacion=actualizacion)
+    if form.is_valid():
+        form.save()
+        return simplejson.dumps({'status':False, 'joinity_id':actualizacion.joinity.id})
+    return simplejson.dumps({'status': 'Error al enviar'})
 
 
     

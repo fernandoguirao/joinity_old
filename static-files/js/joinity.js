@@ -99,6 +99,15 @@ function postear(data){
     Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
   }
 }
+function comentar(data){
+	  if (data.error){
+		  alert("No se pudo procesar la solicitud");
+	  }
+	  else{
+	    $(".inputcomentario").val("");
+	    Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
+	  }
+	}
 
 function refrescar_joinitys(data){
   $("#cronologia").html(data.muro);
