@@ -1,8 +1,23 @@
-<div class="fieldWrapper">
-	<label for="id_subcategoria">Subcategoria:</label>
-	{{ formaficiones.subcategoria }}
-	<a href="/categorias/nuevo_interes/?next=/joinity/nuevo_joinity/aficiones/"><input type="button" value="Crear Subcategoria" /></a>
+{% if categorias %}
+  <!-- CAMPO SELECT -->
+    <div class="campo">
+      <!-- TITULO -->
+      <label>
+          SELECCIONA CATEGORIA
+      </label>
+      <select id="selectcategoria" value="X-Men" class="select-block span3" onChange="Dajaxice.joinitys.creacion.cargar_subcategoria(cargar_subcategoria, {'categoria':$(this).val(), 'tipo':1});">
+         <option selected="selected">Selecciona una Categoria:</option>
+        {% for categoria in categorias %}
+          <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+        {% endfor %}
+      </select>
+      
+    </div>
+{% endif %}
+<div id="select_subcategorias">
 </div>
+<a href="/categorias/nuevo_interes/?next=/joinity/nuevo_joinity/aficiones/"><input type="button" value="Crear Subcategoria" /></a>
+
 <div class="fieldWrapper">
     <label for="id_fecha_inicio">Fecha Inicio:</label>
     {{ formaficiones.fecha_inicio }}

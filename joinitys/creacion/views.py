@@ -9,6 +9,7 @@ from usuario.forms import Buscar
 from usuario.models import Usuarios
 from joinitys.models import Usuarios_Joinity, Joinitys, Lugares_Joinity
 from forms import JoinityForm, FamilyForm, ComprasForm, AficionesForm, Anyadir_Lugar
+from categorias.models import Categorias, Categorias_Compras
 
 @login_required
 def nuevo_joinity(request):
@@ -51,7 +52,7 @@ def nuevo_compras(request):
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=2)
         formcompras=ComprasForm(joinity=None)
-    context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear", "usuario":request.user}
+    context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear", "usuario":request.user, "categorias":Categorias_Compras.objects.all().order_by('id')}
     return render_to_response('creacion/pagina_creacion.html',context , context_instance=RequestContext(request))
 
 
@@ -70,7 +71,7 @@ def nuevo_aficiones(request):
     else:
         formulario = JoinityForm(user=request.user, tipo=3)
         formaficiones=AficionesForm(joinity=None)
-    context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear", "usuario":request.user}
+    context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"crear", "usuario":request.user, "categorias":Categorias.objects.all().order_by('id')}
     return render_to_response('creacion/pagina_creacion.html', context, context_instance=RequestContext(request))
 
 @login_required

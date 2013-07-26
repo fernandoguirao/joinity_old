@@ -1,1 +1,25 @@
-{{formcompras}}
+{% if categorias %}
+  <!-- CAMPO SELECT -->
+    <div class="campo">
+      <!-- TITULO -->
+      <label>
+          SELECCIONA CATEGORIA
+      </label>
+      <select id="selectcategoria" value="X-Men" class="select-block span3" onChange="Dajaxice.joinitys.creacion.cargar_subcategoria(cargar_subcategoria, {'categoria':$(this).val(), 'tipo':2});">
+        <option selected="selected">Selecciona una Categoria:</option>
+        {% for categoria in categorias %}
+          <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+        {% endfor %}
+      </select>
+      
+    </div>
+{% endif %}
+<div id="select_subcategorias">
+</div>
+<a href="/categorias/nueva_compra/?next=/joinity/nuevo_joinity/compras/"><input type="button" value="Crear Subcategoria" /></a>
+Joiners Descuento 1:{{formcompras.n_descuento1}}
+Descuento 1:{{formcompras.descuento1}}
+Joiners Descuento 2:{{formcompras.n_descuento2}}
+Descuento 2:{{formcompras.descuento2}}
+Joiners Descuento 3:{{formcompras.n_descuento3}}
+Descuento 3:{{formcompras.descuento3}}

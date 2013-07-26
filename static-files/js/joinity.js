@@ -1,10 +1,9 @@
 var ishome = $('#home');
 var ismisJoinitys = $('#misJoinitys');
 
-$("#selectprueba").change(function() {
-  var newVal = $(this).val();
-  alert('hola');
-});
+function cargar_subcategoria(data){
+	$("#select_subcategorias").html(data.select);
+}
 
 function refresca_notificaciones(data){
 	if (data.menu)
