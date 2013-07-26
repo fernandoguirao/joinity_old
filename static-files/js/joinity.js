@@ -1,6 +1,11 @@
 var ishome = $('#home');
 var ismisJoinitys = $('#misJoinitys');
 
+$("#selectprueba").change(function() {
+  var newVal = $(this).val();
+  alert('hola');
+});
+
 function refresca_notificaciones(data){
 	if (data.menu)
 		$("#menu_notificaciones").html(data.menu);
@@ -202,7 +207,7 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
 
 /* Selects */
 
-$("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],select[name='aficion2'],select[name='reserva2']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
+$("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],select[name='aficion2'],select[name='reserva2'],select[name='selectprueba']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
 
 /* EL DIAL */
 function donutfunction(){
