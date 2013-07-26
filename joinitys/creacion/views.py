@@ -12,7 +12,8 @@ from forms import JoinityForm, FamilyForm, ComprasForm, AficionesForm, Anyadir_L
 
 @login_required
 def nuevo_joinity(request):
-    return render_to_response("creacion/index.html")
+    context={"usuario":request.user}
+    return render_to_response("creacion/index.html", context)
     
 
 @login_required
@@ -35,6 +36,8 @@ def nuevo_family(request):
 
 @login_required
 def nuevo_compras(request):
+    if request.user.id not in [1,28,39]:
+        return render_to_response('creacion/solicitar_compra.html', {"usuario": request.user})
     if request.POST:
         formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=2)
         if formulario.is_valid:

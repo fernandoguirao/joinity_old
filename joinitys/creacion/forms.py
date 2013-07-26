@@ -3,11 +3,11 @@ from joinitys.models import Joinitys, Compras, Aficiones, Family, Lugares_Joinit
 
 class JoinityForm(forms.ModelForm):
     nombre=forms.CharField(widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: '80 cumpleanos de la abuela' o 'Clases de natacion para principiantes'"}))
-    descripcion = forms.CharField(widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":""}))
+    descripcion = forms.CharField(required=False, widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":""}))
     foto=forms.ImageField(required=False,widget=forms.FileInput({"class":"inputFoto","id":"fotoinput"}))
     n_min=forms.IntegerField()
     n_max=forms.IntegerField()
-    precio = forms.DecimalField(localize=True)
+    precio = forms.DecimalField(localize=True, required=False)
     #usuarios = forms.CheckboxSelectMultiple()
     privacidad=forms.ChoiceField(choices=([("0", "Publico"), ("1","Peticion de invitacion"), ("2", "Privado")]))
     class Meta:
@@ -29,7 +29,6 @@ class JoinityForm(forms.ModelForm):
 
 class FamilyForm(forms.ModelForm):
     repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
-
     class Meta:
         model = Family
         fields=("subcategoria", "fecha_inicio", "fecha_fin", "repeticion")
