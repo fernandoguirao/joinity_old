@@ -1,15 +1,23 @@
-<h1>Usuarios Invitados</h1>
-
-{% for miembro in joinity.joinity_usuario.all %}
- {{miembro.usuario.first_name}} {{miembro.usuario.last_name}}<br>
-{% empty %}
- No hay nada en la lista
-{% endfor %}
-
-<h1>Busqueda de usuarios</h1>
-  <input type="text" id="busqueda_usuarios">
-  <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.usuario.buscar(busquedausuarios, {'usuario':$('#busqueda_usuarios').val(), 'joinity_id':{{joinity.id}}});"/>
-
-<br>
-<div id="resultadosbusquedausuarios">
+<!-- Modal invitados -->
+<div id="modalInvitados" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="modal-body">
+    <h3>
+      Usuarios Invitados
+    </h3>
+    {% for miembro in joinity.joinity_usuario.all %}
+     {{miembro.usuario.first_name}} {{miembro.usuario.last_name}}<br>
+    {% empty %}
+     No hay nada en la lista
+    {% endfor %}
+    <h3>
+      Busqueda de usuarios
+    </h3>
+      <input type="text" id="busqueda_usuarios">
+      <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.usuario.buscar(busquedausuarios, {'usuario':$('#busqueda_usuarios').val(), 'joinity_id':{{joinity.id}}});"/>
+    <br>
+    <div id="resultadosbusquedausuarios">
+    </div>
+  </div>
 </div>
+<!-- Modal invitados -->

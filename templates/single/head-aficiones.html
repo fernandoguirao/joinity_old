@@ -38,9 +38,9 @@
       </div>
       {% if soy == "admin" or soy == "miembro" %}
       <div id="datos-arriba">
-        <div class="btn btn-mini btn-embossed">
+        <a href="#modalInvitados" class="btn btn-mini btn-embossed" data-toggle="modal">
           Invita a más joiners
-        </div>
+        </a>
       </div>
       {% endif %}
     </div>
@@ -62,9 +62,16 @@
             i
           </i>
           <p>
+          {% if joinity.hasta == 0 %}
+          {% else %}
             {{joinity.hasta}}
+          {% endif %}
             <span>
-              días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
+              {% if joinity.hasta == 0 %}
+                sin fecha definida
+              {% else %}
+                días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
+              {% endif %}
             </span>
           </p>
         </div>
