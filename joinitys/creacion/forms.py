@@ -1,5 +1,6 @@
 from django import forms
 from joinitys.models import Joinitys, Compras, Aficiones, Family, Lugares_Joinity
+from datetime import date
 
 class JoinityForm(forms.ModelForm):
     nombre=forms.CharField(widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: '80 cumpleanos de la abuela' o 'Clases de natacion para principiantes'"}))
@@ -29,6 +30,8 @@ class JoinityForm(forms.ModelForm):
 
 class FamilyForm(forms.ModelForm):
     repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
+    fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(date.today())}))
+    fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-02', 'value':str(date.today())}))
     class Meta:
         model = Family
         fields=("subcategoria", "fecha_inicio", "fecha_fin", "repeticion")
@@ -44,7 +47,8 @@ class FamilyForm(forms.ModelForm):
 class AficionesForm(forms.ModelForm):
     repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
     nivel = forms.ChoiceField(choices=([("0", "Indiferente"), ("1", "Amateur"), ("2", "Intermedio"), ("3", "Pro")]), required=True)
-
+    fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(date.today())}))
+    fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-02', 'value':str(date.today())}))
     class Meta:
         model = Aficiones
         fields=("subcategoria", "fecha_inicio", "fecha_fin", "repeticion", "nivel", "requisitos")
