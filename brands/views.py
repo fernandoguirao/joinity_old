@@ -47,7 +47,8 @@ def ver(request, nombre_brand=False):
     #    puntuar=Puntuar(empresa=empresa, usuario=request.user)
     #context={'empresa':empresa, 'puntuar':puntuar, 'usuario':request.user}
     #return render_to_response('ver_empresa.html', context,context_instance=RequestContext(request))
-    return render_to_response('brands/single/index.html')
+    context={"usuario":request.user, "pagina":"brands"}
+    return render_to_response('brands/single/index.html', context)
 
 def seguir_empresa(request, empresa_id):
     empresa=get_object_or_404(Brand, pk=empresa_id)
