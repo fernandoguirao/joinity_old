@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from joinity.settings import LOCALHOST
 from joinitys.models import Joinitys
+from datetime import datetime
 
 # Create your models here.
 from paypal.standard.ipn.signals import payment_was_successful
@@ -16,12 +17,15 @@ def show_me_the_money(sender, **kwargs):
     pago = Pagos.objects.get(pk=usuariopago.pago_id)
     usuario = User.objects.get(pk=usuariopago.usuario_id)
     if not LOCALHOST:
-        send_mail('CONFIRMACION DE PAGO ', 'Se confirma el pago por el producto:', 'antoni@bueninvento.es',
+        send_mail('CONFIRMACION DE PAGO ', 'Se confirma el pago por el producto:', 'joinity@joinity.com',
                   [usuario.email], fail_silently=False)
-        send_mail('CONFIRMACION DE PAGO ', "El usuario: " + usuario.email + " ha pagado el producto", 'antoni@bueninvento.es',
+        send_mail('CONFIRMACION DE PAGO ', "El usuario: " + usuario.email + " ha pagado el producto", 'joinity@joinity.com',
                   [pago.correo], fail_silently=False)
+        send_mail('CONFIRMACION DE PAGO ', "El usuario: " + usuario.email + " ha pagado el producto:\nConcepto: "+ pago.concepto
+                  +"\nPrecio: "+str(pago.get_precio())+"\nFecha: "+str(datetime.now())+"\nal usuario: "+pago.correo, 'joinity@joinity.com',
+                  ["fernando@bueninvento.es"], fail_silently=False)
         if(pago.correo != pago.creador.email):
-            send_mail('CONFIRMACION DE PAGO ', "El usuario: " + usuario.email + " ha pagado el producto", 'antoni@bueninvento.es',
+            send_mail('CONFIRMACION DE PAGO ', "El usuario: " + usuario.email + " ha pagado el producto", 'joinity@joinity.com',
             [pago.creador.email], fail_silently=False)
 
 payment_was_successful.connect(show_me_the_money)
