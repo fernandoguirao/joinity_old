@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block contenedor %}
+ <form action="" method="post">
+   {% csrf_token %}
+ 
+<label for="id_correo">Cuenta de Paypal</label>
+ {{formulario.correo}}
+ <label for="id_nombre">Nombre del Pago</label>
+ {{formulario.nombre}}
+ <label for="id_precion">Precio del Pago</label>
+ {{formulario.precio}}
+ <label for="id_usuarios">Usuarios invitados</label>
+ <select id="id_usuarios" name="usuarios" multiple="multiple">
+    {% for miembro in joinity.joinity_usuario.all %}
+      <option value="{{miembro.usuario.id}}">{{miembro.usuario.first_name}} {{miembro.usuario.last_name}}</option>
+    {% endfor %}
+ </select>
+ <input type="submit" value="CREAR">
+ </form>
+{% endblock %}

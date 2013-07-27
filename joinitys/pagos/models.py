@@ -35,6 +35,7 @@ class Pagos(models.Model):
     creador = models.ForeignKey(User, related_name="creador")
     class Meta:
         db_table = "Pagos"
+
 class Usuarios_Pagos(models.Model):
     usuario = models.ForeignKey(User)
     pago = models.ForeignKey(Pagos)
