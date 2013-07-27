@@ -244,7 +244,7 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
 //===============
 
 
-$("select[name='herolist'],select[name='comprar2'],select[name='comprar3'],select[name='aficion2'],select[name='reserva2'],select[name='selectprueba']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
+$("select[name='herolist'],select[name='listahoras'],select[name='comprar2'],select[name='comprar3'],select[name='aficion2'],select[name='reserva2'],select[name='selectprueba']").selectpicker({style: 'btn btn-small', menuStyle: 'dropdown-menu'});
 
 /* EL SELECTOR DE HOME */
 

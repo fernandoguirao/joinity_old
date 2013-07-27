@@ -1,0 +1,80 @@
+<div class="container contenedor-array faficiones">
+  <div class="contenedor-categoria">
+    <div class="la-categoria aficat">
+      Joinitys de <span>Nike</span>
+    </div>
+  <div class="contenedor-elarray">
+    <div class="contenedor-filtro">
+      <div class="container">
+        <div class="filtros activo" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':1})">
+          <i class="iconos">
+            i
+          </i>
+          Más recientes
+        </div>
+        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':2})">
+          <i class="iconos otro2">
+            j
+          </i>
+          Mejores ofertas
+        </div>
+        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':3})">
+          <i class="iconos">
+            c
+          </i>
+          Para mí
+        </div>
+      </div>
+    </div>
+    <div class="contenedor-los-joinitys">
+      <script type="text/javascript">var n=0; var order=1</script>
+      <script type="text/javascript">n++</script>
+      <!-- CADA JOINITY -->
+      <a class="los-joinity" href="/joinity/{{aficion.id}}">
+        <div class="foto-join" style="background-image:url('/media/joinity/nike.jpeg');">
+        </div>
+        <div class="info-caja">
+          <h6>
+            Nombre del joiniyt
+          </h6>
+          <p>
+            En Valencia,
+            por 18 €
+          </p>
+        </div>
+        <!-- HOVER -->
+        <div class="datos-hover">
+          <div class="rueda img-circle">
+            <div class="donutchart" data-percent="{{aficion.get_porcentaje}}"></div>
+            <div class="numjoine">
+              <span>
+                20/30
+              </span>
+              joiners
+            </div>
+          </div>
+          <div class="lafecha">
+            28
+            <span>
+              JUN
+            </span>
+          </div>
+          <div class="valor06">
+            <i class="iconos punto">
+              j
+            </i>
+          </div>
+        <!-- FIN DE HOVER -->
+        </div>
+      </a>
+      <!-- FIN DE CADA JOINITY -->
+    </div>
+    <div class="los-join-footer">
+      <div class=linea-puntos>
+      </div>
+      
+      <button onclick="identificador=this;cargador(); Dajaxice.joinitys.cargar_mas(cargar_mas, {'categoria':3, 'n':n, 'order':order});" class="btn amarillo btn-embossed">Quiero ver más</button>
+    </div>
+  </div>
+</div>
+</div>

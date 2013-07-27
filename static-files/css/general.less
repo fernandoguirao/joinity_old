@@ -2537,7 +2537,7 @@ input[type="text"] {
 
 /* HOME */
 
-#home{
+#home,#brands{
   #fondosolicita {
     height: 100%;
     overflow: hidden;
@@ -4796,7 +4796,7 @@ margin: 0 9px 0 13px;
 
 
 /* MIS JOINITYS */
-#misJoinitys {
+#misJoinitys,#brands {
   #contenedorPrincipal {
     min-height:800px;
   }
@@ -5051,5 +5051,156 @@ margin: 0 9px 0 13px;
 }
 
 #brands {
-  
+  #headermarca {
+    margin-top:-17px;
+    width: 100%;
+    z-index: -10;
+    height:255px;
+    padding-top:38px;
+    .background-size();
+    background-position:center;
+    .container {
+      text-align:left!important;
+      hr {
+        border-style: dashed;
+        border-width: 1px 0 0;
+        margin: 5px 0;
+        border-color:rgba(0,0,0,.2);
+      }
+    }
+    .colum01,.colum02,.colum03 {
+      display:inline-block;
+      vertical-align: top;
+    }
+    .colum01 {
+      width:230px;
+      .logobrand {
+        width:198px;
+        height:198px;
+        .background-size();
+        background-position:center;
+        border:4px solid @elcolor;
+        .border-radius(3px);
+      }
+    }
+    .colum03 {
+      float:right;
+      .btn a {
+        color:@claro;
+        &:hover {
+          color:rgba(0,0,0,.5);
+        }
+      }
+    }
+  }
+  .faficiones {
+    .la-categoria {
+      font-size:21px!important;
+      text-transform:uppercase;
+      color:@elcolor!important;
+      font-weight:normal!important;
+      span {
+        color:@claro!important;
+        font-weight:bold!important;
+      }
+    }
+  }
+  .contenedor-elarray:before {
+    margin-left:0!important;
+  }
+  .contenedor-los-joinitys {
+    padding:86px 87px 10px!important;
+  }
+  .reserva .contenedor-los-joinitys {
+    padding-top:44px!important;
+  }
+  .numjoine {
+    margin-top:38px!important;
+  }
+  .contenedor-elarray {
+    margin-top: 23px;
+  }
+  .container.contenedor-array.faficiones {
+    display: inline-block;
+  }
+  .reserva {
+    margin-top:38px;
+    .colu01, .colu02, .colu03 {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .colu01 {
+      .minimapa {
+        background-color: gray;
+        height: 97px;
+        width: 143px;
+        .border-radius(4px 4px 0 0);
+        display:inline-block;
+      }
+      .btn.ubicacion {
+        .border-radius(0 0 5px 5px)!important;
+        margin-top: -3px;
+        width: 115px;
+      }
+    }
+    .titul {
+      text-transform: uppercase;
+      color:@elcolor;
+    }
+    .fila > p {
+      display: inline-block;
+      font-size: 11px !important;
+      text-transform: uppercase;
+      width: 45px !important;
+      margin-right: 11px;
+      position: relative;
+      top: -3px;
+    }
+    .span2.hasDatepicker.inputNormal {
+      display: inline-block !important;
+      min-width: 83px !important;
+      width: 83px !important;
+      .border-radius(0 4px 4px 0);
+    }
+    .control-group {
+      position: relative;
+      width: 130px!important;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .colu03 {
+      .inputNormal {
+        min-width: 41px!important;
+        width: 42px!important;
+      }
+      .fila > p {
+        top: -6px;
+        width: 106px!important;
+        display: inline-block;
+      }
+    }
+    .los-join-footer .btn.amarillo.btn-embossed {
+      width: 232px!important;
+    }
+    .colu01,.colu03 {
+      width:25%;
+    }
+    .colu02 {
+      width:48%;
+    }
+    .btn-group.select.span1 {
+      float: none;
+      margin-left:-7px;
+    }
+    .fila > p.dospuntos {
+      display: inline-block;
+      font-size: 15px !important;
+      margin-right: 7px;
+      position: relative;
+      text-transform: uppercase;
+      top: -6px;
+      width: 13px !important;
+    }
+  }
 }
