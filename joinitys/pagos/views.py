@@ -13,6 +13,7 @@ from django.views.decorators.http import require_POST
 from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from joinitys.models import Joinitys
 
 @csrf_exempt
 @require_POST
@@ -29,11 +30,12 @@ def index(request):
     return render(request, 'index.html', context)
 
 @login_required
-def crear_pagos(request):
+def crear(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
     state = "Crea Pago aqui..."
     if request.POST:
         state = "Creado pago"
-        formulario = PagosForm(request.POST, user=request.user)
+        formulario = PagosForm(request.POST, user=request.user, joinity=joinity)
         if formulario.is_valid:
             n = 0
             pago = formulario.save()
@@ -44,13 +46,11 @@ def crear_pagos(request):
                 if not LOCALHOST:
                     send_mail('ASIGNACION DE PAGO ', "Se le ha asignado el pago\nhttp://prueba1.bueninvento.net/pagos/pagar/" + str(pago.id), 'antoni@bueninvento.es',
                               [User.objects.get(id=usuario).email], fail_silently=False)
-            if(n > 0):
-                pago.precio = pago.precio / n
-                pago.save()
             return HttpResponseRedirect('/')
     else:
-        formulario = PagosForm(instance=request.user.usuario, user=request.user)
-    return render_to_response('pagos.html', {'state':state, 'formulario': formulario}, context_instance=RequestContext(request))
+        formulario = PagosForm(user=request.user, joinity=joinity)
+    context={'state':state, 'formulario':formulario, 'usuario':request.user, 'joinity':joinity}
+    return render_to_response('joinitys/pagos/crear.html', context, context_instance=RequestContext(request))
 
 @login_required
 def pagar(request, pago_id):
