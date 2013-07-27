@@ -1,42 +1,32 @@
-<div id="timeline">
-  <div id="escribe-main">
-     <div class="escribe-input">
-      <div class="input-append">
-        <input id="appendedInputButton-02" class="span2" type="text" placeholder="Busca una de tus tareas.">
-        <div id="losbotones">
-          <button class="btn btn-small" type="button">
-            Buscar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="cronologia">
-    <h6>
-      Ref. compra núm. H783SF
+<h6>
+      Ref. compra núm. {{pago.id}}
     </h6>
     <h4>
       <i>
         Concepto:
       </i>
-      MacBook Pro Retina
+      {{pago.concepto}}
     </h4>
     <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.
+      {{pago.descripcion}}
     </p>
+    
     <table class="table table-striped">
       <tr>
+      
         <th>Producto</th>
         <th class="pequena">Descuento</th>
         <th>Precio</th>
       </tr>
+      
       <tr>
-        <td><p>MacBook Pro Retina</p></td>
-        <td>15%</td>
-        <td>1500 €</td>
+        <td><p>{{pago.producto}}</p></td>
+        <td></td>
+        <td>{{pago.get_precio}}</td>
       </tr>
+      
       <tr>
-      <tr>
+      <!-- <tr>
         <td><p>Gastos de envío</p></td>
         <td></td>
         <td>0 €</td>
@@ -44,19 +34,22 @@
       <tr>
         <th>Subtotal</th>
         <th></th>
-        <th>1275 €</th>
+        <th>{{pago.get_precio}} €</th>
       </tr>
       <tr>
         <th>IVA (21%)</th>
         <th></th>
         <th>267,75 €</th>
       </tr>
+      -->
       <tr class="apagar">
         <th>Total</th>
         <th></th>
-        <th>1542,75 €</th>
+        <th>{{pago.get_precio}} €</th>
       </tr>
+      
     </table>
+    
     <div class="condiciones">
       <p>
         Antes de continuar, por favor lee y acepta nuestro <a href="">contrato de servicios</a>.
@@ -69,13 +62,10 @@
       </div>
     </div>
     <div class="btn btn-big btn-block btn-embossed">
-      Pagar ahora
+    {{form}}
     </div>
-    <div class="paypalbtn">
-      Botón de paypal
-    </div>
+    <a href="/joinity/{{pago.joinity.id}}/pago/{{pago.id}}/cancelar/">
     <div class="btn btn-mini amarillo">
       O bien, eliminar si no te interesa
     </div>
-  </div>
-</div>
+    </a>
