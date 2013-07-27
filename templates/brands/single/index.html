@@ -1,4 +1,17 @@
 {% extends "base.html" %}
+
 {% block contenedor %}
-Hola soy la pagina de brands
+<div id="contenedorMain">
+{% include "persistentes/menuAdaptativo.html" %}  
+  <div class="container-fluid contenedorAdaptativo">
+    <div class="row-fluid">
+      {% include "persistentes/buscador.html" %}
+    </div>
+  </div>
+</div>
+
+{% include "brands/single/carousel.html" %}
+
+{% include "index/footer.html" %}
+
 {% endblock %}
