@@ -1,3 +1,7 @@
+0. DATOS PARA EL SANDBOX DE PAYPAL
+========
+comprador@joinity.com -> C4s10p34
+
 1. RUN SERVER
 =======
 
