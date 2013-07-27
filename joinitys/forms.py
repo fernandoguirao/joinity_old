@@ -2,7 +2,7 @@
 
 from django import forms
 from models import Texto_Joinity, Puntuaciones, Actualizaciones
-from models import Foto_Joinity, Reservas_Empresas
+from models import Foto_Joinity, Reserva_Brand
 from models import Comentario_Actualizacion
         # pago.email = self.cleaned_data["email"]
 class FormFoto(forms.ModelForm):
@@ -81,7 +81,7 @@ class Buscar(forms.Form):
     s = forms.CharField()
 class Reservar(forms.ModelForm):
     class Meta:
-        model=Reservas_Empresas
+        model=Reserva_Brand
         fields=("comensales", "fecha_inicio", "fecha_fin")
     def __init__(self, *args, **kwargs):
         self._family = kwargs.pop('family')

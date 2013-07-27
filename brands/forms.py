@@ -1,5 +1,5 @@
 from django import forms
-from models import Empresa, Fotos_Empresa, Puntuaciones
+from models import Brand, Fotos, Puntuaciones
 
 class EmpresaForm(forms.ModelForm):
     nombre=forms.CharField()
@@ -8,12 +8,12 @@ class EmpresaForm(forms.ModelForm):
     ubicacion=forms.CharField()
     video=forms.CharField()
     class Meta:
-        model = Empresa
+        model = Brand
         fields=("nombre", "notas", "precio", "tipo", "calificacion", "ubicacion", "imagen_cabecera", "video", "imagen_fondo",)
 class Subir_Foto(forms.ModelForm):
     foto=forms.ImageField(required=False)
     class Meta:
-        model=Fotos_Empresa
+        model=Fotos
         fields=("foto",)
     def __init__(self, *args, **kwargs):
         self._empresa=kwargs.pop('empresa')

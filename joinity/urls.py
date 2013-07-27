@@ -7,7 +7,6 @@ from joinitys.pagos import views as pagos_views
 from django.contrib import admin
 from django.conf.urls.static import static
 from joinity import settings
-from reservas import views as reservas_views
 from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -23,15 +22,13 @@ urlpatterns = patterns('',
     url(r'^logout/', login_views.logout_user, name="logout"),
     url(r'^pagos/', include('joinitys.pagos.urls', namespace="pagos")),
     url(r'^joinity/', include('joinitys.urls', namespace="joinitys")),
+    url(r'^brands/', include('brands.urls', namespace="brands")),
     url(r'^email/', login_views.mandarmail, name="emailmandar"),
     url(r'^usuario/', include('usuario.urls', namespace="usuario")),
     url(r'^mensaje/', include('mensajes.urls', namespace="mensajes")),
     url(r'^amigo/', include('amigos.urls', namespace="amigos")),
     url(r'^categorias/', include('categorias.urls', namespace="categorias")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^empresa/editar/(?P<empresa_id>\d+)/$', reservas_views.editar_reserva, name="editar_empresa"),
-    url(r'^empresa/seguir/(?P<empresa_id>\d+)/$', reservas_views.seguir_empresa, name="seguir_empresa"),
-    url(r'^empresa/(?P<empresa_id>\d+)/$', reservas_views.ver_empresa, name="ver_empresa"),
     url(r'^reserva/confirmar/(?P<reserva_id>\d+)/$', joinitys_views.confirmar, name="confirmar_reserva"),
     url(r'^reserva/aprobar/(?P<reserva_id>\d+)/$', joinitys_views.aprobar, name="aprobar_reserva"),
     url(r'^mis_joinitys/$', joinitys_views.mis_joinitys, name='mis_joinitys'),

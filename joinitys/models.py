@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from categorias.models import Subcategorias, Subcategorias_Compras, Subcategorias_Family
-from reservas.models import Empresa
-from datetime import date, datetime
+from brands.models import Brand
+from datetime import date
 #############################################################################
 #                    CLASE PADRE JOINITY                                    #
 #############################################################################
@@ -121,7 +121,7 @@ class Family(models.Model):
     fecha_inicio=models.DateField(null=True)
     fecha_fin=models.DateField(null=True)
     repeticion=models.IntegerField(default=0)
-    reserva=models.ManyToManyField(Empresa, through='Reservas_Empresas')
+    reserva=models.ManyToManyField(Brand, through='Reserva_Brand')
     class Meta:
         db_table="Family"
     
@@ -196,15 +196,15 @@ class Usuarios_Joinity(models.Model):
 
         
 
-class Reservas_Empresas(models.Model):
+class Reserva_Brand(models.Model):
     family=models.ForeignKey(Family, related_name="family_reserva")
-    empresa=models.ForeignKey(Empresa, related_name="empresa_reserva")
+    brand=models.ForeignKey(Brand, related_name="brand_reserva")
     comensales=models.IntegerField(default=0)
     fecha_inicio=models.DateField(null=True)
     fecha_fin=models.DateField(null=True)
     estado=models.IntegerField(default=0)
     class Meta:
-        db_table="Reservas_Empresas"
+        db_table="Reservas_Brand"
 
 
 class Actualizaciones(models.Model):

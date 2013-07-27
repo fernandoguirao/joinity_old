@@ -1,12 +1,12 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
-from models import Empresa, Fotos_Empresa, Puntuaciones
+from models import Brand, Fotos, Puntuaciones
 from django.template import RequestContext
 from django.shortcuts import  get_object_or_404
 from forms import EmpresaForm, Subir_Foto, Puntuar
 
 def editar_reserva(request, empresa_id):
-    empresa=get_object_or_404(Empresa, pk=empresa_id)
+    empresa=get_object_or_404(Brand, pk=empresa_id)
     param_foto=request.GET.get("foto", 0)
 
     if empresa.admin!=request.user:
@@ -34,21 +34,22 @@ def editar_reserva(request, empresa_id):
     context={'empresaform': empresaform, "subir_foto": subir_foto, "empresa":empresa}
     return render_to_response('editar_empresa.html', context, context_instance=RequestContext(request))
 
-def ver_empresa(request, empresa_id):
-    empresa=get_object_or_404(Empresa, pk=empresa_id)
-    if request.POST:
-        puntuar=Puntuar(request.POST, empresa=empresa, usuario=request.user)
-        if Puntuaciones.objects.filter(empresa=empresa, usuario=request.user).exists():
-            puntuacion=get_object_or_404(Puntuaciones, empresa=empresa, usuario=request.user)
-            puntuacion.delete()
-        if puntuar.is_valid():
-            puntuar.save()
-    else:
-        puntuar=Puntuar(empresa=empresa, usuario=request.user)
-    context={'empresa':empresa, 'puntuar':puntuar, 'usuario':request.user}
-    return render_to_response('ver_empresa.html', context,context_instance=RequestContext(request))
+def ver(request, nombre_brand=False):
+    #empresa=get_object_or_404(Empresa, nombre=nombre_brand)
+    #if request.POST:
+    #    puntuar=Puntuar(request.POST, empresa=empresa, usuario=request.user)
+    #    if Puntuaciones.objects.filter(empresa=empresa, usuario=request.user).exists():
+    #        puntuacion=get_object_or_404(Puntuaciones, empresa=empresa, usuario=request.user)
+    #        puntuacion.delete()
+    #    if puntuar.is_valid():
+    #        puntuar.save()
+    #else:
+    #    puntuar=Puntuar(empresa=empresa, usuario=request.user)
+    #context={'empresa':empresa, 'puntuar':puntuar, 'usuario':request.user}
+    #return render_to_response('ver_empresa.html', context,context_instance=RequestContext(request))
+    return render_to_response('brands/single/index.html')
 
 def seguir_empresa(request, empresa_id):
-    empresa=get_object_or_404(Empresa, pk=empresa_id)
+    empresa=get_object_or_404(Brand, pk=empresa_id)
     empresa.seguidores.add(request.user)
     return HttpResponseRedirect("/empresa/"+str(empresa.id))

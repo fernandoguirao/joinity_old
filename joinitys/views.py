@@ -4,13 +4,13 @@ from forms import FormTexto, FormFoto
 from forms import Buscar as Buscar_Reserva, Reservar, FormComentario
 from django.contrib.auth.decorators import login_required
 from models import Usuarios_Joinity, Actualizaciones
-from models import Reservas_Empresas, Joinitys, Joinitys_VIP, Compras, Aficiones
+from models import Reserva_Brand, Joinitys, Joinitys_VIP, Compras, Aficiones
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from django.contrib.auth.models import User
 from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
-from reservas.models import Empresa
+from brands.models import Brand
 from joinitys.eventos.models import Eventos, Usuarios_Evento
 from notificaciones.models import Notificaciones
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
@@ -160,7 +160,7 @@ def buscar_restaurante(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
     if request.GET:
         busqueda = Buscar_Reserva(request.GET)
-        restaurantes = Empresa.objects.filter(nombre=request.GET["s"])
+        restaurantes = Brand.objects.filter(nombre=request.GET["s"])
     else:
         busqueda = Buscar_Reserva()
         restaurantes = False
@@ -171,7 +171,7 @@ def buscar_hotel(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
     if request.GET:
         busqueda = Buscar_Reserva(request.GET)
-        hoteles = Empresa.objects.filter(nombre=request.GET["s"])
+        hoteles = Brand.objects.filter(nombre=request.GET["s"])
     else:
         busqueda = Buscar_Reserva()
         hoteles = False
@@ -180,7 +180,7 @@ def buscar_hotel(request, joinity_id):
 
 def crear_reserva_restaurante(request, joinity_id, empresa_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
-    empresa=get_object_or_404(Empresa, pk=empresa_id)
+    empresa=get_object_or_404(Brand, pk=empresa_id)
     if request.POST:
         formulario=Reservar(request.POST, family=joinity.family_rel, empresa=empresa)
         if formulario.is_valid:
@@ -193,7 +193,7 @@ def crear_reserva_restaurante(request, joinity_id, empresa_id):
 
 def crear_reserva_hotel(request, joinity_id, empresa_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
-    empresa=get_object_or_404(Empresa, pk=empresa_id)
+    empresa=get_object_or_404(Brand, pk=empresa_id)
     if request.POST:
         formulario=Reservar(request.POST, family=joinity.family_rel, empresa=empresa)
         if formulario.is_valid:
@@ -207,7 +207,7 @@ def crear_reserva_hotel(request, joinity_id, empresa_id):
 
 def ver_reserva(request, joinity_id, reserva_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
-    reserva=get_object_or_404(Reservas_Empresas, pk=reserva_id)
+    reserva=get_object_or_404(Reserva_Brand, pk=reserva_id)
     context={"joinity":joinity, "reserva":reserva}
     return render_to_response('ver_reserva.html', context)
 
@@ -240,12 +240,12 @@ def aceptar_membresia(request, usuario_joinity_id):
 
 
 def confirmar(request, reserva_id):
-    reserva=get_object_or_404(Reservas_Empresas, pk=reserva_id)
+    reserva=get_object_or_404(Reserva_Brand, pk=reserva_id)
     reserva.estado=1
     reserva.save()
     return HttpResponseRedirect("/joinity/"+str(reserva.family.joinity.id))
 def aprobar(request, reserva_id):
-    reserva=get_object_or_404(Reservas_Empresas, pk=reserva_id)
+    reserva=get_object_or_404(Reserva_Brand, pk=reserva_id)
     reserva.estado=2
     reserva.save()
     return HttpResponseRedirect("/empresa/"+str(reserva.empresa.id))
