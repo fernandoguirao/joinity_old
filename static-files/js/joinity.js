@@ -11,7 +11,9 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-
+function carga_pago(data){
+	$("#cronologia").html(data.pago);
+}
 
 function actualiza_usuario(data){
 	$("#estadousuario_lista_"+data.id_usuario).html("Ya invitado");

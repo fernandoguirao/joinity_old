@@ -134,6 +134,22 @@ var Dajaxice = {
     
 
     
+    ,
+    
+    
+        pagos: {
+    
+    carga: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.pagos.carga', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+
+    
     
     
     }

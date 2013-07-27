@@ -46,7 +46,7 @@ def crear(request, joinity_id):
                 if not LOCALHOST:
                     send_mail('ASIGNACION DE PAGO ', "Se le ha asignado el pago\nhttp://prueba1.bueninvento.net/pagos/pagar/" + str(pago.id), 'antoni@bueninvento.es',
                               [User.objects.get(id=usuario).email], fail_silently=False)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/joinity/'+str(joinity.id))
     else:
         formulario = PagosForm(user=request.user, joinity=joinity)
     context={'state':state, 'formulario':formulario, 'usuario':request.user, 'joinity':joinity}
@@ -77,6 +77,13 @@ def pagar(request, pago_id):
                "pago":pago, "admin": admin, "pagado": usuario_pago.ha_pagado}
     return render_to_response("paypal.html", context)
 
+def cancelar(request, joinity_id, pago_id):
+    pago=get_object_or_404(Pagos, pk=pago_id)
+    Usuarios_Pagos.objects.get(pago=pago, usuario=request.user).delete()
+    return HttpResponseRedirect('/joinity/'+str(joinity_id))
+
+
 def mis_pagos(request):
-    context={"pagina":"misCompras"}
-    return render_to_response("pagos/mis_pagos.html", context)
+    mis_pagos=Pagos.objects.filter(usuarios__usuario=request.user)
+    context={"pagina":"misCompras", "usuario":request.user, "lista_pagos":mis_pagos}
+    return render_to_response("joinitys/pagos/mis_pagos.html", context)

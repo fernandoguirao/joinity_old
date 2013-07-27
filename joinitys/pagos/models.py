@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from joinity.settings import LOCALHOST
+from joinitys.models import Joinitys
 
 # Create your models here.
 from paypal.standard.ipn.signals import payment_was_successful
@@ -30,11 +31,18 @@ payment_was_successful.connect(show_me_the_money)
 class Pagos(models.Model):
     correo = models.TextField(null=True, max_length=100)
     precio = models.DecimalField(null=True, decimal_places=2, max_digits=10)
-    nombre = models.TextField(null=True)
+    concepto = models.TextField(null=True)
+    producto=models.TextField(null=True)
+    descripcion=models.TextField(max_length=400)
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
     usuarios = models.ManyToManyField(User, through='Usuarios_Pagos')
     creador = models.ForeignKey(User, related_name="creador")
+    joinity= models.ForeignKey(Joinitys, related_name="pagos")
     class Meta:
         db_table = "Pagos"
+    def get_precio(self):
+        n=Usuarios_Pagos.objects.filter(pago=self).count()
+        return self.precio/n
 
 class Usuarios_Pagos(models.Model):
     usuario = models.ForeignKey(User)

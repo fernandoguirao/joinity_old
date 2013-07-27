@@ -1,0 +1,32 @@
+<div id="rightSideBar">
+  <div id="contenidoSide">
+  
+    <!-- BUSCADOR -->
+    <input type="text" placeholder="Filtra tus pagos…" class="inputNormal input-small">
+    <!-- FIN BUSCADOR -->
+    
+    <!-- TODOS LOS MENSAJES -->
+    <div class="todosMensajes">
+      <!-- CADA MENSAJE -->
+      {% for pago in lista_pagos %}
+      
+      <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga(carga_pago, {'pago_id':{{pago.id}}});">
+        <div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
+        </div>
+        <div class="numeroNotif">
+          
+        </div>
+        <p class="span9">
+          <b>{{pago.concepto}}</b>
+          <i>{{pago.fecha|date:'d/m/Y'}}</i>
+          <span>{{pago.get_precio}}</span>
+        </p>
+      </div>
+      {% empty %}
+      No tienes pagos pendientes
+      {% endfor %}
+      <!-- FIN DE CADA MENSAJE -->
+    </div>
+    <!-- FIN DE TODOS LOS MENSAJES -->
+   </div>
+</div>
