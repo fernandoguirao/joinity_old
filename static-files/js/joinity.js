@@ -14,26 +14,32 @@ var ismensajes = $('#misMensajes');
 
 
 function carga_pago(data){
-	$("#cronologia").html(data.pago);
+  var cronologia = $("#cronologia");
+  cronologia.html(data.pago);
 }
 
 function actualiza_usuario(data){
-	$("#estadousuario_lista_"+data.id_usuario).html("Ya invitado");
+  var estadousuario = $("#estadousuario_lista_"+data.id_usuario);
+  estadousuario.html("Ya invitado");
 }
 function busquedausuarios(data){
-	$("#resultadosbusquedausuarios").html(data.resultados);
+  var resbusuario = $("#resultadosbusquedausuarios");
+  resbusuario.html(data.resultados);
 }
 
 function anyadir_lugar(data){
-	$("#lista_lugares").html(data.lista);
+  var listlugares = $("#lista_lugares");
+  listlugares.html(data.lista);
 }
 function cargar_subcategoria(data){
-  $("#select_subcategorias").html(data.select);
+  var selsubcat = $("#select_subcategorias");
+  selsubcat.html(data.select);
 }
 
 function refresca_notificaciones(data){
+  var menunotif = $("#menu_notificaciones");
   if (data.menu)
-    $("#menu_notificaciones").html(data.menu);
+    menunotif.html(data.menu);
 }
 
 function marca(data){
@@ -41,11 +47,13 @@ function marca(data){
 }
 
 function busqueda(data){
-  $("#resultados").html(data.resultados);
+  var resultados = $("#resultados");
+  resultados.html(data.resultados);
 }
 
 function cargaform(data){
-  $(".contenedor_formularios").html(data.paginaformulario);
+  var contenedor_formularios = $(".contenedor_formularios");
+  contenedor_formularios.html(data.paginaformulario);
 }
 
 $.fn.serializeObject = function() {
@@ -67,7 +75,8 @@ $.fn.serializeObject = function() {
 var hasescrito = false;
 
 function refrescar_mensajes(data){
-  $("#cronologia").html(data.mensajes);
+  var cronologia = $("#cronologia");
+  cronologia.html(data.mensajes);
   if(hasescrito) {
     var contain = $('#ajaxbtn');
     contain.attr('value','Enviar');
@@ -76,14 +85,16 @@ function refrescar_mensajes(data){
     $(this).removeClass("verde");
       next();
     });
-    $('#fadingBarsG',contain.parent()).remove();
+    var fadingBar = $('#fadingBarsG',contain.parent());
+    fadingBar.remove();
     hasescrito=false;
   }
 }
 
 function enviar_mensaje(data){
   if (data.error){
-    $("#mensaje_error").show();
+    var mensajeerror = $("#mensaje_error");
+    mensajeerror.show();
     var contain = $('#ajaxbtn');
     contain.attr('value','Enviar');
     contain.removeClass('grisclaro');
