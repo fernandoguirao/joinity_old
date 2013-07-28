@@ -6,19 +6,19 @@
   <div class="contenedor-elarray">
     <div class="contenedor-filtro">
       <div class="container">
-        <div class="filtros activo" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':1})">
+        <div class="filtros activo" onclick="identificador=this; cargarfiltro(); Dajaxice.brands.filtrar(filtrar_brands,{'brand_id':{{brand.id}} ,'order':1})">
           <i class="iconos">
             i
           </i>
           Más recientes
         </div>
-        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':2})">
+        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.brands.filtrar(filtrar_brands,{'brand_id':{{brand.id}} ,'order':2})">
           <i class="iconos otro2">
             j
           </i>
           Mejores ofertas
         </div>
-        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':3})">
+        <div class="filtros" onclick="identificador=this; cargarfiltro(); Dajaxice.brands.filtrar(filtrar_brands,{'brand_id':{{brand.id}} ,'order':3})">
           <i class="iconos">
             c
           </i>
@@ -28,52 +28,60 @@
     </div>
     <div class="contenedor-los-joinitys">
       <script type="text/javascript">var n=0; var order=1</script>
+      {% for joinity in joinitys %}
       <script type="text/javascript">n++</script>
       <!-- CADA JOINITY -->
-      <a class="los-joinity" href="/joinity/{{aficion.id}}">
-        <div class="foto-join" style="background-image:url('/media/joinity/nike.jpeg');">
+      <a class="los-joinity" href="/joinity/{{joinity.id}}">
+        <div class="foto-join" style="background-image:url('/media/{{joinity.foto}}');">
         </div>
         <div class="info-caja">
           <h6>
-            Nombre del joiniyt
+            {{joinity.nombre}}
           </h6>
           <p>
-            En Valencia,
-            por 18 €
+           {% for lugar in joinity.lugares.all|slice:":1" %}
+          		En {{lugar.lugar}}, 
+          	{% endfor %}
+          	por {{joinity.precio|floatformat}} €
           </p>
         </div>
         <!-- HOVER -->
         <div class="datos-hover">
           <div class="rueda img-circle">
-            <div class="donutchart" data-percent="{{aficion.get_porcentaje}}"></div>
+            <div class="donutchart" data-percent="{{joinity.get_porcentaje}}"></div>
             <div class="numjoine">
               <span>
-                20/30
+                  {{joinity.n_joiners}}/{{joinity.n_max}}
               </span>
               joiners
             </div>
           </div>
           <div class="lafecha">
-            28
+            {{compra.compras.fecha_inicio|date:"d"}}
             <span>
-              JUN
+               {{compra.compras.fecha_inicio|date:"M"}}
             </span>
           </div>
           <div class="valor06">
-            <i class="iconos punto">
-              j
-            </i>
+            {% for i in cinco  %}
+           	{% if i <= compra.puntuacion_media %}
+           	<i class="iconos punto">j</i>
+           {% else %}
+           	<i class="iconos">j</i>
+           {% endif %}
+           {% endfor %}
           </div>
         <!-- FIN DE HOVER -->
         </div>
       </a>
       <!-- FIN DE CADA JOINITY -->
+      {% endfor %}
     </div>
     <div class="los-join-footer">
       <div class=linea-puntos>
       </div>
       
-      <button onclick="identificador=this;cargador(); Dajaxice.joinitys.cargar_mas(cargar_mas, {'categoria':3, 'n':n, 'order':order});" class="btn amarillo btn-embossed">Quiero ver más</button>
+      <button onclick="identificador=this;cargador(); Dajaxice.brands.cargar_mas(cargar_mas_brands, {'brand_id':{{brand.id}} ,'n':n, 'order':order});" class="btn amarillo btn-embossed">Quiero ver más</button>
     </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
 <section class="block">
-  <div id="headermarca" style="background-image:url('/media/joinity/nike.jpeg');">
+  <div id="headermarca" style="background-image:url('/media/{{brand.imagen_cabecera}}');">
     <div class="container">
       <div class="colum01">
-        <div class="logobrand" style="background-image:url('/media/joinity/logonike.png');">
+        <div class="logobrand" style="background-image:url('/media/{{brand.imagen_fondo}}');">
         </div>
       </div>
       <div class="colum02">
@@ -17,11 +17,13 @@
         </a>
       </div>
       <div class="colum03">
+      <a href="/brands/{{brand.id}}/editar">
         <div class="btn btn-mini btn-block amarillo">
           Administra esta marca
         </div>
+        </a>
         <div class="btn btn-mini btn-block amarillo">
-          Sigue a Nike
+          Sigue a {{brand.nombre}}
         </div>
         <div class="btn btn-mini btn-block gris">
           Deja de seguir a esta marca
@@ -31,7 +33,7 @@
           <br>
           <hr>
           <a href="http://nike.com" target="_blank">
-            www.nike.com
+            {{brand.web}}
           </a>
         </div>
       </div>

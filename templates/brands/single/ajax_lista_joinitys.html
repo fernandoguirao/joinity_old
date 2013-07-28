@@ -1,0 +1,46 @@
+{% for joinity in lista_joinitys|slice:":8" %}
+      <a class="los-joinity" href="/joinity/{{joinity.id}}">
+        <div class="foto-join" style="background-image:url('/media/{{joinity.foto}}');">
+        </div>
+        <div class="info-caja">
+          <h6>
+            {{joinity.nombre}}
+          </h6>
+          <p>
+          {% for lugar in joinity.lugares.all|slice:":1" %}
+          	En {{lugar.lugar}},
+          {% endfor %}
+           por {{joinity.precio|floatformat}} €
+          </p>
+        </div>
+        <!-- HOVER -->
+        <div class="datos-hover">
+          <div class="rueda img-circle">
+            <div class="donutchart" data-percent="{{joinity.get_porcentaje}}"></div>
+            <div class="numjoine">
+              <span>
+                {{joinity.n_joiners}}/{{joinity.n_max}}
+              </span>
+              joiners
+            </div>
+          </div>
+          <div class="lafecha">
+            {{joinity.sub.fecha_inicio|date:"d"}}
+            <span>
+               {{joinity.sub.fecha_inicio|date:"M"}}
+            </span>
+          </div>
+          <div class="valor06">
+          {% for i in cinco  %}
+          	{% if i <= joinity.puntuacion_media %}
+          		<i class="iconos punto">j</i>
+           	{% else %}
+           		<i class="iconos">j</i>
+           	{% endif %}
+          {% endfor %}
+          </div>
+        <!-- FIN DE HOVER -->
+        </div>
+      </a>
+      <!-- FIN DE CADA JOINITY -->
+ {% endfor %}
