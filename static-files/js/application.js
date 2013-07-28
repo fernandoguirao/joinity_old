@@ -1,18 +1,18 @@
-// Some general UI pack related JS
-// Extend JS String with repeat method
 String.prototype.repeat = function(num) {
   return new Array(num + 1).join(this);
 };
 (function($) {
 
   // Add segments to a slider
-  $.fn.addSliderSegments = function (amount) {
+  /*
+$.fn.addSliderSegments = function (amount) {
     return this.each(function () {
       var segmentGap = 100 / (amount - 1) + "%"
         , segment = "<div class='ui-slider-segment' style='margin-left: " + segmentGap + ";'></div>";
       $(this).prepend(segment.repeat(amount - 2));
     });
   };
+*/
 
   $(function() {
 
@@ -32,9 +32,10 @@ String.prototype.repeat = function(num) {
     $("[data-toggle=tooltip]").tooltip("show");
 
     // Tags Input
-    $(".tagsinput").tagsInput();
+    /* $(".tagsinput").tagsInput(); */
 
     // jQuery UI Sliders
+/*
     var $slider = $("#slider");
     if ($slider.length > 0) {
       $slider.slider({
@@ -76,6 +77,7 @@ String.prototype.repeat = function(num) {
       $slider3.addSliderSegments(slider3Options.max).find(".ui-slider-value:first").text("$" + slider3Options.values[0] * slider3ValueMultiplier).end()
         .find(".ui-slider-value:last").text("$" + slider3Options.values[1] * slider3ValueMultiplier);
     }
+*/
 
     // Add style class name to a tooltips
     $(".tooltip").addClass(function() {
@@ -88,20 +90,25 @@ String.prototype.repeat = function(num) {
     $("input, textarea").placeholder();
 
     // Make pagination demo work
-    $(".pagination a").on('click', function() {
+    /*
+$(".pagination a").on('click', function() {
       $(this).parent().siblings("li").removeClass("active").end().addClass("active");
     });
 
     $(".btn-group a").on('click', function() {
       $(this).siblings().removeClass("active").end().addClass("active");
     });
+*/
 
     // Disable link clicks to prevent page scrolling
-    $('a[href="#fakelink"]').on('click', function (e) {
+    /*
+$('a[href="#fakelink"]').on('click', function (e) {
       e.preventDefault();
     });
+*/
 
     // jQuery UI Spinner
+/*
     $.widget( "ui.customspinner", $.ui.spinner, {
       _buttonHtml: function() { // Remove arrows on the buttons
         return "" +
@@ -122,6 +129,7 @@ String.prototype.repeat = function(num) {
     }).on('blur', function () {
       $(this).closest('.ui-spinner').removeClass('focus');
     });
+*/
 
 
     // Focus state for append/prepend inputs
