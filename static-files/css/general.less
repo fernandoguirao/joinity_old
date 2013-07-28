@@ -5125,6 +5125,8 @@ margin: 0 9px 0 13px;
   }
   .reserva {
     margin-top:38px;
+    position:relative;
+    z-index:1;
     .colu01, .colu02, .colu03 {
       display: inline-block;
       vertical-align: top;
@@ -5136,10 +5138,12 @@ margin: 0 9px 0 13px;
         width: 143px;
         .border-radius(4px 4px 0 0);
         display:inline-block;
+        .background-size();
+        background-position:center;
       }
       .btn.ubicacion {
         .border-radius(0 0 5px 5px)!important;
-        margin-top: -3px;
+        margin-top: -4px;
         width: 115px;
       }
     }
@@ -5155,6 +5159,15 @@ margin: 0 9px 0 13px;
       margin-right: 11px;
       position: relative;
       top: -3px;
+    }
+    .fila.otrosdetalles {
+      input {
+        width:254px;
+      }
+      p {
+        width:137px!important;
+      }
+      text-align:left;
     }
     .span2.hasDatepicker.inputNormal {
       display: inline-block !important;
@@ -5201,6 +5214,49 @@ margin: 0 9px 0 13px;
       text-transform: uppercase;
       top: -6px;
       width: 13px !important;
+    }
+  }
+  footer {
+    margin-top:-7px;
+  }
+  #modalMarca {
+    .modal-body {
+      overflow-x:hidden;
+    }
+    .btn-small {
+      margin-top:18px;
+    }
+    .colu01 {
+      margin: 0 auto;
+      padding-bottom: 30px;
+      padding-top: 34px;
+      text-align: left;
+      width: 293px;
+      p {
+        text-transform:uppercase;
+        font-size:11px;
+        color:@gris;
+        span {
+          color:@oscuro;
+        }
+      }
+    }
+  }
+  .imagenlogo {
+    background-position: center center;
+    background-size: cover;
+    height: 100px;
+    width: 100%;
+    h2 {
+      position: absolute;
+      width: 100%;
+      text-transform: uppercase;
+      background-color: rgba(0,0,0,.2);
+      color: white;
+      top: 45px;
+      font-size: 23px;
+      padding: 10px 1px;
+      left: 0px;
     }
   }
 }
