@@ -2,39 +2,8 @@
 {% for usuario in usuarios %}
 {{usuario.first_name}}
 {% endfor %}
-      <div id="filtros">
-        <h3>Filtros</h3>
-        <ul class="nav nav-tabs tab-vertical" id="tabFiltro">
-          <li class="active">
-            <a href="#res-joinitys">
-              Joinitys
-            </a>
-          </li>
-          <li>
-            <a href="#res-usuarios">
-              Usuarios
-            </a>
-          </li>
-          <li>
-            <a href="#res-eventos">
-              Eventos
-            </a>
-          </li>
-          <li>
-            <a href="#res-aficiones">
-              Aficiones
-            </a>
-          </li>
-          <li>
-            <a href="#res-lugares">
-              Lugares
-            </a>
-          </li>
-        </ul>
-      </div><!-- FIN DE FILTROS -->
-
       <!-- RESULTADOS -->
-      <div id="resultados">
+
         <h3>Resultados</h3>
         <div class="tab-content">
           {% for joinity in joinitys %}      
@@ -239,4 +208,4 @@
           </div><!-- Fin de lugares -->
           {% endfor %}
         </div>
-      </div><!-- Fin lista de resultados -->
+        <!-- Fin lista de resultados -->

@@ -1,11 +1,20 @@
 <div id="buscador-principal">
+
   <div class="control-group huge">
     <div class="input-append buscaform">
       <input id="appendedInputButton-01" class="span2" type="text" placeholder="Busca amigos, productos, lugares, aficiones...">
-      <input id="" class="span2 busc-peq inputNormal" type="text" placeholder="Sigue buscando...">
+      <!-- <input id="" class="span2 busc-peq inputNormal" type="text" placeholder="Sigue buscando..."> -->
       <button class="btn btn-embossed buscarbtn" type="button" onclick="Dajaxice.buscador.buscador(busqueda, {'s':$('#appendedInputButton-01').val()});">
           Buscar
       </button>
+      <div class="btn grisclaro btn-mini vuelve">
+        <!--
+        <i class="iconos">
+          x
+        </i>
+        -->
+        Volver
+      </div>
     </div>
 
     <!-------------------------------->
@@ -13,10 +22,40 @@
     <!-------------------------------->
 
     <div id="contenedor-resultados">
-
-      
+      <div id="filtros">
+        <h3>Filtros</h3>
+        <ul class="nav nav-tabs tab-vertical" id="tabFiltro">
+          <li class="active">
+            <a href="#res-joinitys">
+              Joinitys
+            </a>
+          </li>
+          <li>
+            <a href="#res-usuarios">
+              Usuarios
+            </a>
+          </li>
+          <li>
+            <a href="#res-eventos">
+              Eventos
+            </a>
+          </li>
+          <li>
+            <a href="#res-aficiones">
+              Aficiones
+            </a>
+          </li>
+          <li>
+            <a href="#res-lugares">
+              Lugares
+            </a>
+          </li>
+        </ul>
+      </div><!-- FIN DE FILTROS -->
+      <div id="resultados">
+      </div>
     </div>
-
+    
     <!------------------------------------->
     <!--! FIN CONTENEDOR DE RESULTADOS  -->
     <!------------------------------------->
