@@ -17,22 +17,27 @@
         </a>
       </div>
       <div class="colum03">
+      {% if brand.admin == usuario %}
       <a href="/brands/{{brand.id}}/editar">
         <div class="btn btn-mini btn-block amarillo">
           Administra esta marca
         </div>
         </a>
-        <div class="btn btn-mini btn-block amarillo">
+        {% endif %}
+        {% if not seguidor %}
+        <div class="btn btn-mini btn-block amarillo" onclick="Dajaxice.brands.seguir(seguir_brand, {'brand_id':{{brand.id}}})">
           Sigue a {{brand.nombre}}
         </div>
-        <div class="btn btn-mini btn-block gris">
+        {% else %}
+        <div class="btn btn-mini btn-block gris" onclick="Dajaxice.brands.dejar_de_seguir(dejar_de_seguir_brand, {'brand_id':{{brand.id}}})">
           Deja de seguir a esta marca
         </div>
+        {% endif %}
         <div class="btn btn-mini btn-block">
-          355 seguidores
+          {{brand.seguidores.count}} seguidores
           <br>
           <hr>
-          <a href="http://nike.com" target="_blank">
+          <a href="{{brand.web}}" target="_blank">
             {{brand.web}}
           </a>
         </div>

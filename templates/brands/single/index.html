@@ -13,10 +13,11 @@
 {% include "brands/single/cabecera.html" %}
 
 {% include "brands/single/joinitys.html" %}
-
-{% include "brands/single/reserva-hotel.html" %}
-
-{% include "brands/single/reserva-restaurante.html" %}
+{% if brand.clase == 1 %}
+ {% include "brands/single/reserva-hotel.html" %}
+{% elif brand.clase == 2 %}
+ {% include "brands/single/reserva-restaurante.html" %}
+{% endif %}
 
 {% include "brands/single/informacion.html" %}
 

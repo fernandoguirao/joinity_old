@@ -7,23 +7,6 @@ var Dajaxice = {
     
 
     
-    mensajes: {
-    
-    refrescar: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('mensajes.refrescar', 'POST', callback_function, argv, custom_settings);
-    },
-
-    enviar_mensaje: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('mensajes.enviar_mensaje', 'POST', callback_function, argv, custom_settings);
-    }
-
-
-    
-    
-    }
-    
-,
-    
     usuario: {
     
     buscar: function(callback_function, argv, custom_settings){
@@ -37,23 +20,14 @@ var Dajaxice = {
     
 ,
     
-    buscador: {
-    
-    buscador: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('buscador.buscador', 'POST', callback_function, argv, custom_settings);
-    }
-
-
-    
-    
-    }
-    
-,
-    
-    notificaciones: {
+    mensajes: {
     
     refrescar: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('notificaciones.refrescar', 'POST', callback_function, argv, custom_settings);
+        return Dajaxice.call('mensajes.refrescar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    enviar_mensaje: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('mensajes.enviar_mensaje', 'POST', callback_function, argv, custom_settings);
     }
 
 
@@ -139,6 +113,10 @@ var Dajaxice = {
     
         pagos: {
     
+    carga_compra: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.pagos.carga_compra', 'POST', callback_function, argv, custom_settings);
+    },
+
     carga: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.pagos.carga', 'POST', callback_function, argv, custom_settings);
     }
@@ -150,6 +128,57 @@ var Dajaxice = {
     
 
     
+    
+    
+    }
+    
+,
+    
+    buscador: {
+    
+    buscador: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('buscador.buscador', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
+    brands: {
+    
+    seguir: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.seguir', 'POST', callback_function, argv, custom_settings);
+    },
+
+    filtrar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.filtrar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    cargar_mas: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.cargar_mas', 'POST', callback_function, argv, custom_settings);
+    },
+
+    dejar_de_seguir: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.dejar_de_seguir', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
+    notificaciones: {
+    
+    refrescar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('notificaciones.refrescar', 'POST', callback_function, argv, custom_settings);
+    }
+
+
     
     
     }

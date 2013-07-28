@@ -10,7 +10,8 @@ from joinitys.models import Joinitys
 def ver(request, id_brand=False):
     brand=get_object_or_404(Brand, pk=id_brand)
     joinitys=Joinitys.objects.filter(tipo="2", compras__brand=brand).order_by('-id')[:8]
-    context={"usuario":request.user, "pagina":"brands", "brand":brand, "joinitys":joinitys}
+    seguidor=Brand.objects.filter(pk=brand.id, seguidores__id=request.user.id).exists()
+    context={"usuario":request.user, "pagina":"brands", "brand":brand, "joinitys":joinitys, "seguidor":seguidor}
     return render_to_response('brands/single/index.html', context)
 def editar(request, id_brand):
     brand=get_object_or_404(Brand, pk=id_brand)

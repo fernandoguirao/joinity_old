@@ -11,8 +11,14 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-
-
+function seguir_brand(data){
+	//En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
+	return true;
+}
+function dejar_de_seguir_brand(data){
+	//En esta funcion mete lo que tenga que hacer tras darle al boton de dejar de seguir un brand, quita el return. 
+	return true;
+}
 function carga_pago(data){
   var cronologia = $("#cronologia");
   cronologia.html(data.pago);
