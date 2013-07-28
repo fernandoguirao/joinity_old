@@ -21,31 +21,30 @@
       
       <tr>
         <td><p>{{pago.producto}}</p></td>
-        <td></td>
-        <td>{{pago.get_precio|floatformat}}</td>
+        <td>{{pago.get_descuento}}%</td>
+        <td>{{pago.joinity.precio|floatformat}} €</td>
       </tr>
       
       <tr>
-      <!-- <tr>
+      <tr>
         <td><p>Gastos de envío</p></td>
         <td></td>
-        <td>0 €</td>
+        <td>{{pago.joinity.compras.envio|floatformat}} €</td>
       </tr>
       <tr>
         <th>Subtotal</th>
         <th></th>
-        <th>{{pago.get_precio}} €</th>
+        <th>{{pago.get_subtotal|floatformat}} €</th>
       </tr>
       <tr>
-        <th>IVA (21%)</th>
+        <th>IVA ({{pago.joinity.compras.iva}}%)</th>
         <th></th>
-        <th>267,75 €</th>
+        <th>{{pago.get_iva}} €</th>
       </tr>
-      -->
       <tr class="apagar">
         <th>Total</th>
         <th></th>
-        <th>{{pago.get_precio|floatformat}} €</th>
+        <th>{{pago.get_precio_total|floatformat}} €</th>
       </tr>
       
     </table>

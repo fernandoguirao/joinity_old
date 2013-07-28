@@ -9,7 +9,7 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from joinitys.models import Joinitys
-
+from datetime import datetime
 @login_required
 def crear(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
@@ -42,5 +42,6 @@ def cancelar(request, joinity_id, pago_id):
 @login_required
 def mis_pagos(request):
     mis_pagos=Pagos.objects.filter(usuarios__usuario=request.user)
-    context={"pagina":"misCompras", "usuario":request.user, "lista_pagos":mis_pagos}
+    mis_compras=Pagos.objects.filter(joinity__joinity_usuario__usuario=request.user, joinity__tipo=2).exclude(usuarios__usuario=request.user)
+    context={"pagina":"misCompras", "usuario":request.user, "lista_pagos":mis_pagos, "lista_compras":mis_compras}
     return render_to_response("joinitys/pagos/mis_pagos.html", context)
