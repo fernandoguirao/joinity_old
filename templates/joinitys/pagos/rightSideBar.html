@@ -9,8 +9,13 @@
     <div class="todosMensajes">
       <!-- CADA MENSAJE -->
       {% for pago in lista_pagos %}
+      {% if pago.joinity.tipo == 2 %}
+            <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga_compra(carga_pago, {'pago_id':{{pago.id}}});">
       
+      {% else %}
       <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga(carga_pago, {'pago_id':{{pago.id}}});">
+      {% endif %}
+      
         <div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
         </div>
         <div class="numeroNotif">
@@ -19,13 +24,30 @@
         <p class="span9">
           <b>{{pago.concepto}}</b>
           <i>{{pago.fecha|date:'d/m/Y'}}</i>
-          <span>{{pago.get_precio}}</span>
+          <span>{{pago.get_precio_total|floatformat}}</span>
         </p>
       </div>
-      {% empty %}
-      No tienes pagos pendientes
       {% endfor %}
       <!-- FIN DE CADA MENSAJE -->
+      {% for pago in lista_compras %}
+                {% if pago.ya_paso %}
+     
+      <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga_compra(carga_pago, {'pago_id':{{pago.id}}});">
+        <div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
+        </div>
+        <div class="numeroNotif">
+          
+        </div>
+        <p class="span9">
+          <b>{{pago.concepto}}</b> 
+          <i>{{pago.fecha|date:'d/m/Y'}}</i>
+          <span>{{pago.get_precio_total|floatformat}}</span>
+        </p>
+      </div>
+            {% endif %}
+      
+      {% endfor %}
+      
     </div>
     <!-- FIN DE TODOS LOS MENSAJES -->
    </div>

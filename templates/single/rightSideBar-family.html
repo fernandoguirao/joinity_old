@@ -8,6 +8,7 @@
         Busca un producto
       </div>
     </div>
+    {% if soy == "admin" %}
     <div class="crearPago">
     <a href="/joinity/{{joinity.id}}/pago/crear">
       <div class="btn btn-small btn-block btn-icono gris">
@@ -17,6 +18,7 @@
         Crea un pago
       </div>
     </a>
+    {% endif %}
     </div>
     <div class="realizaReserva">
       <div class="tituloSide">

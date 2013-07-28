@@ -134,6 +134,9 @@ class Compras(models.Model):
     descuento2=models.IntegerField(default=0)
     n_descuento3=models.IntegerField(default=0)
     descuento3=models.IntegerField(default=0)
+    envio=models.IntegerField(default=0)
+    fecha_fin=models.DateTimeField(null=True)
+    iva=models.IntegerField(default=0)
     class Meta:
         db_table="Compras"
 class Aficiones(models.Model):

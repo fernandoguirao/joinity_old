@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from joinity.settings import LOCALHOST
-from joinitys.models import Joinitys
-from datetime import datetime
+from joinitys.models import Joinitys, Usuarios_Joinity
+from datetime import datetime, timedelta
 
 # Create your models here.
 from paypal.standard.ipn.signals import payment_was_successful
@@ -44,10 +44,67 @@ class Pagos(models.Model):
     joinity= models.ForeignKey(Joinitys, related_name="pagos")
     class Meta:
         db_table = "Pagos"
+    def get_descuento(self):
+        if (self.joinity.tipo!=2):
+            return 0
+        else:
+            n=Usuarios_Joinity.objects.filter(joinity=self.joinity).count()
+            if self.joinity.compras.n_descuento3<=n:
+                descuento=self.joinity.compras.descuento3
+            elif self.joinity.compras.n_descuento2<=n:
+                descuento=self.joinity.compras.descuento2
+            elif self.joinity.compras.n_descuento1<=n:
+                descuento=self.joinity.compras.descuento1
+            else:
+                descuento=0
+            return descuento
     def get_precio(self):
-        n=Usuarios_Pagos.objects.filter(pago=self).count()
-        return self.precio/n
-
+        if (self.joinity.tipo!=2):
+            n=Usuarios_Pagos.objects.filter(pago=self).count()
+            return self.precio/n
+        else:
+            return self.joinity.precio-(self.joinity.precio*self.get_descuento()/100)
+    def get_iva(self):
+        precio=self.get_precio()
+        return precio*self.joinity.compras.iva/100
+    def get_subtotal(self):
+        return self.get_precio()+self.joinity.compras.envio
+    def get_precio_total(self):
+        if (self.joinity.tipo!=2):
+            return self.get_precio()
+        else:
+            return self.get_precio()+self.get_iva()+self.joinity.compras.envio
+    def ya_paso(self):
+        if (self.joinity.tipo!=2):
+            return True
+        else:
+            fecha_fin=self.joinity.compras.fecha_fin
+            
+            if fecha_fin.year>datetime.now().year:
+                return False
+            elif fecha_fin.year==datetime.now().year:
+                if fecha_fin.month>datetime.now().month:
+                    return False
+                elif fecha_fin.month==datetime.now().month:
+                    if fecha_fin.day>datetime.now().day:
+                        return False
+                    elif fecha_fin.day==datetime.now().day:
+                        if fecha_fin.hour>datetime.now().hour:
+                            return False
+                        elif fecha_fin.hour==datetime.now().hour:
+                            if fecha_fin.minute>datetime.now().minute:
+                                return False
+                            else:
+                                return True
+                        else:
+                            return True
+                        return True
+                    else:
+                        return True
+                else:  
+                    return True
+            else:
+                return True
 class Usuarios_Pagos(models.Model):
     usuario = models.ForeignKey(User)
     pago = models.ForeignKey(Pagos)
