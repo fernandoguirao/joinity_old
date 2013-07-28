@@ -11,6 +11,8 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+
+
 function carga_pago(data){
 	$("#cronologia").html(data.pago);
 }
