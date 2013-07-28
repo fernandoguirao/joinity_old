@@ -137,6 +137,7 @@ class Compras(models.Model):
     envio=models.IntegerField(default=0)
     fecha_fin=models.DateTimeField(null=True)
     iva=models.IntegerField(default=0)
+    brand=models.ForeignKey(Brand, related_name="joinitys")
     class Meta:
         db_table="Compras"
 class Aficiones(models.Model):

@@ -1,15 +1,19 @@
 from django import forms
 from models import Brand, Fotos, Puntuaciones
 
-class EmpresaForm(forms.ModelForm):
+class BrandForm(forms.ModelForm):
     nombre=forms.CharField()
-    notas=forms.CharField()
+    direccion=forms.CharField()
+    web=forms.CharField()
     tipo=forms.CharField()
     ubicacion=forms.CharField()
-    video=forms.CharField()
+    video=forms.CharField(required=False)
+    telefono=forms.IntegerField()
     class Meta:
         model = Brand
-        fields=("nombre", "notas", "precio", "tipo", "calificacion", "ubicacion", "imagen_cabecera", "video", "imagen_fondo",)
+        fields=("nombre", "direccion", "web", "tipo", "ubicacion", "video", "telefono", "imagen_cabecera", "imagen_fondo")
+        #fields=("nombre", "direccion", "tipo", "web", "calificacion", "ubicacion", "imagen_cabecera", "video", "imagen_fondo","telefono")
+        
 class Subir_Foto(forms.ModelForm):
     foto=forms.ImageField(required=False)
     class Meta:

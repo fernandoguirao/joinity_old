@@ -2,26 +2,26 @@
 <div id="modalMarca" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
   <div class="modal-body">
-    <div class="imagenlogo" style="background-image:url('/media/joinity/nike.jpeg');">
+    <div class="imagenlogo" style="background-image:url('/media/{{brand.imagen_cabecera}}');">
       <h2>
-        Nike Spain SLA.
+        {{brand.nombre}}
       </h2>
     </div>
     <div class="colu01">
       <p>
-        Dirección: <span>Calle Lorem Ipsum Dolor, sn</span>
+        Dirección: <span>{{brand.direccion}}</span>
       </p>
       <p>
-        Teléfono de contacto: <span>45823495</span>
+        Teléfono de contacto: <span>{{brand.telefono}}</span>
       </p>
       <p>
-        Correo electrónico: <span>hello@nikespain.com</span>
+        Correo electrónico: <span>{{brand.admin.email}}</span>
       </p>
       <p>
-        Página web: <span>http://nikespain.com</span>
+        Página web: <span>{{brand.web}}</span>
       </p>
       <div class="btn amarillo btn-small btn-block">
-        Envíale un mensaje a Nike Spain
+        Envíale un mensaje a {{brand.nombre}}
       </div>
     </div>
   </div>

@@ -1,54 +1,30 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
-from models import Brand, Fotos, Puntuaciones
+from models import Brand
 from django.template import RequestContext
 from django.shortcuts import  get_object_or_404
-from forms import EmpresaForm, Subir_Foto, Puntuar
+from forms import BrandForm
+from joinitys.models import Joinitys
 
-def editar_reserva(request, empresa_id):
-    empresa=get_object_or_404(Brand, pk=empresa_id)
-    param_foto=request.GET.get("foto", 0)
 
-    if empresa.admin!=request.user:
+def ver(request, id_brand=False):
+    brand=get_object_or_404(Brand, pk=id_brand)
+    joinitys=Joinitys.objects.filter(tipo="2", compras__brand=brand).order_by('-id')[:8]
+    context={"usuario":request.user, "pagina":"brands", "brand":brand, "joinitys":joinitys}
+    return render_to_response('brands/single/index.html', context)
+def editar(request, id_brand):
+    brand=get_object_or_404(Brand, pk=id_brand)
+    if request.user!=brand.admin:
         return HttpResponse("No tienes permisos para ver esto.")
     if request.method == 'POST':
-        # formulario enviado
-        if param_foto==0:
-            empresaform = EmpresaForm(request.POST, request.FILES, instance=empresa)
-            subir_foto=Subir_Foto(instance=request.user, empresa=empresa, prefix='subir_foto')
-            if empresaform.is_valid():
-                empresaform.save()
-                return HttpResponseRedirect("/empresa/"+str(empresa.id))
-
-        else:
-            subir_foto=Subir_Foto(request.POST, request.FILES, empresa=empresa, prefix='subir_foto')
-            empresaform = EmpresaForm(instance=empresa)
-            if subir_foto.is_valid():
-                subir_foto.save()
-
-
+        formulario=BrandForm(request.POST, request.FILES, instance=brand)
+        if formulario.is_valid():
+            formulario.save()
     else:
-        # formulario inicial
-        empresaform = EmpresaForm(instance=empresa)
-        subir_foto=Subir_Foto(instance=request.user, empresa=empresa, prefix='subir_foto')
-    context={'empresaform': empresaform, "subir_foto": subir_foto, "empresa":empresa}
-    return render_to_response('editar_empresa.html', context, context_instance=RequestContext(request))
+        formulario=BrandForm(instance=brand)
+    context={"formulario":formulario, "usuario":request.user}
+    return render_to_response('brands/single/edit.html', context, context_instance=RequestContext(request))
 
-def ver(request, nombre_brand=False):
-    #empresa=get_object_or_404(Empresa, nombre=nombre_brand)
-    #if request.POST:
-    #    puntuar=Puntuar(request.POST, empresa=empresa, usuario=request.user)
-    #    if Puntuaciones.objects.filter(empresa=empresa, usuario=request.user).exists():
-    #        puntuacion=get_object_or_404(Puntuaciones, empresa=empresa, usuario=request.user)
-    #        puntuacion.delete()
-    #    if puntuar.is_valid():
-    #        puntuar.save()
-    #else:
-    #    puntuar=Puntuar(empresa=empresa, usuario=request.user)
-    #context={'empresa':empresa, 'puntuar':puntuar, 'usuario':request.user}
-    #return render_to_response('ver_empresa.html', context,context_instance=RequestContext(request))
-    context={"usuario":request.user, "pagina":"brands"}
-    return render_to_response('brands/single/index.html', context)
 
 def seguir_empresa(request, empresa_id):
     empresa=get_object_or_404(Brand, pk=empresa_id)
