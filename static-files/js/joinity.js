@@ -183,6 +183,19 @@ function filtrar(data){
   }
 }
 
+function filtrar_brands(data){
+	  n=data.n;
+	  order=data.order;
+	  var contain = $(identificador);
+	  contain.addClass('activo');
+	  contain.parent().parent().parent().children('.contenedor-los-joinitys').html(data.joinitys);
+	  $('#fadingBarsG',identificador).remove();
+	  contain.html(textoidentificador);
+	  donutfunction();
+	  if(data.joinitys.length==0) {
+	    contain.parent().parent().parent().children('.contenedor-los-joinitys').html('No hay joinitys que coincidan con esta selección :(');
+	  }
+	}
 function cargar_mas(data){
   if (data.categoria==3){
     n=data.n;
@@ -207,6 +220,22 @@ function cargar_mas(data){
     contain.addClass('claro');
   }
 }
+function cargar_mas_brands(data){
+	  n=data.n;
+	  var contain = $(identificador);
+	  contain.parent().prev().append(data.joinitys);
+	  contain.removeClass('grisclaro');
+	  contain.addClass('amarillo');
+	  contain.children('#fadingBarsG').remove();
+	  contain.html('Quiero ver más');
+	  donutfunction();
+	  if(data.joinitys.length==0) {
+	    contain.html('No hay más joinitys');
+	    contain.removeClass('amarillo');
+	    contain.removeClass('btn-embossed');
+	    contain.addClass('claro');
+	  }
+	}
 
 /* Fin de ajax */
 
