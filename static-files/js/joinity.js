@@ -39,7 +39,7 @@ function marca(data){
 }
 
 function busqueda(data){
-  $("#contenedor-resultados").html(data.resultados);
+  $("#resultados").html(data.resultados);
 }
 
 function cargaform(data){
@@ -209,18 +209,22 @@ $('a.iconos.buscador').click(function(){
   $('.buscaform').addClass('zoomout');
 })
 
-$('html').click(function() {
+$('.vuelve').click(function() {
   $('#buscador-principal').fadeOut();
   $('.buscaform').removeClass('zoomout');
 });
 
-$('#appendedInputButton-01,.buscarbtn,.zoomout button,a.iconos.buscador,#contenedor-resultados a,.busc-peq,#filtros,#tabFiltro li').click(function(event){
+/*
+$('#appendedInputButton-01,.buscarbtn,.zoomout button,a.iconos.buscador,#contenedor-resultados a,#filtros,ul#tabFiltro li').click(function(event){
   event.stopPropagation();
 });
+*/
 
 $('.buscarbtn').click(function(){
-  $('#appendedInputButton-01').hide();
-  $('#contenedor-resultados,.busc-peq').show();
+  $('#appendedInputButton-01').addClass('busc-peq inputNormal');
+  $('#contenedor-resultados').show();
+  $('#contenedor-resultados').css({'display':'inherit'});
+  
 })
 
 /* Fin de buscador */
