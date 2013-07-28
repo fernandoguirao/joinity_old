@@ -179,7 +179,7 @@ $('a[href="#fakelink"]').on('click', function (e) {
     $.extend($.datepicker, {_checkOffset:function(inst,offset,isFixed){return offset}});
 
     // Switch
-    $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
+/*     $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch(); */
 
     // Stackable tables
     $(".table-striped").stacktable({id: "rwd-table"});
