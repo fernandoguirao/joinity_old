@@ -1,0 +1,32 @@
+  
+{% for evento in eventos %}
+ <!-- SI EL RESULTADO SON EVENTOS -->
+  <a href="/joinity/{{evento.joinity.id}}/evento/{{evento.id}}">
+    <div class="imag-res" style="background-image:url('/media/{{evento.foto}}')">
+    </div>
+    <div class="resto-res">
+      <h4>
+        {{evento.titulo}}
+      </h4>
+      <p>
+        <i class="iconos primero">
+          d
+        </i>
+       {% for lugar in evento.lugares_evento.all|slice:":1" %}
+        En {{lugar}}
+        {% endfor %}
+      </p>
+      <p>
+        <i class="iconos primero">
+          5
+        </i>
+        {{evento.n_joiners}} joiners 
+        <i class="iconos">
+          q
+        </i>
+        Empieza el {{evento.fecha_inicio}}
+      </p>
+    </div>
+  </a>
+{% endfor %}
+

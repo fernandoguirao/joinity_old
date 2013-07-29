@@ -11,6 +11,16 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+function reserva_hotel(data){
+	if (data.ok){
+		alert("Mandada Reserva");
+	}
+}
+function reserva_restaurante(data){
+	if (data.ok){
+		alert("Mandada Reserva");
+	}
+}
 function seguir_brand(data){
 	//En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
 	return true;
@@ -53,8 +63,41 @@ function marca(data){
 }
 
 function busqueda(data){
-  var resultados = $("#resultados");
-  resultados.html(data.resultados);
+	var resultados_usuarios = $("#res-usuarios");
+	var resultados_joinitys=$("#res-joinitys");
+	var resultados_aficiones=$("#res-aficiones");
+	var resultados_eventos=$("#res-eventos");
+	var resultados_lugares=$("#res-lugares");
+	if (data.usuarios){
+		resultados_usuarios.html(data.usuarios);
+	}
+	else{
+		resultados_usuarios.html("");
+	}
+	if (data.joinitys){
+		resultados_joinitys.html(data.joinitys);
+	}
+	else{
+		resultados_joinitys.html("");
+	}
+	if (data.aficiones){
+		resultados_aficiones.html(data.aficiones);
+	}
+	else{
+		resultados_aficiones.html("");
+	}
+	if (data.eventos){
+		resultados_eventos.html(data.eventos);
+	}
+	else{
+		resultados_eventos.html("");
+	}
+	if (data.lugares){
+		resultados_lugares.html(data.lugares);
+	}
+	else{
+		resultados_lugares.html("");
+	}
 }
 
 function cargaform(data){

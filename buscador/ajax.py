@@ -11,7 +11,7 @@ def buscador(request, s):
     resultados_usuarios=[]
     resultados_joinitys=[]
     resultados_categorias_aficiones=[]
-    resultados_categorias_compras=[]
+    #resultados_categorias_compras=[]
     resultados_eventos=[]
     resultados_lugares=[]
     for palabra in frase:
@@ -24,12 +24,12 @@ def buscador(request, s):
         for joinity in Joinitys.objects.filter(nombre__icontains=palabra):
             if joinity not in resultados_joinitys:
                 resultados_joinitys.append(joinity)
-        for compra in Compras.objects.filter(subcategoria__nombre__icontains=palabra):
-            if compra.joinity not in resultados_categorias_compras:
-                resultados_categorias_compras.append(compra.joinity)
-        for compra in Compras.objects.filter(subcategoria__categoria__nombre__icontains=palabra):
-            if compra.joinity not in resultados_categorias_compras:
-                resultados_categorias_compras.append(compra.joinity)
+        #for compra in Compras.objects.filter(subcategoria__nombre__icontains=palabra):
+        #    if compra.joinity not in resultados_categorias_compras:
+        #        resultados_categorias_compras.append(compra.joinity)
+        #for compra in Compras.objects.filter(subcategoria__categoria__nombre__icontains=palabra):
+        #    if compra.joinity not in resultados_categorias_compras:
+        #        resultados_categorias_compras.append(compra.joinity)
         for aficion in Aficiones.objects.filter(subcategoria__nombre__icontains=palabra):
             if aficion.joinity not in resultados_categorias_aficiones:
                 resultados_categorias_aficiones.append(aficion.joinity)
@@ -43,9 +43,36 @@ def buscador(request, s):
             if lugar not in resultados_lugares:
                 resultados_lugares.append(lugar)
             
-                
-    context={"usuarios":resultados_usuarios, "joinitys":resultados_joinitys, 
-             "categorias_compras":resultados_categorias_compras, "categoria_aficiones":resultados_categorias_aficiones,
-             "eventos": resultados_eventos, "lugares": resultados_lugares}
-    pagina_resultados=render_to_string("persistentes/pagina_resultados.html", context)
-    return simplejson.dumps({'resultados':pagina_resultados})
+    if resultados_usuarios:
+        context={"usuarios":resultados_usuarios}
+        pagina_usuarios=render_to_string("persistentes/resultados_usuarios.html",context)
+    else:
+        pagina_usuarios=False
+    if resultados_joinitys:
+        context={"joinitys":resultados_joinitys}
+        pagina_joinitys=render_to_string("persistentes/resultados_joinitys.html", context)
+    else:
+        pagina_joinitys=False
+    if resultados_categorias_aficiones:
+        context={"joinitys":resultados_categorias_aficiones}
+        pagina_aficiones=render_to_string("persistentes/resultados_joinitys.html", context)
+    else:
+        pagina_aficiones=False
+    if resultados_eventos:
+        context={"eventos":resultados_eventos}
+        pagina_eventos=render_to_string("persistentes/resultados_eventos.html", context)
+    else:
+        pagina_eventos=False
+    if resultados_lugares:
+        context={"joinitys":resultados_lugares}
+        pagina_lugares=render_to_string("persistentes/resultados_joinitys.html", context)
+    else:
+        pagina_lugares=False
+    #if resultados_categorias_compras:
+    #    context={"joinitys":resultados_categorias_compras}
+    #    pagina_compras=render_to_string("persistentes/resultados_joinitys.html", context)
+    #else:
+    #    pagina_compras=False
+
+    return simplejson.dumps({'usuarios':pagina_usuarios, 'joinitys':pagina_joinitys,
+                              'aficiones':pagina_aficiones, 'eventos':pagina_eventos, 'lugares':pagina_lugares})

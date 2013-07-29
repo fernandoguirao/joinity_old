@@ -1,6 +1,6 @@
 from django import forms
 from models import Brand, Fotos, Puntuaciones
-
+from datetime import date
 class BrandForm(forms.ModelForm):
     nombre=forms.CharField()
     direccion=forms.CharField()
@@ -48,3 +48,25 @@ class Puntuar(forms.ModelForm):
             nueva_puntuacion.save()
             # self.save_m2m()
         return nueva_puntuacion
+
+class ReservaRestaurante(forms.Form):
+    fecha=forms.DateField(widget=forms.TextInput(attrs={'class':'span2 hasDatepicker inputNormal', 'id':'datepicker-01', 'value':str(date.today())}))
+    hora=forms.ChoiceField(widget=forms.Select(attrs={'class':'select span1'}), choices=([("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"),("6","6"),("7","7"),("8","8"),("9","9"),("10","10"),("11","11"),("12","12"),("13", "13"), ("14", "14"), ("15", "15"), ("16", "16"), ("17", "17"),("18","18"),("19","19"),("20","20"),("21","21"),("22","22"),("23","23"),("24","24")]))
+    minuto=forms.ChoiceField(widget=forms.Select(attrs={'class':'select span1'}), choices=([("0","00"),("15","15"),("30","30"),("45","45")]))
+    notas=forms.CharField(widget=forms.TextInput(attrs={'class':'inputNormal'}))
+    n_personas=forms.IntegerField(widget=forms.TextInput(attrs={'class':'inputNormal'}))
+    def save(self):
+        print "potato"
+class ReservaHotel(forms.Form):
+    fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2 hasDatepicker inputNormal', 'id':'datepicker-01', 'value':str(date.today())}))
+    hora_inicio=forms.ChoiceField(widget=forms.Select(attrs={'class':'select span1'}), choices=([("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"),("6","6"),("7","7"),("8","8"),("9","9"),("10","10"),("11","11"),("12","12"),("13", "13"), ("14", "14"), ("15", "15"), ("16", "16"), ("17", "17"),("18","18"),("19","19"),("20","20"),("21","21"),("22","22"),("23","23"),("24","24")]))
+    minuto_inicio=forms.ChoiceField(widget=forms.Select(attrs={'class':'select span1'}), choices=([("00","00"),("15","15"),("30","30"),("45","45")]))
+    fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2 hasDatepicker inputNormal', 'id':'datepicker-02', 'value':str(date.today())}))
+    hora_fin=forms.ChoiceField(widget=forms.Select(attrs={'class':'select span1'}), choices=([("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"),("6","6"),("7","7"),("8","8"),("9","9"),("10","10"),("11","11"),("12","12"),("13", "13"), ("14", "14"), ("15", "15"), ("16", "16"), ("17", "17"),("18","18"),("19","19"),("20","20"),("21","21"),("22","22"),("23","23"),("24","24")]))
+    minuto_fin=forms.ChoiceField(widget=forms.Select(attrs={'class':'select span1'}), choices=([("00","00"),("15","15"),("30","30"),("45","45")]))
+    n_personas=forms.IntegerField(widget=forms.TextInput(attrs={'class':'inputNormal'}))
+    n_habitaciones=forms.IntegerField(widget=forms.TextInput(attrs={'class':'inputNormal'}))
+    def save(self):
+        print self.n_habitaciones
+        print self.hora_inicio
+    

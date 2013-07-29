@@ -1,0 +1,35 @@
+{% for joinity in joinitys %}      
+<!-- SI EL RESULTADO SON JOINITYS -->
+  <a href="/joinity/{{joinity.id}}">
+    <div class="imag-res" style="background-image:url('/media/{{joinity.foto}}')">
+    </div>
+    <div class="resto-res">
+      <h4>
+        {{joinity.nombre}}
+      </h4>
+      <p>
+        <i class="iconos primero">
+          d
+        </i>
+       {% for lugar in joinity.lugares.all|slice:":1" %}
+        
+        En {{lugar}}, 
+        {% endfor %}por
+        <i class="iconos">
+          h
+        </i>
+        {{joinity.precio}} euros
+      </p>
+      <p>
+        <i class="iconos primero">
+          5
+        </i>
+        {{joinity.n_joiners}} joiners 
+        <i class="iconos">
+          q
+        </i>
+        Empieza el {{joinity.sub.fecha_inicio}}
+      </p>
+    </div>
+  </a>
+{% endfor %}
