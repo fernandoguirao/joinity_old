@@ -12,6 +12,7 @@ $.fn.addSliderSegments = function (amount) {
       $(this).prepend(segment.repeat(amount - 2));
     });
   };
+  prueba
 */
 
   $(function() {
