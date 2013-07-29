@@ -3678,20 +3678,23 @@ text-transform: uppercase !important;
 
 /* EVENTOS */
 
-.masdeundia {
 .diafin {
   display:none;
 }
-&.checked {
-  .diafin {
-    display: block;
-    margin-top: 13px;
-    margin-left: -33px;
-    label {
-      color:@oscuro;
-    }
+
+.diafin.mostrar {
+  display: block;
+  margin-top: 13px;
+  margin-left: -33px;
+  label {
+    color:@oscuro;
   }
 }
+
+.masdeundia {
+
+  &.checked {
+      }
 }
 .input-prepend .add-on:first-child, .input-prepend .btn:first-child {
   border-radius: 6px 0 0 6px!important;
@@ -5292,3 +5295,12 @@ margin: 0 9px 0 13px;
     }
   }
 }
+
+/*
+#home .contenedor-array .contenedor-categoria .la-categoria, #brands .contenedor-array .contenedor-categoria .la-categoria {
+  color: @grisclaro;
+  &:hover {
+    color:@claro;
+  }
+}
+*/
