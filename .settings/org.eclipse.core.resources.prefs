@@ -5,6 +5,7 @@ encoding//mensajes/forms.py=utf-8
 encoding//templates/brands/single/cabecera.html=UTF-8
 encoding//templates/brands/single/informacion.html=UTF-8
 encoding//templates/brands/single/joinitys.html=UTF-8
+encoding//templates/brands/single/reserva-restaurante.html=UTF-8
 encoding//templates/creacion=UTF-8
 encoding//templates/creacion/ajax_subcategorias.html=UTF-8
 encoding//templates/creacion/campos.html=UTF-8

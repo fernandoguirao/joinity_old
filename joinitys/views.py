@@ -1,10 +1,9 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from forms import FormTexto, FormFoto
+from forms import FormTexto, FormFoto, FormVotacion
 from forms import Buscar as Buscar_Reserva, Reservar, FormComentario
 from django.contrib.auth.decorators import login_required
-from models import Usuarios_Joinity, Actualizaciones
-from models import Reserva_Brand, Joinitys, Joinitys_VIP, Compras, Aficiones
+from models import Reserva_Brand, Joinitys, Joinitys_VIP, Compras, Aficiones, Usuarios_Joinity
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from django.contrib.auth.models import User
@@ -97,35 +96,19 @@ def ver(request, joinity_id):
     soy=joinity.que_soy(request.user)
     mis_tareas=Tareas.objects.filter(joinity=joinity, usuarios_tarea__usuario=request.user)
     if request.POST:
-        es_contenido=request.GET.get("contenido", False)
-        es_comentario=request.GET.get("comentar", False)
-        if es_contenido:
-            if es_contenido=="texto":
-                form = FormTexto(request.POST, usuario=request.user, joinity=joinity)
-            elif es_contenido=="foto":
-                form = FormFoto(request.POST, request.FILES, joinity=joinity, usuario=request.user)
-            comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
-            if form.is_valid:
-                form.save()
-                return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
-        elif es_comentario:
-            actualizacion=get_object_or_404(Actualizaciones, pk=es_comentario)
-            form = FormTexto(instance=request.user, usuario=request.user, joinity=joinity)
-            comentar=FormComentario(request.POST, usuario=request.user, actualizacion=actualizacion)
-            if comentar.is_valid:
-                comentar.save()
-                return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
-
-        else:
-            form = FormTexto(instance=request.user, usuario=request.user, joinity=joinity)
-            comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
-
+        form = FormFoto(request.POST, request.FILES, joinity=joinity, usuario=request.user)
+        comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
+        votacionform=FormVotacion(usuario=request.user, joinity=joinity)
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect("/joinity/"+str(joinity.id))
     else:
         form = FormTexto(instance=request.user, usuario=request.user, joinity=joinity)
         comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
+        votacionform=FormVotacion(usuario=request.user, joinity=joinity)
     context = {"joinity": joinity, "form": form, "cinco":[1,2,3,4,5],
                "pagina":"joinity", "comentar":comentar,
-               "usuario":request.user, "soy":soy, "mis_tareas":mis_tareas}
+               "usuario":request.user, "soy":soy, "mis_tareas":mis_tareas, "formvotacion":votacionform}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 
 

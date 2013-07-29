@@ -230,7 +230,20 @@ class Comentario_Actualizacion(models.Model):
     fecha = models.DateTimeField(auto_now_add=True, blank=True)
     class Meta:
         db_table="Comentarios_Actualizaciones"
-   
+class Votacion(models.Model):
+    actualizacion=models.ForeignKey(Actualizaciones, related_name="votacion")
+    usuario=models.ForeignKey(User, related_name="creador_votaciones")
+    pregunta=models.TextField(max_length=400, blank=True, null=True)
+    class Meta:
+        db_table="Votaciones"
+class Respuesta(models.Model):
+    votacion=models.ForeignKey(Votacion, related_name="respuestas")
+    respuesta=models.TextField(max_length=400)
+    votos=models.ManyToManyField(User)
+    class Meta:
+        db_table="Respuestas"
+    
+    
 class Lugares_Joinity(models.Model):
     joinity=models.ForeignKey(Joinitys, related_name="lugares")
     n=models.IntegerField(default=1)

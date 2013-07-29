@@ -2,7 +2,7 @@ from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
 from models import Joinitys, Usuarios_Joinity, Actualizaciones
 from django.template.loader import render_to_string
-from forms import FormTexto, FormFoto, FormComentario
+from forms import FormTexto, FormFoto, FormComentario, FormVotacion
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
@@ -94,5 +94,13 @@ def comentar(request, formulario, actualizacion_id):
         return simplejson.dumps({'status':False, 'joinity_id':actualizacion.joinity.id})
     return simplejson.dumps({'status': 'Error al enviar'})
 
+@dajaxice_register
+def posteavotacion(request, formulario, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    form = FormVotacion(formulario, usuario=request.user, joinity=joinity)
+    if form.is_valid():
+        form.save()
+        return simplejson.dumps({'status':False, 'joinity_id':joinity_id})
+    return simplejson.dumps({'status': 'Error al enviar'})
 
     
