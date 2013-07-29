@@ -32,6 +32,8 @@
             <div class="contenedor-los-joinitys">
 		{% for joinity in lista_joinitys %}
         	{% include "misjoinitys/joinity.html" %}
+        {% empty %}
+          NO HAY JOINITYS
 		{% endfor %}
         </div>
           </div>

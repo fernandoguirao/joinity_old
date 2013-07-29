@@ -28,10 +28,13 @@ def index(request):
     lista_compras=Joinitys.objects.filter(tipo="2").order_by('-id')[:8]
     lista_family=Joinitys.objects.filter(tipo="1").order_by('-id')[:8]
     lista_vip=Joinitys_VIP.objects.all()
+    lista_restaurantes=Brand.objects.filter(clase="2")
+    lista_hoteles=Brand.objects.filter(clase="1")
     context = {'lista_aficiones': lista_aficiones, 'lista_compras':lista_compras,
                'lista_family':lista_family, "usuario":usuario, "pagina":"home",
                "cinco":[1,2,3,4,5], "VIP":lista_vip, "send":request.GET.get("send",False),
-               "error":request.GET.get("error", False)}
+               "error":request.GET.get("error", False), "lista_restaurantes":lista_restaurantes,
+               "lista_hoteles":lista_hoteles}
     return render(request, 'index/index.html', context)
 
 
