@@ -1,3 +1,6 @@
+{% if pagina == "crear-family" %}
+  {% include "creacion/form-family.html" %}
+{% endif %}
 <legend>
   1. Información general del joinity
 </legend>
@@ -68,24 +71,26 @@
 
     {% if pagina == "crear-aficiones" %}
       {% include "creacion/formaficiones.html" %}
-    {% elif pagina == "crear-family" %}
-      {% include "creacion/formfamily.html" %}
+
     {% elif pagina == "crear-compras" %}
       {% include "creacion/formcompras.html" %}
     {% endif %}
+
     <div class="fieldWrapper">
       <label for="id_privacidad">
         Privacidad
       </label>
       {{ formulario.privacidad }}
     </div>
+
     {% if formcompras %}
       {% include "creacion/formcompras.html" %}
+
     {% elif formaficiones %}
       {% include "creacion/formaficiones.html" %}
-    {% elif formfamily %}
-      {% include "creacion/formfamily.html" %}
+
     {% endif %}
+
     {% if formlugares %}
        LUGARES: 
        <div id="lista_lugares">
