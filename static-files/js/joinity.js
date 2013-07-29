@@ -11,6 +11,8 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+
+
 function seguir_brand(data){
 	//En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
 	return true;
@@ -517,3 +519,11 @@ $(function() {
     });
   }
 })
+
+/* MOSTRAR FECHA FIN SI MÁS DE UN DÍA */
+
+$('.masdeundia').toggle(function(){
+  $('.diafin').addClass('mostrar');
+},function(){
+  $('.diafin').removeClass('mostrar');
+});
