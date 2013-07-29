@@ -1,10 +1,13 @@
 <div class="container contenedor-array faficiones reserva restaurante" id="reservas">
   <div class="contenedor-categoria">
     <div class="la-categoria aficat">
-      Reserva mesa en <span>Nike</span>
+      Reserva mesa en <span>{{brand.nombre}}</span>
     </div>
     <div class="contenedor-elarray">
       <div class="contenedor-los-joinitys">
+      <form method="post" id="form_reserva_restaurante">
+              {% csrf_token %}
+      
         <div class="colu01">
           <div class="minimapa" style="background-image:url('/media/joinity/mapa.png');">
           </div>
@@ -26,35 +29,23 @@
                   <span class="fui-calendar">
                   </span>
                 </button>
-                <input type="text" value="27-07-2013" name="fecha_inicio" id="datepicker-entrada" class="span2 hasDatepicker inputNormal">
+                {{reserva_restaurante.fecha}}
               </div>
             </div>
             <p>
               a las
             </p>
-            <select name="listahoras" value="22" class="select span1">
-              <option value="0">13</option>
-              <option value="1">14</option>
-              <option value="2">15</option>
-              <option value="3">21</option>
-              <option value="4" selected="selected">22</option>
-              <option value="5">23</option>
-            </select>
+            {{reserva_restaurante.hora}}
             <p class="dospuntos">
               :
             </p>
-            <select name="listahoras" value="22" class="select span1">
-              <option value="0" selected="selected">00</option>
-              <option value="1">15</option>
-              <option value="2">30</option>
-              <option value="3">45</option>
-            </select>
+            {{reserva_restaurante.minuto}}
           </div>
           <div class="fila otrosdetalles">
             <p>
               ¿Algo que añadir?
             </p>
-            <input type="text" class="inputNormal" />
+            {{reserva_restaurante.notas}}
           </div>
         </div>
         <div class="colu03">
@@ -63,16 +54,17 @@
             <p>
               Núm. personas
             </p>
-            <input type="text" class="inputNormal" />
+            {{reserva_restaurante.n_personas}}
           </div>
         </div>
         <div class="los-join-footer">
           <div class=linea-puntos>
           </div>
-          <button class="btn amarillo btn-embossed">
+          <button type="button" class="btn amarillo btn-embossed" onclick="Dajaxice.brands.reserva_restaurante(reserva_restaurante, {'formulario':$('#form_reserva_restaurante').serializeObject(), 'id_brand':{{brand.id}}});">
             Reserva tu mesa
           </button>
         </div>
+        </form>
       </div>
     </div>
   </div>

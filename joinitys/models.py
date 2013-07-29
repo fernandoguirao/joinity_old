@@ -17,6 +17,8 @@ class Joinitys(models.Model):
     privacidad=models.IntegerField(default=0)
     usuarios = models.ManyToManyField(User, through='Usuarios_Joinity')
     creador = models.ForeignKey(User, related_name="creador_joinity")
+    fecha_creacion = models.DateTimeField(auto_now_add=True, blank=True)
+
 #     family=models.OneToOneRel("Family", related_name="family")
     class Meta:
         db_table = "Joinitys"
@@ -183,6 +185,7 @@ class Usuarios_Joinity(models.Model):
     usuario = models.ForeignKey(User, related_name="usuario_joinity")
     joinity = models.ForeignKey(Joinitys, related_name="joinity_usuario")
     estado = models.IntegerField(default=0)
+    fecha_miembro = models.DateTimeField(auto_now_add=True, blank=True)
     class Meta:
         db_table = "Usuarios_Joinitys"
     def __unicode__(self):
@@ -230,7 +233,20 @@ class Comentario_Actualizacion(models.Model):
     fecha = models.DateTimeField(auto_now_add=True, blank=True)
     class Meta:
         db_table="Comentarios_Actualizaciones"
-   
+class Votacion(models.Model):
+    actualizacion=models.ForeignKey(Actualizaciones, related_name="votacion")
+    usuario=models.ForeignKey(User, related_name="creador_votaciones")
+    pregunta=models.TextField(max_length=400, blank=True, null=True)
+    class Meta:
+        db_table="Votaciones"
+class Respuesta(models.Model):
+    votacion=models.ForeignKey(Votacion, related_name="respuestas")
+    respuesta=models.TextField(max_length=400)
+    votos=models.ManyToManyField(User)
+    class Meta:
+        db_table="Respuestas"
+    
+    
 class Lugares_Joinity(models.Model):
     joinity=models.ForeignKey(Joinitys, related_name="lugares")
     n=models.IntegerField(default=1)

@@ -2,7 +2,7 @@
     </div>
     <!-- EL CHAT -->
     {% if mensajes %}
-    {% for mensaje in mensajes %}
+    {% for mensaje in mensajes|slice:":8" %}
     <!-- INICIO MENSAJE -->
     <div class="actualizacion texto">
       <!-- AUTOR Y FECHA -->

@@ -2,7 +2,7 @@
 
 from django import forms
 from models import Texto_Joinity, Puntuaciones, Actualizaciones
-from models import Foto_Joinity, Reserva_Brand
+from models import Foto_Joinity, Reserva_Brand, Votacion
 from models import Comentario_Actualizacion
         # pago.email = self.cleaned_data["email"]
 class FormFoto(forms.ModelForm):
@@ -77,6 +77,28 @@ class FormComentario(forms.ModelForm):
             nuevo_comentario.save()
             # self.save_m2m()
         return nuevo_comentario
+class FormVotacion(forms.ModelForm):
+    pregunta = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Cuál sería el título de la pregunta', 'id':'pregunta_votacion', 'class':'inputNormal input-small titulopregunta'}))
+    class Meta:
+        model = Votacion
+        fields = ("pregunta",)
+
+    def __init__(self, *args, **kwargs):
+        self._usuario = kwargs.pop('usuario')
+        self._joinity = kwargs.pop('joinity')
+        super(FormVotacion, self).__init__(*args, **kwargs)
+        
+    def save(self, commit=True):
+        nueva_votacion = super(FormVotacion, self).save(commit=False)
+        tipo=4
+        actualizacion=Actualizaciones(joinity=self._joinity, tipo=tipo)
+        actualizacion.save()
+        nueva_votacion.usuario = self._usuario
+        nueva_votacion.actualizacion = actualizacion
+        if commit:
+            nueva_votacion.save()  
+        return nueva_votacion
+
 class Buscar(forms.Form):
     s = forms.CharField()
 class Reservar(forms.ModelForm):

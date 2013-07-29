@@ -1,11 +1,13 @@
 <div id="rightSideBar" class="compra-right">
   <div id="contenidoSide">
     <div class="buscaProducto">
+      <a href="/brands/{{joinity.compras.brand.id}}">
       <div class="logo-m btn btn-small btn-block btn-icono btn-embossed">
-        <div class="logo-marca" style="background-image:url('/media/images/logo-apple.png');">
+        <div class="logo-marca" style="background-image:url('/media/{{joinity.compras.brand.imagen_cabecera}}');">
         </div>
-        Apple Inc. <span>en <b>Joinity</b></span>
+        {{joinity.compras.brand.nombre}} <span> en <b>Joinity</b></span>
       </div>
+      </a>
     </div>
     {% if soy == "admin" %}
     <div class="crearPago">

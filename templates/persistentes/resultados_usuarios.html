@@ -1,0 +1,18 @@
+{% for usuario in usuarios %}
+<a href="/usuario/{{usuario.id}}">
+      <div class="imag-res" style="background-image:url('/media/{{usuario.usuario.foto}}')">
+      </div>
+      <div class="resto-res">
+          <h4>
+              {{usuario.first_name}} {{usuario.last_name}}
+          </h4>
+          <p>
+              En Joinity desde el {{usuario.date_joined}}
+          </p>
+          <p>
+              Participa en {{usuario.usuario_joinity.count}} joinitys
+          </p>
+       </div> 
+    </a>
+</div> <!-- Fin de usuarios -->
+{% endfor %}

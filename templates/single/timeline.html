@@ -57,12 +57,12 @@
       </div>
       <!-- Fin actualización texto -->
       <!-- Actualización votación -->
-      <form class="votaform">
+      <form class="votaform" id="formulario_votacion">
         <div class="input-append">
           <label>
             1. Pregunta o título de la votación
           </label>
-          <input class="inputNormal input-small titulopregunta" type="text" placeholder="Cuál sería el título de la pregunta">
+          {{formvotacion.pregunta}}
           <span class="help-block">
             Ejemplo: "¿cuál de estas tres fotos os gusta más?
           </span>
@@ -72,7 +72,7 @@
           <ul class="laopcion">
             <!-- Una opción de voto -->
             <li>
-              <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción">
+              <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción" name="respuesta1">
               <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
                 <i class="iconos">
                   s
@@ -91,7 +91,7 @@
             </li><!-- Fin de la opción -->
           </ul>
         </div>
-        <div class="btn btn-small btn-block amarillo crearvot">
+        <div class="btn btn-small btn-block amarillo crearvot" onclick="Dajaxice.joinitys.posteavotacion(postear, {'formulario':$('#formulario_votacion').serializeObject(), 'joinity_id':{{joinity.id}}});">
           Adelante con esta votación
         </div>
       </form>

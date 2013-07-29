@@ -70,9 +70,10 @@ class AficionesForm(forms.ModelForm):
         return aficion
         # pago.email = self.cleaned_data["email"]
 class ComprasForm(forms.ModelForm):
+    fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(date.today())}))
     class Meta:
         model = Compras
-        fields=("subcategoria", "n_descuento1", "descuento1", "n_descuento2", "descuento2", "n_descuento3", "descuento3")
+        fields=("subcategoria", "n_descuento1", "descuento1", "n_descuento2", "descuento2", "n_descuento3", "descuento3", "envio", "fecha_fin", "iva", "brand")
     def __init__(self, *args, **kwargs):
         self._joinity = kwargs.pop('joinity')
         super(ComprasForm, self).__init__(*args, **kwargs)

@@ -4,6 +4,9 @@ from joinitys.models import Joinitys
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
 from models import Brand
+from forms import ReservaRestaurante
+from forms import ReservaHotel
+from django.core.mail import send_mail
 
 
 @dajaxice_register
@@ -42,5 +45,33 @@ def dejar_de_seguir(request, brand_id):
     brand=get_object_or_404(Brand, pk=brand_id)
     brand.seguidores.remove(request.user)
     return simplejson.dumps({'ok':'ok'})
+@dajaxice_register
+def reserva_restaurante(request,formulario, id_brand):
+    brand=get_object_or_404(Brand, pk=id_brand)
+    cadena="El usuario "+request.user.first_name+" "+request.user.last_name+"\n"
+    cadena+="con el email "+request.user.email+"\n"
+    cadena+="ha solicitado una reserva el dia "+str(formulario["fecha"])
+    cadena+=" a las "+str(formulario["hora"])+":"+str(formulario["minuto"])+"\n"
+    cadena+=" con la nota:\n "+formulario["notas"]+"\n"
+    cadena+=" de "+str(formulario["n_personas"])+"personas \n"
+    print cadena
+    send_mail('RESERVA ', cadena, 'joinity@joinity.com',
+                  [brand.admin.email], fail_silently=False)
+    return simplejson.dumps({'ok':True})
+@dajaxice_register
+def reserva_hotel(request,formulario, id_brand):
+    brand=get_object_or_404(Brand, pk=id_brand)
+    cadena="El usuario "+request.user.first_name+" "+request.user.last_name+"\n"
+    cadena+="con el email "+request.user.email+"\n"
+    cadena+="ha solicitado una reserva del dia "+str(formulario["fecha_inicio"])
+    cadena+=" a las "+str(formulario["hora_inicio"])+":"+str(formulario["minuto_inicio"])+"\n"
+    cadena+=" al dia "+str(formulario["fecha_fin"])
+    cadena+=" a las "+str(formulario["hora_fin"])+":"+str(formulario["minuto_fin"])+"\n"
+    cadena+=" de "+str(formulario["n_personas"])+" personas en "+str(formulario["n_habitaciones"])+" habitaciones\n"
+    print cadena
+    send_mail('RESERVA ', cadena, 'joinity@joinity.com',
+                  [brand.admin.email], fail_silently=False)
+    
+    return simplejson.dumps({'ok':True})
 
     

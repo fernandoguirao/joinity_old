@@ -59,8 +59,7 @@
         *Déjalo vacío si no hay máximo
       </span>
     </div>
-    
-    {% if pagina == "crear-compras" %}
+    {% if formcompras %}
     <div class="fieldWrapper">
       <label for="id_precio">
         Precio
@@ -68,14 +67,6 @@
       {{ formulario.precio }}
     </div>
     {% endif %}
-
-    {% if pagina == "crear-aficiones" %}
-      {% include "creacion/formaficiones.html" %}
-
-    {% elif pagina == "crear-compras" %}
-      {% include "creacion/formcompras.html" %}
-    {% endif %}
-
     <div class="fieldWrapper">
       <label for="id_privacidad">
         Privacidad
@@ -98,11 +89,8 @@
         	Paso {{lugar.n}}: {{lugar.lugar}}<br>
         {% endfor %}
         </div>
-        <form action="" method="post" id="form_anyadir_lugar">
-        	{% csrf_token %}
-        	{{ formlugares.lugar }}
-            <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
-        </form>	
+       	{{ formlugares.lugar }}
+        <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
 
     {% endif %}
     <br>

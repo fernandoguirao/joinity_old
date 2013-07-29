@@ -37,7 +37,7 @@
 	{% include "index/modal-inicio.html" %}
 	{% include "index/carousel.html" %}
 	
-	<div>
+	<!--  <div>
 		{% if usuario %}
 		INTERES AFICIONES
 			{%for interes in usuario.usuario.intereses.all %}
@@ -51,7 +51,8 @@
 		
 	</div>
 	
-	
+	-->
+    {% include "index/lista_reservas.html" %}
 	{% include "index/array-aficiones.html" %}
 	{% include "index/array-compras.html" %}
 	{% include "index/array-fandfriends.html" %}

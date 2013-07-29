@@ -1,0 +1,10 @@
+{% for hotel in lista_hoteles %}
+<a href="/brands/{{hotel.id}}">{{hotel.nombre}}</a><br>
+{% empty %}
+NO HAY HOTELES!!!
+{% endfor %}
+{% for restaurante in lista_restaurantes %}
+<a href="/brands/{{restaurante.id}}">{{restaurante.nombre}}</a><br>
+{% empty %}
+NO HAY RESTAURANTES!!!
+{% endfor %}
