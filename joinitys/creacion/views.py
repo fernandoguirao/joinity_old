@@ -50,8 +50,8 @@ def editar(request, joinity_id):
                     formcompras.save()
         else:
             formulario = JoinityForm(instance=joinity, user=request.user, tipo=2)
-            formcompras=ComprasForm(instance=joinity.sub, joinity=None)
-        context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"crear", "usuario":request.user, "categorias":Categorias_Compras.objects.all().order_by('id'), "joinity":joinity, "subcategorias": subcategorias, "formlugares":formlugares}
+            formcompras=ComprasForm(instance=joinity.sub(), joinity=None)
+        context={ 'formulario': formulario, 'formcompras':formcompras, "pagina":"editar", "usuario":request.user, "categorias":Categorias_Compras.objects.all().order_by('id'), "joinity":joinity, "subcategorias": subcategorias, "formlugares":formlugares}
     if joinity.tipo==1:
         if request.POST:
             formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=1)
