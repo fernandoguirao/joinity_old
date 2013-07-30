@@ -1,27 +1,32 @@
 <div id="rightSideBar">
   <div id="contenidoSide">
-    <div class="buscaProducto">
-    <a href="#modalJoinitysCompras" data-toggle="modal">
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          f
-        </i>
-        Busca un producto
+    <div class="tituloSide">
+      <div class="lineaCirculo">
       </div>
-     </a>
-     {% include "single/modal-joinitys-compras.html" %}
+      Regalos y gastos
+    </div>
+    <div class="buscaProducto">
+      <a href="#modalJoinitysCompras" data-toggle="modal">
+        <div class="btn btn-small btn-block btn-icono gris">
+          <i class="iconos font-iconos">
+            f
+          </i>
+          Busca un regalo
+        </div>
+      </a>
+      {% include "single/modal-joinitys-compras.html" %}
     </div>
     {% if soy == "admin" %}
     <div class="crearPago">
-    <a href="/joinity/{{joinity.id}}/pago/crear">
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          f
-        </i>
-        Crea un pago
-      </div>
-    </a>
-    {% endif %}
+      <a href="/joinity/{{joinity.id}}/pago/crear">
+        <div class="btn btn-small btn-block btn-icono gris">
+          <i class="iconos font-iconos">
+            f
+          </i>
+          Reparte un gasto
+        </div>
+      </a>
+      {% endif %}
     </div>
     <div class="realizaReserva">
       <div class="tituloSide">
