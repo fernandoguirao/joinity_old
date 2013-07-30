@@ -1,12 +1,15 @@
 <div id="rightSideBar">
   <div id="contenidoSide">
     <div class="buscaProducto">
+    <a href="#modalJoinitysCompras" data-toggle="modal">
       <div class="btn btn-small btn-block btn-icono gris">
         <i class="iconos">
           f
         </i>
         Busca un producto
       </div>
+     </a>
+     {% include "single/modal-joinitys-compras.html" %}
     </div>
     {% if soy == "admin" %}
     <div class="crearPago">
