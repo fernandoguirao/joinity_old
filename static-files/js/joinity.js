@@ -11,32 +11,34 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-function asignar_compra(data){
-	if (data.ok){
-		alert("Compra Asignada");
-	}
-}
 
+
+function asignar_compra(data){
+  if (data.ok){
+    alert("Compra Asignada");
+  }
+}
 
 function reserva_hotel(data){
-	if (data.ok){
-		alert("Mandada Reserva");
-	}
+  if (data.ok){
+    alert("Mandada Reserva");
+  }
 }
 function reserva_restaurante(data){
-	if (data.ok){
-		alert("Mandada Reserva");
-	}
+  if (data.ok){
+    alert("Mandada Reserva");
+  }
 }
 
 function seguir_brand(data){
-	//En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
-	return true;
+  //En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
+  return true;
 }
 function dejar_de_seguir_brand(data){
-	//En esta funcion mete lo que tenga que hacer tras darle al boton de dejar de seguir un brand, quita el return. 
-	return true;
+  //En esta funcion mete lo que tenga que hacer tras darle al boton de dejar de seguir un brand, quita el return. 
+  return true;
 }
+
 function carga_pago(data){
   var cronologia = $("#cronologia");
   cronologia.html(data.pago);
@@ -584,6 +586,9 @@ function creaCheckbox (divinicio,leyenda,idcheck) {
 
 creaCheckbox('#cuantos-participan','¿Hay limitación de participantes?','checknuevo');
 creaCheckbox('.diafin','¿Dura más de un día?','checktermina');
+creaCheckbox('.seRepite','¿Se repetirá?','checkrepite');
+creaCheckbox('.cnivel','¿Es necesario conocimientos previos?','checknivel');
+creaCheckbox('.crequisitos','¿Hay algún otro requisito?','checkrequisito');
 
 $('.checkMuestra').toggle(function(){
   $(this).next().slideDown();
@@ -594,3 +599,27 @@ $('.checkMuestra').toggle(function(){
 });
 
 /* Fin de crea checkbox */
+
+
+//=======================================
+//! FUNCIÓN PARA PUNTUAR CON ESTRELLAS
+//=======================================
+
+
+$( ".estrellas i" ).each(function( index ) {
+  laPuntuacion = $('.estrellas').data('estrellas');
+  /* Si vamos a votar */
+  if (laPuntuacion == '0'){
+    $('.estrellas').addClass('point');
+    $(this).hover(function(){
+      $('.estrellas i:lt('+index+')').addClass('hovers');
+      $('.estrellas i:gt('+index+')').removeClass('hovers');
+    })
+    $(this).click(function(){
+      alert(index);
+    })
+    /* Si ya hemos votado */
+  } else {
+    $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+  }
+});

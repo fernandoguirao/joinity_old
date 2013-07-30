@@ -82,7 +82,8 @@
             </p>
           </div>
         </div>
-        <div class="valor06">
+        <!-- NOTA: en data-estrellas: del 1 al 5 y si no se ha puntuado aún 0. Sólo si data-estrellas es 0 se puede votar -->
+        <div class="valor06 estrellas" data-estrellas="0">
           {% for i in cinco  %}
         	{% if i <= joinity.puntuacion_media %}
         		<i class="iconos punto">j</i>
