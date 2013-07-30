@@ -107,7 +107,7 @@ def posteavotacion(request, formulario, joinity_id):
 def asignar_compra(request, family_id, compra_id):
     family=get_object_or_404(Joinitys, pk=family_id)
     compra=get_object_or_404(Joinitys, pk=compra_id)
-    Usuarios_Joinity.objects.get_or_create(joinity=compra, usuario=request.user)
+    #Usuarios_Joinity.objects.get_or_create(joinity=compra, usuario=request.user)
     pago=Pagos()
     return simplejson.dumps({'ok':True})
 

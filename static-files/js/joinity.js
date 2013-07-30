@@ -11,7 +11,11 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-
+function asignar_compra(data){
+	if (data.ok){
+		alert("Compra Asignada");
+	}
+}
 
 
 function reserva_hotel(data){
