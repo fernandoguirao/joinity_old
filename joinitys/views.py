@@ -108,6 +108,8 @@ def ver(request, joinity_id):
         lista_restaurantes=Brand.objects.filter(clase=2)
     else:
         lista_compras=False
+        lista_hoteles=False
+        lista_restaurantes=False
     if request.POST:
         form = FormFoto(request.POST, request.FILES, joinity=joinity, usuario=request.user)
         comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
