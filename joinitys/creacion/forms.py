@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django import forms
 from joinitys.models import Joinitys, Compras, Aficiones, Family, Lugares_Joinity
 from datetime import date
@@ -10,7 +11,8 @@ class JoinityForm(forms.ModelForm):
     n_max=forms.IntegerField(required=False)
     precio = forms.DecimalField(localize=True, required=False)
     #usuarios = forms.CheckboxSelectMultiple()
-    privacidad=forms.ChoiceField(choices=([("0", "Publico"), ("1","Peticion de invitacion"), ("2", "Privado")]))
+    privacidad=forms.ChoiceField(choices=([("0", "Todo el mundo puede unirse"), ("1","Petición de invitación"), ("2", "Privado")]))
+
     class Meta:
         model = Joinitys
         fields = ('nombre','descripcion', 'n_min', 'n_max', 'precio', 'privacidad', 'foto')
@@ -53,7 +55,7 @@ class AficionesForm(forms.ModelForm):
     nivel = forms.ChoiceField(choices=([("0", "Indiferente"), ("1", "Amateur"), ("2", "Intermedio"), ("3", "Pro")]), required=True)
     fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(" ")}))
     fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-02', 'value':str(" ")}))
-    requisitos=forms.CharField(required=False)
+    requisitos=forms.CharField(required=False,widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: 'Traer raqueta propia y calzado deportivo'"}))
     class Meta:
         model = Aficiones
         fields=("subcategoria", "fecha_inicio", "fecha_fin", "repeticion", "nivel", "requisitos")
