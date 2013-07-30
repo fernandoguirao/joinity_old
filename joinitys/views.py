@@ -100,6 +100,8 @@ def ver(request, joinity_id):
     mis_tareas=Tareas.objects.filter(joinity=joinity, usuarios_tarea__usuario=request.user)
     if joinity.tipo==1:
         lista_compras=Joinitys.objects.filter(tipo=2)
+        lista_hoteles=Brand.objects.filter(clase=1)
+        lista_restaurantes=Brand.objects.filter(clase=2)
     else:
         lista_compras=False
     if request.POST:
@@ -115,6 +117,7 @@ def ver(request, joinity_id):
         votacionform=FormVotacion(usuario=request.user, joinity=joinity)
     context = {"joinity": joinity, "form": form, "cinco":[1,2,3,4,5],
                "pagina":"joinity", "comentar":comentar, "lista_compras":lista_compras,
+               "lista_hoteles":lista_hoteles, "lista_restaurantes":lista_restaurantes,
                "usuario":request.user, "soy":soy, "mis_tareas":mis_tareas, "formvotacion":votacionform}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 
