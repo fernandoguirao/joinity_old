@@ -565,10 +565,28 @@ $(function() {
   }
 })
 
-/* MOSTRAR FECHA FIN SI MÁS DE UN DÍA */
 
-$('.masdeundia').toggle(function(){
-  $('.diafin').addClass('mostrar');
+//============================================
+//! CREAR CHECKBOX QUE OCULTA Y MUESTRA DIVS
+//============================================
+
+
+function creaCheckbox (divinicio,leyenda,idcheck) {
+  enElDiv = $(divinicio);
+  enElDiv.hide();
+  idche = enElDiv.prev();
+  enElDiv.before('<label class="checkbox checkMuestra" for="'+idcheck+'"><input type="checkbox" value="" id="'+idcheck+'" data-toggle="checkbox"><span class="txtlabel">' + leyenda + '</span></label>');
+}
+
+creaCheckbox('#cuantos-participan','¿Hay limitación de participantes?','checknuevo');
+creaCheckbox('.diafin','¿Dura más de un día?','checktermina');
+
+$('.checkMuestra').toggle(function(){
+  $(this).next().slideDown();
+  $(this).addClass('checked');
 },function(){
-  $('.diafin').removeClass('mostrar');
+  $(this).next().slideUp();
+  $(this).removeClass('checked');
 });
+
+/* Fin de crea checkbox */

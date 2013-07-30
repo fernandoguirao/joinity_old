@@ -1,5 +1,5 @@
 <legend>
-  1. Información general del joinity
+  1. Define tu grupo de amigos o familiares
 </legend>
 <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -47,7 +47,13 @@
     <label>
       ¿Qué categoría describe mejor este joinity?
     </label>
-    {{ formfamily.subcategoria }}
+    <select id="id_subcategoria" name="subcategoria" value="X-Men" class="select-block span3" >
+       {% for subcategoria in subcategorias %}
+          <option value="{{subcategoria.id}}" {% if forloop.first %}selected="selected"{% endif %}>
+            {{subcategoria.nombre}}
+          </option>
+       {% endfor %}
+    </select>
 
   <!-- FECHAS -->
   <div class="control-group">
@@ -62,13 +68,7 @@
       {{ formfamily.fecha_inicio }}
     </div>
   </div>
-  <label class="checkbox login-recuerda masdeundia" for="checkbox1">
-    <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-    <span class="txtlabel">
-      ¿Durará más de un día?
-    </span>
-  </label>
-  <div class="control-group diafin">
+  <div class="campo control-group diafin">
       <label for="id_Titulo">
         ¿Qué día termina?
       </label>
@@ -81,13 +81,9 @@
       </div>
     </div>
   </div>
-  <div class="fieldWrapper">
-    <label for="id_repeticion">Repeticion:</label>
-    {{ formfamily.repeticion }}
-  </div>
-    <legend>
-      2. Participantes
-    </legend>
+  
+  <!-- CUÁNTOS PARTICIPAN -->
+  <div id="cuantos-participan">
     <div class="fieldWrapper participantes">
       <label for="id_nmin">
         Número mínimo
@@ -106,14 +102,15 @@
         *Déjalo vacío si no hay máximo
       </span>
     </div>
-
-
-    <div class="fieldWrapper">
-      <label for="id_privacidad">
-        Privacidad
-      </label>
-      {{ formulario.privacidad }}
-    </div>
+  </div>
+  
+  <!-- PRIVACIDAD -->
+  <div class="fieldWrapper" style="display:none;">
+    <label for="id_privacidad">
+      Privacidad
+    </label>
+    {{ formulario.privacidad }}
+  </div>
 
     {% if formlugares %}
        LUGARES: 
@@ -122,14 +119,16 @@
         	Paso {{lugar.n}}: {{lugar.lugar}}<br>
         {% endfor %}
         </div>
-    	{{ formlugares.lugar }}
-        <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
+        <form action="" method="post" id="form_anyadir_lugar">
+        	{% csrf_token %}
+        	{{ formlugares.lugar }}
+            <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
+        </form>	
 
     {% endif %}
-    <br>
-    
-    <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
-  </form>
+
+  <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
+</form>
 
 
 
