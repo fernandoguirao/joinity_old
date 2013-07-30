@@ -5,7 +5,7 @@
       {% for compra in lista_compras %}
        {{compra.nombre}}-Precio: {{compra.compras.get_precio}}
        <a href="/joinity/{{compra.id}}" target="_blank"><button type="button">Ver</button></a>
-       <button type="button">Asignar</button>
+       <button type="button" onclick="Dajaxice.joinitys.asignar_compra(asignar_compra, {'family_id':{{joinity.id}}, 'compra_id':{{compra.id}}});">Asignar</button>
        <br>
       {% endfor %} 
        

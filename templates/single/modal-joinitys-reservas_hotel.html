@@ -1,0 +1,13 @@
+<!-- MODAL PARA ABRIR LISTA DE RESERVAS EN FAMILY & FRIENDS -->
+<div id="modalJoinitysReservasHotel" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="modal-body">
+      {% for hotel in lista_hoteles %}
+       {{hotel.nombre}}
+       <a href="/brands/{{hotel.id}}/#reservas" target="_blank"><button type="button">Ver</button></a>
+       <br>
+      {% endfor %} 
+       
+  </div>
+</div>
+<!-- FIN DE MODAL -->
