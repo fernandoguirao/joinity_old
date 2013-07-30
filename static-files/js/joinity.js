@@ -11,7 +11,11 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-
+function puntuar_joinity(data){
+	if (data.ok){
+		alert("Puntuado");
+	}
+}
 
 function asignar_compra(data){
   if (data.ok){
@@ -616,10 +620,15 @@ $( ".estrellas i" ).each(function( index ) {
       $('.estrellas i:gt('+index+')').removeClass('hovers');
     })
     $(this).click(function(){
-      alert(index);
+    	
+    	Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
     })
     /* Si ya hemos votado */
   } else {
     $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    /*$(this).click(function(){
+    	
+        Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
+     });*/
   }
 });
