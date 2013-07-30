@@ -3680,12 +3680,10 @@ text-transform: uppercase !important;
 
 /* DATE PICKER */
 
-.diafin {
-  display:none;
-}
 
-.diafin.mostrar {
-  display: block;
+
+.diafin {
+/*   display: block; */
   margin-top: 13px;
   margin-left: 0;
   label {
@@ -3708,13 +3706,30 @@ text-transform: uppercase !important;
 }
 
 .ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
-  border-color: red;
-  .ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
-  background-color: red;
-.ui-datepicker-month,.ui-datepicker-year {
-  color: white!important;
-}
-}
+  border-color: @elcolor;
+    .ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background-color: @elcolor;
+    .ui-datepicker-month,.ui-datepicker-year {
+      color: @claro!important;
+    }
+    .ui-datepicker-month {
+      font-size:12px;
+      text-transform: uppercase;
+    }
+  }
+  .ui-datepicker-prev.ui-corner-all:hover,.ui-datepicker-next.ui-corner-all:hover {
+    background-color:lighten(@elcolor,10%);
+  }
+  .ui-datepicker-prev.ui-corner-all {
+    border-right-color: @claro;
+  }
+  .ui-datepicker-next.ui-corner-all {
+    border-left-color: @claro;
+  }
+  .ui-datepicker .ui-state-active {
+    background-color: @elcolor;
+    color: @claro;
+  }
 }
 
 .masdeundia {

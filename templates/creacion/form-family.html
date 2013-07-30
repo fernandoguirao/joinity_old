@@ -68,12 +68,6 @@
       {{ formfamily.fecha_inicio }}
     </div>
   </div>
-  <label class="checkbox login-recuerda masdeundia" for="checkbox1">
-    <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-    <span class="txtlabel">
-      ¿Durará más de un día?
-    </span>
-  </label>
   <div class="campo control-group diafin">
       <label for="id_Titulo">
         ¿Qué día termina?
@@ -90,25 +84,26 @@
     <legend>
       2. Participantes
     </legend>
-    <div class="fieldWrapper participantes">
-      <label for="id_nmin">
-        Número mínimo
-      </label>
-      {{ formulario.n_min }}
-      <span class="help-block">
-        *Déjalo vacío si no hay mínimo
-      </span>
+    <div id="cuantos-participan">
+      <div class="fieldWrapper participantes">
+        <label for="id_nmin">
+          Número mínimo
+        </label>
+        {{ formulario.n_min }}
+        <span class="help-block">
+          *Déjalo vacío si no hay mínimo
+        </span>
+      </div>
+      <div class="fieldWrapper participantes">
+        <label for="id_nmax">
+          Número máximo
+        </label>
+        {{ formulario.n_max }}
+        <span class="help-block">
+          *Déjalo vacío si no hay máximo
+        </span>
+      </div>
     </div>
-    <div class="fieldWrapper participantes">
-      <label for="id_nmax">
-        Número máximo
-      </label>
-      {{ formulario.n_max }}
-      <span class="help-block">
-        *Déjalo vacío si no hay máximo
-      </span>
-    </div>
-    
     {% if pagina == "crear-compras" %}
     <div class="fieldWrapper">
       <label for="id_precio">
