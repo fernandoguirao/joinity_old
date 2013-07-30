@@ -1,6 +1,6 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from models import Joinitys, Usuarios_Joinity, Actualizaciones
+from models import Joinitys, Usuarios_Joinity, Actualizaciones, Puntuaciones
 from django.template.loader import render_to_string
 from forms import FormTexto, FormFoto, FormComentario, FormVotacion
 from django.template import RequestContext
@@ -114,5 +114,27 @@ def asignar_compra(request, family_id, compra_id):
     for usuario in family.usuarios.all():
         Usuarios_Pagos(pago=pago, usuario=usuario).save()
     return simplejson.dumps({'ok':True})
+@dajaxice_register
+def puntuar(request, joinity_id, puntuacion):
+    puntuacion+=1
+    joinity=get_object_or_404(Joinitys,pk=joinity_id)
+    if Puntuaciones.objects.filter(joinity=joinity, usuario=request.user).exists():
+        puntuacion=Puntuaciones.objects.get(joinity=joinity,usuario=request.user)
+        puntuacion.puntuacion=puntuacion
+        puntuacion.save()
+    else:
+        puntuacion=Puntuaciones(joinity=joinity, usuario=request.user, puntuacion=puntuacion)
+        puntuacion.save()
+
+    return simplejson.dumps({'ok':True, 'joinity_id':joinity.id})
+@dajaxice_register   
+def recargar_puntuacion(request, joinity_id):
+    joinity=get_object_or_404(Joinitys,pk=joinity_id)
+    if Puntuaciones.objects.filter(usuario=request.user, joinity=joinity).exists():
+        puntuacion_media=int(joinity.puntuacion_media())
+    else:
+        puntuacion_media=0
+    context={"puntuacion": puntuacion_media}
+    return simplejson.dumps({'puntuacion':render_to_string('single/ajax_puntuacion.html', context) })
 
     

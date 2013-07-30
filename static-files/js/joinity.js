@@ -11,7 +11,16 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-
+function refresca_puntuacion(data){
+	$('#div_puntuacion').html(data.puntuacion);
+    $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    alert("refrescado");
+}
+function puntuar_joinity(data){
+	if (data.ok){
+		Dajaxice.joinitys.recargar_puntuacion(refresca_puntuacion, {'joinity_id':data.joinity_id});
+	}
+}
 
 function asignar_compra(data){
   if (data.ok){
@@ -616,10 +625,15 @@ $( ".estrellas i" ).each(function( index ) {
       $('.estrellas i:gt('+index+')').removeClass('hovers');
     })
     $(this).click(function(){
-      alert(index);
+    	
+    	Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
     })
     /* Si ya hemos votado */
   } else {
     $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    /*$(this).click(function(){
+    	
+        Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
+     });*/
   }
 });

@@ -3,7 +3,7 @@ from django.template import RequestContext
 from forms import FormTexto, FormFoto, FormVotacion
 from forms import Buscar as Buscar_Reserva, Reservar, FormComentario
 from django.contrib.auth.decorators import login_required
-from models import Reserva_Brand, Joinitys, Joinitys_VIP, Compras, Aficiones, Usuarios_Joinity
+from models import Reserva_Brand, Joinitys, Joinitys_VIP, Compras, Aficiones, Usuarios_Joinity, Puntuaciones
 from django.http import HttpResponseRedirect
 from django.shortcuts import  render, get_object_or_404
 from django.contrib.auth.models import User
@@ -98,12 +98,18 @@ def ver(request, joinity_id):
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
     soy=joinity.que_soy(request.user)
     mis_tareas=Tareas.objects.filter(joinity=joinity, usuarios_tarea__usuario=request.user)
+    if Puntuaciones.objects.filter(usuario=request.user, joinity=joinity).exists():
+        puntuacion_media=int(joinity.puntuacion_media())
+    else:
+        puntuacion_media=0
     if joinity.tipo==1:
         lista_compras=Joinitys.objects.filter(tipo=2)
         lista_hoteles=Brand.objects.filter(clase=1)
         lista_restaurantes=Brand.objects.filter(clase=2)
     else:
         lista_compras=False
+        lista_hoteles=False
+        lista_restaurantes=False
     if request.POST:
         form = FormFoto(request.POST, request.FILES, joinity=joinity, usuario=request.user)
         comentar=FormComentario(instance=request.user, usuario=request.user, actualizacion=0)
@@ -118,6 +124,7 @@ def ver(request, joinity_id):
     context = {"joinity": joinity, "form": form, "cinco":[1,2,3,4,5],
                "pagina":"joinity", "comentar":comentar, "lista_compras":lista_compras,
                "lista_hoteles":lista_hoteles, "lista_restaurantes":lista_restaurantes,
+               "puntuacion":puntuacion_media,
                "usuario":request.user, "soy":soy, "mis_tareas":mis_tareas, "formvotacion":votacionform}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 

@@ -83,14 +83,18 @@
         </h3>
       </div>
       <!-- NOTA: en data-estrellas: del 1 al 5 y si no se ha puntuado aún 0. Sólo si data-estrellas es 0 se puede votar -->
-      <div class="valor04 estrellas" data-estrellas="0">
-        {% for i in cinco  %}
-      	{% if i <= joinity.puntuacion_media %}
-      		<i class="iconos punto">j</i>
-       	{% else %}
-       		<i class="iconos">j</i>
-       	{% endif %}
-         {% endfor %}
+      <script type="text/javascript">
+        joinity_id={{joinity.id}};
+        usuario_id={{usuario.id}};
+      </script>
+      <div id="div_puntuacion">
+        <div class="valor06 estrellas" data-estrellas="{{puntuacion}}">
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+          <i class="iconos">j</i>
+        </div>
       </div>
     </div> <!-- FIN FILA 02 -->
 
