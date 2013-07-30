@@ -47,7 +47,13 @@
     <label>
       ¿Qué categoría describe mejor este joinity?
     </label>
-    {{ formfamily.subcategoria }}
+    <select id="id_subcategoria" name="subcategoria" value="X-Men" class="select-block span3" >
+       {% for subcategoria in subcategorias %}
+          <option value="{{subcategoria.id}}" {% if forloop.first %}selected="selected"{% endif %}>
+            {{subcategoria.nombre}}
+          </option>
+       {% endfor %}
+    </select>
 
   <!-- FECHAS -->
   <div class="control-group">
@@ -81,10 +87,6 @@
       </div>
     </div>
   </div>
-  <div class="fieldWrapper">
-    <label for="id_repeticion">Repeticion:</label>
-    {{ formfamily.repeticion }}
-  </div>
     <legend>
       2. Participantes
     </legend>
@@ -106,7 +108,25 @@
         *Déjalo vacío si no hay máximo
       </span>
     </div>
+    
+    {% if pagina == "crear-compras" %}
+    <div class="fieldWrapper">
+      <label for="id_precio">
+        Precio
+      </label>
+      {{ formulario.precio }}
+    </div>
+    {% endif %}
 
+    {% if pagina == "crear-aficiones" %}
+      {% include "creacion/formaficiones.html" %}
+
+    {% elif pagina == "crear-family" %}
+      
+
+    {% elif pagina == "crear-compras" %}
+      {% include "creacion/formcompras.html" %}
+    {% endif %}
 
     <div class="fieldWrapper">
       <label for="id_privacidad">
@@ -115,6 +135,17 @@
       {{ formulario.privacidad }}
     </div>
 
+    {% if formcompras %}
+      {% include "creacion/formcompras.html" %}
+
+    {% elif formaficiones %}
+      {% include "creacion/formaficiones.html" %}
+
+    {% elif formfamily %}
+      
+
+    {% endif %}
+
     {% if formlugares %}
        LUGARES: 
        <div id="lista_lugares">
@@ -122,12 +153,39 @@
         	Paso {{lugar.n}}: {{lugar.lugar}}<br>
         {% endfor %}
         </div>
-    	{{ formlugares.lugar }}
-        <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
+        <form action="" method="post" id="form_anyadir_lugar">
+        	{% csrf_token %}
+        	{{ formlugares.lugar }}
+            <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
+        </form>	
 
     {% endif %}
     <br>
     
+
+<a href="/categorias/nuevo_interes/?next=/joinity/nuevo_joinity/aficiones/"><input type="button" value="Crear Subcategoria" /></a>
+
+<div class="fieldWrapper">
+    <label for="id_fecha_inicio">Fecha Inicio:</label>
+    {{ formfamily.fecha_inicio }}
+</div>
+<div class="fieldWrapper">
+    <label for="id_fecha_fin">Fecha Fin:</label>
+    {{ formfamily.fecha_fin }}
+</div>
+<div class="fieldWrapper">
+    <label for="id_repeticion">Repeticion:</label>
+    {{ formfamily.repeticion }}
+</div>
+<div class="fieldWrapper">
+    <label for="id_repeticion">Nivel:</label>
+    {{ formfamily.nivel }}
+</div>
+<div class="fieldWrapper">
+    <label for="id_repeticion">Requisitos:</label>
+    {{ formfamily.requisitos }}
+</div>
+
     <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
   </form>
 
