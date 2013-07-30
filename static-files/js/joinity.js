@@ -599,3 +599,14 @@ $('.checkMuestra').toggle(function(){
 });
 
 /* Fin de crea checkbox */
+
+
+//=======================================
+//! FUNCIÓN PARA PUNTUAR CON ESTRELLAS
+//=======================================
+
+$( ".estrellas i" ).each(function( index ) {
+  $(this).click(function(){
+    alert(index);
+  })
+});
