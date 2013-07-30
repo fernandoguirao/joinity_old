@@ -11,9 +11,14 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+function refresca_puntuacion(data){
+	$('#div_puntuacion').html(data.puntuacion);
+    $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    alert("refrescado");
+}
 function puntuar_joinity(data){
 	if (data.ok){
-		alert("Puntuado");
+		Dajaxice.joinitys.recargar_puntuacion(refresca_puntuacion, {'joinity_id':data.joinity_id});
 	}
 }
 

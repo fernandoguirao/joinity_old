@@ -126,8 +126,15 @@ def puntuar(request, joinity_id, puntuacion):
         puntuacion=Puntuaciones(joinity=joinity, usuario=request.user, puntuacion=puntuacion)
         puntuacion.save()
 
-    return simplejson.dumps({'ok':True})
-    
-    
+    return simplejson.dumps({'ok':True, 'joinity_id':joinity.id})
+@dajaxice_register   
+def recargar_puntuacion(request, joinity_id):
+    joinity=get_object_or_404(Joinitys,pk=joinity_id)
+    if Puntuaciones.objects.filter(usuario=request.user, joinity=joinity).exists():
+        puntuacion_media=int(joinity.puntuacion_media())
+    else:
+        puntuacion_media=0
+    context={"puntuacion": puntuacion_media}
+    return simplejson.dumps({'puntuacion':render_to_string('single/ajax_puntuacion.html', context) })
 
     
