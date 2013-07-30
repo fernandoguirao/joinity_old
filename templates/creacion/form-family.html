@@ -1,5 +1,5 @@
 <legend>
-  1. Información general del joinity
+  1. Define tu grupo de amigos o familiares
 </legend>
 <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -81,65 +81,36 @@
       </div>
     </div>
   </div>
-    <legend>
-      2. Participantes
-    </legend>
-    <div id="cuantos-participan">
-      <div class="fieldWrapper participantes">
-        <label for="id_nmin">
-          Número mínimo
-        </label>
-        {{ formulario.n_min }}
-        <span class="help-block">
-          *Déjalo vacío si no hay mínimo
-        </span>
-      </div>
-      <div class="fieldWrapper participantes">
-        <label for="id_nmax">
-          Número máximo
-        </label>
-        {{ formulario.n_max }}
-        <span class="help-block">
-          *Déjalo vacío si no hay máximo
-        </span>
-      </div>
-    </div>
-    {% if pagina == "crear-compras" %}
-    <div class="fieldWrapper">
-      <label for="id_precio">
-        Precio
+  
+  <!-- CUÁNTOS PARTICIPAN -->
+  <div id="cuantos-participan">
+    <div class="fieldWrapper participantes">
+      <label for="id_nmin">
+        Número mínimo
       </label>
-      {{ formulario.precio }}
+      {{ formulario.n_min }}
+      <span class="help-block">
+        *Déjalo vacío si no hay mínimo
+      </span>
     </div>
-    {% endif %}
-
-    {% if pagina == "crear-aficiones" %}
-      {% include "creacion/formaficiones.html" %}
-
-    {% elif pagina == "crear-family" %}
-      
-
-    {% elif pagina == "crear-compras" %}
-      {% include "creacion/formcompras.html" %}
-    {% endif %}
-
-    <div class="fieldWrapper">
-      <label for="id_privacidad">
-        Privacidad
+    <div class="fieldWrapper participantes">
+      <label for="id_nmax">
+        Número máximo
       </label>
-      {{ formulario.privacidad }}
+      {{ formulario.n_max }}
+      <span class="help-block">
+        *Déjalo vacío si no hay máximo
+      </span>
     </div>
-
-    {% if formcompras %}
-      {% include "creacion/formcompras.html" %}
-
-    {% elif formaficiones %}
-      {% include "creacion/formaficiones.html" %}
-
-    {% elif formfamily %}
-      
-
-    {% endif %}
+  </div>
+  
+  <!-- PRIVACIDAD -->
+  <div class="fieldWrapper" style="display:none;">
+    <label for="id_privacidad">
+      Privacidad
+    </label>
+    {{ formulario.privacidad }}
+  </div>
 
     {% if formlugares %}
        LUGARES: 
@@ -155,34 +126,9 @@
         </form>	
 
     {% endif %}
-    <br>
-    
 
-<a href="/categorias/nuevo_interes/?next=/joinity/nuevo_joinity/aficiones/"><input type="button" value="Crear Subcategoria" /></a>
-
-<div class="fieldWrapper">
-    <label for="id_fecha_inicio">Fecha Inicio:</label>
-    {{ formfamily.fecha_inicio }}
-</div>
-<div class="fieldWrapper">
-    <label for="id_fecha_fin">Fecha Fin:</label>
-    {{ formfamily.fecha_fin }}
-</div>
-<div class="fieldWrapper">
-    <label for="id_repeticion">Repeticion:</label>
-    {{ formfamily.repeticion }}
-</div>
-<div class="fieldWrapper">
-    <label for="id_repeticion">Nivel:</label>
-    {{ formfamily.nivel }}
-</div>
-<div class="fieldWrapper">
-    <label for="id_repeticion">Requisitos:</label>
-    {{ formfamily.requisitos }}
-</div>
-
-    <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
-  </form>
+  <input type="submit" class="btn btn-embossed amarillo" value="Guardar y continuar" />
+</form>
 
 
 

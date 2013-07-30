@@ -706,6 +706,10 @@ label {
 */
 /* a. Inputs */
 
+.control-group.focus textarea, .control-group.focus input[type="text"], .control-group.focus input[type="password"], .control-group.focus input[type="datetime"], .control-group.focus input[type="datetime-local"], .control-group.focus input[type="date"], .control-group.focus input[type="month"], .control-group.focus input[type="time"], .control-group.focus input[type="week"], .control-group.focus input[type="number"], .control-group.focus input[type="email"], .control-group.focus input[type="url"], .control-group.focus input[type="search"], .control-group.focus input[type="tel"], .control-group.focus input[type="color"], .control-group.focus .uneditable-input, textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+    border-color: @elcolor;
+}
+
 .inputNormal {
   min-width: 197px;
   .border-radius(5px);
@@ -3692,7 +3696,7 @@ text-transform: uppercase !important;
 }
 
 .span2.hasDatepicker {
-  text-align: left;
+  text-align: left!important;
   padding-left: 21px;
   font-size: 15px!important;
   font-family: @font;
@@ -3705,6 +3709,23 @@ text-transform: uppercase !important;
   text-align: left;
 }
 
+.input-datepicker .btn {
+  padding-right: 11px!important;
+}
+
+.control-group.focus .input-datepicker input,.control-group.focus .input-datepicker .btn {
+  border-color:@elcolor!important;
+}
+
+.ui-datepicker .ui-state-active {
+  background-color:@elcolor!important;
+  color:@claro;
+}
+
+.ui-datepicker:before {
+  border-color: transparent transparent @elcolor!important;
+}
+
 .ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
   border-color: @elcolor;
     .ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
@@ -3713,21 +3734,19 @@ text-transform: uppercase !important;
       color: @claro!important;
     }
     .ui-datepicker-month {
-      font-size:12px;
+      font-size:14px;
       text-transform: uppercase;
     }
   }
   .ui-datepicker-prev.ui-corner-all:hover,.ui-datepicker-next.ui-corner-all:hover {
     background-color:lighten(@elcolor,10%);
+    border:none!important;
   }
-  .ui-datepicker-prev.ui-corner-all {
-    border-right-color: @claro;
-  }
-  .ui-datepicker-next.ui-corner-all {
-    border-left-color: @claro;
+  .ui-datepicker-prev.ui-corner-all,.ui-datepicker-next.ui-corner-all {
+    border:none!important;
   }
   .ui-datepicker .ui-state-active {
-    background-color: @elcolor;
+    background-color: @elcolor!important;
     color: @claro;
   }
 }

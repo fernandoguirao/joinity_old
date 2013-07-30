@@ -581,8 +581,12 @@ function creaCheckbox (divinicio,leyenda,idcheck) {
 creaCheckbox('#cuantos-participan','¿Hay limitación de participantes?','checknuevo');
 creaCheckbox('.diafin','¿Dura más de un día?','checktermina');
 
-$('.checkMuestra').click(function(){
+$('.checkMuestra').toggle(function(){
   $(this).next().slideDown();
+  $(this).addClass('checked');
+},function(){
+  $(this).next().slideUp();
+  $(this).removeClass('checked');
 });
 
 /* Fin de crea checkbox */
