@@ -625,8 +625,8 @@ $( ".estrellas i" ).each(function( index ) {
       $('.estrellas i:gt('+index+')').removeClass('hovers');
     })
     $(this).click(function(){
-    	
-    	Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
+      Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
+      $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
     })
     /* Si ya hemos votado */
   } else {
