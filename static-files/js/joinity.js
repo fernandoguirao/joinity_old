@@ -605,8 +605,10 @@ $('.checkMuestra').toggle(function(){
 //! FUNCIÓN PARA PUNTUAR CON ESTRELLAS
 //=======================================
 
+
 $( ".estrellas i" ).each(function( index ) {
   laPuntuacion = $('.estrellas').data('estrellas');
+  /* Si vamos a votar */
   if (laPuntuacion == '0'){
     $('.estrellas').addClass('point');
     $(this).hover(function(){
@@ -616,6 +618,7 @@ $( ".estrellas i" ).each(function( index ) {
     $(this).click(function(){
       alert(index);
     })
+    /* Si ya hemos votado */
   } else {
     $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
   }
