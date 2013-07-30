@@ -11,11 +11,9 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
-/*
-<<<<<<< HEAD
 
 
-=======
+
 function reserva_hotel(data){
 	if (data.ok){
 		alert("Mandada Reserva");
@@ -26,8 +24,7 @@ function reserva_restaurante(data){
 		alert("Mandada Reserva");
 	}
 }
->>>>>>> 260727e091eb482b8fade2caed7d7cf71d9843a4
-*/
+
 function seguir_brand(data){
 	//En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
 	return true;
