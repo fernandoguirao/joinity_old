@@ -606,7 +606,17 @@ $('.checkMuestra').toggle(function(){
 //=======================================
 
 $( ".estrellas i" ).each(function( index ) {
-  $(this).click(function(){
-    alert(index);
-  })
+  laPuntuacion = $('.estrellas').data('estrellas');
+  if (laPuntuacion == '0'){
+    $('.estrellas').addClass('point');
+    $(this).hover(function(){
+      $('.estrellas i:lt('+index+')').addClass('hovers');
+      $('.estrellas i:gt('+index+')').removeClass('hovers');
+    })
+    $(this).click(function(){
+      alert(index);
+    })
+  } else {
+    $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+  }
 });
