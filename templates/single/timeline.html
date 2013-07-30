@@ -12,12 +12,14 @@
         </i>
         Comparte un mensaje
       </li>
+      {% if joinity.tipo != 2 %}
       <li class="inicia-votacion">
         <i class="iconos">
           j
         </i>
         Inicia una votación
       </li>
+      {% endif %}
     </ul>
     
     <!-- Escribe mensaje y votos: formularios -->
@@ -56,6 +58,7 @@
       <div id="mensaje_error"></div>
       </div>
       <!-- Fin actualización texto -->
+      {% if joinity.tipo != 2 %}
       <!-- Actualización votación -->
       <form class="votaform" id="formulario_votacion">
         <div class="input-append">
@@ -96,6 +99,7 @@
         </div>
       </form>
       <!-- Fin de actualización votación -->
+      {% endif %}
       </div>
       <!-- Fin de formularios -->
     </div>

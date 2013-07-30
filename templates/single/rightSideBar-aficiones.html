@@ -1,32 +1,5 @@
 <div id="rightSideBar">
   <div id="contenidoSide">
-    <div class="buscaProducto">
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          f
-        </i>
-        Busca un producto
-      </div>
-    </div>
-    <div class="realizaReserva">
-      <div class="tituloSide">
-        <div class="lineaCirculo">
-        </div>
-        Realiza una reserva
-      </div>
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          o
-        </i>
-        En un restaurante
-      </div>
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          p
-        </i>
-        En un hotel
-      </div>
-    </div>
     <div class="losEventos">
       <div class="tituloSide">
         <div class="lineaCirculo">
@@ -107,5 +80,39 @@
        {% endif %}
       </div>
     </div>
+    
+    <!-- PRODUCTOS SIMILARES -->
+    <div class="aficiones losEventos">
+      <div class="tituloSide">
+        <div class="lineaCirculo">
+        </div>
+        Otros productos similares
+      </div>
+      <div class="eventosLista">
+      {% for similar in joinity.aficiones.get_similares.all %}
+      
+        <!-- CADA PRODUCTO -->
+        <div class="unEvento">
+          <div class="fechaEvento" style="background-image:url('/media/{{similar.foto}}">
+          </div>
+          <p>
+            {{similar.nombre}}<br>
+            <span>
+              Lugar: <b>{{similar.lugar}}</b><br>
+            </span>
+          </p>
+          <a href="/joinity/{{similar.id}}">
+            <div class="btn btn-mini btn-icono gris">
+              <i class="iconos">
+                
+              </i>
+              Ver
+            </div>
+          </a>
+        </div><!-- FIN DE PRODUCTO -->
+       {% endfor %}
+      </div>
+    </div><!-- FIN DE PRODUCTOS SIMILARES -->
+    
   </div>
 </div>

@@ -10,23 +10,37 @@
       	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
       {% endif %}
       <div id="datos-abajo">
+      {% if soy == "miembro" or soy == "admin" %}
+      <a href="/joinity/abandonar/{{joinity.id}}">      
         <div class="btn btn-mini btn-embossed gris">
           Abandona este joinity
         </div>
+      </a>
+      {% endif %}
+      {% if soy == "admin" %}
+      <a href="/joinity/editar/{{joinity.id}}">
         <div class="btn btn-mini btn-embossed amarillo">
           Administra este joinity
         </div>
+        </a>
+       {% endif %}
       </div>
+      {% if soy == "admin" or soy == "miembro" %}
       <div id="datos-arriba">
+        <a href="#modalInvitados" data-toggle="modal">
         <div class="btn btn-mini btn-embossed">
           Invita a más joiners
         </div>
+        </a>
+        
       </div>
+     {% endif %}
+      
       <div id="datos-centro">
-        <a href="" class="btn btn-small btn-embossed">
+        <a href="/joinity/{{joinity.id}}/comprar" class="btn btn-small btn-embossed">
           <div class="foto-producto" style="background-image:url('/media/{{joinity.foto}}');"></div>
           <p>{{joinity.precio}} <span>euros</span></p>
-          Cómpralo ya<span>14% descuento</span>
+          Cómpralo ya<span>{{joinity.compras.get_descuento}}% descuento</span>
         </a>
       </div>
     </div>

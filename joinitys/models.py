@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from categorias.models import Subcategorias, Subcategorias_Compras, Subcategorias_Family
 from brands.models import Brand
-from datetime import date
+from datetime import date, datetime
 #############################################################################
 #                    CLASE PADRE JOINITY                                    #
 #############################################################################
@@ -115,6 +115,11 @@ class Joinitys(models.Model):
         if self.get_tipo()!="compras":
             return (self.sub().fecha_fin-date.today()).days
         return False
+    def lugar(self):
+        try:
+            return self.lugares.all()[0].get_ciudad()
+        except:
+            return False
         
 # ---------TIPOS DE JOINITY-------------#
 class Family(models.Model):
@@ -142,6 +147,39 @@ class Compras(models.Model):
     brand=models.ForeignKey(Brand, related_name="joinitys")
     class Meta:
         db_table="Compras"
+    def get_similares(self):
+        return Joinitys.objects.filter(tipo=2, compras__subcategoria=self.subcategoria).exclude(compras=self)
+    def get_precio(self):
+        return self.joinity.pagos.all()[0].get_precio()
+    def get_descuento(self):
+        return self.joinity.pagos.all()[0].get_descuento()
+    def ya_paso(self):
+        fecha_fin=self.fecha_fin
+        if fecha_fin.year>datetime.now().year:
+            return False
+        elif fecha_fin.year==datetime.now().year:
+            if fecha_fin.month>datetime.now().month:
+                return False
+            elif fecha_fin.month==datetime.now().month:
+                if fecha_fin.day>datetime.now().day:
+                    return False
+                elif fecha_fin.day==datetime.now().day:
+                    if fecha_fin.hour>datetime.now().hour:
+                        return False
+                    elif fecha_fin.hour==datetime.now().hour:
+                        if fecha_fin.minute>datetime.now().minute:
+                            return False
+                        else:
+                            return True
+                    else:
+                        return True
+                    return True
+                else:
+                    return True
+            else:  
+                return True
+        else:
+            return True
 class Aficiones(models.Model):
     joinity=models.OneToOneField(Joinitys, related_name="aficiones")
     subcategoria = models.ForeignKey(Subcategorias)
@@ -174,7 +212,8 @@ class Aficiones(models.Model):
             return "Mensual"
         elif self.repeticion==5:
             return "Anual"
-    
+    def get_similares(self):
+        return Joinitys.objects.filter(tipo=3, aficiones__subcategoria=self.subcategoria).exclude(aficiones=self)
 #############################################################################
 
 
