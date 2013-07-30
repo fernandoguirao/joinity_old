@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from joinity.settings import LOCALHOST
 from joinitys.models import Joinitys, Usuarios_Joinity
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # Create your models here.
 from paypal.standard.ipn.signals import payment_was_successful

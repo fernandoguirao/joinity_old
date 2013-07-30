@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from notificaciones.models import Notificaciones
 from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
-
+from joinitys.pagos.models import Pagos
 
 @dajaxice_register
 def cargar_mas(request, categoria, n, order):
@@ -102,5 +102,13 @@ def posteavotacion(request, formulario, joinity_id):
         form.save()
         return simplejson.dumps({'status':False, 'joinity_id':joinity_id})
     return simplejson.dumps({'status': 'Error al enviar'})
+
+@dajaxice_register
+def asignar_compra(request, family_id, compra_id):
+    family=get_object_or_404(Joinitys, pk=family_id)
+    compra=get_object_or_404(Joinitys, pk=compra_id)
+    #Usuarios_Joinity.objects.get_or_create(joinity=compra, usuario=request.user)
+    pago=Pagos()
+    return simplejson.dumps({'ok':True})
 
     
