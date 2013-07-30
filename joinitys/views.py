@@ -14,7 +14,7 @@ from joinitys.eventos.models import Eventos, Usuarios_Evento
 from notificaciones.models import Notificaciones
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 from joinitys.tareas.models import Tareas
-
+from joinitys.pagos.models import Usuarios_Pagos
 def index(request):
     if not request.user.is_authenticated():
         usuario=False
@@ -262,6 +262,11 @@ def abandonar(request, joinity_id):
                 joinity.creador=nuevo_admin
                 joinity.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id))
+
+def comprar(request, joinity_id):
+    joinity=get_object_or_404(Joinitys, pk=joinity_id)
+    Usuarios_Pagos.objects.get_or_create(usuario=request.user, pago=joinity.pagos.all()[0])
+    return HttpResponseRedirect("/mis_compras/")
 
                 
 

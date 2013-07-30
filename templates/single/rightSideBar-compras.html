@@ -20,6 +20,9 @@
       </div>
     </a>
     {% endif %}
+    {% if joinity.compras.ya_paso %}
+    <div>HOLA SOY EL DIV QUE SIGNIFICA QUE HE ACABADO</div>
+    {% endif %}
     <!-- PRODUCTOS SIMILARES -->
     <div class="compras losEventos">
       <div class="tituloSide">
@@ -28,18 +31,20 @@
         Otros productos similares
       </div>
       <div class="eventosLista">
+      {% for similar in joinity.compras.get_similares.all %}
+      
         <!-- CADA PRODUCTO -->
         <div class="unEvento">
-          <div class="fechaEvento" style="background-image:url('/media/images/fondo-compras.jpg">
+          <div class="fechaEvento" style="background-image:url('/media/{{similar.foto}}">
           </div>
           <p>
-            Apple iPad 2 Wi-Fi 3G 16GB (Negro)
+            {{similar.nombre}}
             <span>
-              Precio: <b>250 euros</b><br>
-              Descuento: <b>15%</b>
+              Precio: <b>{{similar.compras.get_precio}}</b><br>
+              Descuento: <b>{{similar.compras.get_descuento}}%</b>
             </span>
           </p>
-          <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
+          <a href="/joinity/{{similar.id}}">
             <div class="btn btn-mini btn-icono gris">
               <i class="iconos">
                 f
@@ -48,26 +53,7 @@
             </div>
           </a>
         </div><!-- FIN DE PRODUCTO -->
-        <!-- CADA PRODUCTO -->
-        <div class="unEvento">
-          <div class="fechaEvento" style="background-image:url('/media/images/fondo-compras.jpg">
-          </div>
-          <p>
-            Apple iPad 2 Wi-Fi 3G 16GB (Negro)
-            <span>
-              Precio: <b>250 euros</b><br>
-              Descuento: <b>15%</b>
-            </span>
-          </p>
-          <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
-            <div class="btn btn-mini btn-icono gris">
-              <i class="iconos">
-                f
-              </i>
-              Me interesa
-            </div>
-          </a>
-        </div><!-- FIN DE PRODUCTO -->
+       {% endfor %}
       </div>
     </div><!-- FIN DE PRODUCTOS SIMILARES -->
   </div>

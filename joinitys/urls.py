@@ -3,6 +3,7 @@ from django.conf.urls import patterns, url, include
 from joinitys import views
 urlpatterns = patterns('',
     url(r'^(?P<joinity_id>\d+)/reserva/$', views.crear_reserva, name='crear_reserva'),
+    url(r'^(?P<joinity_id>\d+)/comprar/$', views.comprar, name='comprar'),
     url(r'^(?P<joinity_id>\d+)/reserva/restaurante/$', views.buscar_restaurante, name='buscar_restaurante'),
     url(r'^(?P<joinity_id>\d+)/reserva/hotel/$', views.buscar_hotel, name='buscar_hotel'),
     url(r'^(?P<joinity_id>\d+)/reserva/restaurante/crear/(?P<empresa_id>\d+)/$', views.crear_reserva_restaurante, name='crear_reserva_restaurante'),
