@@ -35,6 +35,8 @@ class PerfilForm(forms.ModelForm):
     telefono = forms.IntegerField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ej: +34 111 11 11 11"}))
     nacimiento = forms.DateField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: 1985"}))
     cpostal = forms.IntegerField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ej: 46001"}))
+    intereses = forms.ChoiceField(required=False,widget=forms.CheckboxSelectMultiple())
+    intereses_comprar = forms.ChoiceField(required=False,widget=forms.CheckboxSelectMultiple())
     sexo = forms.ChoiceField(choices=([("0", "Hombre"), ("1", "Mujer")]), required=True)
     ocultar_perfil = forms.ChoiceField(choices=([("0", "No"), ("1", "Si")]))
     visible = forms.ChoiceField(choices=(["1", "Si"], ["0", "No"]))

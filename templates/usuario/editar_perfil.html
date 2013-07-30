@@ -1,10 +1,13 @@
 <form action="" method="post" enctype="multipart/form-data" id="perfil">
   {% csrf_token %}	
   
+  <!-- SECCIÓN 1 -->
   <h4>
     INFORMACIÓN PRINCIPAL
   </h4>
   <hr>
+  
+  <!-- NOMBRE -->
   <div class="row campo">
     {% if user_form.first_name.errors %}
     <script>
@@ -23,6 +26,7 @@
     {{ user_form.last_name }}
   </div> <!-- Fin de row -->
 
+  <!-- CORREO -->
   <div class="row campo">
     <label for="email">
       Tu correo electrónico
@@ -30,6 +34,7 @@
     {{ user_form.email }}
   </div><!-- Fin de row -->
 
+  <!-- FOTO -->
   <div class="row campo fotoEditarUsuario">
       <label for="foto">
         Tu foto
@@ -42,6 +47,7 @@
       </div>
   </div> <!-- Fin de row foto -->
 
+  <!-- CIUDAD -->
   <div class="row campo">
     {% if perfil_form.ciudad.errors %}
     <script>
@@ -53,34 +59,44 @@
     </label>
     {{ perfil_form.ciudad }}
   </div>
+  
+  <!-- EDAD -->
   <div class="row campo">
     <label for="nacimiento">
       ¿En qué año naciste?
     </label>
     {{ perfil_form.nacimiento }}
   </div>
+  
+  <!-- SEXO -->
   <div class="row campo">
     <label for="sexo">
       Sexo
     </label>
     {{ perfil_form.sexo }}
   </div>
+  
+  <!-- GUARDA CAMBIOS -->
   <div class="row campo">
     <label>
     </label>
     <input type="submit" class="btn amarillo degradado btn-embossed" value="Guarda todos los cambios">
   </div>
+  
+  <!-- SECCIÓN 2 -->
   <h4>
     INTERESES
   </h4>
   <hr>
+  
+  <!-- AFICIONES -->
   <div class="row campo">
     <label for="viajes">
       Tus aficiones favoritas
     </label>
     {{ perfil_form.intereses }}
     <span class="help-block">
-      ¿No encuentras tu afición favorita?<br>Sé su primer fan en Joinity:<br><a href="/categorias/nuevo_interes" class="btn btn-mini">crea una afición</a>
+      ¿No encuentras tu afición favorita?<br>Sé su primer fan en Joinity:<br><a href="#modal-crea-aficion" data-toggle="modal" class="btn btn-mini">crea una afición</a>
     </span>
   </div>
   <div class="row campo">
@@ -89,7 +105,7 @@
     </label>
     {{ perfil_form.intereses_comprar }}
     <span class="help-block">
-      ¿No encuentras alguna marca o producto?<br><a href="/categorias/nueva_compra" class="btn btn-mini">dinos cuál</a>
+      ¿No encuentras alguna marca o producto?<br><a href="#modal-crea-compra" class="btn btn-mini" data-toggle="modal">dinos cuál</a>
     </span>
   </div>
   <div class="row campo">
@@ -176,3 +192,5 @@
   </div>
 
 </form>
+
+{% include "usuario/modales.html" %}
