@@ -22,7 +22,7 @@ def invitar(request):
 def invitar_usuario(request, amigo_id):
     amigo = get_object_or_404(User, pk=amigo_id)
     if not (Amigos.objects.filter(usuario=request.user, amigo=amigo).exists() or Amigos.objects.filter(usuario=amigo, amigo=request.user).exists()):
-        nuevo_amigo = Amigos(usuario=request.user, amigo=amigo, estado=0)
+        nuevo_amigo = Amigos(usuario=request.user, amigo=amigo, estado=1)
         nuevo_amigo.save()
     return HttpResponseRedirect('/usuario/' + amigo_id)
 
