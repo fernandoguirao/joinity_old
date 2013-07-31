@@ -480,6 +480,7 @@ if(ishome.length > 0) {
 //! VOTACIONES
 //==============
 
+/* PASAR NÚMERO DE RESPUESTAS y CREAR CADA RESPUESTA CON UN N */
 
 var jei = 0;
 var escribemens = $('.escribe-mensaje');
