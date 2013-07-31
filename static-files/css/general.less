@@ -55,7 +55,7 @@ ex- --> ejemplo
 @fonthead:'signika', sans-serif;
 
 
-@elcolor:@azul;
+/* @elcolor:@azul; */
 
 @muyoscuro:#373232;
 @oscuro:#534b4b;
@@ -175,6 +175,8 @@ ex- --> ejemplo
     width: 0;
   }
 }
+
+.estilos(@elcolor:@azul) {
 
 /* <!-------------------------------------->
 <!--! 1. ELEMENTOS GENERALES ABSOLUTOS  ------>
@@ -5583,14 +5585,28 @@ height: 300px;
   }
 }
 
+}
+
 /*
 <!----------------->
-<!--! COLORES   -->
+<!--! OTROS COLORES   -->
 <!----------------->
 */
+.estilos();
 
-/* FAMILY AND FRIENDS */
+  
+  .isFamily {
+    .estilos(@elcolor:@verde);
+  }
+  .isCompras {
+    .estilos(@elcolor:@rojo);
+  }
+  
+  .isFamily,.isCompras {
+    .span2.panelIzquierdo {
+      margin-top: 23px;
+    }
+  }
 
-.isFamily {
-  @elcolor:@verde;
-}
+
+

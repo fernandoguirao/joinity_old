@@ -4,7 +4,6 @@
 @font:'Montserrat', sans-serif;
 @fonthead:'signika', sans-serif;
 
-@elcolor:@azul;
 
 @muyoscuro:#373232;
 @oscuro:#534b4b;
@@ -110,6 +109,7 @@
 
 /* FIN DE MIXINS */
 
+.estilos(@elcolor:@azul) {
 /* Menú lateral adaptativo */
 
 .menu-oculto-adaptativo {
@@ -831,3 +831,21 @@ PÁGINAS ESPECÍFICAS TABLET
 */
 
 }
+
+}
+
+/*
+<!----------------->
+<!--! OTROS COLORES   -->
+<!----------------->
+*/
+.estilos();
+
+  
+  .isFamily {
+    .estilos(@elcolor:@verde);
+  }
+  .isCompras {
+    .estilos(@elcolor:@rojo);
+  }
+
