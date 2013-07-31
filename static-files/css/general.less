@@ -1925,6 +1925,7 @@ input[type="text"] {
   margin-bottom:1px;
   width:883px;
   overflow:hidden;
+  min-height:190px;
   
   /* TIMELINE */
   #loBlanco {
@@ -3445,13 +3446,15 @@ th {
 }
 
 .btn.joinit {
+  .border-radius(0)!important;
+  bottom: 0;
   left: 0;
   margin: 0 auto;
   position: absolute;
-  bottom: 0;
+  width: 90%;
   z-index: 100;
-  width: 100%;
-  .border-radius(0)!important;
+  padding: 15px 5%;
+
 }
 
 
@@ -5472,4 +5475,24 @@ a {
 .btn.btn-small {
   margin: -3px;
 }
+}
+
+#seleccionador #id_lugar {
+  margin-bottom: 0 !important;
+margin-left: -184px;
+margin-right: 0 !important;
+margin-top: -5px !important;
+min-width: 114px !important;
+padding-left: 5px !important;
+position: relative;
+border-radius: 3px 3px 3px 3px !important;
+border-width: 1px;
+height: 29px !important;
+padding: 0;
+color: #908E85;
+font-family: 'Montserrat',sans-serif;
+font-size: 13px !important;
+text-align: left !important;
+font-weight: lighter;
+max-width:51px!important;
 }
