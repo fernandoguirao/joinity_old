@@ -7,27 +7,10 @@ var Dajaxice = {
     
 
     
-    usuario: {
+    categorias: {
     
-    buscar: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('usuario.buscar', 'POST', callback_function, argv, custom_settings);
-    }
-
-
-    
-    
-    }
-    
-,
-    
-    mensajes: {
-    
-    refrescar: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('mensajes.refrescar', 'POST', callback_function, argv, custom_settings);
-    },
-
-    enviar_mensaje: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('mensajes.enviar_mensaje', 'POST', callback_function, argv, custom_settings);
+    crear: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('categorias.crear', 'POST', callback_function, argv, custom_settings);
     }
 
 
@@ -63,12 +46,28 @@ var Dajaxice = {
         return Dajaxice.call('joinitys.refrescar', 'POST', callback_function, argv, custom_settings);
     },
 
+    posteavotacion: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.posteavotacion', 'POST', callback_function, argv, custom_settings);
+    },
+
     cargaformfoto: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.cargaformfoto', 'POST', callback_function, argv, custom_settings);
     },
 
+    puntuar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.puntuar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    asignar_compra: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.asignar_compra', 'POST', callback_function, argv, custom_settings);
+    },
+
     cargaformtexto: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.cargaformtexto', 'POST', callback_function, argv, custom_settings);
+    },
+
+    recargar_puntuacion: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.recargar_puntuacion', 'POST', callback_function, argv, custom_settings);
     },
 
 
@@ -134,6 +133,40 @@ var Dajaxice = {
     
 ,
     
+    mensajes: {
+    
+    refrescar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('mensajes.refrescar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    enviar_mensaje: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('mensajes.enviar_mensaje', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
+    usuario: {
+    
+    buscar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('usuario.buscar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    cargar_subcategoria: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('usuario.cargar_subcategoria', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+,
+    
     buscador: {
     
     buscador: function(callback_function, argv, custom_settings){
@@ -149,10 +182,6 @@ var Dajaxice = {
     
     brands: {
     
-    seguir: function(callback_function, argv, custom_settings){
-        return Dajaxice.call('brands.seguir', 'POST', callback_function, argv, custom_settings);
-    },
-
     filtrar: function(callback_function, argv, custom_settings){
         return Dajaxice.call('brands.filtrar', 'POST', callback_function, argv, custom_settings);
     },
@@ -161,8 +190,20 @@ var Dajaxice = {
         return Dajaxice.call('brands.cargar_mas', 'POST', callback_function, argv, custom_settings);
     },
 
+    reserva_restaurante: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.reserva_restaurante', 'POST', callback_function, argv, custom_settings);
+    },
+
     dejar_de_seguir: function(callback_function, argv, custom_settings){
         return Dajaxice.call('brands.dejar_de_seguir', 'POST', callback_function, argv, custom_settings);
+    },
+
+    seguir: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.seguir', 'POST', callback_function, argv, custom_settings);
+    },
+
+    reserva_hotel: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.reserva_hotel', 'POST', callback_function, argv, custom_settings);
     }
 
 

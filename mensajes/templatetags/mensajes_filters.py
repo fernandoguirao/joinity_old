@@ -19,9 +19,15 @@ def get_ultimo(value, arg):
     mensaje=Mensajes.objects.raw(consulta)[0]
     return mensaje
 
+
 @register.filter(name='get_mensaje')
 def get_mensaje(value):
     return value.mensaje
+
 @register.filter(name='get_fecha')
 def get_fecha(value):
     return value.fecha
+
+@register.filter(name='leido')
+def get_leido(value):
+    return False

@@ -251,6 +251,11 @@ textarea {
     color:@elcolor;
   }
 }
+
+.font-iconos {
+  font-family:'iconos'!important;
+}
+
 // 1.2. BOTONES Y FORMULARIOS
 // ==========================
 
@@ -706,6 +711,10 @@ label {
 */
 /* a. Inputs */
 
+.control-group.focus textarea, .control-group.focus input[type="text"], .control-group.focus input[type="password"], .control-group.focus input[type="datetime"], .control-group.focus input[type="datetime-local"], .control-group.focus input[type="date"], .control-group.focus input[type="month"], .control-group.focus input[type="time"], .control-group.focus input[type="week"], .control-group.focus input[type="number"], .control-group.focus input[type="email"], .control-group.focus input[type="url"], .control-group.focus input[type="search"], .control-group.focus input[type="tel"], .control-group.focus input[type="color"], .control-group.focus .uneditable-input, textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+    border-color: @elcolor;
+}
+
 .inputNormal {
   min-width: 197px;
   .border-radius(5px);
@@ -1129,6 +1138,7 @@ body {
 
   .si-notif {
     background-color:rgba(0,0,0,0.25);
+    .transition(background-color,.2s);
     .notificacion {
       display:inherit;
       .img-rounded {
@@ -1810,6 +1820,7 @@ input[type="text"] {
       margin-top:10px;
       .thumb-img,.thumb-video {
         .background-size();
+        background-position:center;
         width:79px;
         height:63px;
         display:inline-block;
@@ -1914,6 +1925,7 @@ input[type="text"] {
   margin-bottom:1px;
   width:883px;
   overflow:hidden;
+  min-height:190px;
   
   /* TIMELINE */
   #loBlanco {
@@ -2357,6 +2369,9 @@ input[type="text"] {
 #rightSideBar {
   float: right;
   width: 46%;
+  .btn-small {
+    margin-bottom: 7px;
+  }
   #contenidoSide {
     padding:20px 78px;
     .tituloSide {
@@ -2415,6 +2430,8 @@ input[type="text"] {
           width: 50px;
           float:left;
           margin-right:12px;
+          .background-size(cover);
+          background-position:center;
           span {
             text-transform:uppercase;
             font-size:13px;
@@ -3429,12 +3446,18 @@ th {
 }
 
 .btn.joinit {
-  top: 171px;
-  position: relative;
+  .border-radius(0)!important;
+  bottom: 0;
+  left: 0;
   margin: 0 auto;
-  left: 19%;
-  
+  position: absolute;
+  width: 90%;
+  z-index: 100;
+  padding: 15px 5%;
+
 }
+
+
 
 /*
 .creareljoinity {
@@ -3677,20 +3700,79 @@ text-transform: uppercase !important;
 
 /* EVENTOS */
 
-.masdeundia {
+/* DATE PICKER */
+
+
+
 .diafin {
-  display:none;
-}
-&.checked {
-  .diafin {
-    display: block;
-    margin-top: 13px;
-    margin-left: -33px;
-    label {
-      color:@oscuro;
-    }
+/*   display: block; */
+  margin-top: 13px;
+  margin-left: 0;
+  label {
+    color:@oscuro;
   }
 }
+
+.span2.hasDatepicker {
+  text-align: left!important;
+  padding-left: 21px;
+  font-size: 15px!important;
+  font-family: @font;
+}
+
+.span2.hasDatepicker {
+  font-family: montserrat;
+  font-size: 15px !important;
+  padding-left: 21px;
+  text-align: left;
+}
+
+.input-datepicker .btn {
+  padding-right: 11px!important;
+}
+
+.control-group.focus .input-datepicker input,.control-group.focus .input-datepicker .btn {
+  border-color:@elcolor!important;
+}
+
+.ui-datepicker .ui-state-active {
+  background-color:@elcolor!important;
+  color:@claro;
+}
+
+.ui-datepicker:before {
+  border-color: transparent transparent @elcolor!important;
+}
+
+.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
+  border-color: @elcolor;
+    .ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+    background-color: @elcolor;
+    .ui-datepicker-month,.ui-datepicker-year {
+      color: @claro!important;
+    }
+    .ui-datepicker-month {
+      font-size:14px;
+      text-transform: uppercase;
+    }
+  }
+  .ui-datepicker-prev.ui-corner-all:hover,.ui-datepicker-next.ui-corner-all:hover {
+    background-color:lighten(@elcolor,10%);
+    border:none!important;
+  }
+  .ui-datepicker-prev.ui-corner-all,.ui-datepicker-next.ui-corner-all {
+    border:none!important;
+  }
+  .ui-datepicker .ui-state-active {
+    background-color: @elcolor!important;
+    color: @claro;
+  }
+}
+
+.masdeundia {
+
+  &.checked {
+      }
 }
 .input-prepend .add-on:first-child, .input-prepend .btn:first-child {
   border-radius: 6px 0 0 6px!important;
@@ -4079,6 +4161,11 @@ h6 {
 /* VER PERFIL */
 
 #ver {
+  h6 .iconos {
+    font-size: 13px !important;
+    position: relative;
+    top: 1px;
+  }
   .btn-small i.iconos {
     font-size: 15px!important;
     position: relative;
@@ -4135,6 +4222,7 @@ h6 {
 
 .thumb {
   .background-size();
+  background-position:center;
   display: inline-block;
   height: 191px;
   width: 50%;
@@ -4504,11 +4592,12 @@ p.color {
 
 #datos-centro {
   text-align: center;
-  margin-top: 37px;
+  /* margin-top: 37px; */
+  margin-top:0;
   .btn:hover {
     .foto-producto {
       .background-size(200%)!important;
-      background-color:transparent;
+      
       .opacity(.5);
     }
     p {
@@ -4621,7 +4710,7 @@ p.color {
   background-position: center;
   margin-bottom:6px;
   background-repeat:no-repeat;
-  background-color:white;
+  background-color:@elcolor;
   .transition(all,.3s);
 }
 
@@ -4691,7 +4780,7 @@ p.color {
   }
   .logo-marca {
     .background-size();
-    height: 17px;
+    height: 24px;
     width: 17px;
     float: left;
     margin-right: 9px;
@@ -5290,4 +5379,128 @@ margin: 0 9px 0 13px;
       left: 0px;
     }
   }
+}
+
+.estrellas i {
+  &.hovers {
+    color:@claro;
+  }
+}
+
+.estrellas.point i:hover {
+  color:@claro;
+  cursor:pointer;
+}
+
+/* FORMULARIOS MODALES */
+
+.modal {
+  margin-top: 37px;
+  .modal-body {
+    padding-right:37px!important;
+  }
+  #form-modal {
+    padding: 20px 35px;
+    h4 {
+      text-transform: uppercase;
+    }
+    hr {
+      margin-top: 10px;
+      border-color: rgba(0,0,0,.1);
+      border-width: 1px;
+      border-top: none;
+    }
+  
+    label {
+      display: inline-block;
+      font-size: 12px;
+      margin-bottom: 16px;
+      text-align: left;
+      width: 30%;
+    }
+    select,input {
+      margin-left: 4%;
+      width: 60%;
+      display: inline-block;
+      vertical-align: top;
+      &.btn {
+        width:inherit;
+        margin-top:20px;
+      }
+    }
+  }
+  .nav-tabs {
+    margin-top: 10px;
+  }
+  .tab-content {
+    margin-bottom:0px;
+  }
+}
+
+td {
+  a {
+    max-width:none;
+    vertical-align: top;
+  }
+  .thumb {
+    border-radius: 3px 3px 3px 3px !important;
+    float: left;
+    height: 34px;
+    position: relative;
+    top: 2px;
+    width: 34px;
+    margin-right: 7px;
+  }
+}
+
+.bpunt {
+  position:relative;
+  top:-5px;
+}
+
+a {
+  color:@elcolor;
+  &:hover {
+    color:lighten(@elcolor,10%);
+  }
+}
+
+.modoima .modal-body {
+  height: inherit !important;
+  overflow-y: hidden;
+  padding: 5px !important;
+}
+
+.comentariosJoinity {
+.btn.btn-small {
+  margin: -3px;
+}
+}
+
+#seleccionador #id_lugar {
+  margin-bottom: 0 !important;
+margin-left: -184px;
+margin-right: 0 !important;
+margin-top: -5px !important;
+min-width: 114px !important;
+padding-left: 5px !important;
+position: relative;
+border-radius: 3px 3px 3px 3px !important;
+border-width: 1px;
+height: 29px !important;
+padding: 0;
+color: #908E85;
+font-family: 'Montserrat',sans-serif;
+font-size: 13px !important;
+text-align: left !important;
+font-weight: lighter;
+max-width:51px!important;
+}
+
+.fondoalfa{
+  background-color: transparent!important;
+background-position: center top;
+.background-size(cover);
+height: 300px;
+.opacity(0.15);
 }
