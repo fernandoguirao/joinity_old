@@ -8,27 +8,26 @@
         Crea una nueva afición
       </h4>
       <hr>
-      <form action="" method="post">
         <label for="id_categoria">
           ¿A qué categoría pertenece?
         </label>
+        <form id="formulario_categoria" method="post">
+          {% csrf_token %}
+        
         <select id="id_categoria" name="categoria">
-          <option selected="selected" value="">
-            ---------
-          </option>
-          <option value="1">
-            Deportes
-          </option>
-          <option value="2">
-            Juegos
-          </option>
+        <option selected="selected" value="">---------</option>
+        
+        
+        {% for categoria in categorias %}
+        <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+        {% endfor %}
         </select>
         <label for="id_nombre">
           Nombre de la afición que quieres crear
         </label>
         <input id="id_nombre" type="text" name="nombre" class="inputNormal input-small">
-        <input type="submit" value="Crea la afición" class="btn btn-small amarillo">
-      </form>
+        <input type="button" value="Crea la afición" class="btn btn-small amarillo" onclick="Dajaxice.categorias.crear(crear_categoria, {'formulario':$('#formulario_categoria').serializeObject(),'tipo':1 })">
+        </form>
     </div>
 
   </div>
@@ -45,7 +44,7 @@
         ¿Qué producto o marca te interesa?
       </h4>
       <hr>
-      <form action="" method="post">
+      <form action="" method="post" id="formulario_categoria_compras">
         <label for="id_categoria">
           ¿A qué categoría pertenece?
         </label>
@@ -53,18 +52,15 @@
           <option selected="selected" value="">
             ---------
           </option>
-          <option value="1">
-            Deportes
-          </option>
-          <option value="2">
-            Juegos
-          </option>
+          {% for categoria in categorias_compras %}
+        <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+          {% endfor %}
         </select>
         <label for="id_nombre">
           Nombre del producto o marca que te interesa
         </label>
         <input id="id_nombre" type="text" name="nombre" class="inputNormal input-small">
-        <input type="submit" value="Créalo" class="btn btn-small amarillo">
+        <input type="button" value="Crealo" class="btn btn-small amarillo" onclick="Dajaxice.categorias.crear(crear_categoria, {'formulario':$('#formulario_categoria_compras').serializeObject(),'tipo':2 })">
       </form>
     </div>
 
