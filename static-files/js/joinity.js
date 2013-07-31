@@ -11,6 +11,11 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+function crear_categoria(data){
+	if (data.ok){
+		alert("categoria creada");
+	}
+}
 function refresca_puntuacion(data){
 	$('#div_puntuacion').html(data.puntuacion);
     $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
