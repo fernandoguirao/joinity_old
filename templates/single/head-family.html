@@ -5,15 +5,15 @@
         Únete a este Joinity
       </a>
       {% elif soy == "desconectado" %}
-      <a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">
+      <a class="btn joinit amarillo" href="/login/?next=/joinity/{{joinity.id}}/">
         Conectate para unirte a este Joinity
       </a>
       {% elif soy == "espera" %}
-      <div class="btn joinit">
+      <div class="btn joinit amarillo">
         Estas a la espera de ser invitado
       </div>
       {% elif soy == "nada" and joinity.privacidad != 2 %}
-      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+      <a class="btn joinit amarillo" href="/joinity/unirse/{{joinity.id}}/">
         Únete a este Joinity
       </a>
       {% endif %}
