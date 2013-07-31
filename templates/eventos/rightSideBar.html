@@ -6,16 +6,25 @@
     <!-- FIN BUSCADOR -->
     
     <!-- TODOS LOS MENSAJES -->
+    {% load eventos_filters %}
+    
     <div class="todosMensajes">
     {% for evento in eventos %}
+    
       <!-- CADA MENSAJE -->
       <a href="/mis_eventos/{{evento.id}}">
       <div class="cadaMensaje nuevo">
+      {% if evento|visto:usuario %}
+       visto
+      {% else %}
+      no visto
+      {% endif %}
         {% if evento.foto %}
         	<div class="avatar span3" style="background-image:url('/media/{{evento.foto}}');">
         {% else %}
         	<div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
         {% endif %}
+        
         </div>
         <div class="numeroNotif">
           2

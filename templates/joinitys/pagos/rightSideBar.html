@@ -6,6 +6,8 @@
     <!-- FIN BUSCADOR -->
     
     <!-- TODOS LOS MENSAJES -->
+        {% load pagos_filters %}
+    
     <div class="todosMensajes">
       <!-- CADA MENSAJE -->
       {% for pago in lista_pagos %}
@@ -13,9 +15,13 @@
             <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga_compra(carga_pago, {'pago_id':{{pago.id}}});">
       
       {% else %}
-      <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga(carga_pago, {'pago_id':{{pago.id}}});">
+            <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga(carga_pago, {'pago_id':{{pago.id}}});">
       {% endif %}
-      
+      {% if pago|ha_pagado:usuario %}
+       pago
+      {% else %}
+      no pago
+      {% endif %}
         <div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
         </div>
         <div class="numeroNotif">

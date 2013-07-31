@@ -97,5 +97,8 @@ def ver_mi_evento(request, evento_id):
     consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
     eventos=Eventos.objects.raw(consulta)
     single=get_object_or_404(Eventos, pk=evento_id)
+    usuario_evento=Usuarios_Evento.objects.get(usuario=request.user, evento=single)
+    usuario_evento.estado=1
+    usuario_evento.save()
     context={'eventos':eventos, "pagina":"misEventos", "single":single, "usuario":request.user}
     return render(request, 'eventos/index.html', context)
