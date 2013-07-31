@@ -3443,12 +3443,16 @@ th {
 }
 
 .btn.joinit {
-  top: 171px;
-  position: relative;
+  left: 0;
   margin: 0 auto;
-  left: 19%;
-  
+  position: absolute;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  .border-radius(0)!important;
 }
+
+
 
 /*
 .creareljoinity {
@@ -4583,11 +4587,12 @@ p.color {
 
 #datos-centro {
   text-align: center;
-  margin-top: 37px;
+  /* margin-top: 37px; */
+  margin-top:0;
   .btn:hover {
     .foto-producto {
       .background-size(200%)!important;
-      background-color:transparent;
+      
       .opacity(.5);
     }
     p {
@@ -4700,7 +4705,7 @@ p.color {
   background-position: center;
   margin-bottom:6px;
   background-repeat:no-repeat;
-  background-color:white;
+  background-color:@elcolor;
   .transition(all,.3s);
 }
 

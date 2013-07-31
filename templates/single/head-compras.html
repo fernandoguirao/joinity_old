@@ -1,13 +1,17 @@
   <div id="header-compras" class="extracto-joinity horizontal unJoinity">
     <div class="left-side" style="background-image:url('/media/images/fondo-compras.jpg');">
       {% if soy == "nadie" %}
-      	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
+      	<a class="btn joinit amarillo btn-embossed" href="/joinity/unirse/{{joinity.id}}/">
+      	  Únete a este Joinity
+        </a>
       {% elif soy == "desconectado" %}
       	<a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">Conectate para unirte a este Joinity</a>
       {% elif soy == "espera" %}
       	<div class="btn joinit">Estas a la espera</div>
       {% elif soy == "nada" and joinity.privacidad != 2 %}
-      	<a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">Únete a este Joinity</a>
+        <a class="btn joinit amarillo btn-embossed" href="/joinity/unirse/{{joinity.id}}/">
+          Únete a este Joinity
+        </a>
       {% endif %}
       <div id="datos-abajo">
       {% if soy == "miembro" or soy == "admin" %}
@@ -28,18 +32,25 @@
       {% if soy == "admin" or soy == "miembro" %}
       <div id="datos-arriba">
         <a href="#modalInvitados" data-toggle="modal">
-        <div class="btn btn-mini btn-embossed">
-          Invita a más joiners
-        </div>
+          <div class="btn btn-mini btn-embossed">
+            Invita a más joiners
+          </div>
         </a>
       </div>
      {% endif %}
       <div id="datos-centro">
+        {% if soy == "miembro" %}
         <a href="/joinity/{{joinity.id}}/comprar" class="btn btn-small btn-embossed">
-          <div class="foto-producto" style="background-image:url('/media/{{joinity.foto}}');"></div>
-          <p>{{joinity.precio}} <span>euros</span></p>
+        {% endif %}
+          <div class="foto-producto" style="background-image:url('/media/{{joinity.foto}}');">
+          </div>
+          <p>
+            {{joinity.precio}} <span>euros</span>
+          </p>
+        {% if soy == "miembro" %}
           Cómpralo ya<span>{{joinity.compras.get_descuento}}% descuento</span>
         </a>
+        {% endif %}
       </div>
     </div>
     <div class="right-side">
@@ -57,6 +68,7 @@
           </p>
         </div>
         <div class="valor02">
+          {% if joinity.hasta %}
           <i class="iconos">
             i
           </i>
@@ -66,6 +78,7 @@
               días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
             </span>
           </p>
+          {% endif %}
         </div>
       </div> <!-- FIN FILA 01 -->
       <!-- FILA 02 -->
@@ -116,13 +129,19 @@
         </div>
         <!-- NOTA: en data-estrellas: del 1 al 5 y si no se ha puntuado aún 0. Sólo si data-estrellas es 0 se puede votar -->
         <div class="valor06 estrellas" data-estrellas="0">
-          {% for i in cinco  %}
-        	{% if i <= joinity.puntuacion_media %}
-        		<i class="iconos punto">j</i>
-         	{% else %}
-         		<i class="iconos">j</i>
-         	{% endif %}
-           {% endfor %}
+          <script type="text/javascript">
+            joinity_id={{joinity.id}};
+            usuario_id={{usuario.id}};
+          </script>
+          <div id="div_puntuacion">
+            <div class="valor06 estrellas" data-estrellas="{{puntuacion}}">
+              <i class="iconos">j</i>
+              <i class="iconos">j</i>
+              <i class="iconos">j</i>
+              <i class="iconos">j</i>
+              <i class="iconos">j</i>
+            </div>
+          </div>
         </div>
       </div> <!-- FIN FILA 03 -->
       <div class="fila">
@@ -164,3 +183,4 @@
     </div>
     
   </div>
+  {% include "single/modal_invita.html" %}

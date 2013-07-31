@@ -14,7 +14,7 @@ var ismensajes = $('#misMensajes');
 function refresca_puntuacion(data){
 	$('#div_puntuacion').html(data.puntuacion);
     $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
-    alert("refrescado");
+    location.reload();
 }
 function puntuar_joinity(data){
 	if (data.ok){
