@@ -95,6 +95,9 @@
     <div id="select_subcategorias">
     </div>
     {% endif %}
+    {% for error in formaficiones.subcategoria.errors %}
+      ERROR: {{error}}
+    {% endfor %}
     <span class="help-block">
       ¿No encuentras una subcategoría que se adapte a tu afición?
     </span>
