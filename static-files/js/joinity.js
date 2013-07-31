@@ -6,6 +6,7 @@
 var ishome = $('#home');
 var ismisJoinitys = $('#misJoinitys');
 var ismensajes = $('#misMensajes');
+var isfamily = $('.jfamily');
 
 
 //======================
@@ -646,3 +647,15 @@ $( ".estrellas i" ).each(function( index ) {
      });*/
   }
 });
+
+
+//===========
+//! COLORES
+//===========
+
+
+/* SI ES FAMILY & FRIENDS */
+
+if(isfamily.length > 0) {
+  $('body').addClass("isFamily");
+}
