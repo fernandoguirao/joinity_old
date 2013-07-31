@@ -27,12 +27,14 @@ def editar(request, joinity_id):
         subcategorias=Subcategorias.objects.filter(categoria=joinity.sub().subcategoria)
         if request.POST:
             formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=3)
-            if formulario.is_valid:
+            if formulario.is_valid():
                 print "formulario valido"
                 joinityform = formulario.save()
                 formaficiones=AficionesForm( request.POST, instance=joinity.sub(),joinity=joinityform)
-                if formaficiones.is_valid:
+                if formaficiones.is_valid():
                     formaficiones.save()
+            else:
+                formaficiones=AficionesForm(request.POST, instance=joinity.sub(), joinity=None)
         else:
             formulario=JoinityForm(instance=joinity, user=request.user, tipo=3)
             formaficiones=AficionesForm(instance=joinity.aficiones, joinity=None)
@@ -43,11 +45,13 @@ def editar(request, joinity_id):
         if request.POST:
             formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=2)
             
-            if formulario.is_valid:
+            if formulario.is_valid():
                 joinityform = formulario.save()
                 formcompras=ComprasForm(request.POST, instance=joinity.sub(), joinity=joinityform)
-                if formcompras.is_valid:
+                if formcompras.is_valid():
                     formcompras.save()
+            else:
+                formcompras=ComprasForm(request.POST, instance=joinity.sub(), joinity=None)
         else:
             formulario = JoinityForm(instance=joinity, user=request.user, tipo=2)
             formcompras=ComprasForm(instance=joinity.sub(), joinity=None)
@@ -55,11 +59,13 @@ def editar(request, joinity_id):
     if joinity.tipo==1:
         if request.POST:
             formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=1)
-            if formulario.is_valid:
+            if formulario.is_valid():
                 joinityform = formulario.save()
                 formfamily=FamilyForm(request.POST, instance=joinity.sub(), joinity=joinityform)
-                if formfamily.is_valid:
+                if formfamily.is_valid():
                     formfamily.save()
+            else:
+                formfamily=FamilyForm(request.POST, instance=joinity.sub(), joinity=None)
         else:
             formulario = JoinityForm(instance=joinity, user=request.user, tipo=1)
             formfamily=FamilyForm(intance=joinity.sub, joinity=None)
