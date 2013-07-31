@@ -1,19 +1,19 @@
   <div id="header-compras" class="extracto-joinity horizontal unJoinity">
     <div class="left-side" style="background-image:url('/media/{{joinity.foto}}');">
       {% if soy == "nadie" %}
-      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+      <a class="btn joinit amarillo" href="/joinity/unirse/{{joinity.id}}/">
         Únete a este Joinity
       </a>
       {% elif soy == "desconectado" %}
-      <a class="btn joinit" href="/login/?next=/joinity/{{joinity.id}}/">
+      <a class="btn joinit amarillo" href="/login/?next=/joinity/{{joinity.id}}/">
         Conectate para unirte a este Joinity
       </a>
       {% elif soy == "espera" %}
-      <div class="btn joinit">
+      <div class="btn joinit amarillo">
         Estas a la espera de ser invitado
       </div>
       {% elif soy == "nada" and joinity.privacidad != 2 %}
-      <a class="btn joinit" href="/joinity/unirse/{{joinity.id}}/">
+      <a class="btn joinit amarillo" href="/joinity/unirse/{{joinity.id}}/">
         Únete a este Joinity
       </a>
       {% endif %}
@@ -56,22 +56,26 @@
         </p>
       </div>
       <div class="valor02">
-        <i class="iconos">
-          i
-        </i>
-        <p>
-        {% if joinity.hasta == 0 %}
-        {% else %}
-          {{joinity.hasta}}
-        {% endif %}
-          <span>
-            {% if joinity.hasta == 0 %}
-              sin fecha definida
-            {% else %}
+        {% if joinity.hasta %}
+          <i class="iconos">
+            i
+          </i>
+          <p>
+            {{joinity.hasta}}
+            <span>
               días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
-            {% endif %}
-          </span>
-        </p>
+            </span>
+          </p>
+          {% else %}
+          <i class="iconos">
+            i
+          </i>
+          <p>
+            <span>
+              sin fecha definida
+            </span>
+          </p>
+          {% endif %}
       </div>
     </div> <!-- FIN FILA 01 -->
 
