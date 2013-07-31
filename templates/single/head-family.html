@@ -56,22 +56,26 @@
         </p>
       </div>
       <div class="valor02">
-        <i class="iconos">
-          i
-        </i>
-        <p>
-        {% if joinity.hasta == 0 %}
-        {% else %}
-          {{joinity.hasta}}
-        {% endif %}
-          <span>
-            {% if joinity.hasta == 0 %}
-              sin fecha definida
-            {% else %}
+        {% if joinity.hasta %}
+          <i class="iconos">
+            i
+          </i>
+          <p>
+            {{joinity.hasta}}
+            <span>
               días para {% if joinity.empezo %} acabar {% else %} empezar {% endif %}
-            {% endif %}
-          </span>
-        </p>
+            </span>
+          </p>
+          {% else %}
+          <i class="iconos">
+            i
+          </i>
+          <p>
+            <span>
+              sin fecha definida
+            </span>
+          </p>
+          {% endif %}
       </div>
     </div> <!-- FIN FILA 01 -->
 

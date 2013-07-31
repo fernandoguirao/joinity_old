@@ -19,7 +19,7 @@
             {% if joinity.get_tipo == "family" %}
               {% include "single/head-family.html" %}
             {% endif %}
-            <div id="contenedorJoinity" {% if soy == "nadie" %}style="background-image:url('/media/images/fondoalfa.png')"{% endif %}>
+            <div id="contenedorJoinity" {% if soy != "miembro" and soy != "admin" %}class="fondoalfa" style="background-image:url('/media/images/fondoalfa.png')"{% endif %}>
             {% if soy == "miembro" or soy == "admin" %}
               {% include "single/timeline.html" %}
             {% if joinity.get_tipo == "aficiones" %}
