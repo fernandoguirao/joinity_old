@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django import forms
 from models import Puntuaciones, Usuarios
 from django.contrib.auth.models import User
@@ -69,6 +70,6 @@ class Puntuar(forms.ModelForm):
         # pago.email = self.cleaned_data["email"]
 class Buscar(forms.Form):
     input = forms.CharField()
-    filtro = forms.ChoiceField(choices=([("1", "Nombre"), ("2", "Ubicacion"), ("3", "Fecha de nacimiento"), ("4", "Email"), ("5", "Intereses")]))
+    filtro = forms.ChoiceField(choices=([("1", "Nombre"), ("2", "Ubicación"), ("3", "Fecha de nacimiento"), ("4", "Email"), ("5", "Intereses")]))
     
     

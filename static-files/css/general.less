@@ -1820,6 +1820,7 @@ input[type="text"] {
       margin-top:10px;
       .thumb-img,.thumb-video {
         .background-size();
+        background-position:center;
         width:79px;
         height:63px;
         display:inline-block;
@@ -4151,6 +4152,11 @@ h6 {
 /* VER PERFIL */
 
 #ver {
+  h6 .iconos {
+    font-size: 13px !important;
+    position: relative;
+    top: 1px;
+  }
   .btn-small i.iconos {
     font-size: 15px!important;
     position: relative;
@@ -4207,6 +4213,7 @@ h6 {
 
 .thumb {
   .background-size();
+  background-position:center;
   display: inline-block;
   height: 191px;
   width: 50%;
@@ -5379,6 +5386,9 @@ margin: 0 9px 0 13px;
 
 .modal {
   margin-top: 37px;
+  .modal-body {
+    padding-right:37px!important;
+  }
   #form-modal {
     padding: 20px 35px;
     h4 {
@@ -5403,6 +5413,16 @@ margin: 0 9px 0 13px;
       width: 60%;
       display: inline-block;
       vertical-align: top;
+      &.btn {
+        width:inherit;
+        margin-top:20px;
+      }
     }
+  }
+  .nav-tabs {
+    margin-top: 10px;
+  }
+  .tab-content {
+    margin-bottom:0px;
   }
 }
