@@ -379,8 +379,8 @@ var seleccionbtn = $('.primerselect .dropdown-menu a');
 var seleccionPrim = $(".primerselect button").find('span');
 var selector = $('.selectoresgrupo');
 var selectreserva = $('.reserva .span3 .btn');
-var elrestaurante = $('.venga');
-var elhotel = $('.vamos');
+var elrestaurante = $('.btn.btn-small.amarillo.venga.adelante');
+var elhotel = $('.btn.btn-small.amarillo.vamos.adelante.arest');
 
 seleccionbtn.click(function(){
   if($(this).text()=="Comprar") {
@@ -400,11 +400,11 @@ seleccionbtn.click(function(){
 
 selectreserva.click(function(){
   if($(this).text()=="un restaurante") {
-    elrestaurante.hide();
-    elhotel.show();
+    elrestaurante.fadeTo('slow',0);
+    elhotel.fadeTo('slow',1);
   } else if ($(this).text()=="un hotel") {
-    elrestaurante.show();
-    elhotel.hide();
+    elrestaurante.fadeTo('slow',1);
+    elhotel.fadeTo('slow',0);
   }
 })
 
