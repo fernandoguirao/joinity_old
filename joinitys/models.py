@@ -10,7 +10,7 @@ class Joinitys(models.Model):
     nombre = models.TextField(null=True)
     descripcion = models.TextField(null=True, max_length=400)
     tipo=models.IntegerField(default=0)
-    foto = models.ImageField(max_length=100, upload_to='joinity', blank=True, null=True, default="media/defaults/avatar.jpeg")
+    foto = models.ImageField(max_length=100, upload_to='joinity', blank=True, null=True, default="defaults/avatar.jpeg")
     n_min=models.IntegerField(default=0)
     n_max=models.IntegerField(default=0)
     precio = models.DecimalField(null=True, decimal_places=2, max_digits=10)
