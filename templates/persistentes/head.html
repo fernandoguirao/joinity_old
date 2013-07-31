@@ -36,7 +36,33 @@
     {% dajaxice_js_import %}
   </head>
   <body id="{{ pagina }}">
-
+   {% if pagina=="misTareas" %}
+         MIS TAREAS
+   {% elif pagina == "misEventos" %}
+         MIS EVENTOS
+   {% elif pagina == "misCompras" %}
+         MIS COMPRAS
+   {% elif pagina == "misMensajes" %}
+         MIS MENSAJES
+   {% elif pagina == "home" %}
+         HOME
+   {% elif pagina == "joinity" %}
+       {% if joinity.get_tipo == "family" %}
+          FAMILY
+       {% elif joinity.get_tipo == "aficiones" %}
+          AFICIONES
+       {% elif joinity.get_tipo == "compras" %}
+          COMPRAS
+       {% endif %}
+   {% elif pagina == "crear" %}
+       {% if joinity.get_tipo == "family" %}
+          EDITAR FAMILY
+       {% elif joinity.get_tipo == "aficiones" %}
+          EDITAR AFICIONES
+       {% elif joinity.get_tipo == "compras" %}
+          EDITAR COMPRAS
+       {% endif %}
+   {% endif %}
   <div class="ocultarcargador">
     <div id="fadingBarsG">
       <div id="fadingBarsG_1" class="fadingBarsG">
