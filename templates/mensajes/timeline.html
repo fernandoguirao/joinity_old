@@ -40,6 +40,9 @@
     <!-- EL CHAT -->
     {% if mensajes %}
     {% for mensaje in mensajes %}
+    {% if not mensaje.leido %}
+       {{mensaje.visto}}
+    {% endif %}
     <!-- INICIO MENSAJE -->
     <div class="actualizacion texto">
       <!-- AUTOR Y FECHA -->

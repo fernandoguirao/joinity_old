@@ -11,14 +11,48 @@ var ismensajes = $('#misMensajes');
 //======================
 //! FUNCIONES AJAX
 //======================
+function crear_categoria(data){
+	if (data.ok){
+		alert("categoria creada");
+	}
+}
+function refresca_puntuacion(data){
+	$('#div_puntuacion').html(data.puntuacion);
+    $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    location.reload();
+}
+function puntuar_joinity(data){
+	if (data.ok){
+		Dajaxice.joinitys.recargar_puntuacion(refresca_puntuacion, {'joinity_id':data.joinity_id});
+	}
+}
+
+function asignar_compra(data){
+  if (data.ok){
+    alert("Compra Asignada");
+  }
+}
+
+function reserva_hotel(data){
+  if (data.ok){
+    alert("Mandada Reserva");
+  }
+}
+function reserva_restaurante(data){
+  if (data.ok){
+    alert("Mandada Reserva");
+  }
+}
+
 function seguir_brand(data){
-	//En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
-	return true;
+  //En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
+  return true;
 }
 function dejar_de_seguir_brand(data){
-	//En esta funcion mete lo que tenga que hacer tras darle al boton de dejar de seguir un brand, quita el return. 
-	return true;
+  //En esta funcion mete lo que tenga que hacer tras darle al boton de dejar de seguir un brand, quita el return. 
+  return true;
 }
+
 function carga_pago(data){
   var cronologia = $("#cronologia");
   cronologia.html(data.pago);
@@ -53,8 +87,41 @@ function marca(data){
 }
 
 function busqueda(data){
-  var resultados = $("#resultados");
-  resultados.html(data.resultados);
+	var resultados_usuarios = $("#res-usuarios");
+	var resultados_joinitys=$("#res-joinitys");
+	var resultados_aficiones=$("#res-aficiones");
+	var resultados_eventos=$("#res-eventos");
+	var resultados_lugares=$("#res-lugares");
+	if (data.usuarios){
+		resultados_usuarios.html(data.usuarios);
+	}
+	else{
+		resultados_usuarios.html("");
+	}
+	if (data.joinitys){
+		resultados_joinitys.html(data.joinitys);
+	}
+	else{
+		resultados_joinitys.html("");
+	}
+	if (data.aficiones){
+		resultados_aficiones.html(data.aficiones);
+	}
+	else{
+		resultados_aficiones.html("");
+	}
+	if (data.eventos){
+		resultados_eventos.html(data.eventos);
+	}
+	else{
+		resultados_eventos.html("");
+	}
+	if (data.lugares){
+		resultados_lugares.html(data.lugares);
+	}
+	else{
+		resultados_lugares.html("");
+	}
 }
 
 function cargaform(data){
@@ -134,6 +201,7 @@ function comentar(data){
 
 function refrescar_joinitys(data){
   $("#cronologia").html(data.muro);
+  timeLineDinamica();
 }
 
 var identificador;
@@ -282,7 +350,7 @@ $('.buscarbtn').click(function(){
 //! LOS COMENTARIOS
 //===================
 
-
+function timeLineDinamica() {
 $(".comentariosJoinity .btn.grisclaro").click(function() {
   $(this).parent().children('.escribe-input').removeClass('oculto');
   $(this).addClass('oculto');
@@ -291,6 +359,9 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
     $(this).parent().parent().parent().parent().children('.btn.grisclaro').removeClass('oculto');
   });
 });
+}
+
+timeLineDinamica();
 
 
 //===============
@@ -517,3 +588,61 @@ $(function() {
     });
   }
 })
+
+
+//============================================
+//! CREAR CHECKBOX QUE OCULTA Y MUESTRA DIVS
+//============================================
+
+
+function creaCheckbox (divinicio,leyenda,idcheck) {
+  enElDiv = $(divinicio);
+  enElDiv.hide();
+  idche = enElDiv.prev();
+  enElDiv.before('<label class="checkbox checkMuestra" for="'+idcheck+'"><input type="checkbox" value="" id="'+idcheck+'" data-toggle="checkbox"><span class="txtlabel">' + leyenda + '</span></label>');
+}
+
+creaCheckbox('#cuantos-participan','¿Hay limitación de participantes?','checknuevo');
+creaCheckbox('.diafin','¿Dura más de un día?','checktermina');
+creaCheckbox('.seRepite','¿Se repetirá?','checkrepite');
+creaCheckbox('.cnivel','¿Es necesario conocimientos previos?','checknivel');
+creaCheckbox('.crequisitos','¿Hay algún otro requisito?','checkrequisito');
+
+$('.checkMuestra').toggle(function(){
+  $(this).next().slideDown();
+  $(this).addClass('checked');
+},function(){
+  $(this).next().slideUp();
+  $(this).removeClass('checked');
+});
+
+/* Fin de crea checkbox */
+
+
+//=======================================
+//! FUNCIÓN PARA PUNTUAR CON ESTRELLAS
+//=======================================
+
+
+$( ".estrellas i" ).each(function( index ) {
+  laPuntuacion = $('.estrellas').data('estrellas');
+  /* Si vamos a votar */
+  if (laPuntuacion == '0'){
+    $('.estrellas').addClass('point');
+    $(this).hover(function(){
+      $('.estrellas i:lt('+index+')').addClass('hovers');
+      $('.estrellas i:gt('+index+')').removeClass('hovers');
+    })
+    $(this).click(function(){
+      Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
+      $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    })
+    /* Si ya hemos votado */
+  } else {
+    $('.estrellas i:lt('+ laPuntuacion +')').addClass('hovers');
+    /*$(this).click(function(){
+    	
+        Dajaxice.joinitys.puntuar(puntuar_joinity, {'joinity_id':joinity_id, 'puntuacion':index});
+     });*/
+  }
+});

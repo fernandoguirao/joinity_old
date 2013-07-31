@@ -12,4 +12,7 @@ class Mensajes(models.Model):
         db_table = "Mensajes"
     def leido(self):
         return self.estado == 1
+    def visto(self):
+        self.estado=1
+        self.save()
 # Create your models here.

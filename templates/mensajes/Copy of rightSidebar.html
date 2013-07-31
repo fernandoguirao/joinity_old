@@ -6,35 +6,30 @@
     <!-- TODOS LOS MENSAJES -->
     {% load mensajes_filters %}
     <div class="todosMensajes">
-      {% for mensaje in todos_los_mensajes %}
-      {% if mensaje.mensaje.estado == 1 %}
-      LEIDO
-      {% else %}
-      NO LEIDO 
-      {% endif %}
+      {% for single_user in usuarios %}
       <!-- CADA MENSAJE -->
-      <a href="/mensaje/inbox/{{mensaje.usuario.id}}">
+      <a href="/mensaje/inbox/{{single_user.id}}">
         <div class="cadaMensaje nuevo">
-          <div class="avatar span3" style="background-image:url('/media/{{mensaje.usuario.usuario.foto}}');">
+          <div class="avatar span3" style="background-image:url('/media/{{single_user.usuario.foto}}');">
           </div>
         <div class="numeroNotif">
           1
         </div>
         <p class="span9">
           <b>
-            {{mensaje.usuario.first_name}} {{mensaje.usuario.last_name}}
+            {{single_user.first_name}} {{single_user.last_name}}
           </b>
-            {% if mensaje.mensaje.fecha|es_hoy %}
+            {% if single_user|get_ultimo:usuario|get_fecha|es_hoy %}
             <i>
-              {{mensaje.mensaje.fecha|date:'H:i'}}
+              {{single_user|get_ultimo:usuario|get_fecha|date:'H:i'}}
             </i>
             {% else %}
             <i>
-              {{mensaje.mensaje.fecha|date:'d/m/Y'}}
+              {{single_user|get_ultimo:usuario|get_fecha|date:'d/m/Y'}}
             </i>
             {% endif %}
             <span>
-              {{mensaje.mensaje.mensaje}}
+              {{single_user|get_ultimo:usuario|get_mensaje}}
             </span>
           </p>
         </div>

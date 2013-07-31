@@ -99,10 +99,12 @@ def nuevo_compras(request):
         return render_to_response('creacion/solicitar_compra.html', {"usuario": request.user})
     if request.POST:
         formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=2)
-        if formulario.is_valid:
+        formcompras=ComprasForm(request.POST, joinity=None)
+
+        if formulario.is_valid() and formcompras.is_valid():
             joinity = formulario.save()
             formcompras=ComprasForm(request.POST, joinity=joinity)
-            if formcompras.is_valid:
+            if formcompras.is_valid():
                 formcompras.save()
                 usuario=Usuarios_Joinity(joinity_id=joinity.id, usuario=request.user, estado=2)
                 usuario.save()
@@ -118,7 +120,8 @@ def nuevo_compras(request):
 def nuevo_aficiones(request):
     if request.POST:
         formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=3)
-        if formulario.is_valid():
+        formaficiones=AficionesForm(request.POST, joinity=None)
+        if formulario.is_valid() and formaficiones.is_valid():
             joinity = formulario.save()
             formaficiones=AficionesForm(request.POST, joinity=joinity)
             if formaficiones.is_valid():
@@ -126,8 +129,6 @@ def nuevo_aficiones(request):
                 usuario=Usuarios_Joinity(joinity_id=joinity.id, usuario=request.user, estado=2)
                 usuario.save()
             return HttpResponseRedirect("/joinity/nuevo_joinity/aficiones/2/"+str(joinity.id))
-        else:
-            formaficiones=AficionesForm(request.POST, joinity=None)
     else:
         formulario = JoinityForm(user=request.user, tipo=3)
         formaficiones=AficionesForm(joinity=None)
