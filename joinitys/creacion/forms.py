@@ -53,8 +53,8 @@ class FamilyForm(forms.ModelForm):
 class AficionesForm(forms.ModelForm):
     repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
     nivel = forms.ChoiceField(choices=([("0", "Indiferente"), ("1", "Amateur"), ("2", "Intermedio"), ("3", "Pro")]), required=True)
-    fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(" ")}))
-    fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-02', 'value':str(" ")}))
+    fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(date.today())}))
+    fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-02', 'value':str(date.today())}))
     requisitos=forms.CharField(required=False,widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: 'Traer raqueta propia y calzado deportivo'"}))
     class Meta:
         model = Aficiones
