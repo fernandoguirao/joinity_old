@@ -70,6 +70,7 @@ encoding//templates/single/updateVotacion.html=UTF-8
 encoding//templates/tareas/mistareas.html=UTF-8
 encoding//templates/tareas/rightSideBar.html=UTF-8
 encoding//templates/tareas/tareas.html=UTF-8
+encoding//usuario/forms.py=utf-8
 encoding//usuario/views.py=utf-8
 encoding/<project>=UTF-8
 encoding/templates=UTF-8
