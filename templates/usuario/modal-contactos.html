@@ -1,0 +1,48 @@
+<!-- MODAL CONTACTOS -->
+<div id="modalContactos" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="modal-body">
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tuscontactos">Tus contactos</a></li>
+      <li class=""><a href="#buscanuevoscontactos">Busca nuevos contactos</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tuscontactos">
+        <table class="table table-striped">
+          {% if lista_amigos %}
+          {% for amigo in lista_amigos %}
+          <tr>
+            <td>
+              <div class="thumbAmigo" style="background-image:url('/media/{{amigo.amigo.foto}}'); display:none;">
+              </div>
+              <a class="btn btn-mini rojo btnAmigo" href="/usuario/{{amigo.amigo.id}}">
+                {{amigo.amigo.first_name}} {{amigo.amigo.last_name}}
+              </a>
+            </td>
+            <td>
+              <a href="" class="color oscuro">
+                Eliminar amigo
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% else %}
+            <p>No tienes contactos aún</p>
+          {% endif %}
+        </table>
+      </div>
+      <div class="tab-pane" id="buscanuevoscontactos">
+        <div id="form-modal">
+          {% if busqueda %}
+          <form action="/usuario/buscar/" method="get">
+            {{ busqueda }}
+            <input type="submit" value="Busca nuevos amigos en Joinity" class="btn buscarAmig btn-embossed" />
+          </form> 
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN DE MODAL -->
