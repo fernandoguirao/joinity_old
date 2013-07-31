@@ -1,0 +1,12 @@
+<div class="campo">
+  <label>
+    Selecciona una subcategoría
+  </label>
+  <select id="id_subcategoria" name="subcategoria" value="X-Men" class="select-block span3" >
+    {% for subcategoria in subcategorias %}
+    <option value="{{subcategoria.id}}" {% if forloop.first %}selected="selected"{% endif %}>
+      {{subcategoria.nombre}}
+    </option>
+    {% endfor %}
+  </select>
+</div>

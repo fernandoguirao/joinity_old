@@ -68,7 +68,7 @@ def editar(request, joinity_id):
                 formfamily=FamilyForm(request.POST, instance=joinity.sub(), joinity=None)
         else:
             formulario = JoinityForm(instance=joinity, user=request.user, tipo=1)
-            formfamily=FamilyForm(intance=joinity.sub, joinity=None)
+            formfamily=FamilyForm(instance=joinity.sub(), joinity=None)
         context={'formulario': formulario, 'formfamily':formfamily, "pagina":"crear", "usuario":request.user, "joinity":joinity, "formlugares":formlugares}
         
 
