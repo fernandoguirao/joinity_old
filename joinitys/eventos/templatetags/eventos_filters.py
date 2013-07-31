@@ -1,8 +1,6 @@
 from django import template
 register = template.Library()
-from joinitys.eventos.models import Usuarios_Evento
-
+from notificaciones.models import Notificaciones
 @register.filter(name='visto')
 def visto(value, arg):
-    usuario_evento=Usuarios_Evento.objects.get(usuario=arg, evento=value)
-    return usuario_evento.estado==1
+    return Notificaciones.objects.filter(usuario=arg, tipo=2, id_notificacion=value.id).exists()

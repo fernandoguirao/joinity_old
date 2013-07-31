@@ -15,6 +15,11 @@ def mis_tareas(request):
     joinitys=Joinitys.objects.raw(consulta)
     try:
         single=joinitys[0]
+        for tarea in Tareas.objects.filter(usuarios__usuario=request.user, joinity=single):
+            if Usuarios_Tarea.objects.filter(tarea=tarea, usuario=request.user):
+                notificacion=Notificaciones.objects.get_or_create(usuario=request.user, tipo=3, id_notificacion=tarea.id)
+                notificacion[0].estado=1
+                notificacion[0].save()
     except:
         single=False
     context={'joinitys':joinitys, "pagina":"misTareas", "usuario":request.user, "single":single}
@@ -26,6 +31,14 @@ def ver_mi_tarea(request, joinity_id):
     consulta="SELECT * FROM Joinitys WHERE id IN ("+consulta+")"
     joinitys=Joinitys.objects.raw(consulta)
     single=get_object_or_404(Joinitys, pk=joinity_id)
+    primera=False
+    for tarea in Tareas.objects.filter(joinity=single):
+        if Usuarios_Tarea.objects.filter(tarea=tarea, usuario=request.user).exists():
+            notificacion=Notificaciones.objects.get_or_create(usuario=request.user, tipo=3, id_notificacion=tarea.id)
+            notificacion[0].estado=1
+            notificacion[0].save()
+            
+    
     context={'joinitys':joinitys, "pagina":"misTareas", "usuario":request.user, "single":single}
     return render(request, 'tareas/mistareas.html', context)
 @login_required

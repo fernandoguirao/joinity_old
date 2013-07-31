@@ -10,9 +10,15 @@
     
     <div class="todosMensajes">
     {% for joinity in joinitys %}
+    
       <!-- CADA MENSAJE -->
       <a href="/mis_tareas/{{joinity.id}}">
       <div class="cadaMensaje nuevo">
+      {% if joinity|visto_tarea:usuario %}
+       visto
+      {% else %}
+      no visto
+      {% endif %}
       	{% if joinity.foto %}
         	<div class="avatar span3" style="background-image:url('/media/{{joinity.foto}}');">
         {% else %}
@@ -25,7 +31,7 @@
         <p class="span9">
           <b>{{joinity.nombre}}</b>
           <i>{{joinity.sub.fecha_inicio}}</i>
-          <span>Última tarea asignada a mí</span>
+          <span>{{ joinity|ultima:usuario }}</span>
         </p>
 
       </div>

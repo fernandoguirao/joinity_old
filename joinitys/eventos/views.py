@@ -12,6 +12,9 @@ from notificaciones.models import Notificaciones
 def ver(request, joinity_id, evento_id):
     evento=get_object_or_404(Eventos, pk=evento_id)
     lista_admins=Usuarios_Evento.objects.filter(evento=evento, estado=2)
+    notificacion=Notificaciones.objects.get_or_create(usuario=request.user, tipo=2, id_notificacion=evento.id)
+    notificacion.estado=1
+    notificacion.save()
     context={"evento": evento, "lista_admins": lista_admins}
     return render_to_response("ver_evento.html", context)
 
@@ -97,8 +100,8 @@ def ver_mi_evento(request, evento_id):
     consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
     eventos=Eventos.objects.raw(consulta)
     single=get_object_or_404(Eventos, pk=evento_id)
-    usuario_evento=Usuarios_Evento.objects.get(usuario=request.user, evento=single)
-    usuario_evento.estado=1
-    usuario_evento.save()
+    notificacion=Notificaciones.objects.get_or_create(usuario=request.user, tipo=2, id_notificacion=single.id)
+    notificacion[0].estado=1
+    notificacion[0].save()
     context={'eventos':eventos, "pagina":"misEventos", "single":single, "usuario":request.user}
     return render(request, 'eventos/index.html', context)
