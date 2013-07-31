@@ -74,14 +74,16 @@ def editar(request, joinity_id):
 def nuevo_family(request):
     if request.POST:
         formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=1)
-        if formulario.is_valid:
+        if formulario.is_valid():
             joinity = formulario.save()
             formfamily=FamilyForm(request.POST, joinity=joinity)
-            if formfamily.is_valid:
+            if formfamily.is_valid():
                 formfamily.save()
                 usuario=Usuarios_Joinity(joinity_id=joinity.id, usuario=request.user, estado=2)
                 usuario.save()
             return HttpResponseRedirect("/joinity/nuevo_joinity/family/2/"+str(joinity.id))
+        else:
+            formfamily=FamilyForm(request.POST, joinity=None)
     else:
         formulario = JoinityForm(instance=request.user.usuario, user=request.user, tipo=1)
         formfamily=FamilyForm(joinity=None)
@@ -113,14 +115,16 @@ def nuevo_compras(request):
 def nuevo_aficiones(request):
     if request.POST:
         formulario = JoinityForm(request.POST, request.FILES, user=request.user, tipo=3)
-        if formulario.is_valid:
+        if formulario.is_valid():
             joinity = formulario.save()
             formaficiones=AficionesForm(request.POST, joinity=joinity)
-            if formaficiones.is_valid:
+            if formaficiones.is_valid():
                 formaficiones.save()
                 usuario=Usuarios_Joinity(joinity_id=joinity.id, usuario=request.user, estado=2)
                 usuario.save()
             return HttpResponseRedirect("/joinity/nuevo_joinity/aficiones/2/"+str(joinity.id))
+        else:
+            formaficiones=AficionesForm(request.POST, joinity=None)
     else:
         formulario = JoinityForm(user=request.user, tipo=3)
         formaficiones=AficionesForm(joinity=None)

@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//joinity/settings.py=utf-8
+encoding//joinitys/creacion/forms.py=utf-8
 encoding//joinitys/forms.py=utf-8
 encoding//mensajes/forms.py=utf-8
 encoding//templates/brands/single/cabecera.html=UTF-8

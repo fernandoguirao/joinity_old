@@ -4,7 +4,7 @@ from joinitys.models import Joinitys, Compras, Aficiones, Family, Lugares_Joinit
 from datetime import date
 
 class JoinityForm(forms.ModelForm):
-    nombre=forms.CharField(widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: '80 cumpleanos de la abuela' o 'Clases de natacion para principiantes'"}))
+    nombre=forms.CharField(required=True, widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: '80 cumpleanos de la abuela' o 'Clases de natacion para principiantes'"}))
     descripcion = forms.CharField(required=False, widget=forms.Textarea(attrs={"class":"inputNormal input-small","placeholder":""}))
     foto=forms.ImageField(required=False,widget=forms.FileInput({"class":"inputFoto","id":"fotoinput"}))
     n_min=forms.IntegerField(required=False)

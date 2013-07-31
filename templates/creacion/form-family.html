@@ -13,6 +13,9 @@
     <span class="help-block">
       *Consejo: elige un nombre breve y descriptivo de la actividad que llevaréis a cabo.
     </span>
+    {% for error in formulario.nombre.errors %}
+       ERROR: {{error}}
+    {% endfor %}
   </div>
   
   <!-- DESCRIPCIÓN -->
