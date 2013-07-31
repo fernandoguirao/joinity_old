@@ -1,3 +1,5 @@
+@elcolor:@azul;
+
 /* BORRAR */
 body {
   min-width:768px;
@@ -53,9 +55,6 @@ ex- --> ejemplo
 
 @font:'Montserrat', sans-serif;
 @fonthead:'signika', sans-serif;
-
-
-@elcolor:@azul;
 
 @muyoscuro:#373232;
 @oscuro:#534b4b;
@@ -2667,9 +2666,20 @@ input[type="text"] {
         top:-21px;
         margin-left:403px;
       }
+      &.reserva {
+        .btn.btn-small.amarillo.adelante {
+          position: relative;
+          margin: 0!important;
+          top: -7px;
+          left: -125px;
+        }
+      }
       a.adelante {
         padding: 9px 12px 8px 12px!important;
         min-height: 23px!important;
+        &.arest {
+          display:none;
+        }
       }
     }
   }

@@ -378,6 +378,9 @@ $("select[name='herolist'],select[name='listahoras'],select[name='comprar2'],sel
 var seleccionbtn = $('.primerselect .dropdown-menu a');
 var seleccionPrim = $(".primerselect button").find('span');
 var selector = $('.selectoresgrupo');
+var selectreserva = $('.reserva .span3 .btn');
+var elrestaurante = $('.venga');
+var elhotel = $('.vamos');
 
 seleccionbtn.click(function(){
   if($(this).text()=="Comprar") {
@@ -394,6 +397,16 @@ seleccionbtn.click(function(){
     $('.selector.aficion,.selector.comprar').fadeTo('slow',0);
   }
 });
+
+selectreserva.click(function(){
+  if($(this).text()=="un restaurante") {
+    elrestaurante.hide();
+    elhotel.show();
+  } else if ($(this).text()=="un hotel") {
+    elrestaurante.show();
+    elhotel.hide();
+  }
+})
 
 /* Fin selector home */
 

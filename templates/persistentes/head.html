@@ -5,7 +5,50 @@
   <head>
     <meta charset="utf-8">
     <title>
-      Joinity {% block titulo %}{% endblock %}
+      {% if pagina == "misTareas" %}
+      Tareas | 
+      
+      {% elif pagina == "misEventos" %}
+      Eventos | 
+      
+      {% elif pagina == "misCompras" %}
+      Mis compras | 
+      
+      {% elif pagina == "misMensajes" %}
+      Mensajes | 
+      
+      {% elif pagina == "home" %}
+      
+      {% elif pagina == "joinity" %}
+      
+      {% if joinity.get_tipo == "family" %}
+      Family & friends | 
+      
+      {% elif joinity.get_tipo == "aficiones" %}
+      Aficiones | 
+      
+      {% elif joinity.get_tipo == "compras" %}
+      Compras | 
+      
+      {% endif %}
+      
+      {% elif pagina == "crear" %}
+      
+      {% if joinity.get_tipo == "family" %}
+      Family & friends
+      
+      {% elif joinity.get_tipo == "aficiones" %}
+      Aficiones
+      
+      {% elif joinity.get_tipo == "compras" %}
+      Compras
+      
+      {% endif %}
+      {% else %}
+      
+      {% endif %}
+      
+      Joinity™ {% block titulo %}{% endblock %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow" />
@@ -20,8 +63,24 @@
     <link href="/static/bootstrap/css/style.css" rel="stylesheet">
 
     <!-- Cargando Joinity UI -->
+    <!-- Estilos de colores -->
+    {% if pagina == "crear" and joinity.get_tipo == "family" or pagina == "misEventos" or pagina == "joinity" and joinity.get_tipo == "family" %}
+      
+    <link rel="stylesheet/less" type="text/css" href="/static/css/general-verde.less" />
+    <link rel="stylesheet/less" type="text/css" href="/static/css/general-adaptativo-verde.less" />
+    
+    {% elif pagina == "crear" and joinity.get_tipo == "compras" or pagina == "misCompras" or pagina == "joinity" and joinity.get_tipo == "compras" or pagina == "misTareas" %}
+    
+    <link rel="stylesheet/less" type="text/css" href="/static/css/general-rojo.less" />
+    <link rel="stylesheet/less" type="text/css" href="/static/css/general-adaptativo-rojo.less" />
+    
+    {% else %}
+    
     <link rel="stylesheet/less" type="text/css" href="/static/css/general.less" />
     <link rel="stylesheet/less" type="text/css" href="/static/css/general-adaptativo.less" />
+    
+    {% endif %}
+
     
     <!-- Less -->
     <script src="/static/js/less.js" type="text/javascript">
@@ -29,57 +88,31 @@
 
     <!-- Iconos -->
     <link rel="shortcut icon" href="/media/images/favicon32.ico">
-	
+
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
     <![endif]-->
+
     {% dajaxice_js_import %}
   </head>
   <body id="{{ pagina }}">
-   {% if pagina == "misTareas" %}
-         MIS TAREAS
-   {% elif pagina == "misEventos" %}
-         MIS EVENTOS
-   {% elif pagina == "misCompras" %}
-         MIS COMPRAS
-   {% elif pagina == "misMensajes" %}
-         MIS MENSAJES
-   {% elif pagina == "home" %}
-         HOME
-   {% elif pagina == "joinity" %}
-       {% if joinity.get_tipo == "family" %}
-          FAMILY
-       {% elif joinity.get_tipo == "aficiones" %}
-          AFICIONES
-       {% elif joinity.get_tipo == "compras" %}
-          COMPRAS
-       {% endif %}
-   {% elif pagina == "crear" %}
-       {% if joinity.get_tipo == "family" %}
-          EDITAR FAMILY
-       {% elif joinity.get_tipo == "aficiones" %}
-          EDITAR AFICIONES
-       {% elif joinity.get_tipo == "compras" %}
-          EDITAR COMPRAS
-       {% endif %}
-   {% endif %}
-  <div class="ocultarcargador">
-    <div id="fadingBarsG">
-      <div id="fadingBarsG_1" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_2" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_3" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_4" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_5" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_6" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_7" class="fadingBarsG">
-      </div>
-      <div id="fadingBarsG_8" class="fadingBarsG">
+    <div class="ocultarcargador">
+      <div id="fadingBarsG">
+        <div id="fadingBarsG_1" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_2" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_3" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_4" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_5" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_6" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_7" class="fadingBarsG">
+        </div>
+        <div id="fadingBarsG_8" class="fadingBarsG">
+        </div>
       </div>
     </div>
-  </div>

@@ -97,22 +97,20 @@
         </select>
       </div>
       <!-- FIN DE SELECT -->
-      <p>
-        en
-      </p>
-      <!-- CAMPO SELECT -->
-      <div class="campo">
-      </div>
-        <!-- FIN DE SELECT -->
-        {% if usuario %}
-        <input type="submit" class="btn btn-small amarillo adelante" value="Adelante">
-        {% else %}
-        <a href="#modalInicio" class="btn btn-small amarillo adelante beta-reg" data-toggle="modal">
-          Adelante
-        </a>
-        {% endif %}
-       </div><!-- FIN DE RESERVAS -->
-      </div><!-- Fin selector grupo -->
-    </form>
-  </div>
+      {% if usuario %}
+      <a href="#modalReservasHotel" class="btn btn-small amarillo venga adelante" data-toggle="modal">
+        Adelante
+      </a>
+      <a href="#modalReservasRestaurante" class="btn btn-small amarillo vamos adelante arest" data-toggle="modal">
+        Adelante
+      </a>
+      {% else %}
+      <a href="#modalInicio" class="btn btn-small amarillo adelante vamos beta-reg" data-toggle="modal">
+        Adelante
+      </a>
+      {% endif %}
+     </div><!-- FIN DE RESERVAS -->
+    </div><!-- Fin selector grupo -->
+  </form>
+</div>
 </div>

@@ -134,7 +134,7 @@ def aceptar(request, joinity_id):
     if usuario_joinity.estado==0:
         usuario_joinity.estado=1
         usuario_joinity.save()
-    return HttpResponseRedirect("/joinity/ver/"+str(usuario_joinity.joinity.id))
+    return HttpResponseRedirect("/joinity/"+str(usuario_joinity.joinity.id))
 
 
 def unirse(request, joinity_id):
@@ -146,7 +146,7 @@ def unirse(request, joinity_id):
         elif joinity.privacidad==1:
             nuevo=Usuarios_Joinity(joinity=joinity, usuario=request.user, estado=-1)
             nuevo.save()
-        return HttpResponseRedirect("/joinity/ver/"+str(joinity.id))
+        return HttpResponseRedirect("/joinity/"+str(joinity.id))
     return HttpResponseRedirect("/")
 
 
@@ -230,13 +230,13 @@ def nombrar_admin(request, usuario_joinity_id):
     if usuario_joinity.estado==1:
         usuario_joinity.estado=2
         usuario_joinity.save()
-    return HttpResponseRedirect("/joinity/ver/"+str(usuario_joinity.joinity.id))
+    return HttpResponseRedirect("/joinity/"+str(usuario_joinity.joinity.id))
 def aceptar_membresia(request, usuario_joinity_id):
     usuario_joinity=get_object_or_404(Usuarios_Joinity, pk=usuario_joinity_id)
     if usuario_joinity.estado==-1:
         usuario_joinity.estado=1
         usuario_joinity.save()
-    return HttpResponseRedirect("/joinity/ver/"+str(usuario_joinity.joinity.id))
+    return HttpResponseRedirect("/joinity/"+str(usuario_joinity.joinity.id))
 
 
 def confirmar(request, reserva_id):

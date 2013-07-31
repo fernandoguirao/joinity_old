@@ -1,10 +1,39 @@
-{% for hotel in lista_hoteles %}
-<a href="/brands/{{hotel.id}}">{{hotel.nombre}}</a><br>
-{% empty %}
-NO HAY HOTELES!!!
-{% endfor %}
-{% for restaurante in lista_restaurantes %}
-<a href="/brands/{{restaurante.id}}">{{restaurante.nombre}}</a><br>
-{% empty %}
-NO HAY RESTAURANTES!!!
-{% endfor %}
+<!-- MODAL PARA ABRIR LISTA DE RESERVAS HOTELES -->
+<div id="modalReservasHotel" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
+  <div class="modal-body">
+    {% for hotel in lista_hoteles %}
+    <a href="/brands/{{hotel.id}}">
+      {{hotel.nombre}}
+    </a>
+    <br>
+    {% empty %}
+    <p>
+      No hay ningún hotel actualmente, lo lamentamos.
+    </p>
+    {% endfor %}
+  </div>
+</div>
+<!-- FIN DE MODAL -->
+
+<!-- MODAL PARA ABRIR LISTA DE RESERVAS RESTAURANTES -->
+<div id="modalReservasRestaurante" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
+  <div class="modal-body">
+    {% for hotel in lista_restaurantes %}
+    <a href="/brands/{{hotel.id}}">
+      {{restaurante.nombre}}
+    </a>
+    <br>
+    {% empty %}
+    <p>
+      No hay ningún restaurante actualmente, lo lamentamos.
+    </p>
+    {% endfor %}
+  </div>
+</div>
+<!-- FIN DE MODAL -->
