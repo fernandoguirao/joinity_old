@@ -196,6 +196,7 @@ function comentar(data){
 
 function refrescar_joinitys(data){
   $("#cronologia").html(data.muro);
+  timeLineDinamica();
 }
 
 var identificador;
@@ -344,7 +345,7 @@ $('.buscarbtn').click(function(){
 //! LOS COMENTARIOS
 //===================
 
-
+function timeLineDinamica() {
 $(".comentariosJoinity .btn.grisclaro").click(function() {
   $(this).parent().children('.escribe-input').removeClass('oculto');
   $(this).addClass('oculto');
@@ -353,6 +354,9 @@ $(".comentariosJoinity .btn.grisclaro").click(function() {
     $(this).parent().parent().parent().parent().children('.btn.grisclaro').removeClass('oculto');
   });
 });
+}
+
+timeLineDinamica();
 
 
 //===============
