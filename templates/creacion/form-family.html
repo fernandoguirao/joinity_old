@@ -51,7 +51,9 @@
       ¿Qué categoría describe mejor este joinity?
     </label>
     {{formfamily.subcategoria}}
-
+   {% for error in formfamily.subcategoria.errors %}
+      ERROR: {{error}}
+    {% endfor %}
   <!-- FECHAS -->
   <div class="control-group">
     <label for="id_Titulo">
