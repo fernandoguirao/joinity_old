@@ -23,7 +23,7 @@
       <div class="continente">
         <div class="creditos">
           <p class="smallTxt">
-            {% if tarea.creador.id = usuario.id %}
+            {% if tarea.creador.id == usuario.id %}
             Eres el administrador de esta tarea
             {% else %}
             <a href="">
@@ -44,42 +44,33 @@
             </label>
           </div>
           <!-- FIN CONTENIDO ESPECÍFICO -->
+          {% if tarea.creador == usuario %}
           <div class="subtareas estados">
             <!-- Cada usuario al que se le ha asignado -->
             <p>Esta tarea se le ha asignado a:</p>
+            
+            {% for participante in tarea.usuarios_tarea.all %}
+            
             <label class="checkbox" for="checkbox1">
-              <i class="no-completada iconos">
-                x
-              </i>
-              <div class="assign-user" style="background-image: url('/media/joinity/depo-2.jpg');">
-              </div>
-              <p>
-                {{usuario.first_name}} (tú)
-              </p>
-            </label><!-- Fin de usuario asignado -->
-            <!-- Cada usuario al que se le ha asignado -->
-            <label class="checkbox" for="checkbox1">
-              <i class="completada iconos">
+            {% if participante.completada == 1 %}
+            <i class="completada iconos">
                 1
               </i>
-              <div class="assign-user" style="background-image: url('/media/joinity/depo-2.jpg');">
-              </div>
-              <p>
-                Fernando Guirao
-              </p>
-            </label><!-- Fin de usuario asignado -->
-            <!-- Cada usuario al que se le ha asignado -->
-            <label class="checkbox" for="checkbox1">
+            {% else %}
               <i class="no-completada iconos">
                 x
               </i>
+              {% endif %}
               <div class="assign-user" style="background-image: url('/media/joinity/depo-2.jpg');">
               </div>
               <p>
-                Roberto Ramírez
+                {{participante.usuario.first_name}} {{participante.usuario.last_name}}{% if usuario == participante.usuario %}(tú){% endif %}
               </p>
             </label><!-- Fin de usuario asignado -->
+            <!-- Cada usuario al que se le ha asignado -->
+            {% endfor %}
           </div>
+          {% endif %}
         </div>
       </div>
     </div>

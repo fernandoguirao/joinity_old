@@ -6,6 +6,8 @@
 var ishome = $('#home');
 var ismisJoinitys = $('#misJoinitys');
 var ismensajes = $('#misMensajes');
+var isfamily = $('.jfamily');
+var iscompras = $('#header-compras');
 
 
 //======================
@@ -646,3 +648,24 @@ $( ".estrellas i" ).each(function( index ) {
      });*/
   }
 });
+
+
+//===========
+//! COLORES
+//===========
+
+
+/* SI ES FAMILY & FRIENDS */
+
+
+
+/* SI ES COMPRAS */
+
+if(iscompras.length > 0) {
+  $('html').addClass("isCompras"); 
+}
+
+if(isfamily.length > 0) {
+  $('html').addClass("isFamily");
+  $('html').removeClass("isCompras");
+}
