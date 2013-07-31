@@ -16,16 +16,15 @@ def carga(request, pago_id):
         "business": pago.correo,
         "amount": pago.get_precio,
         "item_name": pago.concepto,
-        "invoice": "pagos_family_test" + str(pago.id),
+        "invoice": "pagos_family" + str(pago.id)+"_"+str(request.user.id),
         "notify_url": "%s%s" % (SITE_NAME, reverse('paypal-ipn')),
-        "return_url": "http://prueba1.bueninvento.net/pagos/confirmado/",
+        "return_url": "http://joinity.com/",
         "cancel_return": "http://joinity.com/",
         "custom": usuario_pago.id,
         "currency_code": "EUR",  # currency
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
-    
-    context={"pago":pago, "form":form.sandbox()}
+    context={"pago":pago, "form":form}
     pagina_pago=render_to_string("joinitys/pagos/ajax_ver_pago.html", context)
     return simplejson.dumps({"pago":pagina_pago})
 @dajaxice_register
@@ -37,15 +36,15 @@ def carga_compra(request, pago_id):
         "business": pago.correo,
         "amount": pago.get_precio,
         "item_name": pago.concepto,
-        "invoice": "pagos_family_test" + str(pago.id),
+        "invoice": "pagos_compras_" + str(pago.id)+"_"+str(request.user.id),
         "notify_url": "%s%s" % (SITE_NAME, reverse('paypal-ipn')),
-        "return_url": "http://prueba1.bueninvento.net/pagos/confirmado/",
+        "return_url": "http://joinity.com/",
         "cancel_return": "http://joinity.com/",
         "custom": usuario_pago[0].id,
         "currency_code": "EUR",  # currency
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     
-    context={"pago":pago, "form":form.sandbox()}
+    context={"pago":pago, "form":form}
     pagina_pago=render_to_string("joinitys/pagos/ajax_ver_compra.html", context)
     return simplejson.dumps({"pago":pagina_pago})
