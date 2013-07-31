@@ -38,8 +38,39 @@
           <form action="/usuario/buscar/" method="get">
             {{ busqueda }}
             <input type="submit" value="Busca nuevos amigos en Joinity" class="btn buscarAmig btn-embossed" />
-          </form> 
+          </form>
           {% endif %}
+
+          <!-- RESULTADOS DE LA BÚSQUEDA -->
+          
+          <table class="table table-striped invipar">
+            <tr>
+              <th>Nombre</th>
+              <th class="pequena"></th>
+            </tr>
+            <tr>
+              <td>
+                  <a href="perfildelusuario">
+                    <div class="thumb" style="background-image:url('/media/defaults/avatar.jpeg');">
+                    </div>
+                    Nombre del usuario
+                  </a>
+              </td>
+              <td>
+                <a href="" class="btn btn-mini">
+                  Agregar amigo
+                </a>
+                <!--
+                O SI YA ESTÁ AGREGADO
+                <div class="btn btn-mini grisclaro">
+                  Ya agregado
+                </div>
+                -->
+              </td>
+            </tr>
+          </table>
+          <!-- FIN DE RESULTADOS -->
+
         </div>
       </div>
     </div>
