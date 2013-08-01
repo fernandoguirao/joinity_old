@@ -150,9 +150,15 @@ class Compras(models.Model):
     def get_similares(self):
         return Joinitys.objects.filter(tipo=2, compras__subcategoria=self.subcategoria).exclude(compras=self)
     def get_precio(self):
-        return self.joinity.pagos.all()[0].get_precio()
+        try:
+            return self.joinity.pagos.all()[0].get_precio()
+        except:
+            return 0
     def get_descuento(self):
-        return self.joinity.pagos.all()[0].get_descuento()
+        try:
+            return self.joinity.pagos.all()[0].get_descuento()
+        except:
+            return 0
     def ya_paso(self):
         fecha_fin=self.fecha_fin
         if fecha_fin.year>datetime.now().year:
