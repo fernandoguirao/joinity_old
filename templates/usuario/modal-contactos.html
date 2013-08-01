@@ -36,8 +36,8 @@
         <div id="form-modal">
           {% if busqueda %}
           <form action="/usuario/buscar/" method="get">
-            INPUT: {{busqueda.input }}
-            FILTRO:{{ busqueda.filtro }}
+            <label for="id_input">Busca aquí</label>{{busqueda.input }}
+            <label for="id_input">¿Qué filtro quieres aplicar?</label>{{ busqueda.filtro }}
             <input type="submit" value="Busca nuevos amigos en Joinity" class="btn buscarAmig btn-embossed" />
           </form>
           {% endif %}
