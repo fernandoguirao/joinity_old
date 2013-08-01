@@ -60,9 +60,28 @@
         </label>
       </div>
     </div>
-    <div class="btn btn-big btn-block btn-embossed">
-    {{form}}
+    <a href="#modalPagar" data-toggle="modal" class="btn btn-big btn-block btn-embossed">
+      Pagar ahora
+    </a>
+    
+    <!-- MODAL PAGAR -->
+    <div id="modalPagar" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <div class="modal-body">
+        <div id="form-modal">
+          <h4>
+            Formalización del pago
+          </h4>
+          <hr>
+          <label>Haz click en el botón de paypal para formalizar el pago por valor de <b>{{pago.get_precio_total|floatformat}} €</b> en concepto de <b>{{pago.concepto}}</b></label>
+          <div class="contienePaypal">
+            {{form}}
+          </div>
+
+        </div>
+      </div>
     </div>
+    <!-- FIN DE MODAL -->
     <a href="/joinity/{{pago.joinity.id}}/pago/{{pago.id}}/cancelar/">
     <div class="btn btn-mini amarillo">
       O bien, eliminar si no te interesa
