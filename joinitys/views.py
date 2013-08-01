@@ -265,44 +265,7 @@ def abandonar(request, joinity_id):
             Usuarios_Joinity.objects.filter(joinity=joinity, usuario=request.user).delete()
         else:
             Usuarios_Joinity.objects.filter(joinity=joinity).delete()
-            Puntuaciones.objects.filter(joinity=joinity).delete()
-            Notificaciones.objects.filter(tipo=1, id_notificacion=joinity.id).delete()
-            for evento in joinity.eventos.all():
-                for usuario in evento.usuarios_evento.all():
-                    usuario.delete()
-                for lugar in evento.lugares_evento.all():
-                    lugar.delete()
-                Notificaciones.objects.filter(tipo=2, id_notificacion=evento.id).delete()
-                evento.delete()
-            for tarea in joinity.tareas.all():
-                for usuario in tarea.usuarios_tarea.all():
-                    usuario.delete()
-                for lugar in tarea.lugares_tarea.all():
-                    lugar.delete()
-                Notificaciones.objects.filter(tipo=3, id_notificacion=tarea.id).delete()
-                tarea.delete()
-            for pago in joinity.pagos.all():
-                for usuario in pago.usuarios.all():
-                    usuario.delete()
-                pago.delete()
-            for lugar in joinity.lugares.all():
-                lugar.delete()
-            for actualizacion in joinity.actualizaciones.all():
-                if actualizacion.tipo==1:
-                    actualizacion.texto.delete()
-                elif actualizacion.tipo==2:
-                    actualizacion.foto.delete()
-                elif actualizacion.tipo==3:
-                    actualizacion.texto.delete()
-                elif actualizacion.tipo==4:
-                    for respuesta in actualizacion.votacion.respuestas.all():
-                        respuesta.delete()
-                    actualizacion.votacion.delete()
-                for comentario in actualizacion.comentarios.all():
-                    comentario.delete()
-                actualizacion.delete()
-            joinity.sub().delete()
-            joinity.delete()
+            Joinitys.objects.filter(joinity=joinity).delete()
             return HttpResponseRedirect("/")
     return HttpResponseRedirect("/joinity/"+str(joinity.id))
 

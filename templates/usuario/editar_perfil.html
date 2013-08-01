@@ -108,7 +108,15 @@
     </span>
     <br>
     <div class="listaf">
+    <ul>
+    	{% for subcategoria in subcategorias %}
+    		{% ifchanged subcategoria.categoria %}CATEGORIA: {{subcategoria.categoria.nombre}}<br>{% endifchanged %}
+    		
+    	{% endfor %}
+    </ul>
       {{ perfil_form.intereses }}
+      
+      
     </div>
   </div>
   
