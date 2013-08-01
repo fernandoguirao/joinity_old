@@ -1,11 +1,11 @@
     <div id="lineaTiempo">
     </div>
     <!-- EL CHAT -->
+    {% load mensajes_filters %}
     {% if mensajes %}
+    
+    
     {% for mensaje in mensajes|slice:":8" %}
-    {% if not mensaje.leido %}
-       {{mensaje.visto}}
-    {% endif %}
     <!-- INICIO MENSAJE -->
     <div class="actualizacion texto">
       <!-- AUTOR Y FECHA -->
@@ -13,7 +13,6 @@
         <div class="icono avatar" style="background-image:url('/media/{{mensaje.remitente.usuario.foto}}');">
         </div>
         <div class="fecha etiqueta">
-        {% load mensajes_filters %}
         {% if mensaje.fecha|es_hoy %}
         	{{mensaje.fecha|date:'H:i'}}
         {% else %}
