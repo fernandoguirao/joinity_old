@@ -1,13 +1,10 @@
 from django import template
 from joinitys.tareas.models import Usuarios_Tarea, Tareas
-from django.shortcuts import get_object_or_404
 from notificaciones.models import Notificaciones
+from django.shortcuts import get_object_or_404
+
 register = template.Library()
 
-@register.filter(name='completada')
-def completada(value, arg):
-    usuario_tarea=get_object_or_404(Usuarios_Tarea, tarea=value, usuario=arg)
-    return usuario_tarea.completada
 
 @register.filter(name='ultima')
 def ultima(value, arg):
@@ -23,3 +20,8 @@ def visto_tarea(value, arg):
             if Notificaciones.objects.filter(usuario=arg, tipo=3, id_notificacion=tarea.id, estado=1).exists():
                 existe=True
     return existe
+
+@register.filter(name='completada')
+def completada(value, arg):
+    usuario_tarea=get_object_or_404(Usuarios_Tarea, tarea=value, usuario=arg)
+    return usuario_tarea.completada
