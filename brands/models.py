@@ -17,6 +17,8 @@ class Brand(models.Model):
     
     class Meta:
         db_table = "Brands"
+    def __unicode__(self):
+        return self.nombre
     def puntuacion_media(self):
         puntuaciones = Puntuaciones.objects.filter(empresa=self)
         total = 0
