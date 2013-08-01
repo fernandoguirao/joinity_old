@@ -15,7 +15,7 @@ var iscompras = $('#header-compras');
 //======================
 function crear_pago_joinity(data){
 	if (data.ok){
-		alert("Pago Creado");
+		alert("Pago creado correctamente. Puede cerrar estas ventanas.");
 	}
 }
 
@@ -100,32 +100,42 @@ function busqueda(data){
 	var resultados_aficiones=$("#res-aficiones");
 	var resultados_eventos=$("#res-eventos");
 	var resultados_lugares=$("#res-lugares");
+	var uno = $('#tabFiltro > li:nth(0) a');
+	var dos = $('#tabFiltro > li:nth(1) a');
+	var tres = $('#tabFiltro > li:nth(2) a');
+	var cuatro = $('#tabFiltro > li:nth(3) a');
+	var cinco = $('#tabFiltro > li:nth(4) a');
 	if (data.usuarios){
 		resultados_usuarios.html(data.usuarios);
+		dos.trigger('click');
 	}
 	else{
 		resultados_usuarios.html("");
 	}
 	if (data.joinitys){
 		resultados_joinitys.html(data.joinitys);
+		uno.trigger('click');
 	}
 	else{
 		resultados_joinitys.html("");
 	}
 	if (data.aficiones){
 		resultados_aficiones.html(data.aficiones);
+		cuatro.trigger('click');
 	}
 	else{
 		resultados_aficiones.html("");
 	}
 	if (data.eventos){
 		resultados_eventos.html(data.eventos);
+		tres.trigger('click');
 	}
 	else{
 		resultados_eventos.html("");
 	}
 	if (data.lugares){
 		resultados_lugares.html(data.lugares);
+		cinco.trigger('click');
 	}
 	else{
 		resultados_lugares.html("");
