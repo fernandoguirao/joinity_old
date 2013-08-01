@@ -4,16 +4,36 @@
     ×
   </button>
   <div class="modal-body">
-    {% for hotel in lista_hoteles %}
-    <a href="/brands/{{hotel.id}}">
-      {{hotel.nombre}}
-    </a>
-    <br>
-    {% empty %}
-    <p>
-      No hay ningún hotel actualmente, lo lamentamos.
-    </p>
-    {% endfor %}
+    <div id="form-modal">
+      <h4>
+        Hoteles en Joinity
+      </h4>
+      <hr>
+      <table class="table table-striped">
+        {% for hotel in lista_hoteles %}
+        <tr>
+          <td>
+            <!--
+<div class="thumbAmigo" style="background-image:url('/media/{{amigo.amigo.foto}}'); display:none;">
+            </div>
+            -->
+            <a href="/brands/{{hotel.id}}" class="btn btn-mini rojo">
+              {{hotel.nombre}}
+            </a>
+          </td>
+          <td>
+            <a href="/brands/{{hotel.id}}" class="color oscuro">
+              Visitar página
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <p>
+          No hay ningún hotel actualmente, lo lamentamos.
+        </p>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 </div>
 <!-- FIN DE MODAL -->
@@ -24,16 +44,36 @@
     ×
   </button>
   <div class="modal-body">
-    {% for hotel in lista_restaurantes %}
-    <a href="/brands/{{hotel.id}}">
-      {{restaurante.nombre}}
-    </a>
-    <br>
-    {% empty %}
-    <p>
-      No hay ningún restaurante actualmente, lo lamentamos.
-    </p>
-    {% endfor %}
+<div id="form-modal">
+      <h4>
+        Restaurantes en Joinity
+      </h4>
+      <hr>
+      <table class="table table-striped">
+        {% for restaurante in lista_restaurantes %}
+        <tr>
+          <td>
+            <!--
+<div class="thumbAmigo" style="background-image:url('/media/{{restaurante.foto}}'); display:none;">
+            </div>
+            -->
+            <a href="/brands/{{restaurante.id}}" class="btn btn-mini rojo">
+              {{restaurante.nombre}}
+            </a>
+          </td>
+          <td>
+            <a href="/brands/{{restaurante.id}}" class="color oscuro">
+              Visitar página
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <p>
+          No hay ningún restaurante actualmente, lo lamentamos.
+        </p>
+        {% endfor %}
+      </table>
+    </div>  
   </div>
 </div>
 <!-- FIN DE MODAL -->
