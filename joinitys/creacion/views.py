@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from usuario.forms import Buscar
 from usuario.models import Usuarios
-from joinitys.models import Usuarios_Joinity, Joinitys, Lugares_Joinity, Aficiones
+from joinitys.models import Usuarios_Joinity, Joinitys, Lugares_Joinity
 from forms import JoinityForm, FamilyForm, ComprasForm, AficionesForm, Anyadir_Lugar
 from categorias.models import Categorias, Categorias_Compras, Subcategorias, Subcategorias_Compras
 

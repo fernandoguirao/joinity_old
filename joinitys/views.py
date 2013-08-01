@@ -11,6 +11,7 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from brands.models import Brand
 from joinitys.eventos.models import Eventos, Usuarios_Evento
+from joinitys.pagos.forms import PagosForm
 from notificaciones.models import Notificaciones
 from categorias.models import Subcategorias_Compras, Categorias_Compras, Subcategorias, Categorias
 from joinitys.tareas.models import Tareas
@@ -97,6 +98,7 @@ def ver(request, joinity_id):
     # What you want the button to do.
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
     soy=joinity.que_soy(request.user)
+    frmpago=PagosForm(joinity=joinity, user=request.user)
     mis_tareas=Tareas.objects.filter(joinity=joinity, usuarios_tarea__usuario=request.user)
     if Puntuaciones.objects.filter(usuario=request.user, joinity=joinity).exists():
         puntuacion_media=int(joinity.puntuacion_media())
@@ -124,7 +126,7 @@ def ver(request, joinity_id):
     context = {"joinity": joinity, "form": form, "cinco":[1,2,3,4,5],
                "pagina":"joinity", "comentar":comentar, "lista_compras":lista_compras,
                "lista_hoteles":lista_hoteles, "lista_restaurantes":lista_restaurantes,
-               "puntuacion":puntuacion_media,
+               "puntuacion":puntuacion_media, "frmpago":frmpago,
                "usuario":request.user, "soy":soy, "mis_tareas":mis_tareas, "formvotacion":votacionform}
     return render_to_response("single/joinity.html", context, context_instance=RequestContext(request))
 

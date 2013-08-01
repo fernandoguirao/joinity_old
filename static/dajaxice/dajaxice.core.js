@@ -112,6 +112,10 @@ var Dajaxice = {
     
         pagos: {
     
+    crear: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.pagos.crear', 'POST', callback_function, argv, custom_settings);
+    },
+
     carga_compra: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.pagos.carga_compra', 'POST', callback_function, argv, custom_settings);
     },
@@ -152,6 +156,10 @@ var Dajaxice = {
     
     usuario: {
     
+    buscar_amigos: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('usuario.buscar_amigos', 'POST', callback_function, argv, custom_settings);
+    },
+
     buscar: function(callback_function, argv, custom_settings){
         return Dajaxice.call('usuario.buscar', 'POST', callback_function, argv, custom_settings);
     },

@@ -8,61 +8,26 @@
         Crea un gasto, repártelo y recibe el pago
       </h4>
       <hr>
-        <form id="formulario_categoria" method="post">
-          <h5>
-            1. Datos del pago
-          </h5>
-          {% csrf_token %}
-        <label for="id_categoria">
-          Tu cuenta de paypal
-        </label>
-        <input id="id_correo" class="inputNormal input-small" name="correo" type="text" />
-          <span class="help-block">
-            Donde recibirás el dinero una vez te paguen.
-          </span>
-        <label for="id_concepto">
-          Concepto del pago/ nombre del producto
-        </label>
-        <input id="id_concepto" class="inputNormal input-small" name="concepto" type="text" />
-        <!-- <input id="id_producto" name="producto" type="text" /> -->
-        <span class="help-block">
-          Asígnale un concepto reconocible, que los joiners a quienes se asigne sepan reconocer fácilmente.
-        </span>
-        <label for="id_precion">
-          Precio del producto (a repartir)
-        </label>
-        <input id="id_precio" class="inputNormal input-small" name="precio" type="text" />
-        <span class="help-block">
-          El precio se dividirá entre todas las personas a las que asignes el pago.
-        </span>
-        <label for="id_concepto">
-          Comentarios (no obligatorio)
-        </label>
-        <input id="id_descripcion" class="inputNormal input-small" name="descripcion" type="text" />
-        <span class="help-block">
-          Por si quieres añadir algún dato extra.
-        </span>
-        <h5>
-          2. A quiénes quieres asignar el pago
-        </h5>
-        <table class="table table-striped">
-          <tr>
-            <td>
-              <div class="thumbAmigo" style="background-image:url('/media/'); display:none;">
-              </div>
-              <a class="color oscuro" href="/usuario/">
-                Nombre y apellido
-              </a>
-            </td>
-            <td>
-              <a href="/amigo/eliminar/{{amigo.amigo.id}}" class="btn btn-mini rojo">
-                Asígnale el pago
-              </a>
-            </td>
-          </tr>
-        </table>
-        <input type="submit" class="btn btn-block amarillo btn-embossed" value="Adelante, quiero asignar este pago">
-      </form>
+        <form method="post" id="formulario_crear_pago">
+         {% csrf_token %}
+         <label for="id_correo">Cuenta de Paypal</label>
+          {{frmpago.correo}}
+          <label for="id_concepto">Concepto del Pago</label>
+          {{frmpago.concepto}}
+          <label for="id_descripcion">Descripcion del Pago</label>
+          {{frmpago.descripcion}}
+          <label for="id_producto">Nombre del Producto</label>
+          {{frmpago.producto}}
+          <label for="id_precion">Precio del Producto</label>
+          {{frmpago.precio}}
+          <label for="id_usuarios">Usuarios invitados</label>
+          <select id="id_usuarios" name="usuarios" multiple="multiple">
+             {% for miembro in joinity.joinity_usuario.all %}
+               <option value="{{miembro.usuario.id}}">{{miembro.usuario.first_name}} {{miembro.usuario.last_name}}</option>
+             {% endfor %}
+          </select>
+          <input type="button" value="CREAR" onclick="Dajaxice.joinitys.pagos.crear(crear_pago_joinity, {'formulario':$('#formulario_crear_pago').serializeObject(), 'joinity_id':{{joinity.id}}})">
+          </form>
     </div>
   </div>
 </div>

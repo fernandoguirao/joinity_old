@@ -1,16 +1,15 @@
 from django import forms
 from models import Pagos
-
 class PagosForm(forms.ModelForm):
     correo = forms.EmailField()
     producto = forms.CharField()
     concepto=forms.CharField()
     descripcion=forms.CharField()
-    usuarios = forms.CheckboxSelectMultiple()
+    #usuarios = forms.ModelMultipleChoiceField(queryset=User.objects.all(), required=False)
     precio = forms.DecimalField(localize=True)
     class Meta:
         model = Pagos
-        fields = ('correo', 'concepto', 'producto', 'descripcion', 'usuarios', 'precio')
+        fields = ('correo', 'concepto', 'producto', 'descripcion', 'precio')
     def __init__(self, *args, **kwargs):
         self._user = kwargs.pop('user')
         self._joinity=kwargs.pop('joinity')
