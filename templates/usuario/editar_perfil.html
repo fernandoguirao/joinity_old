@@ -108,21 +108,28 @@
     </span>
     <br>
     <div class="listaf">
-    <ul>
-    	{% for subcategoria in subcategorias %}
-    		{% ifchanged subcategoria.categoria %}<br>CATEGORIA: {{subcategoria.categoria.nombre}}<br>{% endifchanged %}
-    		<li>
-    			<label for="id_intereses_{{forloop.counter0}}">
-    				<input id="id_intereses_{{forloop.counter0}}" type="checkbox" value="{{subcategoria.id}}" name="intereses" {% if subcategoria in usuario.usuario.intereses.all %}checked="checked"{% endif %}>
-    				{{subcategoria.nombre}}
-    			</label>
-    		</li>
-    	{% endfor %}
-    </ul>      
-      
+      <ul>
+      {% for subcategoria in subcategorias %}
+        {% ifchanged subcategoria.categoria %}
+        <br>
+        <div class="btn btn-small btn-block">{{subcategoria.categoria.nombre}}</div>
+        <br>
+        {% endifchanged %}
+        <li>
+          <label for="id_intereses_{{forloop.counter0}}">
+            <input id="id_intereses_{{forloop.counter0}}" type="checkbox" value="{{subcategoria.id}}" name="intereses" {% if subcategoria in usuario.usuario.intereses.all %}checked="checked"{% endif %}>
+            {{subcategoria.nombre}}
+          </label>
+        </li>
+      {% endfor %}
+      </ul>
     </div>
   </div>
-  
+  <div class="row campo">
+    <label>
+    </label>
+    <input type="submit" class="btn amarillo degradado btn-embossed" value="Guarda todos los cambios">
+  </div>
   <h4>
     INTERESES: SHOPPING
   </h4>
@@ -137,17 +144,23 @@
     </span>
     <br>
     <div class="listaf">
-        <ul>
-    	{% for subcategoria in subcategorias_compras %}
-    		{% ifchanged subcategoria.categoria %}<br>CATEGORIA: {{subcategoria.categoria.nombre}}<br>{% endifchanged %}
-    		<li>
-    			<label for="id_intereses_comprar_{{forloop.counter0}}">
-    				<input type="checkbox" value="{{subcategoria.id}}" name="intereses_comprar" id="id_intereses_comprar_{{forloop.counter0}}" {% if subcategoria in usuario.usuario.intereses_comprar.all %}checked="checked"{% endif %}>
-    				{{subcategoria.nombre}}
-    			</label>
-    		</li>
-    	{% endfor %}
-    	</ul>     
+      <ul>
+      {% for subcategoria in subcategorias_compras %}
+        {% ifchanged subcategoria.categoria %}
+        <br>
+        <div class="btn btn-small rojo btn-block">
+          {{subcategoria.categoria.nombre}}
+        </div>
+        <br>
+        {% endifchanged %}
+        <li>
+          <label for="id_intereses_comprar_{{forloop.counter0}}">
+            <input type="checkbox" value="{{subcategoria.id}}" name="intereses_comprar" id="id_intereses_comprar_{{forloop.counter0}}" {% if subcategoria in usuario.usuario.intereses_comprar.all %}checked="checked"{% endif %}>
+            {{subcategoria.nombre}}
+          </label>
+        </li>
+      {% endfor %}
+      </ul>
     </div>
   </div>
   <div class="row campo">

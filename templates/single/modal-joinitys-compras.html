@@ -1,14 +1,43 @@
 <!-- MODAL PARA ABRIR LISTA DE JOINITY COMPRAS EN FAMILY & FRIENDS -->
 <div id="modalJoinitysCompras" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
   <div class="modal-body">
-      {% for compra in lista_compras %}
-       {{compra.nombre}}-Precio: {{compra.compras.get_precio}}
-       <a href="/joinity/{{compra.id}}" target="_blank"><button type="button">Ver</button></a>
-       <button type="button" onclick="Dajaxice.joinitys.asignar_compra(asignar_compra, {'family_id':{{joinity.id}}, 'compra_id':{{compra.id}}});">Asignar</button>
-       <br>
-      {% endfor %} 
-       
+    <div id="form-modal">
+      <h4>
+        ELIGE UNO DE ESTOS PRODUCTOS
+      </h4>
+      <hr>
+      <table class="table table-striped">
+        {% for compra in lista_compras %}
+        <tr>
+          <td class="columna-main">
+            <p>
+              {{compra.nombre}}
+            </p>
+            <p>
+              Precio: {{compra.compras.get_precio}} euros/unidad
+            </p>
+            <p>
+              <a href="">
+                Ver la página de este joinity
+              </a>
+            </p>
+          </td>
+          <td>
+            <button type="button" class="btn btn-mini" onclick="Dajaxice.joinitys.asignar_compra(asignar_compra, {'family_id':{{joinity.id}}, 'compra_id':{{compra.id}}});">
+              Cómpralo ahora
+            </button>
+            <span class="help-block">
+              Y divide su precio entre todos los joiners de tu joinity
+            </span>
+            <br>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 </div>
 <!-- FIN DE MODAL -->
