@@ -19,21 +19,29 @@
     <p>
       {{single.descripcion}}
     </p>
-    
-    {{single.fecha_inicio}}<br>
-    {{single.fecha_fin}}<br>
-    USUARIOS:<br>
+    <h4 class="conlinea">
+      Fechas
+    </h4>
+    <p class="texte"><i>Inicio:</i> {{single.fecha_inicio}}</p>
+    {% if single.fecha_fin %}
+    <p clas="texte"><i>Fin:</i> {{single.fecha_fin}}</p>
+    {% endif %}
+    <br>
+    <h4 class="conlinea">
+      Participantes
+    </h4>
     {% for participante in single.usuarios_evento.all %}
-       {{participante.usuario.first_name}}<br>
-       {% endfor %}
-     LUGARES:<br>
+       <p>{{participante.usuario.first_name}}</p>
+    {% endfor %}
+    <h4 class="conlinea">
+      Ubicación
+    </h4>
      {% for lugar in single.lugares_evento.all %}
-     {{lugar.lugar}}<br>
-     {% endfor %}
-    
-<div class="Flexible-container">
-    <iframe width="355" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
-</div>
+     <p clas="texte"><i>Ciudad: </i>{{lugar.lugar}}</p>
+     <div class="Flexible-container">
+       <image src="http://maps.googleapis.com/maps/api/staticmap?center={{lugar.lugar}}&zoom=13&size=600x500&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Ccolor:red%7Clabel:C%7C40.718217,-73.998284&sensor=false" alt="">
+      </div>
+{% endfor %}
 
   <div id="escribe-main">
    <div class="escribe-input">

@@ -19,20 +19,16 @@
         <table class="table table-striped">
         {% for miembro in joinity.joinity_usuario.all %}
           <tr>
-            <td>
-              <div class="thumbAmigo" style="background-image:url('/media/{{miembro.usuario.foto}}');">
-              </div>
-              <a class="btn btn-mini rojo btnAmigo" href="/usuario/{{miembro.usuario.id}}">
+            <td class="columna-main">
+              <p>
                 {{miembro.usuario.first_name}} {{miembro.usuario.last_name}}
-              </a>
+              <p>
             </td>
-            {% if soy == "admin" %}
             <td>
-              <a href="" class="color oscuro">
-                Eliminar joiner
+              <a href="/usuario/{{miembro.usuario.id}}" class="btn btn-mini rojo">
+                Ver perfil
               </a>
             </td>
-            {% endif %}
           </tr>
           {% empty %}
           No hay nada en la lista
