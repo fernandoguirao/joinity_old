@@ -1,3 +1,5 @@
+@elcolor:@verde;
+
 /* BORRAR */
 body {
   min-width:768px;
@@ -53,9 +55,6 @@ ex- --> ejemplo
 
 @font:'Montserrat', sans-serif;
 @fonthead:'signika', sans-serif;
-
-
-@elcolor:@verde;
 
 @muyoscuro:#373232;
 @oscuro:#534b4b;
@@ -1166,9 +1165,10 @@ body {
   }
 
   .perfil {
-    img {
-      height:41px;
-      width:41px;
+    .avatar,img {
+      height:41px!important;
+      width:41px!important;
+      background-position:center;
     }
     a {
       padding-top:5px!important;
@@ -1752,7 +1752,8 @@ input[type="text"] {
     .border-radius(5px);
     margin-bottom:10px;
     box-shadow:0px 0px 0px 3px rgba(0,0,0,0.15)!important;
-    &:before {
+    /*
+&:before {
       border-style: solid;
       border-width: 40px 40px 0 0;
       content: "";
@@ -1762,6 +1763,7 @@ input[type="text"] {
       top: 0;
       border-color: @elcolor transparent;
     }
+*/
     &.span2.busc-peq.inputNormal {
       border:2px solid @grisclaro!important;
       box-shadow:none!important;
@@ -2562,6 +2564,9 @@ input[type="text"] {
     .contenido p {
       width:310px;
     }
+    #lineaTiempo {
+      margin-top:-44px!important;
+    }
   }
 /*
   #escribe-main {
@@ -2667,8 +2672,16 @@ input[type="text"] {
         top:-21px;
         margin-left:403px;
       }
+      &.reserva {
+        .btn.btn-small.amarillo.adelante {
+          position: relative;
+          margin: 0!important;
+          top: -7px;
+          left: -125px;
+        }
+      }
       a.adelante {
-        padding: 9px 12px 8px 12px!important;
+        padding: 9px 12px 8px 12px;
         min-height: 23px!important;
       }
     }
@@ -2698,6 +2711,7 @@ input[type="text"] {
   margin-top: -42px;
   margin-left: 127px;
 }
+
   .reserva .input-small {
     margin-left:-206px;
   }
@@ -2738,6 +2752,7 @@ input[type="text"] {
       text-align: center!important;
     }
   }
+  
   .carousel .item {
       width: 100%; /*slider width*/
       max-height: 700px; /*slider height*/
@@ -3061,6 +3076,9 @@ input[type="text"] {
               margin-top:-77px;
               position:relative;
               top:-20px;
+              p {
+                .opacity(0);
+              }
             }
             .lafecha {
               .opacity(1);
@@ -3350,6 +3368,7 @@ th,td {
 }
 td {
   color:@gris;
+
 }
 
 th {
@@ -3375,7 +3394,7 @@ th {
     color:@oscuro;
   }
 }
-  
+
 .iconos.fl {
   font-family:'iconos'!important;
 }
@@ -4561,7 +4580,7 @@ p.color {
       color:@claro;
       font-size:11px;
       text-transform:uppercase;
-      margin:36px 30px 0 41px;
+      margin:4% 30px 0 41px;
       span {
         color:rgba(0,0,0,.3);
         display:block;
@@ -4690,11 +4709,11 @@ p.color {
   max-width:130px;
 }
  .valor01 p {
-  font-size: 35px;
+  font-size: 30px;
   margin-left: 13px;
-  margin-top: -22px;
+  margin-top: -19px;
   width: 178px!important;
-  overflow: hidden;
+  overflow: inherit;
   position: relative;
 }
  .valor01 p span {
@@ -5535,13 +5554,7 @@ height: 300px;
 }
 
 #header-compras.jfamily {
-    .valor02 p {
-      top:6px;
-      font-size:30px;
-      span {
-        top:-8px!important;
-      }
-    }
+    
     .valor06 {
     
     margin-top: 15px;
@@ -5585,30 +5598,130 @@ height: 300px;
   }
 }
 
-
-
-/*
-<!----------------->
-<!--! OTROS COLORES   -->
-<!----------------->
-*/
-/*
-.estilos();
-
-  
-  .isFamily {
-    .estilos(@elcolor:@verde);
+.extracto-joinity .valor01 {
+  height: inherit;
+  span {
+    line-height: 1.2;
+    padding-top:7px;
   }
-  .isCompras {
-    .estilos(@elcolor:@rojo);
-  }
-  
-  .isFamily,.isCompras {
-    .span2.panelIzquierdo {
-      margin-top: 23px;
+}
+
+    #header-aficiones .valor02 p span {
+  top: -1px !important;
+  width: 165px;
+  position: absolute;
+  left: -34px;
+}
+
+#header-aficiones .valor02 {
+  position: relative;
+  top: 15px;
+}
+
+#header-aficiones .valor02 p {
+      top:6px;
+      font-size:30px!important;
+      margin-top:-25px;
+      span {
+        top:-5px!important;
+      }
+    }
+    
+.botonRestaurante.adelante {
+  top:3px!important;
+  padding:12px 12px 13px!important;
+}
+
+.botonHotel.adelante {
+  padding: 9px 12px 6px !important;
+  top: -6px !important;
+}
+
+.arest {
+display:none;
+}
+
+.container.contenedor-array.faficiones {
+  width:100%!important;
+  text-align:center!important;
+}
+
+.breadcrumb {
+  margin-top:8px;
+}
+
+#perfil .afifav {
+.help-block {
+  padding-right: 148px;
+  text-align: right;
+}
+.btn-mini {
+float: right;
+margin-top: -29px;
+left: 147px!important;
+position: relative;
+}
+  .listaf {
+    display:inline-block;
+    width:100%;
+    .btn-small {
+      cursor:default;
+    }
+    label {
+      width:100%;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+input {
+  display: inline-block;
+  width: 16px!important;
+  vertical-align: top;
+  margin-top: 3px;
+  margin-right: 2px;
+}
+    ul {
+    list-style-type: none;
+li {
+  display: inline-block;
+  width: 98px;
+  margin-right: 12px;
+  vertical-align: top;
+  margin-bottom: 5px;
+}
     }
   }
+}
 
+.columna-main {
+  width:57%!important;
+  p {
+    max-width: 100%!important;
+  }
+}
 
-*/
+#modalJoinitysCompras {
+  td {
+    border: none;
+  }
+}
 
+.modal-body {
+  h5 {
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: left;
+    color: @elcolor;
+    width: inherit;
+    padding-bottom: 11px;
+  }
+}
+
+#modal-crea-pago {
+  .help-block {
+    color: #A8A7A0;
+    font-size: 12px;
+    text-align: right;
+    width: 218px;
+    margin-left: 185px;
+  }
+}

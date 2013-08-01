@@ -13,9 +13,15 @@ var iscompras = $('#header-compras');
 //======================
 //! FUNCIONES AJAX
 //======================
+function crear_pago_joinity(data){
+	if (data.ok){
+		alert("Pago Creado");
+	}
+}
+
 function crear_categoria(data){
 	if (data.ok){
-		alert("categoria creada");
+		alert("Categoría creada");
 	}
 }
 function refresca_puntuacion(data){
@@ -31,18 +37,18 @@ function puntuar_joinity(data){
 
 function asignar_compra(data){
   if (data.ok){
-    alert("Compra Asignada");
+    alert("Compra asignada");
   }
 }
 
 function reserva_hotel(data){
   if (data.ok){
-    alert("Mandada Reserva");
+    alert("Reserva enviada");
   }
 }
 function reserva_restaurante(data){
   if (data.ok){
-    alert("Mandada Reserva");
+    alert("Reserva enviada");
   }
 }
 
@@ -85,7 +91,7 @@ function refresca_notificaciones(data){
 }
 
 function marca(data){
-  alert("Pon aqui lo que quieras Fernando");
+  /* alert("Pon aqui lo que quieras Fernando"); */
 }
 
 function busqueda(data){
@@ -129,6 +135,12 @@ function busqueda(data){
 function cargaform(data){
   var contenedor_formularios = $(".contenedor_formularios");
   contenedor_formularios.html(data.paginaformulario);
+}
+
+function busqueda_usuarios(data){
+	if(data.resultados){
+		$("#resultados_busqueda_amigos").html(data.resultados);
+	}
 }
 
 $.fn.serializeObject = function() {
@@ -395,6 +407,24 @@ seleccionbtn.click(function(){
   }
 });
 
+var selectreserva = $('.selectreserva .dropdown-menu a');
+var elrestaurante = $('.botonRestaurante');
+var elhotel = $('.botonHotel');
+
+selectreserva.click(function(){
+  if($(this).text()=="un restaurante") {
+    elrestaurante.show();
+    elhotel.hide();
+  } else if ($(this).text()=="un hotel") {
+    elrestaurante.hide();
+    elhotel.show();
+  }
+})
+
+if (ishome.length > 0) {
+  $('.primerselect ul li:first-child,.segundoselect ul li:first-child,.tercerselect ul li:first-child').children().trigger('click');
+}
+
 /* Fin selector home */
 
 /* Fin de selects */
@@ -480,6 +510,7 @@ if(ishome.length > 0) {
 //! VOTACIONES
 //==============
 
+/* PASAR NÚMERO DE RESPUESTAS y CREAR CADA RESPUESTA CON UN N */
 
 var jei = 0;
 var escribemens = $('.escribe-mensaje');

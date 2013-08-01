@@ -13,6 +13,12 @@ var iscompras = $('#header-compras');
 //======================
 //! FUNCIONES AJAX
 //======================
+function crear_pago_joinity(data){
+	if (data.ok){
+		alert("Pago Creado");
+	}
+}
+
 function crear_categoria(data){
 	if (data.ok){
 		alert("Categoría creada");

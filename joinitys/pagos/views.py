@@ -9,7 +9,6 @@ from joinity.settings import LOCALHOST
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from joinitys.models import Joinitys
-from datetime import datetime
 @login_required
 def crear(request, joinity_id):
     joinity=get_object_or_404(Joinitys, pk=joinity_id)
