@@ -1,25 +1,22 @@
 <div id="rightSideBar">
   <div id="contenidoSide">
     <!-- BUSCADOR -->
-    <input type="text" placeholder="Busca en tus mensajes" class="inputNormal input-small">
+    <!-- <input type="text" placeholder="Busca en tus mensajes" class="inputNormal input-small"> -->
     <!-- FIN BUSCADOR -->
     <!-- TODOS LOS MENSAJES -->
     {% load mensajes_filters %}
     <div class="todosMensajes">
       {% for mensaje in todos_los_mensajes %}
-      {% if mensaje.mensaje.estado == 1 %}
-      LEIDO
-      {% else %}
-      NO LEIDO 
-      {% endif %}
       <!-- CADA MENSAJE -->
       <a href="/mensaje/inbox/{{mensaje.usuario.id}}">
-        <div class="cadaMensaje nuevo">
+        <div class="cadaMensaje {% if mensaje.mensaje.estado == 1 %}{% else %}nuevo{% endif %}">
           <div class="avatar span3" style="background-image:url('/media/{{mensaje.usuario.usuario.foto}}');">
           </div>
+        {% if mensaje.mensaje.estado == 1 %}{% else %}
         <div class="numeroNotif">
           1
         </div>
+        {% endif %}
         <p class="span9">
           <b>
             {{mensaje.usuario.first_name}} {{mensaje.usuario.last_name}}
