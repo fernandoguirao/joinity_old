@@ -2666,8 +2666,16 @@ input[type="text"] {
         top:-21px;
         margin-left:403px;
       }
+      &.reserva {
+        .btn.btn-small.amarillo.adelante {
+          position: relative;
+          margin: 0!important;
+          top: -7px;
+          left: -125px;
+        }
+      }
       a.adelante {
-        padding: 9px 12px 8px 12px!important;
+        padding: 9px 12px 8px 12px;
         min-height: 23px!important;
       }
     }
@@ -2697,6 +2705,7 @@ input[type="text"] {
   margin-top: -42px;
   margin-left: 127px;
 }
+
   .reserva .input-small {
     margin-left:-206px;
   }
@@ -2737,6 +2746,7 @@ input[type="text"] {
       text-align: center!important;
     }
   }
+  
   .carousel .item {
       width: 100%; /*slider width*/
       max-height: 700px; /*slider height*/
@@ -5607,28 +5617,63 @@ height: 300px;
       }
     }
     
-/*
-<!----------------->
-<!--! OTROS COLORES   -->
-<!----------------->
-*/
-/*
-.estilos();
+.botonRestaurante.adelante {
+  top:3px!important;
+  padding:12px 12px 13px!important;
+}
 
-  
-  .isFamily {
-    .estilos(@elcolor:@verde);
-  }
-  .isCompras {
-    .estilos(@elcolor:@rojo);
-  }
-  
-  .isFamily,.isCompras {
-    .span2.panelIzquierdo {
-      margin-top: 23px;
+.botonHotel.adelante {
+  padding: 9px 12px 6px !important;
+  top: -6px !important;
+}
+
+.arest {
+display:none;
+}
+
+.container.contenedor-array.faficiones {
+  width:100%!important;
+  text-align:center!important;
+}
+
+.breadcrumb {
+  margin-top:8px;
+}
+
+#perfil .afifav {
+.help-block {
+  padding-right: 148px;
+  text-align: right;
+}
+.btn-mini {
+float: right;
+margin-top: -29px;
+left: 147px!important;
+position: relative;
+}
+  .listaf {
+    display:inline-block;
+    label {
+      width:100%;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+input {
+  display: inline-block;
+  width: 16px!important;
+  vertical-align: top;
+  margin-top: 3px;
+  margin-right: 2px;
+}
+    ul {
+    list-style-type: none;
+li {
+  display: inline-block;
+  width: 98px;
+  margin-right: 12px;
+  vertical-align: top;
+  margin-bottom: 5px;
+}
     }
   }
-
-
-*/
-
+}

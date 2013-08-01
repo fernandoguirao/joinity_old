@@ -1165,9 +1165,10 @@ body {
   }
 
   .perfil {
-    img {
-      height:41px;
-      width:41px;
+    .avatar,img {
+      height:41px!important;
+      width:41px!important;
+      background-position:center;
     }
     a {
       padding-top:5px!important;
@@ -1751,7 +1752,8 @@ input[type="text"] {
     .border-radius(5px);
     margin-bottom:10px;
     box-shadow:0px 0px 0px 3px rgba(0,0,0,0.15)!important;
-    &:before {
+    /*
+&:before {
       border-style: solid;
       border-width: 40px 40px 0 0;
       content: "";
@@ -1761,6 +1763,7 @@ input[type="text"] {
       top: 0;
       border-color: @elcolor transparent;
     }
+*/
     &.span2.busc-peq.inputNormal {
       border:2px solid @grisclaro!important;
       box-shadow:none!important;
@@ -2560,6 +2563,9 @@ input[type="text"] {
     }
     .contenido p {
       width:310px;
+    }
+    #lineaTiempo {
+      margin-top:-44px!important;
     }
   }
 /*
