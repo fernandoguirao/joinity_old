@@ -18,7 +18,7 @@
     </div>
     {% if soy == "admin" %}
     <div class="crearPago">
-      <a href="/joinity/{{joinity.id}}/pago/crear">
+      <a href="#modal-crea-pago" data-toggle="modal">
         <div class="btn btn-small btn-block btn-icono gris">
           <i class="iconos font-iconos">
             f
@@ -26,6 +26,7 @@
           Reparte un gasto
         </div>
       </a>
+      {% include "single/modal-crea-pago.html" %}
       {% endif %}
     </div>
     <div class="realizaReserva">

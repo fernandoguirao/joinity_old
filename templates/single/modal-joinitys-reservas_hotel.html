@@ -1,13 +1,32 @@
-<!-- MODAL PARA ABRIR LISTA DE RESERVAS EN FAMILY & FRIENDS -->
 <div id="modalJoinitysReservasHotel" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
   <div class="modal-body">
+    <div id="form-modal">
+      <h4>
+        ELIGE UNO DE ESTOS HOTELES
+      </h4>
+      <hr>
+      <table class="table table-striped">
       {% for hotel in lista_hoteles %}
-       {{hotel.nombre}}
-       <a href="/brands/{{hotel.id}}/#reservas" target="_blank"><button type="button">Ver</button></a>
-       <br>
-      {% endfor %} 
-       
+        <tr>
+          <td class="columna-main">
+            <p>
+              {{hotel.nombre}}
+            </p>
+          </td>
+          <td>
+            <p>
+              <a href="/brands/{{hotel.id}}/#reservas" class="btn btn-mini">
+                Reserva en este hotel
+              </a>
+            </p>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
 </div>
 <!-- FIN DE MODAL -->
