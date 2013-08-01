@@ -131,6 +131,12 @@ function cargaform(data){
   contenedor_formularios.html(data.paginaformulario);
 }
 
+function busqueda_usuarios(data){
+	if(data.resultados){
+		$("#resultados_busqueda_amigos").html(data.resultados);
+	}
+}
+
 $.fn.serializeObject = function() {
   var o = {};
   var a = this.serializeArray();

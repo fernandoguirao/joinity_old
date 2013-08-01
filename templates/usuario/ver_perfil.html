@@ -189,7 +189,7 @@
     {% for interes in perfil.usuario.intereses.all %}
       <div class="listainteres">
         <span class="btn btn-mini azul">
-          {{interes.categoria.nombre}}-{{interes.nombre}}
+          {{interes.nombre}}
         </span>
       </div>
     {% endfor %}
@@ -203,7 +203,7 @@
     {% for interes in perfil.usuario.intereses_comprar.all %}
       <div class="listainteres">
         <span class="btn btn-mini verde">
-        {{interes.categoria.nombre}}-{{interes.nombre}}
+        {{interes.nombre}}
         </span>
       </div>
     {% endfor %}

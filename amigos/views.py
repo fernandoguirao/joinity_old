@@ -41,5 +41,10 @@ def aceptar(request, amigo_id):
     nuevo_amigo.save()
     return HttpResponseRedirect('/amigo/')
 
+def eliminar_amigo(request, amigo_id):
+    Amigos.objects.filter(usuario=request.user, amigo_id=amigo_id).delete()
+    Amigos.objects.filter(usuario_id=amigo_id, amigo=request.user).delete()
+    return HttpResponseRedirect('/usuario/')
+
 
     

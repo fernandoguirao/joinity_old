@@ -1,8 +1,0 @@
-{% load mathfilters %}
-<a href="/"><input type="button" value="Volver a inicio"/></a>
-<a href="/usuario/"><input type="button" value="Perfil"/></a>
-{% for usuario in usuarios %}
-	{{usuario.first_name}}<a href="/usuario/{{usuario.id}}">Ver Perfil</a>
-{% empty %}
-	No hay nada en la lista
-{% endfor %}
