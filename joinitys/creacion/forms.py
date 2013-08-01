@@ -35,12 +35,12 @@ class JoinityForm(forms.ModelForm):
         return joinity
 
 class FamilyForm(forms.ModelForm):
-    repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=True)
+    #repeticion = forms.ChoiceField(choices=([("0", "Puntual"), ("1", "Diario"), ("2", "Semanal"), ("3", "2 Semanas"), ("4", "Mensual"), ("5", "Anual")]), required=False)
     fecha_inicio=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-01', 'value':str(date.today())}))
     fecha_fin=forms.DateField(widget=forms.TextInput(attrs={'class':'span2', 'id':'datepicker-02', 'value':str(date.today())}))
     class Meta:
         model = Family
-        fields=("subcategoria", "fecha_inicio", "fecha_fin", "repeticion")
+        fields=("subcategoria", "fecha_inicio", "fecha_fin")
     def __init__(self, *args, **kwargs):
         self._joinity = kwargs.pop('joinity')
         super(FamilyForm, self).__init__(*args, **kwargs)

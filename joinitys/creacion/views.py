@@ -24,7 +24,7 @@ def editar(request, joinity_id):
         return HttpResponseRedirect("/joinity/"+str(joinity.id))
     
     if joinity.tipo==3:
-        subcategorias=Subcategorias.objects.filter(categoria=joinity.sub().subcategoria)
+        subcategorias=Subcategorias.objects.filter(categoria=joinity.sub().subcategoria.categoria)
         if request.POST:
             formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=3)
             formaficiones=AficionesForm( request.POST, instance=joinity.sub(),joinity=None)
@@ -39,7 +39,7 @@ def editar(request, joinity_id):
             formaficiones=AficionesForm(instance=joinity.aficiones, joinity=None)
         context={'formulario': formulario, 'formaficiones':formaficiones, "pagina":"editar", "usuario":request.user, "categorias":Categorias.objects.all().order_by('id'), "joinity":joinity, "subcategorias":subcategorias, "formlugares":formlugares}
     if joinity.tipo==2:
-        subcategorias=Subcategorias_Compras.objects.filter(categoria=joinity.sub().subcategoria)
+        subcategorias=Subcategorias_Compras.objects.filter(categoria=joinity.sub().subcategoria.categoria)
 
         if request.POST:
             formulario = JoinityForm(request.POST, request.FILES, instance=joinity, user=request.user, tipo=2)

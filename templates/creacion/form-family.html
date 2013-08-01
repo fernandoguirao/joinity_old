@@ -1,9 +1,11 @@
 <legend>
   1. Define tu grupo de amigos o familiares
 </legend>
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
 
+
+<form action="" method="post" enctype="multipart/form-data">
+
+  {% csrf_token %}
   <!-- NOMBRE -->
   <div class="campo">
     <label for="id_Nombre">
@@ -118,11 +120,8 @@
         	Paso {{lugar.n}}: {{lugar.lugar}}<br>
         {% endfor %}
         </div>
-        <form action="" method="post" id="form_anyadir_lugar">
-        	{% csrf_token %}
         	{{ formlugares.lugar }}
             <input type="button" value="Enviar" class="btn btn-small" id="ajaxbtn" onclick="Dajaxice.joinitys.creacion.anyadir_lugar(anyadir_lugar, {'lugar':$('#id_lugar').val(), 'joinity_id':{{joinity.id}}});"/>
-        </form>	
 
     {% endif %}
 
