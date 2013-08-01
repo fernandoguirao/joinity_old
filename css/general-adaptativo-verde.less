@@ -1,0 +1,839 @@
+@elcolor:@verde;
+
+// VARIABLES LESS
+// --------------
+
+@font:'Montserrat', sans-serif;
+@fonthead:'signika', sans-serif;
+
+@muyoscuro:#373232;
+@oscuro:#534b4b;
+@claro:#f7f4e8;
+@gris:#908e85;
+@grisclaro:#dbd8c9;
+@grismuyclaro:#efece0;
+@rojo:#e34152;
+@azul:#18b8d2;
+@amarillo:#fad542;
+@verde:#1bbe9e;
+@naranja:#fc7219;
+
+// MIXINS LESS
+// -----------
+
+.box-shadow (@string) {
+  -webkit-box-shadow: @string;
+  -moz-box-shadow: @string;
+  box-shadow: @string;
+}
+
+.box-shadow2 (@string,@string2) {
+  -webkit-box-shadow: @string,@string2;
+  -moz-box-shadow: @string,@string2;
+  box-shadow: @string,@string2;
+}
+
+.text-shadow (@string) {
+  -webkit-text-shadow: @string;
+  -moz-text-shadow: @string;
+  text-shadow: @string;
+}
+
+.border-radius(@radio) {
+  -webkit-border-radius: @radio!important;
+  -moz-border-radius: @radio!important;
+  border-radius: @radio!important;
+}
+
+.transition(@transicion,@tiempo,@easing:linear) {
+  -webkit-transition: @transicion @tiempo @easing;
+  -moz-transition: @transicion @tiempo @easing;
+  -o-transition: @transicion @tiempo @easing;
+  transition: @transicion @tiempo @easing;
+}
+
+.background-size() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover;
+}
+
+.gradient(@colorinicial,@colorfinal) {
+  background: @colorinicial; /* Old browsers */
+  background: -moz-linear-gradient(top,  @colorinicial 0%, @colorfinal 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f25566), color-stop(100%,#e34152)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  @colorinicial 0%,@colorfinal 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  @colorinicial 0%,@colorfinal 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  @colorinicial 0%,@colorfinal 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  @colorinicial 0%,@colorfinal 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@colorinicial', endColorstr='@colorfinal',GradientType=0 ); /* IE6-9 */
+}
+
+.scale(@tamanoinicio,@tamanofin,@origen) {
+  -ms-transform: scale(@tamanoinicio , @tamanofin);
+  -webkit-transform: scale(@tamanoinicio , @tamanofin);
+  -moz-transform: scale(@tamanoinicio , @tamanofin);
+  -o-transform: scale(@tamanoinicio , @tamanofin);
+  transform: scale(@tamanoinicio , @tamanofin);
+
+  -ms-transform-origin: @origen;
+  -webkit-transform-origin: @origen;
+  -moz-transform-origin: @origen;
+  -o-transform-origin: @origen;
+  transform-origin: @origen;
+}
+
+.opacity(@opacidad:0.5) {
+  @ieOpacidad : @opacidad * 100;
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=@ieOpacidad)';
+  filter: alpha(opacity=@ieOpacidad);
+  -moz-opacity: @opacidad;
+  -khtml-opacity: @opacidad;
+  opacity: @opacidad;
+}
+
+.esquina(@sucolor,@size:16px,@top:0,@left:0) {
+  &:before {
+    background: none repeat scroll 0 0 transparent;
+    border-color: @sucolor transparent transparent transparent;
+    border-style: solid;
+    border-width: @size @size 0 0;
+    content: "";
+    display: block;
+    left: @left;
+    position: absolute;
+    top: @top;
+    width: 0;
+  }
+}
+
+/* FIN DE MIXINS */
+
+
+/* Menú lateral adaptativo */
+
+.menu-oculto-adaptativo {
+  float:left;
+  width: 100%;
+  position: relative;
+  left: -105%;
+}
+
+/* Estilos para centrar en general */
+
+  body {
+    padding: 5px 6px !important;
+    text-align:center;
+  }
+  
+  .navbar-inner {
+    border-radius:2px;
+  }
+
+  #contenedorPrincipal {
+    margin-left: 10px !important;
+  }
+  
+  #contenedorMain {
+    display:inline-block;
+    text-align:left;
+  }
+  
+  .navbar {
+    margin-bottom: 6px;
+    overflow: visible;
+  }
+  
+  .brand.logoIcon {
+    padding-left: 0px !important;
+  }
+
+/* Fin de centrar general */
+
+/* ESCRITORIO GRANDE */
+/* ================= */
+
+@media (min-width: 1201px) {
+
+/*
+  .brand.logoIcon{
+    color:darken(@rojo,10%)!important;
+  }
+*/
+  
+/* ESTILOS GENERALES PARA CENTRAR */
+/* ============================== */
+  
+  .row-fluid .span2 {
+    width: 10.5471%!important;
+    text-align:center;
+  }
+  
+  .row-fluid .span10 {
+    width: 908px!important;
+    margin-left: 0!important;
+  }
+
+  #contenedorMain {
+    width: 1044px;
+  }
+  
+  .span2.panelIzquierdo.hidden-phone {
+    left: -13px;
+    position: relative;
+  }
+  
+  .container {
+    width: 1067px !important;
+  }
+  
+  .brand.logoIcon {
+    margin-left: 29px !important;
+  }
+  
+  /* / Fin estilos para centrar */
+
+} /* / Fin escritorio grande */
+
+/* ESCRITORIO PEQUEÑO */
+/* ================== */
+
+@media (min-width: 979px) and (max-width: 1200px) {
+
+/*
+  .brand.logoIcon{
+    color:@verde!important;
+  }
+*/
+
+/* ESTILOS GENERALES PARA CENTRAR */
+/* ============================== */
+
+  body {
+    padding: 5px 6px !important;
+    text-align:center;
+  }
+  
+  .brand.logoIcon {
+    padding-left: 0px !important;
+    margin-left: 144px !important;
+  }
+  
+  .navbar-inner {
+    border-radius:2px;
+  }
+  .row-fluid .span10 {
+    width: 831px!important;
+    margin-left: 0!important;
+  }
+  
+  .row-fluid .span2 {
+    width: 126px!important;
+    text-align:center;
+  }
+  
+  #contenedorPrincipal {
+    margin-left: 10px !important;
+  }
+  
+  .barraTop .nav-centrador {
+    width:92%;
+  }
+
+  #contenedorMain {
+    width: 100%;
+    display:inline-block;
+    text-align:left;
+  }
+  
+  .navbar {
+    margin-bottom: 6px;
+    overflow: visible;
+  }
+
+  .barraTop {
+    .container {
+      width: 971px;
+      left:0;
+      margin:0;
+    }
+  }
+  /* / Fin de estilos para centrar */
+
+/*
+PÁGINAS ESPECÍFICAS
+===================
+*/
+
+/* MENSAJES */
+.breadcrumb {
+  margin-top: 8px;
+  margin-left: -31px;
+  padding-left: 37px;
+}
+  #misMensajes .numeroNotif, #misTareas .numeroNotif, #misCompras .numeroNotif {
+    margin-left: 264px;
+  }
+  #misMensajes .inputNormal.input-small {
+    width: 249px;
+  }
+  #misMensajes .span9 {
+    width: 207px!important;
+  }
+
+/* EL JOINITY */
+
+#joinity {
+  #rightSideBar #contenidoSide {
+    padding: 25px 61px;
+    width: 61%;
+  }
+  
+  #rightSideBar {
+    float: right;
+    margin-right: 61px;
+    width: 40%;
+  }
+  #contenedorJoinity #timeline, #contenedorJoinity #loBlanco {
+    z-index:1;
+  }
+}
+
+#unJoinity .extracto-joinity .left-side {
+  width: 361px;
+}
+#contenedorJoinity #loBlanco {
+  width: 736px !important;
+}
+
+/* HOME */
+
+#home {
+  .barraTop .container {
+    margin:0 auto;
+  }
+  .carousel .item img{
+    top:-54px!important;
+  }
+  #seleccionador {
+    width:980px;
+    p {
+      margin: 0 16px;
+    }
+  }
+  .container.barrad {
+    width:980px;
+    max-height:43px;
+  }
+  .pregunta {
+    margin-left: 4px !important;
+    margin-right: 1px !important;
+  }
+  .adelante {
+    margin-left:6px;
+  }
+  .btn.dropdown-toggle.clearfix.btn-small {
+    width: 133px;
+  }
+  .selector.aficion,.selector.reserva {
+    margin-left:382px!important;
+  }
+}
+
+#rightSideBar #contenidoSide .inputNormal.input-small {
+  width: 301px;
+}
+
+/* / Fin de páginas específicas */
+
+} /* / Fin de estilos de escritorio pequeño */
+
+
+/* TABLET */
+/* ====== */
+
+@media (max-width: 979px) {
+
+/*
+  .brand.logoIcon{
+    color:@verde!important;
+  }
+*/
+/*
+  .brand.logoIcon{
+    color:@amarillo!important;
+  }
+*/
+  
+/* ESTILOS GENERALES PARA CENTRAR */
+/* ============================== */
+
+  .dropdown-menu {
+    top: 68px!important;
+  }
+
+  .brand.logoIcon {
+    margin-left: 100px !important;
+    padding-left: 0px !important;
+  }
+
+  .iconbar {
+    width:76px;
+    margin-left:0px;
+    .iconbar-unread {
+      right:16px;
+    }
+    .iconos {
+      font-size:30px!important;
+    }
+    .detalle {
+      font-size:10px!important;
+    }
+  }
+  
+  .row-fluid .span2 {
+    width: 71px;
+    left:5px;
+    position:relative;
+  }
+  
+  #contenedorPrincipal {
+    margin-left: 3% !important;
+  }
+  
+  #contenedorMain {
+    display:inline;
+  }
+
+  #rightSideBar > div {
+    width: 100%;
+  }
+
+  #timeline {
+    width: 57.8%;
+  }
+  
+  #contenedorJoinity,#contenidoSide {
+    width:100%;
+  }
+  
+  #rightSideBar {
+  min-width: 192px;
+  position: relative;
+  width: 29.5% !important;
+  }
+  
+  .row-fluid .span10 {
+    width:87%!important;
+  }
+  
+  #contenedorJoinity #timeline, #contenedorJoinity #loBlanco{
+    z-index:1!important;
+  }
+  
+  #misMensajes #rightSideBar #contenidoSide, #misTareas #rightSideBar #contenidoSide, #misCompras #rightSideBar #contenidoSide {
+    padding: 20px 34px 20px 0px;
+    margin-left: -9px;
+  }
+  
+  #contenedorJoinity #timeline #cronologia, #contenedorJoinity #loBlanco #cronologia {
+  width: 399px!important;
+}
+
+#contenedorJoinity #timeline #escribe-main .escribe-input #appendedInputButton-02, #contenedorJoinity #loBlanco #escribe-main .escribe-input #appendedInputButton-02 {
+  width: 373px !important;
+}
+
+#contenedorJoinity #timeline #escribe-main .escribe-input #losbotones, #contenedorJoinity #loBlanco #escribe-main .escribe-input #losbotones {
+  margin-left: 251px;
+  margin-top: -46px;
+  position: absolute;
+  z-index: 3;
+}
+
+.navbar .nav > li ul:before, .navbar .nav > li.dropdown ul:before, .navbar .nav > li ul:after, .navbar .nav > li.dropdown ul:after {
+  display:block;
+}
+
+  /* / Fin de estilos para centrar */
+
+/*
+PÁGINAS ESPECÍFICAS TABLET
+===================
+*/
+
+#brands {
+  #headermarca {
+    margin-top:0px;
+  }
+}
+
+  .selector.aficion,.selector.reserva {
+    margin-left:193px!important;
+  }
+/* MENSAJES */
+
+  #misMensajes .numeroNotif, #misTareas .numeroNotif, #misCompras .numeroNotif {
+    margin-left: 9px!important;
+    margin-top: 13px;
+  }
+  #misMensajes .inputNormal.input-small {
+    margin-left: 6px;
+    width: 90%!important;
+  }
+#misMensajes .span9 {
+  width: 65% !important;
+}
+
+  .cadaMensaje.nuevo {
+  width: 62%!important;
+}
+
+.todosMensajes {
+  width: 100%;
+}
+
+.cadaMensaje.nuevo {
+  width: 90% !important;
+}
+
+#misMensajes {
+  .inputNormal {
+    min-width: 184px;
+  }
+}
+
+#misMensajes .todosMensajes .cadaMensaje .avatar, #misTareas .todosMensajes .cadaMensaje .avatar, #misCompras .todosMensajes .cadaMensaje .avatar {
+  height: 46px!important;
+  margin-right: 7px;
+  margin-top: 5px;
+  width: 46px;
+}
+/* EL JOINITY */
+
+#joinity {
+  #rightSideBar #contenidoSide {
+    padding: 25px 35px;
+    width: 94%;
+  }
+  
+  #rightSideBar {
+    float: right;
+    margin-right: 61px;
+    width: 21.5%!important;
+    min-width:inherit;
+    .iconos {
+      display:none;
+    }
+    .btn.btn-icono {
+      text-align:center!important;
+    }
+  }
+  #contenedorJoinity #timeline, #contenedorJoinity #loBlanco {
+    z-index:1;
+  }
+  .participan {
+    display:none!important;
+  }
+  #unJoinity .extracto-joinity .left-side {
+    width: 31%;
+  }
+  #unJoinity .extracto-joinity {
+    width:100%;
+  }
+}
+#contenedorJoinity #loBlanco {
+  width: 89% !important;
+  border:3px solid @grisclaro;
+}
+
+#contenedorJoinity #loBlanco .contenidoPagina {
+  width: 528px;
+}
+
+/*
+#contenedorJoinity {
+  background-color:transparent;
+}
+*/
+
+#home {
+  .barraTop .container {
+    padding:0 15px 0 23px;
+  }
+  .pregunta {
+    display:none;
+  }
+  #seleccionador {
+  height: 46px;
+  margin: 17px auto 0;
+  position: relative;
+  width: 757px;
+  p {
+    margin:0 4px;
+  }
+}
+  .container.barrad {
+    width:757px;
+    max-height:58px!important;
+  }
+    .barrad {
+    .open > .dropdown-menu {
+      margin-top:-13px;
+    }
+    .open > .dropdown-menu:before {
+      display:none;
+    }
+  }
+  .carousel .item img{
+    top:-54px!important;
+  }
+  #seleccionador .primerselect .btn.dropdown-toggle.clearfix.btn-small {
+    width: 100px;
+  }
+  #seleccionador .primerselect {
+    margin-right: 0px !important;
+  }
+  .btn.dropdown-toggle.clearfix.btn-small {
+    width:100px;
+  }
+  /*
+    .adelante {
+      margin-top: 44px;
+      position: absolute;
+      left: 50%;
+      margin-left: -29px;
+      z-index:2;
+    }
+  */
+  }
+  
+  footer .container {
+      margin-top: 21px;
+      .links {
+        top:-27px;
+      }
+    }
+  
+  /* / Fin de páginas específicas */
+  
+  footer {
+    padding-top:88px!important;
+  }
+
+} /* Fin de Tablet */
+
+/* PHONE LANDING */
+/* ============= */
+
+@media (max-width: 767px) {
+
+/*
+  .brand.logoIcon{
+    color:@amarillo!important;
+  }
+*/
+  
+  .row-fluid .span10, .row-fluid .span2,.span3,.span9 {
+    float: left !important;
+  }
+  
+  /* PÁGINAS */
+  
+  #contenedorJoinity #timeline #escribe-main .escribe-input #losbotones, #contenedorJoinity #loBlanco #escribe-main .escribe-input #losbotones {
+    margin-top:10px;
+  }
+  
+  .selectoresgrupo {
+    .inputNormal.input-small {
+  max-width: 109px!important;
+}
+  }
+/*
+  #contenedorMain {
+    overflow-x:hidden;
+    width:100%;
+  }
+
+  .contenedorAdaptativo {
+    position:relative;
+  }
+
+  .row-fluid .span2 {
+    width: 100%!important;
+    text-align:center;
+  }
+
+  .row-fluid .span10 {
+    width: 100%!important;
+  }
+
+  .barraTop .brand.logoIcon {
+    padding: 19px 21px 14px;
+    text-align: center;
+    width: 100%;
+    margin-left:-17px;
+  }
+
+  .barraTop .nav.pull-right {
+    display: inline-block;
+    float: none;
+    position: relative;
+  }
+
+  .nav-collapse.collapse {
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    left: -129px!important;
+    top: 58px!important;
+  }
+
+  .iconbar > ul > li {
+    float:left;
+  }
+
+  .iconbar .iconos {
+    font-size: 22px !important;
+  }
+
+  .iconbar > ul > li:first-child > a {
+    padding-top: 8px;
+  }
+
+  .iconbar .iconbar-unread {
+    padding: 4px 4px;
+    right: 34px;
+  }
+
+  .iconbar {
+    width: 459px;
+  }
+
+*/
+
+/* ESTILOS GENERALES PARA CENTRAR */
+/* ============================== */
+
+/*
+  .dropdown-menu {
+    top: 68px!important;
+  }
+
+  .brand.logoIcon {
+    margin-left: 100px !important;
+    padding-left: 0px !important;
+  }
+
+  .iconbar {
+    width:76px;
+    margin-left:0px;
+    .iconbar-unread {
+      right:16px;
+    }
+    .iconos {
+      font-size:30px!important;
+    }
+    .detalle {
+      font-size:10px!important;
+    }
+  }
+  
+  .row-fluid .span2 {
+    width: 71px;
+    left:5px;
+    position:relative;
+  }
+  
+  #contenedorPrincipal {
+    margin-left: 3% !important;
+  }
+  
+  #contenedorMain {
+    display:inline;
+  }
+
+  #rightSideBar > div {
+    width: 100%;
+  }
+
+  #timeline {
+    width: 57.8%;
+  }
+  
+  #contenedorJoinity,#contenidoSide {
+    width:100%;
+  }
+  
+  #rightSideBar {
+  min-width: 192px;
+  position: relative;
+  width: 29.5% !important;
+  }
+  
+  .row-fluid .span10 {
+    width:87%!important;
+  }
+  
+  #contenedorJoinity #timeline, #contenedorJoinity #loBlanco{
+    z-index:1!important;
+  }
+  
+  #misMensajes #rightSideBar #contenidoSide, #misTareas #rightSideBar #contenidoSide, #misCompras #rightSideBar #contenidoSide {
+    padding: 20px 34px 20px 0px;
+    margin-left: -9px;
+  }
+*/
+
+  /* / Fin de estilos para centrar */
+
+
+  /* PÁGINAS */
+/*
+  #misMensajes #rightSideBar #contenidoSide, #misTareas #rightSideBar #contenidoSide, #misCompras #rightSideBar #contenidoSide {
+    padding: 20px 0px 20px 0px;
+  }
+  #misMensajes .numeroNotif, #misTareas .numeroNotif, #misCompras .numeroNotif {
+  margin-left: 202px!important;
+}
+  #misMensajes .todosMensajes .cadaMensaje:after, #misTareas .todosMensajes .cadaMensaje:after, #misCompras .todosMensajes .cadaMensaje:after {
+    left: -20px;
+    width: 263px;
+  }
+*/
+
+  /* Fin de páginas específicas */
+  #rightSideBar {
+  min-width: 173px;
+  position: relative;
+  width: 29.5% !important;
+  }
+  #timeline {
+  min-width: 374px;
+}
+}
+
+/* PHONE VERTICAL */
+@media (max-width: 480px) {
+
+  /* PÁGINA LOGIN */
+  /* ============ */
+  #login {
+    .contenedor {
+      width:238px !important;
+    }
+  }
+  
+  /* CENTRAR GENERAL */
+  /* =============== */
+
+/*
+  .iconbar {
+    width: 214px;
+  }
+*/
+
+}
+
