@@ -24,7 +24,7 @@
         <div class="cadaMensaje {% if mensaje.mensaje.estado == 1 %}{% else %}nuevo{% endif %}">
           <div class="avatar span3" style="background-image:url('/media/{{mensaje.usuario.usuario.foto}}');">
           </div>
-        {% if mensaje.mensaje.estado == 1 %}{% else %}
+        {% if mensaje.mensaje.estado == 0 and mensaje.mensaje.destinatario == usuario and mensaje.mensaje.remitente != conversador and mensaje.mensaje.remitente != conversador %}
         <div class="numeroNotif">
           1
         </div>
