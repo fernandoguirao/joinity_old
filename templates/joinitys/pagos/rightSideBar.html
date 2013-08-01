@@ -12,25 +12,40 @@
       <!-- CADA MENSAJE -->
       {% for pago in lista_pagos %}
       {% if pago.joinity.tipo == 2 %}
-            <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga_compra(carga_pago, {'pago_id':{{pago.id}}});">
+            <div class="cadaMensaje 
+            {% if pago|ha_pagado:usuario %}
+            {% else %}
+            nuevo
+            {% endif %}
+            " onclick="Dajaxice.joinitys.pagos.carga_compra(carga_pago, {'pago_id':{{pago.id}}});">
       
       {% else %}
-            <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga(carga_pago, {'pago_id':{{pago.id}}});">
-      {% endif %}
-      {% if pago|ha_pagado:usuario %}
-       pago
-      {% else %}
-      no pago
+            <div class="cadaMensaje 
+            {% if pago|ha_pagado:usuario %}
+            {% else %}
+            nuevo
+            {% endif %}
+            " onclick="Dajaxice.joinitys.pagos.carga(carga_pago, {'pago_id':{{pago.id}}});">
       {% endif %}
         <div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
         </div>
+<!--
         <div class="numeroNotif">
           
         </div>
+-->
         <p class="span9">
           <b>{{pago.concepto}}</b>
           <i>{{pago.fecha|date:'d/m/Y'}}</i>
-          <span>{{pago.get_precio_total|floatformat}}</span>
+          <span>{{pago.get_precio_total|floatformat}} € </span>
+          <span class="btn btn-mini {% if pago|ha_pagado:usuario %}
+            verde">
+            pagado
+            {% else %}
+            rojo">
+            no pagado
+            {% endif %}
+          </span>
         </p>
       </div>
       {% endfor %}
@@ -41,13 +56,23 @@
       <div class="cadaMensaje nuevo" onclick="Dajaxice.joinitys.pagos.carga_compra(carga_pago, {'pago_id':{{pago.id}}});">
         <div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
         </div>
+<!--
         <div class="numeroNotif">
           
         </div>
+-->
         <p class="span9">
           <b>{{pago.concepto}}</b> 
           <i>{{pago.fecha|date:'d/m/Y'}}</i>
-          <span>{{pago.get_precio_total|floatformat}}</span>
+          <span>{{pago.get_precio_total|floatformat}} €</span>
+          <span class="btn btn-mini {% if pago|ha_pagado:usuario %}
+            verde">
+            pagado
+            {% else %}
+            rojo">
+            no pagado
+            {% endif %}
+          </span>
         </p>
       </div>
             {% endif %}
