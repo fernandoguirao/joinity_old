@@ -25,21 +25,23 @@
     
       <!-- CADA MENSAJE -->
       <a href="/mis_tareas/{{joinity.id}}">
-      <div class="cadaMensaje nuevo">
+      <div class="cadaMensaje
       {% if joinity|visto_tarea:usuario %}
-       visto
       {% else %}
-      no visto
-      {% endif %}
+      nuevo
+      {% endif %}">
+      
       	{% if joinity.foto %}
         	<div class="avatar span3" style="background-image:url('/media/{{joinity.foto}}');">
         {% else %}
         	<div class="avatar span3" style="background-image:url('/media/defaults/avatar.jpeg');">
         {% endif %}
         </div>
+<!--
         <div class="numeroNotif">
           1
         </div>
+-->
         <p class="span9">
           <b>{{joinity.nombre}}</b>
           <i>{{joinity.sub.fecha_inicio}}</i>

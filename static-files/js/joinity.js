@@ -15,7 +15,7 @@ var iscompras = $('#header-compras');
 //======================
 function crear_categoria(data){
 	if (data.ok){
-		alert("categoria creada");
+		alert("Categoría creada");
 	}
 }
 function refresca_puntuacion(data){
@@ -31,18 +31,18 @@ function puntuar_joinity(data){
 
 function asignar_compra(data){
   if (data.ok){
-    alert("Compra Asignada");
+    alert("Compra asignada");
   }
 }
 
 function reserva_hotel(data){
   if (data.ok){
-    alert("Mandada Reserva");
+    alert("Reserva enviada");
   }
 }
 function reserva_restaurante(data){
   if (data.ok){
-    alert("Mandada Reserva");
+    alert("Reserva enviada");
   }
 }
 
@@ -85,7 +85,7 @@ function refresca_notificaciones(data){
 }
 
 function marca(data){
-  alert("Pon aqui lo que quieras Fernando");
+  /* alert("Pon aqui lo que quieras Fernando"); */
 }
 
 function busqueda(data){

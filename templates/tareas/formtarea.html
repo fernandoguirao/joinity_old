@@ -3,31 +3,39 @@
 </legend>
 <form action="" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	<div class="fieldWrapper">
+	<div class="campo fieldWrapper">
 	        <label for="id_Titulo">Título de la tarea</label>
 	        {{ formulario.nombre }}
 	</div>
-	<div class="fieldWrapper">
+	<div class="campo fieldWrapper">
 	        <label for="id_Descripcion">Descríbela brevemente</label>
 	        {{ formulario.notas }}
 	</div>
-	<div class="control-group">
+	<div class="campo control-group">
+	  <label for="id_Titulo">
+      Cuándo hay que realizarla
+    </label>
   		<div class="input-prepend input-datepicker">
     		<button type="button" class="btn"><span class="fui-calendar"></span></button>
     		{{ formulario.fecha_inicio }}
   		</div>
 	</div>
-	<div class="control-group">
+	<div class="control-group diafin">
   		<div class="input-prepend input-datepicker">
     		<button type="button" class="btn"><span class="fui-calendar"></span></button>
     		{{ formulario.fecha_fin }}
   		</div>
 	</div>
-	<div class="fieldWrapper">
+	<div class="campo fieldWrapper">
 	        <label for="id_foto">¿Quieres añadir una foto?</label>
+<!--
+	        <div class="customFileInput btn btn-azul">
+          Haz click para subir una foto
+        </div>  
+-->
 	        {{ formulario.foto }}
 	</div>
-	<div class="fieldWrapper">
+	<div class="campo fieldWrapper">
 	        <label for="id_repeticion">¿Se repetirá esta tarea?</label>
 	        {{ formulario.repeticion }}
 	</div>
