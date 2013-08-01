@@ -29,12 +29,7 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 class PerfilForm(forms.ModelForm):
-    #subcategorias=[]
-    #for subcategoria in Subcategorias.objects.all().order_by("categoria"):
-    #    subcategorias.append((str(subcategoria.id),subcategoria.categoria.nombre+"-"+subcategoria.nombre))
-    subcategorias_compras=[]
-    for subcategoria in Subcategorias_Compras.objects.all().order_by("categoria"):
-        subcategorias_compras.append((str(subcategoria.id),subcategoria.categoria.nombre+"-"+subcategoria.nombre))
+        
     dni = forms.CharField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ej: 00000001K"}))
     universidad = forms.CharField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ej: UCM"}))
     empresa = forms.CharField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Tu empresa"}))
@@ -44,7 +39,7 @@ class PerfilForm(forms.ModelForm):
     nacimiento = forms.DateField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ejemplo: 1985"}))
     cpostal = forms.IntegerField(required=False,widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Ej: 46001"}))
     intereses=forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Subcategorias.objects.all(), required=False)
-    intereses_comprar=forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=subcategorias_compras, required=False)
+    intereses_comprar=forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Subcategorias_Compras.objects.all(), required=False)
     sexo = forms.ChoiceField(choices=([("0", "Hombre"), ("1", "Mujer")]), required=True)
     ocultar_perfil = forms.ChoiceField(choices=([("0", "No"), ("1", "Si")]))
     visible = forms.ChoiceField(choices=(["1", "Si"], ["0", "No"]))
