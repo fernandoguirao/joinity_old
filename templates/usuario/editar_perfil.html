@@ -94,28 +94,40 @@
   
   <!-- SECCIÓN 2 -->
   <h4>
-    INTERESES
+    INTERESES: AFICIONES
   </h4>
   <hr>
   
   <!-- AFICIONES -->
-  <div class="row campo">
+  <div class="row campo afifav">
     <label for="viajes">
-      Tus aficiones favoritas
+      ¿Cuáles son tus aficiones favoritas?
     </label>
-    {{ perfil_form.intereses }}
     <span class="help-block">
       ¿No encuentras tu afición favorita?<br>Sé su primer fan en Joinity:<br><a href="#modal-crea-aficion" data-toggle="modal" class="btn btn-mini">crea una afición</a>
     </span>
+    <br>
+    <div class="listaf">
+      {{ perfil_form.intereses }}
+    </div>
   </div>
-  <div class="row campo">
-    <label for="compras">
-      ¿Qué tipo de productos te interesaria comprar con descuento?
+  
+  <h4>
+    INTERESES: SHOPPING
+  </h4>
+  <hr>
+  <!-- COMPRAS -->
+  <div class="row campo afifav">
+    <label for="viajes">
+      ¿Qué tipo de productos te interesa comprar?
     </label>
-    {{ perfil_form.intereses_comprar }}
     <span class="help-block">
-      ¿No encuentras alguna marca o producto?<br><a href="#modal-crea-compra" class="btn btn-mini" data-toggle="modal">dinos cuál</a>
+      ¿No encuentras un tipo de producto en concreto?<br><a href="#modal-crea-compra" data-toggle="modal" class="btn btn-mini">dinos cuál es</a>
     </span>
+    <br>
+    <div class="listaf">
+    {{ perfil_form.intereses_comprar }}
+    </div>
   </div>
   <div class="row campo">
     <label>

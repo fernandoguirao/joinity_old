@@ -8,12 +8,11 @@
         Crea una nueva afición
       </h4>
       <hr>
+        <form id="formulario_categoria" method="post">
+          {% csrf_token %}
         <label for="id_categoria">
           ¿A qué categoría pertenece?
         </label>
-        <form id="formulario_categoria" method="post">
-          {% csrf_token %}
-        
         <select id="id_categoria" name="categoria">
         <option selected="selected" value="">---------</option>
         

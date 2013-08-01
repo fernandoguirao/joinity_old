@@ -76,7 +76,7 @@ class Puntuar(forms.ModelForm):
         return nueva_puntuacion
         # pago.email = self.cleaned_data["email"]
 class Buscar(forms.Form):
-    input = forms.CharField(widget=forms.TextInput(attrs={"class":"clase","placeholder":"Nombre de usuario"}))
+    input = forms.CharField(widget=forms.TextInput(attrs={"class":"inputNormal input-small","placeholder":"Busca a un usuario"}))
     filtro = forms.ChoiceField(choices=([("1", "Nombre"), ("2", "Ubicación"), ("3", "Fecha de nacimiento"), ("4", "Email"), ("5", "Intereses")]), widget=forms.Select(attrs={"class":"patata"}))
     
     
