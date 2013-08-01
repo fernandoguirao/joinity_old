@@ -1,0 +1,69 @@
+<!-- MODAL PARA CREAR CATEGORÍAS DE AFICIONES -->
+<div id="modal-crea-pago" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <div class="modal-body">
+
+    <div id="form-modal">
+      <h4>
+        Crea un gasto, repártelo y recibe el pago
+      </h4>
+      <hr>
+        <form id="formulario_categoria" method="post">
+          <h5>
+            1. Datos del pago
+          </h5>
+          {% csrf_token %}
+        <label for="id_categoria">
+          Tu cuenta de paypal
+        </label>
+        <input id="id_correo" class="inputNormal input-small" name="correo" type="text" />
+          <span class="help-block">
+            Donde recibirás el dinero una vez te paguen.
+          </span>
+        <label for="id_concepto">
+          Concepto del pago/ nombre del producto
+        </label>
+        <input id="id_concepto" class="inputNormal input-small" name="concepto" type="text" />
+        <!-- <input id="id_producto" name="producto" type="text" /> -->
+        <span class="help-block">
+          Asígnale un concepto reconocible, que los joiners a quienes se asigne sepan reconocer fácilmente.
+        </span>
+        <label for="id_precion">
+          Precio del producto (a repartir)
+        </label>
+        <input id="id_precio" class="inputNormal input-small" name="precio" type="text" />
+        <span class="help-block">
+          El precio se dividirá entre todas las personas a las que asignes el pago.
+        </span>
+        <label for="id_concepto">
+          Comentarios (no obligatorio)
+        </label>
+        <input id="id_descripcion" class="inputNormal input-small" name="descripcion" type="text" />
+        <span class="help-block">
+          Por si quieres añadir algún dato extra.
+        </span>
+        <h5>
+          2. A quiénes quieres asignar el pago
+        </h5>
+        <table class="table table-striped">
+          <tr>
+            <td>
+              <div class="thumbAmigo" style="background-image:url('/media/'); display:none;">
+              </div>
+              <a class="color oscuro" href="/usuario/">
+                Nombre y apellido
+              </a>
+            </td>
+            <td>
+              <a href="/amigo/eliminar/{{amigo.amigo.id}}" class="btn btn-mini rojo">
+                Asígnale el pago
+              </a>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" class="btn btn-block amarillo btn-embossed" value="Adelante, quiero asignar este pago">
+      </form>
+    </div>
+  </div>
+</div>
+<!-- FIN DE MODAL -->
