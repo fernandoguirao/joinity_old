@@ -36,6 +36,10 @@ def inbox(request):
             todos_los_mensajes.append(nuevo)
         conversador=get_object_or_404(User, pk=usuarios[0].id)    
         lista_mensajes=Mensajes.objects.raw("SELECT * FROM Mensajes WHERE (destinatario_id="+str(request.user.id)+" AND remitente_id="+str(conversador.id)+") OR (remitente_id="+str(request.user.id)+" AND destinatario_id="+str(conversador.id)+") ORDER BY id DESC;")
+        for msg in lista_mensajes:
+            if msg.estado == 0 and msg.destinatario==request.user:
+                msg.estado=1
+                msg.save()  
         formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
     except:
         todos_los_mensajes=False
@@ -67,6 +71,11 @@ def chat(request, user_id):
             todos_los_mensajes.append(nuevo)
         conversador=get_object_or_404(User, pk=user_id)
         lista_mensajes=Mensajes.objects.raw("SELECT * FROM Mensajes WHERE (destinatario_id="+str(request.user.id)+" AND remitente_id="+str(conversador.id)+") OR (remitente_id="+str(request.user.id)+" AND destinatario_id="+str(conversador.id)+") ORDER BY id DESC;")
+        for msg in lista_mensajes:
+            if msg.estado == 0 and msg.destinatario==request.user:
+                msg.estado=1
+                msg.save()
+            
         formulario = Mandar_Mensaje_Form(instance=request.user.usuario, user=request.user, destinatario=conversador)
     except:
         todos_los_mensajes=False

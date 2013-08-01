@@ -29,5 +29,8 @@ def get_fecha(value):
     return value.fecha
 
 @register.filter(name='leido')
-def get_leido(value):
-    return False
+def get_leido(value, arg):
+    if value.estado==0 and value.destinatario == arg:
+        return True
+    else:
+        return False
