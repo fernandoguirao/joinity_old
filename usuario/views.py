@@ -14,7 +14,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from joinity.settings import LOCALHOST
-from categorias.models import Categorias_Compras, Subcategorias
+from categorias.models import Subcategorias_Compras, Subcategorias
 
 @login_required
 def ver_perfil(request, user_id):
@@ -138,7 +138,7 @@ def editar_perfil(request):
         user_form = UserForm(instance=request.user)
         perfil_form = PerfilForm(instance=request.user.usuario)
     context={ 'user_form': user_form, 'perfil_form': perfil_form, "pagina":"editar" , "usuario":request.user, 
-             "subcategorias":Subcategorias.objects.all().order_by("categoria"), "categorias_compras":Categorias_Compras.objects.all()}
+             "subcategorias":Subcategorias.objects.all().order_by("categoria"), "subcategorias_compras":Subcategorias_Compras.objects.all().order_by("categoria")}
     return render_to_response('usuario/perfil.html', context, context_instance=RequestContext(request))
 def solicitar(request):
     nombre=request.GET.get("solicitaNombre", "")
