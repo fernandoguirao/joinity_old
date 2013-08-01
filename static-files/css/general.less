@@ -2675,11 +2675,8 @@ input[type="text"] {
         }
       }
       a.adelante {
-        padding: 9px 12px 8px 12px!important;
+        padding: 9px 12px 8px 12px;
         min-height: 23px!important;
-        &.arest {
-          display:none;
-        }
       }
     }
   }
@@ -2708,6 +2705,7 @@ input[type="text"] {
   margin-top: -42px;
   margin-left: 127px;
 }
+
   .reserva .input-small {
     margin-left:-206px;
   }
@@ -2748,6 +2746,7 @@ input[type="text"] {
       text-align: center!important;
     }
   }
+  
   .carousel .item {
       width: 100%; /*slider width*/
       max-height: 700px; /*slider height*/
@@ -5618,28 +5617,17 @@ height: 300px;
       }
     }
     
-/*
-<!----------------->
-<!--! OTROS COLORES   -->
-<!----------------->
-*/
-/*
-.estilos();
+.botonRestaurante.adelante {
+  top:3px!important;
+  padding:12px 12px 13px!important;
+}
 
-  
-  .isFamily {
-    .estilos(@elcolor:@verde);
-  }
-  .isCompras {
-    .estilos(@elcolor:@rojo);
-  }
-  
-  .isFamily,.isCompras {
-    .span2.panelIzquierdo {
-      margin-top: 23px;
-    }
-  }
+.botonHotel.adelante {
+  padding: 9px 12px 6px !important;
+  top: -6px !important;
+}
 
 
-*/
-
+.arest {
+display:none;
+}

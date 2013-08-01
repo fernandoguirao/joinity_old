@@ -378,9 +378,6 @@ $("select[name='herolist'],select[name='listahoras'],select[name='comprar2'],sel
 var seleccionbtn = $('.primerselect .dropdown-menu a');
 var seleccionPrim = $(".primerselect button").find('span');
 var selector = $('.selectoresgrupo');
-var selectreserva = $('.reserva .span3 .btn');
-var elrestaurante = $('.btn.btn-small.amarillo.venga.adelante');
-var elhotel = $('.btn.btn-small.amarillo.vamos.adelante.arest');
 
 seleccionbtn.click(function(){
   if($(this).text()=="Comprar") {
@@ -398,15 +395,23 @@ seleccionbtn.click(function(){
   }
 });
 
+var selectreserva = $('.selectreserva .dropdown-menu a');
+var elrestaurante = $('.botonRestaurante');
+var elhotel = $('.botonHotel');
+
 selectreserva.click(function(){
   if($(this).text()=="un restaurante") {
-    elrestaurante.fadeTo('slow',0);
-    elhotel.fadeTo('slow',1);
+    elrestaurante.show();
+    elhotel.hide();
   } else if ($(this).text()=="un hotel") {
-    elrestaurante.fadeTo('slow',1);
-    elhotel.fadeTo('slow',0);
+    elrestaurante.hide();
+    elhotel.show();
   }
 })
+
+if (ishome.length > 0) {
+  $('.primerselect ul li:first-child,.segundoselect ul li:first-child,.tercerselect ul li:first-child').children().trigger('click');
+}
 
 /* Fin selector home */
 

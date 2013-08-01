@@ -9,7 +9,7 @@
     <form action="/joinity/filtrar/" method="GET">
     <!-- CAMPO SELECT -->
     <div class="campo">
-      <select name="herolist" value="X-Men" class="span3 primerselect">
+      <select name="herolist" value="Comprar" class="span3 primerselect">
         <option value="0" selected="selected">Comprar</option>
         <option value="1">Practicar una afición</option>
         <option value="2">Realizar una reserva</option>
@@ -25,7 +25,7 @@
       </p>
       <!-- CAMPO SELECT -->
       <div class="campo">
-        <select name="comprar2" value="X-Men" class="span3">
+        <select name="comprar2" value="X-Men" class="span3 segundoselect">
           <option value="1" selected="selected">tecnológico</option>
           <option value="2">deportivo</option>
           <option value="3">decorativo</option>
@@ -37,7 +37,7 @@
       </p>
       <!-- CAMPO SELECT -->
       <div class="campo">
-        <select name="comprar3" value="X-Men" class="span3">
+        <select name="comprar3" value="X-Men" class="span3 tercerselect">
           <option value="0" selected="selected">200 o menos</option>
           <option value="1">200-400</option>
           <option value="2">400-1000 </option>
@@ -91,17 +91,17 @@
       </p>
       <!-- CAMPO SELECT -->
       <div class="campo">
-        <select name="reserva2" value="X-Men" class="span3">
+        <select name="reserva2" value="X-Men" class="span3 {% if usuario %}selectreserva{% endif %}">
           <option value="0" selected="selected">un hotel</option>
           <option value="1">un restaurante</option>
         </select>
       </div>
       <!-- FIN DE SELECT -->
       {% if usuario %}
-      <a href="#modalReservasHotel" class="btn btn-small amarillo venga adelante" data-toggle="modal">
+      <a href="#modalReservasHotel" class="btn btn-small amarillo botonHotel adelante" data-toggle="modal">
         Adelante
       </a>
-      <a href="#modalReservasRestaurante" class="btn btn-small amarillo vamos adelante arest" data-toggle="modal">
+      <a href="#modalReservasRestaurante" class="btn btn-small amarillo botonRestaurante adelante arest" data-toggle="modal">
         Adelante
       </a>
       {% else %}
