@@ -18,6 +18,7 @@
     <!-- TODOS LOS MENSAJES -->
     {% load mensajes_filters %}
     <div class="todosMensajes">
+    {% if todos_los_mensajes %}
       {% for mensaje in todos_los_mensajes %}
       <!-- CADA MENSAJE -->
       <a href="/mensaje/inbox/{{mensaje.usuario.id}}">
@@ -50,6 +51,7 @@
       </a>
       <!-- FIN DE CADA MENSAJE -->
     {% endfor %}
+    {% endif %}
     </div>
     <!-- FIN DE TODOS LOS MENSAJES -->
   </div>
