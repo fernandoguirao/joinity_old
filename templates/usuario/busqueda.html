@@ -1,0 +1,29 @@
+ 			<table class="table table-striped invipar">
+         	 <tr>
+             <th>Nombre</th>
+              <th class="pequena"></th>
+            </tr>
+            {% for resultado in usuarios %}
+            <tr>
+              <td>
+                  <a href="/usuario/{{resultado.id}}">
+                    <div class="thumb" style="background-image:url('/media/{{resultado.usuario.foto}}');">
+                    </div>
+                    {{resultado.first_name}} {{resultado.last_name}}
+                  </a>
+              </td>
+              <td>
+              {% if resultado in usuario.usuario_amigos.amigo.all %}
+              <div class="btn btn-mini grisclaro">
+                  Ya agregado
+                </div>
+                
+              {% else %}
+                <a href="/amigo/invitar/{{resultado.id}}" class="btn btn-mini">
+                  Agregar amigo
+                </a>
+               {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </table>

@@ -21,7 +21,7 @@
               </a>
             </td>
             <td>
-              <a href="" class="color oscuro">
+              <a href="/amigo/eliminar/{{amigo.amigo.id}}" class="color oscuro">
                 Eliminar amigo
               </a>
             </td>
@@ -35,41 +35,17 @@
       <div class="tab-pane" id="buscanuevoscontactos">
         <div id="form-modal">
           {% if busqueda %}
-          <form action="/usuario/buscar/" method="get">
+          <form id="formulario_busqueda_usuarios" method="get">
             <label for="id_input">Busca aquí</label>{{busqueda.input }}
-            <label for="id_input">¿Qué filtro quieres aplicar?</label>{{ busqueda.filtro }}
-            <input type="submit" value="Busca nuevos amigos en Joinity" class="btn buscarAmig btn-embossed" />
+            <label for="id_filtro">¿Qué filtro quieres aplicar?</label>{{ busqueda.filtro }}
+            <input type="button" value="Busca nuevos amigos en Joinity" class="btn buscarAmig btn-embossed" onclick="Dajaxice.usuario.buscar_amigos(busqueda_usuarios,{'filtro': $('#id_filtro').val(), 'input_form': $('#id_input').val()});"/>
           </form>
           {% endif %}
 
           <!-- RESULTADOS DE LA BÚSQUEDA -->
-          
-          <table class="table table-striped invipar">
-            <tr>
-              <th>Nombre</th>
-              <th class="pequena"></th>
-            </tr>
-            <tr>
-              <td>
-                  <a href="perfildelusuario">
-                    <div class="thumb" style="background-image:url('/media/defaults/avatar.jpeg');">
-                    </div>
-                    Nombre del usuario
-                  </a>
-              </td>
-              <td>
-                <a href="" class="btn btn-mini">
-                  Agregar amigo
-                </a>
-                <!--
-                O SI YA ESTÁ AGREGADO
-                <div class="btn btn-mini grisclaro">
-                  Ya agregado
-                </div>
-                -->
-              </td>
-            </tr>
-          </table>
+          <div id="resultados_busqueda_amigos">
+         
+          </div>
           <!-- FIN DE RESULTADOS -->
 
         </div>
