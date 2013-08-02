@@ -85,7 +85,9 @@
            {% for lugar in family.lugares.all|slice:":1" %}
            En {{lugar.lugar}}, 
            {% endfor %}
+           {% if family.precio %}
            por {{family.precio|floatformat}} €
+           {% endif %}
            
           </p>
         </div>

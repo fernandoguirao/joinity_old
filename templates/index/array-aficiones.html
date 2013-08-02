@@ -23,7 +23,7 @@
     <div class="contenedor-filtro">
       <div class="container">
 <!--         <div class="filtros activo" onclick="Dajaxice.joinitys.filtrar(filtrar, {'categoria':3, 'order':1},filtrar(this));"> -->
-        <div class="filtros activo" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':1})">
+        <div id="boton_aficiones" class="filtros activo" onclick="identificador=this; cargarfiltro(); Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':1})">
 
           <i class="iconos">
             i
@@ -81,7 +81,9 @@
           {% for lugar in aficion.lugares.all|slice:":1" %}
           	En {{lugar.lugar}},
           {% endfor %}
+          {% if aficion.precio %}
            por {{aficion.precio|floatformat}} €
+           {% endif %}
           </p>
         </div>
         <!-- HOVER -->
@@ -120,7 +122,7 @@
       <div class=linea-puntos>
       </div>
       
-      <button onclick="identificador=this;cargador(); Dajaxice.joinitys.cargar_mas(cargar_mas, {'categoria':3, 'n':n, 'order':order});" class="btn amarillo btn-embossed">Quiero ver más</button>
+      <button onclick="identificador=this;cargador(); Dajaxice.joinitys.cargar_mas(cargar_mas, {'categoria':3, 'n':n, 'order':order, 'aficion_id':$('#select_aficion').val(), 'lugar':$('#id_lugar').val()});" class="btn amarillo btn-embossed">Quiero ver más</button>
     </div>
   </div>
 </div>

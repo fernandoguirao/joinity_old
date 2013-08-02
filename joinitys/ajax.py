@@ -1,6 +1,6 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from models import Joinitys, Usuarios_Joinity, Actualizaciones, Puntuaciones
+from models import Joinitys, Usuarios_Joinity, Actualizaciones, Puntuaciones, Lugares_Joinity
 from django.template.loader import render_to_string
 from forms import FormTexto, FormFoto, FormComentario, FormVotacion
 from django.template import RequestContext
@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from joinitys.pagos.models import Pagos, Usuarios_Pagos
 
 @dajaxice_register
-def cargar_mas(request, categoria, n, order):
+def cargar_mas(request, categoria, n, order, aficion_id=None, categoria_compras_id=None, lugar=None, precio=None):
     #lista_aficiones=Joinitys.objects.filter(tipo="3")[n:n+8]
     if order==1:
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-id")[n:n+8]
@@ -23,12 +23,29 @@ def cargar_mas(request, categoria, n, order):
             lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__in=request.user.usuario.intereses.all).order_by("-id")[n:n+8]
         elif categoria==2:
             lista_joinitys=Joinitys.objects.filter(tipo=categoria, compras__subcategoria__in=request.user.usuario.intereses_compras.all).order_by("-id")[n:n+8]
+    elif order==4:
+        if categoria==3:
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__categoria_id=aficion_id, lugares__lugar__icontains=lugar).order_by("-id")[n:n+8]
+        elif categoria==2:
+                    if precio=='0':
+                        precio_max=200
+                        precio_min=0
+                    elif precio=='1':
+                        precio_min=200
+                        precio_max=400
+                    elif precio=='2':
+                        precio_min=400
+                        precio_max=1000
+                    elif precio=='3':
+                        precio_min=1000
+                        precio_max=10000000
+                    lista_joinitys=Joinitys.objects.filter(tipo=categoria, compras__subcategoria__categoria_id=categoria_compras_id, precio__gte=precio_min, precio__lte=precio_max).order_by("-id")[n:n+8]
     joinitys=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()+n
     return simplejson.dumps({'joinitys':joinitys, 'n':n, 'categoria':categoria})
 
 @dajaxice_register
-def filtrar(request, categoria, order):
+def filtrar(request, categoria, order, aficion_id=None, lugar=None, categoria_compras_id=None, precio=None):
     if order==1:
         lista_joinitys=Joinitys.objects.filter(tipo=categoria).order_by("-id")[:8]
     elif order==2:
@@ -38,6 +55,24 @@ def filtrar(request, categoria, order):
             lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__in=request.user.usuario.intereses.all).order_by("-id")[:8]
         elif categoria==2:
             lista_joinitys=Joinitys.objects.filter(tipo=categoria, compras__subcategoria__in=request.user.usuario.intereses_compras.all).order_by("-id")[:8]
+    elif order==4:
+        if categoria==3:
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, aficiones__subcategoria__categoria_id=aficion_id, lugares__lugar__icontains=lugar).order_by("-id")[:8]
+        elif categoria==2:
+            print precio
+            if precio=='0':
+                precio_max=200
+                precio_min=0
+            elif precio=='1':
+                precio_min=200
+                precio_max=400
+            elif precio=='2':
+                precio_min=400
+                precio_max=1000
+            elif precio=='3':
+                precio_min=1000
+                precio_max=10000000
+            lista_joinitys=Joinitys.objects.filter(tipo=categoria, compras__subcategoria__categoria_id=categoria_compras_id, precio__gte=precio_min, precio__lte=precio_max).order_by("-id")[:8]
     joinitys=render_to_string('index/ajax_lista_joinitys.html', {"lista_joinitys":lista_joinitys, "order":order, "cinco":[1,2,3,4,5]})
     n=lista_joinitys.count()
     return simplejson.dumps({'joinitys':joinitys, 'n':n, 'order':order, 'categoria':categoria})
