@@ -529,21 +529,28 @@ var votaform = $('.votaform');
 var escribeform = $('.escribeform');
 var formupdate = $('#formularios-update');
 
+votaform.css({'display':'none'});
+  
 escribemens.click(function(){
+
   $(this).addClass("activado");
   iniciavot.removeClass("activado");
-  votaform.animate({'top':0,'opacity':0});
+  votaform.animate({'top':0,'opacity':0},function(){
+      votaform.css({'display':'none'});
+  });
   formupdate.animate({'height':56});
   escribeform.animate({'top':0,'opacity':1});
 });
 
 iniciavot.click(function(){
+  votaform.css({'display':'inherit'});
   $(this).addClass("activado");
   escribemens.removeClass("activado");
   escribeform.animate({'top':155,'opacity':0});
   votaform.animate({'top':-92,'opacity':1});
   formupdate.animate({'height':298+jei});
 });
+
 
 /* DUPLICAMOS FORMULARIOS */
 
