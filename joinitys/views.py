@@ -97,6 +97,12 @@ def filtro(request):
 def ver(request, joinity_id):
     # What you want the button to do.
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
+    
+    if Notificaciones.objects.filter(usuario=request.user, tipo=1, id_notificacion=joinity.id).exists():
+        notificacion=Notificaciones.objects.get(usuario=request.user, tipo=1, id_notificacion=joinity.id)
+        notificacion.estado=1
+        notificacion.save()
+    
     soy=joinity.que_soy(request.user)
     frmpago=PagosForm(joinity=joinity, user=request.user)
     mis_tareas=Tareas.objects.filter(joinity=joinity, usuarios_tarea__usuario=request.user)
