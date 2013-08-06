@@ -229,7 +229,7 @@ def invitar_usuario(request, joinity_id, usuario_id):
         notificacion=Notificaciones(usuario=usuario, tipo=1, id_notificacion=joinity.id)
         notificacion.save()
         if not LOCALHOST:
-            send_mail('INVITACION A JOINITY ', "Se le ha invitado al joinity\nhttp://prueba1.bueninvento.net/joinity/ver/" + str(joinity.id), 'joinity@joinity.com',
+            send_mail('INVITACION A JOINITY ', "Se le ha invitado al joinity\nhttp://joinity.net/joinity/ver/" + str(joinity.id), 'joinity@joinity.com',
                               [usuario.email], fail_silently=False)
     return HttpResponseRedirect(request.GET["next"])
 
