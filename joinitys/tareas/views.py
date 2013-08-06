@@ -52,12 +52,13 @@ def crear(request, joinity_id):
     joinity = get_object_or_404(Joinitys, pk=joinity_id)
     if request.POST:
         formulario=Crear(request.POST, request.FILES, user=request.user, joinity=joinity)
-        if formulario.is_valid:
+        if formulario.is_valid():
             tarea=formulario.save()
             tarea=get_object_or_404(Tareas, pk=tarea.id)
             u=Usuarios_Tarea(usuario_id=request.user.id, tarea=tarea, estado=2)
             u.save()
             return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/tarea/crear/2/"+str(tarea.id))
+            
 
     else:
         formulario=Crear(instance=request.user, user=request.user, joinity=joinity)

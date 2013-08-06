@@ -2,15 +2,25 @@
   1. Datos de la tarea
 </legend>
 <form action="" method="post" enctype="multipart/form-data">
+  
 	{% csrf_token %}
+ 
 	<div class="campo fieldWrapper">
+ {% for error in formulario.nombre.errors %}
+      ERROR: {{error}}
+    {% endfor %}
 	        <label for="id_Titulo">Título de la tarea</label>
 	        {{ formulario.nombre }}
 	</div>
+    
 	<div class="campo fieldWrapper">
+ {% for error in formulario.notas.errors %}
+      ERROR: {{error}}
+    {% endfor %}
 	        <label for="id_Descripcion">Descríbela brevemente</label>
 	        {{ formulario.notas }}
 	</div>
+    
 	<div class="campo control-group">
 	  <label for="id_Titulo">
       Cuándo hay que realizarla
