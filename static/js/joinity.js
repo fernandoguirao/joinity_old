@@ -270,7 +270,18 @@ function filtrar(data){
     n_family=data.n;
     order_family=data.order;
   }
-  var contain = $(identificador);
+  if (data.order==4){
+	  if (data.categoria==3){
+		  var contain=$('#boton_aficiones');
+	  }
+	  else{
+		  var contain=$('#boton_compras');
+	  }
+  }
+  else{
+	  var contain = $(identificador);
+  }
+  
   contain.addClass('activo');
   contain.parent().parent().parent().children('.contenedor-los-joinitys').html(data.joinitys);
   $('#fadingBarsG',identificador).remove();
@@ -475,9 +486,12 @@ donutfunction();
 if(ishome.length > 0) {
   $(".aficat").click(function(){
     $('html,body').animate({scrollTop:$(".faficiones").offset().top},1200);
+    Dajaxice.joinitys.filtrar(filtrar,{'categoria':3, 'order':4, 'aficion_id':$('#select_aficion').val(), 'lugar':$('#id_lugar').val()});
   });
   $(".compracat").click(function(){
     $('html,body').animate({scrollTop:$(".fcompras").offset().top},1200);
+    Dajaxice.joinitys.filtrar(filtrar,{'categoria':2, 'order':4, 'categoria_compras_id':$('#id_compra_categoria').val(), 'precio':$('#id_precio').val()});
+
   });
   $(".famcat").click(function(){
     $('html,body').animate({scrollTop:$(".fandfriends").offset().top},1200);
@@ -529,21 +543,28 @@ var votaform = $('.votaform');
 var escribeform = $('.escribeform');
 var formupdate = $('#formularios-update');
 
+votaform.css({'display':'none'});
+  
 escribemens.click(function(){
+
   $(this).addClass("activado");
   iniciavot.removeClass("activado");
-  votaform.animate({'top':0,'opacity':0});
+  votaform.animate({'top':0,'opacity':0},function(){
+      votaform.css({'display':'none'});
+  });
   formupdate.animate({'height':56});
   escribeform.animate({'top':0,'opacity':1});
 });
 
 iniciavot.click(function(){
+  votaform.css({'display':'inherit'});
   $(this).addClass("activado");
   escribemens.removeClass("activado");
   escribeform.animate({'top':155,'opacity':0});
   votaform.animate({'top':-92,'opacity':1});
   formupdate.animate({'height':298+jei});
 });
+
 
 /* DUPLICAMOS FORMULARIOS */
 
