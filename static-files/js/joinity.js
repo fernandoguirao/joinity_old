@@ -213,6 +213,15 @@ function postear(data){
     Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
   }
 }
+function postear_evento(data){
+	  if (data.error){
+	    $("#mensaje_error").append("<p><b>"+data.error+"</b></p>");
+	  }
+	  else{
+	    $("#appendedInputButton-02").val("");
+	    Dajaxice.joinitys.eventos.refrescar(refrescar_joinitys, {'evento_id':data.evento_id})
+	  }
+	}
 function comentar(data){
 	  if (data.error){
 		  alert("No se pudo procesar la solicitud");
@@ -222,7 +231,15 @@ function comentar(data){
 	    Dajaxice.joinitys.refrescar(refrescar_joinitys, {'joinity_id':data.joinity_id})
 	  }
 	}
-
+function comentar_evento(data){
+	  if (data.error){
+		  alert("No se pudo procesar la solicitud");
+	  }
+	  else{
+	    $(".inputcomentario").val("");
+	    Dajaxice.joinitys.eventos.refrescar(refrescar_joinitys, {'evento_id':data.evento_id})
+	  }
+	}
 function refrescar_joinitys(data){
   $("#cronologia").html(data.muro);
   timeLineDinamica();

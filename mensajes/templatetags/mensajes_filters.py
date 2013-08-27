@@ -28,6 +28,12 @@ def get_mensaje(value):
 def get_fecha(value):
     return value.fecha
 
+@register.filter(name="n_nuevos")
+def n_nuevos(value, arg):
+    n=Mensajes.objects.filter(destinatario_id=value, remitente_id=arg, estado=0).count()
+    n=n+Mensajes.objects.filter(destinatario_id=arg, remitente_id=value, estado=0).count()
+    return n
+
 @register.filter(name='leido')
 def get_leido(value, arg):
     if value.estado==0 and value.destinatario == arg:

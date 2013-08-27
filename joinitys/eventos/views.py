@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, render
 from joinitys.models import Joinitys, Usuarios_Joinity
-from forms import Crear_Evento, Anyadir_Lugar
+from forms import Crear_Evento, Anyadir_Lugar, FormTexto, FormComentario
 from models import Eventos, Usuarios_Evento, Lugares_Evento
 from django.contrib.auth.models import User
 from notificaciones.models import Notificaciones
@@ -15,7 +15,10 @@ def ver(request, joinity_id, evento_id):
     notificacion=Notificaciones.objects.get_or_create(usuario=request.user, tipo=2, id_notificacion=evento.id)
     notificacion.estado=1
     notificacion.save()
-    context={"evento": evento, "lista_admins": lista_admins}
+    
+    form = FormTexto(instance=request.user, usuario=request.user, evento=evento)
+
+    context={"evento": evento, "lista_admins": lista_admins, "form": form}
     return render_to_response("ver_evento.html", context)
 
 @login_required
@@ -100,8 +103,12 @@ def ver_mi_evento(request, evento_id):
     consulta="SELECT * FROM Eventos WHERE id IN ("+subconsulta+")"
     eventos=Eventos.objects.raw(consulta)
     single=get_object_or_404(Eventos, pk=evento_id)
+    comentar=FormComentario(usuario=request.user, actualizacion=0)
+
     notificacion=Notificaciones.objects.get_or_create(usuario=request.user, tipo=2, id_notificacion=single.id)
     notificacion[0].estado=1
     notificacion[0].save()
-    context={'eventos':eventos, "pagina":"misEventos", "single":single, "usuario":request.user}
+    form = FormTexto(instance=request.user, usuario=request.user, evento=single)
+
+    context={'eventos':eventos, "pagina":"misEventos", "single":single, "usuario":request.user, "form":form, "comentar":comentar}
     return render(request, 'eventos/index.html', context)

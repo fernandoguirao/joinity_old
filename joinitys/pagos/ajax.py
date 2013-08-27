@@ -27,7 +27,7 @@ def carga(request, pago_id):
         "currency_code": "EUR",  # currency
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
-    context={"pago":pago, "form":form.render()}
+    context={"pago":pago, "form":form.render(), "usuario":request.user}
     pagina_pago=render_to_string("joinitys/pagos/ajax_ver_pago.html", context)
     return simplejson.dumps({"pago":pagina_pago})
 @dajaxice_register

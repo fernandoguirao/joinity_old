@@ -64,7 +64,18 @@
     <a href="#modalPagar" data-toggle="modal" class="btn btn-big btn-block btn-embossed">
       Pagar ahora
     </a>
-    
+   Panel de administrador
+    {% if pago.creador == usuario %}
+     {% for usuario_asignado in pago.usuarios_asignados.all %}
+      <br>{{usuario_asignado.usuario.first_name}} {{usuario_asignado.usuario.last_name}}-
+      {% if usuario_asignado.estado == 0 %}
+      NO PAGADO
+      {% else %}
+      PAGADO
+      {% endif %}
+     {% endfor %}
+     <br>
+    {% endif %}
     <!-- MODAL PAGAR -->
     <div id="modalPagar" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

@@ -107,7 +107,7 @@ class Pagos(models.Model):
                 return True
 class Usuarios_Pagos(models.Model):
     usuario = models.ForeignKey(User)
-    pago = models.ForeignKey(Pagos)
+    pago = models.ForeignKey(Pagos, related_name="usuarios_asignados")
     estado = models.IntegerField(default=0)
     class Meta:
         db_table = "Usuarios_Pagos"

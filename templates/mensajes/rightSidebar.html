@@ -27,7 +27,7 @@
           </div>
         {% if mensaje.mensaje.estado == 0 and mensaje.mensaje.destinatario == usuario and mensaje.mensaje.remitente != conversador and mensaje.mensaje.remitente != conversador %}
         <div class="numeroNotif">
-          1
+          {{mensaje.usuario.id|n_nuevos:usuario.id}}
         </div>
         {% endif %}
         <p class="span9">

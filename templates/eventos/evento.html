@@ -44,19 +44,23 @@
 {% endfor %}
 
   <div id="escribe-main">
+  
+  <form class="escribeform prinform" action="" method="post" enctype="multipart/form-data" id="formulario_posteo">
+  {% csrf_token %}
    <div class="escribe-input">
     <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
     </div>
     
     <div class="input-append">
-      <input id="appendedInputButton-02" class="span2" type="text" placeholder="Escribe algo.">
+      {{form.contenido}}
       <div id="losbotones">
-        <button class="btn btn-small" type="button">
+        <button class="btn btn-small" type="button" onclick="Dajaxice.joinitys.eventos.postear(postear_evento, {'formulario':$('#formulario_posteo').serializeObject(), 'evento_id':{{single.id}}});">        
           Comentar
         </button>
       </div>
     </div>
    </div>
+   </form>
   </div>
   </div>
   <div id="cronologia">
@@ -64,71 +68,9 @@
     </div>
 
     <!-- EL CHAT -->
-    
-<!-- ACTUALIZACIÓN: TEXTO -->
-<div class="actualizacion texto">
-  <div class="clasificacion">
-    <div class="icono">
-      <i class="iconos">
-        t
-      </i>
-    </div>
-    <div class="fecha etiqueta">
-      12 jun
-    </div>
-  </div>
-  <div class="continente">
-    <div class="creditos">
-      <p class="smallTxt">
-        <a href="">
-          Fernando Guirao
-        </a>
-        ha dicho</a>
-      </p>
-    </div>
-    <div class="contenido">
-      <!-- CONTENIDO ESPECÍFICO -->
-        <div class="texto">
-          <p>Hola qué tal</p>
-        </div>
-      <!-- FIN CONTENIDO ESPECÍFICO -->
-      {% include "single/comentarios.html" %}
-    </div>
-  </div>
-</div>
-<!-- FIN ACTUALIZACIÓN: TEXTO-->
-<!-- ACTUALIZACIÓN: TEXTO -->
-<div class="actualizacion texto">
-  <div class="clasificacion">
-    <div class="icono">
-      <i class="iconos">
-        t
-      </i>
-    </div>
-    <div class="fecha etiqueta">
-      12 jun
-    </div>
-  </div>
-  <div class="continente">
-    <div class="creditos">
-      <p class="smallTxt">
-        <a href="">
-          Fernando Guirao
-        </a>
-        ha dicho</a>
-      </p>
-    </div>
-    <div class="contenido">
-      <!-- CONTENIDO ESPECÍFICO -->
-        <div class="texto">
-          <p>Hola qué tal</p>
-        </div>
-      <!-- FIN CONTENIDO ESPECÍFICO -->
-      {% include "single/comentarios.html" %}
-    </div>
-  </div>
-</div>
-<!-- FIN ACTUALIZACIÓN: TEXTO-->
+    {% for contenido in single.actualizaciones.all|dictsortreversed:"id" %}
+   {% include "eventos/updateTexto.html" %}
+  {% endfor %}
 
   </div>
  {% endif %}

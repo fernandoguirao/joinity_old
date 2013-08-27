@@ -30,3 +30,22 @@ class Lugares_Evento(models.Model):
     lugar=models.TextField()
     class Meta:
         db_table="Lugares_Eventos"
+class Actualizaciones_Eventos(models.Model):
+    evento=models.ForeignKey(Eventos, related_name="actualizaciones")
+    tipo=models.IntegerField()
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
+    class Meta:
+        db_table="Actualizaciones_Eventos"
+class Texto_Evento(models.Model):
+    usuario=models.ForeignKey(User)
+    actualizacion=models.OneToOneField(Actualizaciones_Eventos, related_name="texto")
+    contenido=models.TextField(max_length=400)
+    class Meta:
+        db_table="Texto_Eventos"
+class Comentario_Evento(models.Model):
+    usuario=models.ForeignKey(User)
+    actualizacion=models.ForeignKey(Actualizaciones_Eventos, related_name="comentarios")
+    comentario=models.TextField(max_length=400)
+    fecha = models.DateTimeField(auto_now_add=True, blank=True)
+    class Meta:
+        db_table="Comentarios_Actualizaciones_Eventos"

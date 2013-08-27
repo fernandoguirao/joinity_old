@@ -1,0 +1,40 @@
+<!-- ACTUALIZACIÓN: TEXTO -->
+<div class="actualizacion texto">
+  <div class="clasificacion">
+    <div class="icono">
+      <i class="iconos">
+        t
+      </i>
+    </div>
+    <div class="fecha etiqueta">
+
+       {% load actualizaciones_filters %}
+      
+        {% if contenido.fecha|es_hoy %}
+         {{contenido.fecha|date:'H:i'}}
+        {% else %}
+         {{contenido.fecha|date:'d/m/y'}}
+        {% endif %}
+
+    </div>
+  </div>
+  <div class="continente">
+    <div class="creditos">
+      <p class="smallTxt">
+        <a href="/usuario/{{comentario.usuario.id}}">
+          {{contenido.texto.usuario.first_name}} {{contenido.texto.usuario.last_name}}
+        </a>
+        ha dicho</a>
+      </p>
+    </div>
+    <div class="contenido">
+      <!-- CONTENIDO ESPECÍFICO -->
+        <div class="texto">
+          <p>{{contenido.texto.contenido}}</p>
+        </div>
+      <!-- FIN CONTENIDO ESPECÍFICO -->
+      {% include "eventos/comentarios.html" %}
+    </div>
+  </div>
+</div>
+<!-- FIN ACTUALIZACIÓN: TEXTO-->

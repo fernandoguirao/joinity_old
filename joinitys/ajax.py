@@ -1,6 +1,6 @@
 from django.utils import simplejson
 from dajaxice.decorators import dajaxice_register
-from models import Joinitys, Usuarios_Joinity, Actualizaciones, Puntuaciones, Lugares_Joinity
+from models import Joinitys, Usuarios_Joinity, Actualizaciones, Puntuaciones
 from django.template.loader import render_to_string
 from forms import FormTexto, FormFoto, FormComentario, FormVotacion
 from django.template import RequestContext

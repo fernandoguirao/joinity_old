@@ -1,0 +1,35 @@
+<div class="comentariosJoinity">
+  <div class="btn btn-mini grisclaro">
+    Comentar
+  </div>
+  <!-- INPUT COMENTAR -->
+  <div class="escribe-input oculto">
+    <div class="avatar" style="background-image:url('/media/{{usuario.usuario.foto}}');">
+    </div>
+    <form action="" id="formulario_comentario{{contenido.id}}" method="post">
+    {% csrf_token %}
+    <div class="input-append">
+      {{comentar.comentario}}
+      <div class="elboton">
+        <input type="button" value="Enviar" class="btn btn-small" onclick="Dajaxice.joinitys.eventos.comentar(comentar_evento, {'formulario':$('#formulario_comentario{{contenido.id}}').serializeObject(), 'actualizacion_id':{{contenido.id}}});"/>
+        
+      </div>
+    </div>
+    </form>
+  </div>
+  <!-- FIN INPUT COMENTAR -->
+  <div class="respuestas">
+  	{% for comentario in contenido.comentarios.all|dictsortreversed:"id" %}
+    <div class="respuesta">
+      <i class="iconos">
+        y
+      </i>
+      <p class="smallTxt"><a href="">{{comentario.usuario.first_name}} {{comentario.usuario.last_name}}</a>, el {{comentario.fecha|date:'d/m/y H:i'}}
+      </p>
+      <p>
+        {{comentario.comentario}}
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div id="lineaTiempo">
+    </div>
+    <!-- INSERTAMOS UPDATES -->
+ {% for contenido in evento.actualizaciones.all|dictsortreversed:"id" %}
+ {% include "eventos/updateTexto.html" %}
+  
+ {% endfor %}
