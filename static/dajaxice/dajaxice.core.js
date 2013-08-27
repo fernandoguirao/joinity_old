@@ -90,6 +90,30 @@ var Dajaxice = {
     ,
     
     
+        eventos: {
+    
+    postear: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.eventos.postear', 'POST', callback_function, argv, custom_settings);
+    },
+
+    comentar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.eventos.comentar', 'POST', callback_function, argv, custom_settings);
+    },
+
+    refrescar: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.eventos.refrescar', 'POST', callback_function, argv, custom_settings);
+    }
+
+
+    
+    
+    }
+    
+
+    
+    ,
+    
+    
         creacion: {
     
     anyadir_lugar: function(callback_function, argv, custom_settings){
