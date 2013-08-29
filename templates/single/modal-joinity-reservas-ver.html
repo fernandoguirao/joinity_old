@@ -1,0 +1,38 @@
+<div id="modalVerReserva{{reserva.id}}" class="modal hide fade modal-img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    ×
+  </button>
+  <div class="modal-body">
+    <div id="form-modal">
+      <h4>
+        RESERVA
+      </h4>
+      <hr>
+      {% if reserva.brand.clase == 1 %}
+         En hotel {{reserva.brand.nombre}}:<br>
+         Fecha inicio: {{reserva.fecha_inicio}}<br>
+         Fecha fin: {{reserva.fecha_fin}}<br>
+         Nº Habitaciones: {{reserva.n_habitaciones}}<br>
+         Nº Personas: {{reserva.n_personas}}<br>
+      {% elif reserva.brand.clase == 2 %}
+         En restaurante {{reserva.brand.nombre}}:<br>
+         Fecha:{{reserva.fecha_inicio}}<br>
+         NºPersonas: {{reserva.n_personas}}<br>
+         Notas: {{reserva.notas}}<br>
+      {% endif %}
+      ESTADO:<br>
+      <div id="estado_reserva">
+      {% if reserva.estado == 0 %}
+      
+      <button onclick="Dajaxice.brands.confirmar_reserva(confirmar,{'reserva_id':{{reserva.id}}});">CONFIRMAR</button>
+      {% elif reserva.estado == 1 %}
+      FALTA CONFIRMACION POR LA EMPRESA<br>
+      {% elif reserva.estado == 2 %}
+      LA EMPRESA HA CONFIRMADO ESTA RESERVA<br>
+      {% else %}
+      LA EMPRESA HA CANCELADO ESTA RESERVA<br>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+  <div id="escribe-main">
+     <div class="escribe-input">
+      <div class="input-append">
+        <input id="appendedInputButton-02" class="span2" type="text" placeholder="Busca una de tus tareas.">
+        <div id="losbotones">
+          <button class="btn btn-small" type="button">
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="cronologia">
+  {% if reserva %}
+      {% if reserva.brand.clase == 1 %}
+      HOTEL {{reserva.brand.nombre}}:<br>
+      Nombre: {{reserva.usuario.first_name}} {{reserva.usuario.last_name}}<br>
+      Email: {{reserva.usuario.email}}<br>
+      Fecha Inicio: {{reserva.fecha_inicio}}<br>
+      Fecha Fin: {{reserva.fecha_fin}}<br>
+      Nº Habitaciones: {{reserva.n_habitaciones}}<br>
+      Nº Personas: {{reserva.n_personas}}<br>
+      {% elif reserva.brand.clase == 2 %}
+      RESTAURANTE {{reserva.brand.nombre}}:<br>
+      Nombre: {{reserva.usuario.first_name}} {{reserva.usuario.last_name}}<br>
+      Email: {{reserva.usuario.email}}<br>
+      Fecha Inicio: {{reserva.fecha_inicio}}<br>
+      Comensales: {{reserva.n_personas}}<br>
+      Notas:{{reserva.notas}}<br>
+      {% endif %}
+      ESTADO RESERVA:
+      <div id="estado_reserva">
+      {% if reserva.estado == 1 %}
+      Falta Confirmacion<br>
+      <button onclick="Dajaxice.brands.confirmar_reserva_empresa(confirmar_empresa,{'reserva_id':{{reserva.id}}});">CONFIRMAR</button>
+      <button onclick="Dajaxice.brands.cancelar_reserva_empresa(confirmar_empresa,{'reserva_id':{{reserva.id}}});">CANCELAR</button>
+      {% elif reserva.estado == 2 %}
+      Reserva Confirmada<br>
+      {% elif reserva.estado == 3 %}
+      Reserva Cancelada<br>
+      {% endif %}
+      </div>
+
+      
+  {% endif %}
+  </div>

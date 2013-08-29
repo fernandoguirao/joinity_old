@@ -29,7 +29,7 @@
                   <span class="fui-calendar">
                   </span>
                 </button>
-                {{reserva_restaurante.fecha}}
+                {{reserva_restaurante.fecha_inicio}}
               </div>
             </div>
             <p>
@@ -60,7 +60,7 @@
         <div class="los-join-footer">
           <div class=linea-puntos>
           </div>
-          <button type="button" class="btn amarillo btn-embossed" onclick="Dajaxice.brands.reserva_restaurante(reserva_restaurante, {'formulario':$('#form_reserva_restaurante').serializeObject(), 'id_brand':{{brand.id}}});">
+          <button type="button" class="btn amarillo btn-embossed" onclick="Dajaxice.brands.reserva_restaurante(reserva_restaurante, {'formulario':$('#form_reserva_restaurante').serializeObject(), 'id_brand':{{brand.id}}, 'joinity_id':{{joinity_origen}}});">
             Reserva tu mesa
           </button>
         </div>

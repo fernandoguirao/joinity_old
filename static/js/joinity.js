@@ -13,6 +13,27 @@ var iscompras = $('#header-compras');
 //======================
 //! FUNCIONES AJAX
 //======================
+function carga_reserva(data){
+	  var timeline = $("#timeline");
+	  timeline.html(data.reserva);
+	}
+function confirmar(data){
+	if (data.ok){
+		alert("Todo correcto");
+		$('#estado_reserva').html("FALTA CONFIRMACION POR LA EMPRESA<br>");
+	}
+}
+function confirmar_empresa(data){
+	if (data.ok){
+		alert("Todo correcto");
+		$('#estado_reserva').html("Reserva Confirmada<br>");
+	}
+	else{
+		alert("Todo correcto");
+		$('#estado_reserva').html("Reserva Cancelada<br>");
+
+	}
+}
 function crear_pago_joinity(data){
 	if (data.ok){
 		alert("Pago creado correctamente. Puede cerrar estas ventanas.");

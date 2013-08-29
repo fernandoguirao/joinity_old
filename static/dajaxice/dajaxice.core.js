@@ -214,12 +214,20 @@ var Dajaxice = {
     
     brands: {
     
+    confirmar_reserva_empresa: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.confirmar_reserva_empresa', 'POST', callback_function, argv, custom_settings);
+    },
+
     filtrar: function(callback_function, argv, custom_settings){
         return Dajaxice.call('brands.filtrar', 'POST', callback_function, argv, custom_settings);
     },
 
     cargar_mas: function(callback_function, argv, custom_settings){
         return Dajaxice.call('brands.cargar_mas', 'POST', callback_function, argv, custom_settings);
+    },
+
+    confirmar_reserva: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.confirmar_reserva', 'POST', callback_function, argv, custom_settings);
     },
 
     reserva_restaurante: function(callback_function, argv, custom_settings){
@@ -230,12 +238,20 @@ var Dajaxice = {
         return Dajaxice.call('brands.dejar_de_seguir', 'POST', callback_function, argv, custom_settings);
     },
 
+    cancelar_reserva_empresa: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.cancelar_reserva_empresa', 'POST', callback_function, argv, custom_settings);
+    },
+
     seguir: function(callback_function, argv, custom_settings){
         return Dajaxice.call('brands.seguir', 'POST', callback_function, argv, custom_settings);
     },
 
     reserva_hotel: function(callback_function, argv, custom_settings){
         return Dajaxice.call('brands.reserva_hotel', 'POST', callback_function, argv, custom_settings);
+    },
+
+    carga_reserva: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('brands.carga_reserva', 'POST', callback_function, argv, custom_settings);
     }
 
 

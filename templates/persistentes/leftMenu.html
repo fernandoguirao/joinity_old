@@ -65,5 +65,17 @@
         </span>
       </a>
     </li>
+    {% if usuario.usuario.soy_brand %}
+    <li {% if pagina == "misReservas" %} class="activo" {% endif %}>
+      <a href="/mis_reservas/">
+        <i class="iconos fl">
+          
+        </i>
+        <span class="detalle">
+          Mis reservas
+        </span>
+      </a>
+    </li>
+    {% endif %}
   </ul>
 </div> <!-- /iconbar -->

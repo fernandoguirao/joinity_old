@@ -5,6 +5,7 @@ from amigos.models import Amigos
 from mensajes.models import Mensajes
 from joinitys.models import Usuarios_Joinity
 from notificaciones.models import Notificaciones
+from brands.models import Brand
 class Puntuaciones(models.Model):
     usuario = models.ForeignKey(User, related_name="usuario_puntuado")
     puntuador = models.ForeignKey(User, related_name="usuario_puntuador")
@@ -37,7 +38,8 @@ class Usuarios(models.Model):
         db_table = "Usuarios"
         verbose_name_plural = "usuarios"
 
-
+    def soy_brand(self):
+        return Brand.objects.filter(admin=self).exists()
     def es_hombre(self):
         return self.sexo == 0;
     def son_amigos(self, user_id):

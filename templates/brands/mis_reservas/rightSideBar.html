@@ -1,0 +1,46 @@
+<div id="rightSideBar">
+  <div id="contenidoSide">
+  
+    <!-- BUSCADOR -->
+    <!-- <input type="text" placeholder="Filtra tus tareas por joinitys" class="inputNormal input-small"> -->
+    <ul class="breadcrumb">
+      <li>
+        <a href="/mis_reservas/">
+          Mis reservas
+        </a>
+      </li>
+      <li class="active">
+        <a href="/mis_reservas/">
+          Todas mis reservas
+        </a>
+      </li>
+    </ul>
+    <!-- FIN BUSCADOR -->
+    
+    <!-- TODOS LOS MENSAJES -->
+    
+    <div class="todosMensajes">
+      <!-- CADA MENSAJE -->
+      EMPRESAS QUE GESTIONO:<br>
+      {% for brand in usuario.brand_admin.all %}
+      <b>{{brand.nombre}}</b><br>
+      {% for reserva in brand.get_reservas.all %}
+          <div class="cadaMensaje {% if reserva.estado == 1 %}nuevo{% endif %}" 
+           onclick="Dajaxice.brands.carga_reserva(carga_reserva, {'reserva_id':{{reserva.id}}});">
+          <div class="avatar span3" style="background-image:url('/media/{{reserva.usuario.usuario.foto}}');">
+          </div>
+          <p class="span9">
+          {{reserva.usuario.first_name}} {{reserva.usuario.last_name}}<br>
+          <i>{{reserva.fecha_inicio}}</i>
+          </p>
+          </div>
+      {% empty %}
+      No hay reservas pendientes<br>
+      {% endfor %}
+      {% endfor %}
+      
+      
+    </div>
+    <!-- FIN DE TODOS LOS MENSAJES -->
+   </div>
+</div>

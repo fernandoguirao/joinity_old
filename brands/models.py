@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 class Brand(models.Model):
     nombre=models.TextField()
     direccion=models.TextField()
@@ -31,6 +32,8 @@ class Brand(models.Model):
             return total / n
         else:
             return 0
+    def get_reservas(self):
+        return self.reservas.exclude(estado=0)
         
 # Create your models here.
 

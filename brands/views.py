@@ -7,13 +7,13 @@ from forms import BrandForm, ReservaRestaurante, ReservaHotel
 from joinitys.models import Joinitys
 
 
-def ver(request, id_brand=False):
+def ver(request, id_brand=False, joinity_id=0):
     brand=get_object_or_404(Brand, pk=id_brand)
     joinitys=Joinitys.objects.filter(tipo="2", compras__brand=brand).order_by('-id')[:8]
     seguidor=Brand.objects.filter(pk=brand.id, seguidores__id=request.user.id).exists()
-    reserva_restaurante=ReservaRestaurante()
-    reserva_hotel=ReservaHotel()
-    context={"usuario":request.user, "pagina":"brands", "brand":brand, "joinitys":joinitys, 
+    reserva_restaurante=ReservaRestaurante(usuario=request.user, joinity=None, brand=brand)
+    reserva_hotel=ReservaHotel(usuario=request.user, joinity=None, brand=brand)
+    context={"usuario":request.user, "pagina":"brands", "brand":brand, "joinitys":joinitys, "joinity_origen":joinity_id,
              "seguidor":seguidor, "reserva_restaurante":reserva_restaurante, "reserva_hotel":reserva_hotel}
     return render_to_response('brands/single/index.html', context,context_instance=RequestContext(request))
 def editar(request, id_brand):
@@ -29,6 +29,10 @@ def editar(request, id_brand):
     context={"formulario":formulario, "usuario":request.user}
     return render_to_response('brands/single/edit.html', context, context_instance=RequestContext(request))
 
+def mis_reservas(request):
+    
+    context={"pagina":"misReservas", "usuario":request.user}
+    return render_to_response('brands/mis_reservas/index.html', context)
 
 def seguir_empresa(request, empresa_id):
     empresa=get_object_or_404(Brand, pk=empresa_id)

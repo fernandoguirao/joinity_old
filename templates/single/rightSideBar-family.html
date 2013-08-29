@@ -54,6 +54,19 @@
       </div>
       </a>
       {% include "single/modal-joinitys-reservas_hotel.html" %}
+      Reservas de este joinity:<br>
+      {% for reserva in joinity.reservas.all %}
+         <a href="#modalVerReserva{{reserva.id}}" data-toggle="modal">
+        
+            <div class="btn btn-mini btn-embossed">
+            {{reserva.brand.nombre}}     
+            </div>
+         </a>
+         <br>
+      {% include "single/modal-joinity-reservas-ver.html" %}
+      {% empty %}
+         No hay reservas<br>
+      {% endfor %}
     </div>
     <div class="losEventos">
       <div class="tituloSide">

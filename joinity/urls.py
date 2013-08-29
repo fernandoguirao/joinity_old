@@ -4,6 +4,7 @@ from joinitys import views as joinitys_views
 from joinitys.eventos import views as eventos_views
 from joinitys.tareas import views as tareas_views
 from joinitys.pagos import views as pagos_views
+from brands import views as brands_views
 from django.contrib import admin
 from django.conf.urls.static import static
 from joinity import settings
@@ -36,6 +37,7 @@ urlpatterns = patterns('',
     url(r'^mis_tareas/(?P<joinity_id>\d+)/$', tareas_views.ver_mi_tarea, name='mis_tareas_joinity'),
     url(r'^mis_eventos/$', eventos_views.mis_eventos, name='mis_eventos'),
     url(r'^mis_eventos/(?P<evento_id>\d+)/$', eventos_views.ver_mi_evento, name='mis_eventos_joinity'),
+    url(r'^mis_reservas/$', brands_views.mis_reservas, name='mis_reservas'),
     url(r'^solicitar/$', login_views.solicitar, name="solicita_beta"),
     url(r'^mis_compras/$', pagos_views.mis_pagos, name='mis_compras'),
 

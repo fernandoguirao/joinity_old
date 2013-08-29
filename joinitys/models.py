@@ -307,6 +307,18 @@ class Lugares_Joinity(models.Model):
                 break
         return ciudad
 
+class Reservas_Joinity(models.Model):
+    joinity=models.ForeignKey(Joinitys, related_name="reservas")
+    brand=models.ForeignKey(Brand, related_name="reservas")
+    usuario=models.ForeignKey(User, related_name="reservas")
+    fecha_inicio=models.DateTimeField(null=True, blank=True)
+    fecha_fin=models.DateTimeField(null=True, blank=True)
+    notas=models.TextField(null=True)
+    n_personas=models.IntegerField(default=0)
+    n_habitaciones=models.IntegerField(default=0)
+    estado=models.IntegerField(default=0)
+    class Meta:
+        db_table="Reservas_Joinity"
 
 class Foto_Joinity(models.Model):
     usuario=models.ForeignKey(User, related_name="foto_usuario_actualizaciones")
