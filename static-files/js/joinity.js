@@ -8,7 +8,15 @@ var ismisJoinitys = $('#misJoinitys');
 var ismensajes = $('#misMensajes');
 var isfamily = $('.jfamily');
 var iscompras = $('#header-compras');
+//======================
+//! VOTACIONES
+//======================
+$contador='';
 
+$('.anyade_opcion').click(function(){
+/* aquí la función que añade los inputs que ya está escrita en el código*/
+$contador++;
+});
 
 //======================
 //! FUNCIONES AJAX
