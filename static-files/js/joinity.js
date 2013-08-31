@@ -621,7 +621,7 @@ for (var i = 0; i < 10; i++) {
 }
 
 var indice;
-
+var contador=0;
 $('.addopt').click(function(){
   $(this).parent().next().removeClass('displaynone');
   $(this).hide();
@@ -634,6 +634,7 @@ $('.addopt').click(function(){
     $('#formularios-update').height($('#formularios-update').height()-46);
     jei = jei-46;
   }
+  contador++;
 });
 
 $('.votafoto').click(function(){
