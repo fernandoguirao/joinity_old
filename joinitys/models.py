@@ -265,6 +265,9 @@ class Actualizaciones(models.Model):
     fecha = models.DateTimeField(auto_now_add=True, blank=True)
     class Meta:
         db_table="Actualizaciones"
+    def get_contenido(self):
+        if self.tipo==4:
+            return Votacion.objects.get(actualizacion=self)
 class Texto_Joinity(models.Model):
     usuario=models.ForeignKey(User)
     actualizacion=models.OneToOneField(Actualizaciones, related_name="texto")
@@ -284,13 +287,25 @@ class Votacion(models.Model):
     pregunta=models.TextField(max_length=400, blank=True, null=True)
     class Meta:
         db_table="Votaciones"
+    def n_votos(self):
+        n=0
+        for respuesta in self.respuestas.all():
+            n+=respuesta.n_votos()
+        return n
 class Respuesta(models.Model):
     votacion=models.ForeignKey(Votacion, related_name="respuestas")
     respuesta=models.TextField(max_length=400)
     votos=models.ManyToManyField(User)
     class Meta:
         db_table="Respuestas"
-    
+    def n_votos(self):
+        return self.votos.count()
+    def porcentaje(self):
+        
+        n_votos_total=self.votacion.n_votos()
+        if n_votos_total==0:
+            return 0
+        return self.n_votos()*100/n_votos_total
     
 class Lugares_Joinity(models.Model):
     joinity=models.ForeignKey(Joinitys, related_name="lugares")

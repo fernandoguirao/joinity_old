@@ -75,7 +75,7 @@
           <ul class="laopcion">
             <!-- Una opción de voto -->
             <li>
-              <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción" name="respuesta1">
+              <input class="inputNormal input-small titulopregunta" type="text" placeholder="Escribe aquí una opción" name="opcion0">
               <a href="#fotovoto" data-toggle="modal" class="btn btn-small votafoto" role="button" type="button">
                 <i class="iconos">
                   s
@@ -94,7 +94,8 @@
             </li><!-- Fin de la opción -->
           </ul>
         </div>
-        <div class="btn btn-small btn-block amarillo crearvot" onclick="Dajaxice.joinitys.posteavotacion(postear, {'formulario':$('#formulario_votacion').serializeObject(), 'joinity_id':{{joinity.id}}});">
+        
+        <div class="btn btn-small btn-block amarillo crearvot" onclick="Dajaxice.joinitys.posteavotacion(postear, {'formulario':$('#formulario_votacion').serializeObject(),'n_respuestas':$contador, 'joinity_id':{{joinity.id}}});">
           Adelante con esta votación
         </div>
       </form>
@@ -117,6 +118,8 @@
 			{% include "single/updateFoto.html" %}
 		{% elif contenido.tipo == 3 %}
 			{% include "single/updateVideo.html" %}
+        {% elif contenido.tipo == 4 %}
+            {% include "single/updateVotacion.html" %}
 		{% endif %}
 		
 	{% endfor %}

@@ -7,16 +7,22 @@
       </i>
     </div>
     <div class="fecha etiqueta">
-      12 jun
+      {% load actualizaciones_filters %}
+      
+        {% if contenido.fecha|es_hoy %}
+         {{contenido.fecha|date:'H:i'}}
+        {% else %}
+         {{contenido.fecha|date:'d/m/y'}}
+        {% endif %}
     </div>
   </div>
   <div class="continente">
     <div class="creditos">
-      <div class="avatar" style="background-image:url('/media/images/ejemplos/avatar.png');">
+      <div class="avatar" style="background-image:url('/media/{{contenido.texto.usuario.usuario.foto}}');">
       </div>
       <p class="smallTxt">
         <a href="">
-          Fernando Guirao
+          {{contenido.get_contenido.usuario.first_name}} {{contenido.get_contenido.usuario.last_name}}
         </a>
         ha hecho una pregunta:
       </p>
@@ -25,11 +31,12 @@
     <div class="contenido">
 
       <div class="lapregunta etiqueta">
-        "¿A qué hotel os gustaría ir?"
+        "{{contenido.get_contenido.pregunta}}"
       </div>
       <div class="lasrespuestas">
+      {% for respuesta in contenido.get_contenido.respuestas.all %}
         <!-- UNA RESPUESTA -->
-        <div class="laRespuesta">
+        <div class="laRespuesta" onclick="Dajaxice.joinitys.vota(postear, {'joinity_id':{{joinity.id}}, 'respuesta_id':{{respuesta.id}}}); ">
           <div class="elZoom">
             <i class="iconos">
               v
@@ -38,62 +45,19 @@
           <div class="imgRespuesta" style="background-image:url('/media/images/ejemplos/archivo01.png');">
           </div>
           <p>
-            Hotel Puerta de América en Madrid.
+            {{respuesta.respuesta}}
           </p>
           <div class="numVotos">
-            1544
+            {{respuesta.n_votos}}
             <i class="iconos">j</i>
           </div>
           <div class="progress">
-            <div class="bar" style="width: 45%;">
+            <div class="bar" style="width: {{respuesta.porcentaje}}%;">
             </div>
           </div>
         </div>
         <!-- FIN DE RESPUESTA -->
-        <!-- UNA RESPUESTA -->
-        <div class="laRespuesta">
-          <div class="elZoom">
-            <i class="iconos">
-              v
-            </i>
-          </div>
-          <div class="imgRespuesta" style="background-image:url('/media/images/ejemplos/archivo01.png');">
-          </div>
-          <p>
-            AC New Hampshire.
-          </p>
-          <div class="numVotos">
-            554
-            <i class="iconos">j</i>
-          </div>
-          <div class="progress">
-            <div class="bar" style="width: 25%;">
-            </div>
-          </div>
-        </div>
-        <!-- FIN DE RESPUESTA -->
-        <!-- UNA RESPUESTA -->
-        <div class="laRespuesta">
-          <div class="elZoom">
-            <i class="iconos">
-              v
-            </i>
-          </div>
-          <div class="imgRespuesta" style="background-image:url('/media/images/ejemplos/archivo01.png');">
-          </div>
-          <p>
-            Hotel NH Krampolsky en Amsterdam.
-          </p>
-          <div class="numVotos">
-            34
-            <i class="iconos">j</i>
-          </div>
-          <div class="progress">
-            <div class="bar" style="width: 85%;">
-            </div>
-          </div>
-        </div>
-        <!-- FIN DE RESPUESTA -->
+        {% endfor %}
       </div> <!-- FIN DE RESPUESTAS -->
     </div><!-- FIN CONTENIDO ESPECÍFICO -->
   </div>

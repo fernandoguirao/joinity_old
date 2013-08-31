@@ -612,9 +612,21 @@ for (var i = 0; i < 10; i++) {
   e.addClass('displaynone');
 }
 
-var indice;
+var $cont = 0;
+$('.laopcion li').each(function(){
+  if ($cont != 0){
+    $(this).children('input').attr('name', 'opcion'+$cont);
+    
+  }
+  $cont++;
+  
+});
 
+var indice;
+var $contador = 0;
 $('.addopt').click(function(){
+  console.log($contador);
+  $contador++;
   $(this).parent().next().removeClass('displaynone');
   $(this).hide();
   $(this).parent().next().children('.addopt').show();

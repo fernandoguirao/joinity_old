@@ -62,6 +62,10 @@ var Dajaxice = {
         return Dajaxice.call('joinitys.asignar_compra', 'POST', callback_function, argv, custom_settings);
     },
 
+    vota: function(callback_function, argv, custom_settings){
+        return Dajaxice.call('joinitys.vota', 'POST', callback_function, argv, custom_settings);
+    },
+
     cargaformtexto: function(callback_function, argv, custom_settings){
         return Dajaxice.call('joinitys.cargaformtexto', 'POST', callback_function, argv, custom_settings);
     },

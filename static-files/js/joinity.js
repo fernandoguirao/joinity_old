@@ -8,15 +8,7 @@ var ismisJoinitys = $('#misJoinitys');
 var ismensajes = $('#misMensajes');
 var isfamily = $('.jfamily');
 var iscompras = $('#header-compras');
-//======================
-//! VOTACIONES
-//======================
-$contador='';
 
-$('.anyade_opcion').click(function(){
-/* aquí la función que añade los inputs que ya está escrita en el código*/
-$contador++;
-});
 
 //======================
 //! FUNCIONES AJAX
@@ -620,9 +612,21 @@ for (var i = 0; i < 10; i++) {
   e.addClass('displaynone');
 }
 
+var $cont = 0;
+$('.laopcion li').each(function(){
+  if ($cont != 0){
+    $(this).children('input').attr('name', 'opcion'+$cont);
+    
+  }
+  $cont++;
+  
+});
+
 var indice;
-var contador=0;
+var $contador = 0;
 $('.addopt').click(function(){
+  console.log($contador);
+  $contador++;
   $(this).parent().next().removeClass('displaynone');
   $(this).hide();
   $(this).parent().next().children('.addopt').show();
@@ -634,7 +638,6 @@ $('.addopt').click(function(){
     $('#formularios-update').height($('#formularios-update').height()-46);
     jei = jei-46;
   }
-  contador++;
 });
 
 $('.votafoto').click(function(){
