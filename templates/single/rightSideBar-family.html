@@ -28,124 +28,129 @@
       </a>
       {% include "single/modal-crea-pago.html" %}
       {% endif %}
-    </div>
-    <div class="realizaReserva">
-      <div class="tituloSide">
-        <div class="lineaCirculo">
+    
+      <div class="realizaReserva">
+        <div class="tituloSide">
+          <div class="lineaCirculo">
+          </div>
+          Realiza una reserva
         </div>
-        Realiza una reserva
-      </div>
-      <a href="#modalJoinitysReservasRestaurante" data-toggle="modal">
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          o
-        </i>
-        En un restaurante
-      </div>
-      </a>
-      {% include "single/modal-joinitys-reservas_restaurante.html" %}
-      
-      <a href="#modalJoinitysReservasHotel" data-toggle="modal">
-      <div class="btn btn-small btn-block btn-icono gris">
-        <i class="iconos">
-          p
-        </i>
-        En un hotel
-      </div>
-      </a>
-      {% include "single/modal-joinitys-reservas_hotel.html" %}
-      Reservas de este joinity:<br>
-      {% for reserva in joinity.reservas.all %}
-         <a href="#modalVerReserva{{reserva.id}}" data-toggle="modal">
+        <a href="#modalJoinitysReservasRestaurante" data-toggle="modal">
+        <div class="btn btn-small btn-block btn-icono gris">
+          <i class="iconos">
+            o
+          </i>
+          En un restaurante
+        </div>
+        </a>
+        {% include "single/modal-joinitys-reservas_restaurante.html" %}
         
-            <div class="btn btn-mini btn-embossed">
-            {{reserva.brand.nombre}}     
-            </div>
-         </a>
-         <br>
-      {% include "single/modal-joinity-reservas-ver.html" %}
-      {% empty %}
-         No hay reservas<br>
-      {% endfor %}
-    </div>
-    <div class="losEventos">
-      <div class="tituloSide">
-        <div class="lineaCirculo">
+        <a href="#modalJoinitysReservasHotel" data-toggle="modal">
+        <div class="btn btn-small btn-block btn-icono gris">
+          <i class="iconos">
+            p
+          </i>
+          En un hotel
         </div>
-        Eventos
-      </div>
-      <a href="/joinity/{{joinity.id}}/evento/crear">
-	      <div class="btn btn-mini btn-embossed">
-	        Crea un evento
-	      </div>
-      </a>
-      <div class="eventosLista">
-      	{% for evento in joinity.eventos.all %}
-        <!-- UN EVENTO -->
-        <div class="unEvento">
-          <div class="fechaEvento">
-            30
-            <span>
-              jun
-            </span>
+        </a>
+        {% include "single/modal-joinitys-reservas_hotel.html" %}
+        <div class="tituloSide">
+          <div class="lineaCirculo">
           </div>
-          <p>
-            {{evento.titulo}}
-          </p>
-          <div class="participan">
-            Con
-            {% for participante in evento.usuarios.all|slice:":3" %}
-            <div class="participante" style="background-image:url('/media/{{participante.usuario.foto}}');">
-            </div>
-            {% endfor %}
-            <!-- y <b data-toggle="tooltip" data-placement="bottom" data-container=".toolt" data-html="true" title="Fernando Guirao<br>Adriano Celentano<br>Borja Garc�a">30 más</b> -->
-            y <b>30 más</b>
-            <div class="toolt"></div>
-            
-            
-          </div>
-          {% if usuario not in evento.usuarios.all %}
-          <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
-          <div class="btn btn-mini btn-icono gris">
-            <i class="iconos">
-              q
-            </i>
-            Me apunto
-          </div>
-          </a>
-          {% endif %} 
+        Habéis realizado una reserva en
         </div>
-        <!-- FIN DE UN EVENTO -->
-        
+        {% for reserva in joinity.reservas.all %}
+           <a href="#modalVerReserva{{reserva.id}}" data-toggle="modal">
+          
+              <div class="btn btn-mini btn-embossed">
+              {{reserva.brand.nombre}} <i style="color: rgba(0,0,0,.4);font-style:normal;max-width: 85px!important;display: inline-block;text-align: left;position: absolute;margin-top: -17px;margin-left: 58px;letter-spacing: 0px!important;">ver detalles de la reserva</i>
+              </div>
+           </a>
+           <br>
+        {% include "single/modal-joinity-reservas-ver.html" %}
+        {% empty %}
+           No hay reservas<br>
         {% endfor %}
       </div>
-    </div>
-    <div class="lasTareas">
-      <div class="tituloSide">
-        <div class="lineaCirculo">
+      <div class="losEventos">
+        <div class="tituloSide">
+          <div class="lineaCirculo">
+          </div>
+          Eventos
         </div>
-        Mis tareas aquí
+        <a href="/joinity/{{joinity.id}}/evento/crear">
+  	      <div class="btn btn-mini btn-embossed">
+  	        Crea un evento
+  	      </div>
+        </a>
+        <div class="eventosLista">
+        	{% for evento in joinity.eventos.all %}
+          <!-- UN EVENTO -->
+          <div class="unEvento">
+            <div class="fechaEvento">
+              30
+              <span>
+                jun
+              </span>
+            </div>
+            <p>
+              {{evento.titulo}}
+            </p>
+            <div class="participan">
+              Con
+              {% for participante in evento.usuarios.all|slice:":3" %}
+              <div class="participante" style="background-image:url('/media/{{participante.usuario.foto}}');">
+              </div>
+              {% endfor %}
+              <!-- y <b data-toggle="tooltip" data-placement="bottom" data-container=".toolt" data-html="true" title="Fernando Guirao<br>Adriano Celentano<br>Borja Garc�a">30 más</b> -->
+              y <b>30 más</b>
+              <div class="toolt"></div>
+              
+              
+            </div>
+            {% if usuario not in evento.usuarios.all %}
+            <a href="/joinity/{{joinity.id}}/evento/{{evento.id}}/unirse/">
+            <div class="btn btn-mini btn-icono gris">
+              <i class="iconos">
+                q
+              </i>
+              Me apunto
+            </div>
+            </a>
+            {% endif %} 
+          </div>
+          <!-- FIN DE UN EVENTO -->
+          
+          {% endfor %}
+        </div>
       </div>
-      <a href="/joinity/{{joinity.id}}/tarea/crear/">
-      <div class="btn btn-mini btn-embossed">
-        Crea una tarea
-      </div>
-      </a>
-      <div class="misTareas">
-      {% load tareas_filters %}
-      {% if mis_tareas %}
-      	{% for tarea in mis_tareas.all %}
-      	{% if not tarea.padre %}
-        <!-- CADA TAREA -->
-        <div class="unaTarea">
-          <label class="checkbox" for="checkbox1">
-            <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" {% if tarea|completada:usuario %}checked{%endif%}>
-            {{tarea.nombre}}
-          </label>
-        </div> <!-- FIN DE TAREA -->
-        {% endif %}
-       {% endfor %}
-       {% endif %}
+      <div class="lasTareas">
+        <div class="tituloSide">
+          <div class="lineaCirculo">
+          </div>
+          Mis tareas aquí
+        </div>
+        <a href="/joinity/{{joinity.id}}/tarea/crear/">
+        <div class="btn btn-mini btn-embossed">
+          Crea una tarea
+        </div>
+        </a>
+        <div class="misTareas">
+        {% load tareas_filters %}
+        {% if mis_tareas %}
+        	{% for tarea in mis_tareas.all %}
+        	{% if not tarea.padre %}
+          <!-- CADA TAREA -->
+          <div class="unaTarea">
+            <label class="checkbox" for="checkbox1">
+              <input type="checkbox" value="Ok" id="checkbox1" data-toggle="checkbox" onchange="Dajaxice.joinitys.tareas.marcar_tarea(marca,{'tarea_id':{{tarea.id}}});" {% if tarea|completada:usuario %}checked{%endif%}>
+              {{tarea.nombre}}
+            </label>
+          </div> <!-- FIN DE TAREA -->
+          {% endif %}
+         {% endfor %}
+         {% endif %}
+        </div>
       </div>
     </div>
   </div>
