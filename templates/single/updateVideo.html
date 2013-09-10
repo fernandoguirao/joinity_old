@@ -23,10 +23,10 @@
     </div>
     <div class="contenido">
       <!-- CONTENIDO ESPECÍFICO -->
-        <div class="foto esVideo" style="background-image:url('/media/images/ejemplos/archivo02.png');">
-                <a href="http://www.{{contenido.texto.contenido}}">Ver video</a>
+        <!-- <div class="foto esVideo" style="background-image:url('/media/images/ejemplos/archivo02.png');"> -->
+        <iframe width="420" height="315" src="//www.youtube.com/embed/{{contenido.texto.contenido}}" frameborder="0" allowfullscreen></iframe>
         
-        </div>
+        <!-- </div> -->
       <!-- FIN CONTENIDO ESPECÍFICO -->
       {% include "single/comentarios.html" %}
     </div>

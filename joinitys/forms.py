@@ -42,7 +42,7 @@ class FormTexto(forms.ModelForm):
         cadena=""
         tipo=1
         if youtube>=0:
-            for letra in texto[youtube:]:
+            for letra in texto[youtube+20:]:
                 if letra==" ":
                     break
                 else:

@@ -120,7 +120,7 @@ def invitar(request, joinity_id, tarea_id, usuario_id):
     if Usuarios_Tarea.objects.filter(usuario=usuario, tarea=tarea).count()==0:
         nuevo=Usuarios_Tarea(usuario=usuario, tarea=tarea, estado=0)
         nuevo.save()
-        notificacion=Notificaciones(usuario=usuario, tipo=3, id_notificacion=tarea.joinity.id)
+        notificacion=Notificaciones(usuario=usuario, tipo=3, id_notificacion=tarea.id)
         notificacion.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/tarea/crear/3/"+str(tarea.id))
 @login_required
@@ -129,11 +129,10 @@ def invitar_todos(request, joinity_id, tarea_id):
     tarea=get_object_or_404(Tareas, pk=tarea_id)
     usuarios_joinity=Usuarios_Joinity.objects.filter(joinity=joinity)
     for usuario in usuarios_joinity:
-        print usuario.usuario.first_name
         if Usuarios_Tarea.objects.filter(usuario=usuario.usuario, tarea=tarea).count()==0:
             nuevo=Usuarios_Tarea(usuario=usuario.usuario, tarea=tarea, estado=0)
             nuevo.save()
-            notificacion=Notificaciones(usuario=usuario, tipo=3, id_notificacion=tarea.joinity.id)
+            notificacion=Notificaciones(usuario=usuario, tipo=3, id_notificacion=tarea.id)
             notificacion.save()
     return HttpResponseRedirect("/joinity/"+str(joinity.id)+"/tarea/crear/3/"+str(tarea.id))
 
