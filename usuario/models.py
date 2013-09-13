@@ -31,6 +31,8 @@ class Usuarios(models.Model):
     avisar = models.IntegerField(default=1)
     ubicacion_visible = models.IntegerField(default=1)
     ocultar_perfil = models.IntegerField(default=1)
+    blogger=models.BooleanField(default=0)
+    blog=models.TextField(null=True)
     # activation_key=models.CharField(max_length=40)
     # key_expires = models.DateTimeField()
 
