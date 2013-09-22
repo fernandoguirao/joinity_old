@@ -26,3 +26,7 @@ def nueva_compra(request):
         formulario = NuevaCompraForm(instance=request.user.usuario)
     context = {'formulario':formulario}
     return render_to_response('nuevo_interes.html', context, context_instance=RequestContext(request))  # Create your views here.
+
+def mis_categorias(request):
+    context={}
+    return render_to_response('mis_categorias.html', context)
