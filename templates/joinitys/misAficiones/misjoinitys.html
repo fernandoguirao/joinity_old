@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block contenedor %}
+<div id="contenedorMain">
+  {% include "persistentes/menuAdaptativo.html" %}  
+  <div class="container-fluid contenedorAdaptativo">
+    <div class="row-fluid">
+      <div class="span2 panelIzquierdo">
+			{% include "persistentes/leftMenu.html" %}
+      </div>
+      <div class="span10" id="contenedorPrincipal">
+
+        {% include "persistentes/buscador.html" %}
+        <div class="container contenedor-array faficiones">
+          <h3>
+            Joinitys en los que participas
+          </h3>
+          <div class="contenedor-categoria">
+    {% for categoria in mis_categorias %}
+    <div class="la-categoria {% if forloop.first %} activa {% endif %} todascat btn btn-embossed grisclaro"
+    onclick="Dajaxice.categorias.cargar_joinitys(carga_mis_aficiones, {'categoria_id':{{categoria.id}}});">
+      {{categoria.categoria.nombre}}-{{categoria.nombre}}
+    </div>
+    {% endfor %}
+  </div>
+       
+          <div class="contenedor-elarray">
+          
+            <div class="contenedor-los-joinitys">
+            <div>
+            BLOGS DE ESTA CATEGORIA<br>
+            {% for blogger in bloggers %}
+            {{blogger.usuario.blog}}<br>
+            {% endfor %}
+            </div>
+		{% for joinity in lista_joinitys %}
+        	{% include "joinitys/misAficiones/joinity.html" %}
+        {% empty %}
+          NO HAY JOINITYS
+		{% endfor %}
+            AMIGOS QUE COMPARTEN ESTA AFICION<br>
+            {% for amigo in usuarios %}
+            	{{amigo.first_name}} {{amigo.last_name}} <br>
+            {% endfor %}
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

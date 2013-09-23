@@ -47,6 +47,7 @@ encoding//templates/index/joinity.html=UTF-8
 encoding//templates/index/lista-joinitys.html=UTF-8
 encoding//templates/index/lista_reservas.html=UTF-8
 encoding//templates/index/selector.html=UTF-8
+encoding//templates/joinitys/misAficiones/ajax_mis_joinitys.html=UTF-8
 encoding//templates/joinitys/pagos/ajax_ver_compra.html=UTF-8
 encoding//templates/joinitys/pagos/ajax_ver_pago.html=UTF-8
 encoding//templates/joinitys/pagos/mis_pagos.html=UTF-8

@@ -8,12 +8,15 @@
       </h2>
     </div>
     <div class="colu01">
+      Ubicaciones:
+      {% for ubicacion in brand.ubicaciones.all %}
       <p>
-        Dirección: <span>{{brand.direccion}}</span>
+        Dirección: <span>{{ubicacion.direccion}}</span>
       </p>
       <p>
-        Teléfono de contacto: <span>{{brand.telefono}}</span>
+        Teléfono de contacto: <span>{{ubicacion.telefono}}</span>
       </p>
+      {% endfor %}
       <p>
         Correo electrónico: <span>{{brand.admin.email}}</span>
       </p>

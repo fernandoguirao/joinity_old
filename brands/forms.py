@@ -1,19 +1,32 @@
 from django import forms
-from models import Brand, Fotos, Puntuaciones
+from models import Brand, Fotos, Puntuaciones, Ubicaciones
 from datetime import date
 from joinitys.models import Reservas_Joinity
+from django.shortcuts import  get_object_or_404
 class BrandForm(forms.ModelForm):
     nombre=forms.CharField()
-    direccion=forms.CharField()
     web=forms.CharField()
     tipo=forms.CharField()
-    ubicacion=forms.CharField()
     video=forms.CharField(required=False)
-    telefono=forms.IntegerField()
     class Meta:
         model = Brand
-        fields=("nombre", "direccion", "web", "tipo", "ubicacion", "video", "telefono", "imagen_cabecera", "imagen_fondo")
+        fields=("nombre", "web", "tipo", "video", "imagen_cabecera", "imagen_fondo")
         #fields=("nombre", "direccion", "tipo", "web", "calificacion", "ubicacion", "imagen_cabecera", "video", "imagen_fondo","telefono")
+class Ubicacion_Brand(forms.ModelForm):
+    direccion=forms.CharField()
+    telefono=forms.CharField()
+    class Meta:
+        model = Ubicaciones
+        fields=("direccion", "telefono")
+    def __init__(self, *args, **kwargs):
+        self._brand=kwargs.pop('brand')
+        super(Ubicacion_Brand, self).__init__(*args, **kwargs)
+    def save(self, commit=True):
+        nueva=super(Ubicacion_Brand, self).save(commit=False)
+        nueva.brand=self._brand
+        if commit:
+            nueva.save()
+        return nueva
         
 class Subir_Foto(forms.ModelForm):
     foto=forms.ImageField(required=False)

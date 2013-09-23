@@ -33,6 +33,7 @@ class Usuarios(models.Model):
     ocultar_perfil = models.IntegerField(default=1)
     blogger=models.BooleanField(default=0)
     blog=models.TextField(null=True)
+    intereses_blog=models.ManyToManyField(Subcategorias, blank=True, null=True, related_name='intereses_blog')
     # activation_key=models.CharField(max_length=40)
     # key_expires = models.DateTimeField()
 

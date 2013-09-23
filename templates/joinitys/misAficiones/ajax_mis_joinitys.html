@@ -1,0 +1,15 @@
+<div>
+            BLOGS DE ESTA CATEGORIA<br>
+            {% for blogger in bloggers %}
+            {{blogger.usuario.blog}}<br>
+            {% endfor %}
+            </div>
+  {% for joinity in lista_joinitys %}
+         {% include "joinitys/misAficiones/joinity.html" %}
+        {% empty %}
+          NO HAY JOINITYS
+  {% endfor %}
+  AMIGOS QUE COMPARTEN ESTA AFICION<br>
+            {% for amigo in usuarios %}
+             {{amigo.first_name}} {{amigo.last_name}} <br>
+            {% endfor %}

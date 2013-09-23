@@ -245,7 +245,35 @@
     </label>
     <input type="submit" class="btn amarillo degradado btn-embossed" value="Guarda todos los cambios">
   </div>
+	<h4>
+    BLOGS
+  </h4>
+  <hr>
 
+  <div class="row campo">
+    <label for="oculatr">
+      ¿Tienes un blog?
+    </label>
+    {{ perfil_form.blogger }}
+  </div>
+  <div class="row campo">
+    <label for="visible">
+      Blog
+    </label>
+    {{ perfil_form.blog }}
+  </div>
+  <div class="row campo">
+    <label for="visible">
+      ¿Como catalogarias tu blog?
+    </label>
+    {{ perfil_form.intereses_blog }}
+  </div>
+  
+  <div class="row campo">
+    <label>
+    </label>
+    <input type="submit" class="btn amarillo degradado btn-embossed" value="Guarda todos los cambios">
+  </div>
 </form>
 
 {% include "usuario/modales-crea-interes-compras.html" %}

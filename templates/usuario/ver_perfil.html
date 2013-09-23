@@ -227,6 +227,14 @@
         Sin contactos.
       </p>
       {% endif %}
+      {% if perfil.usuario.blogger %}
+      <div>
+      BLOG: {{perfil.usuario.blog}}<br>
+      {% for interes in perfil.usuario.intereses_blog.all %}
+      	{{interes.categoria.nombre}}-{{interes.nombre}}</br>
+      {% endfor %}
+      </div>
+      {% endif %}
     </div>
   </div>
 

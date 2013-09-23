@@ -72,7 +72,14 @@ function reserva_restaurante(data){
     alert("Reserva enviada");
   }
 }
-
+function carga_mis_aficiones(data){
+	if (data.error){
+		alert("Error");
+	}
+	else{
+		$(".contenedor-los-joinitys").html(data.joinitys)
+	}
+}
 function seguir_brand(data){
   //En esta funcion mete lo que tenga que hacer tras darle al boton de seguir un brand, quita el return. 
   return true;

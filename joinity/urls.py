@@ -4,6 +4,7 @@ from joinitys import views as joinitys_views
 from joinitys.eventos import views as eventos_views
 from joinitys.tareas import views as tareas_views
 from joinitys.pagos import views as pagos_views
+from categorias import views as categorias_views
 from brands import views as brands_views
 from django.contrib import admin
 from django.conf.urls.static import static
@@ -33,6 +34,7 @@ urlpatterns = patterns('',
     url(r'^reserva/confirmar/(?P<reserva_id>\d+)/$', joinitys_views.confirmar, name="confirmar_reserva"),
     url(r'^reserva/aprobar/(?P<reserva_id>\d+)/$', joinitys_views.aprobar, name="aprobar_reserva"),
     url(r'^mis_joinitys/$', joinitys_views.mis_joinitys, name='mis_joinitys'),
+    url(r'^mis_aficiones/$', categorias_views.mis_categorias, name='mis_categorias'),
     url(r'^mis_tareas/$', tareas_views.mis_tareas, name='mis_tareas'),
     url(r'^mis_tareas/(?P<joinity_id>\d+)/$', tareas_views.ver_mi_tarea, name='mis_tareas_joinity'),
     url(r'^mis_eventos/$', eventos_views.mis_eventos, name='mis_eventos'),

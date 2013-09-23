@@ -47,7 +47,7 @@ class PerfilForm(forms.ModelForm):
     avisar = forms.ChoiceField(choices=(["1", "Si"], ["0", "No"]))
     class Meta:
         model = Usuarios
-        fields = ('foto', 'dni', 'telefono', 'universidad', 'empresa', 'ciudad', 'nacimiento', 'sexo', 'cpostal', 'intereses', 'intereses_comprar', 'ocultar_perfil', 'visible', 'avisar', 'ubicacion_visible')
+        fields = ('foto', 'dni', 'telefono', 'universidad', 'empresa', 'ciudad', 'nacimiento', 'sexo', 'cpostal', 'intereses', 'intereses_comprar', 'ocultar_perfil', 'visible', 'avisar', 'ubicacion_visible', 'blogger', 'blog', 'intereses_blog')
 
 class Puntuar(forms.ModelForm):
     puntuacion = forms.ChoiceField(choices=([("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5")]), required=True)

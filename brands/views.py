@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from models import Brand
 from django.template import RequestContext
 from django.shortcuts import  get_object_or_404
-from forms import BrandForm, ReservaRestaurante, ReservaHotel
+from forms import BrandForm, ReservaRestaurante, ReservaHotel, Ubicacion_Brand
 from joinitys.models import Joinitys
 
 
@@ -22,11 +22,15 @@ def editar(request, id_brand):
         return HttpResponse("No tienes permisos para ver esto.")
     if request.method == 'POST':
         formulario=BrandForm(request.POST, request.FILES, instance=brand)
+        formulario_ubicaciones=Ubicacion_Brand(request.POST, brand=brand)
         if formulario.is_valid():
             formulario.save()
+            if formulario_ubicaciones.is_valid():
+                formulario_ubicaciones.save()
     else:
         formulario=BrandForm(instance=brand)
-    context={"formulario":formulario, "usuario":request.user}
+        formulario_ubicaciones=Ubicacion_Brand(brand=brand, instance=brand.ubicaciones.all()[0])
+    context={"formulario":formulario, "usuario":request.user, "ubicaciones": formulario_ubicaciones}
     return render_to_response('brands/single/edit.html', context, context_instance=RequestContext(request))
 
 def mis_reservas(request):
