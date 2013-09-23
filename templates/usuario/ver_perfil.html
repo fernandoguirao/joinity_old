@@ -237,7 +237,10 @@
       {% endif %}
     </div>
   </div>
-
+	ULTIMOS JOINITYS PARTICIPADOS
+	{% for joinity in perfil.usuario.get_ultimos_joinitys %}
+		{{joinity.nombre}}<br>
+	{% endfor %}
   {% include 'usuario/modal-contactos.html' %}
 
   {% endif %}

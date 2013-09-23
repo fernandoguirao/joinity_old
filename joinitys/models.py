@@ -266,7 +266,13 @@ class Actualizaciones(models.Model):
     class Meta:
         db_table="Actualizaciones"
     def get_contenido(self):
-        if self.tipo==4:
+        if self.tipo==1:
+            return self.texto
+        elif self.tipo==2:
+            return self.foto
+        elif self.tipo==3:
+            return self.texto
+        elif self.tipo==4:
             return Votacion.objects.get(actualizacion=self)
 class Texto_Joinity(models.Model):
     usuario=models.ForeignKey(User)

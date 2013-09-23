@@ -10,7 +10,7 @@
         </span>
       </a>
     </li>
-    <li {% if pagina == "misJoinitys" %} class="activo" {% endif %}>
+    <li class="{% if pagina == 'misJoinitys' %} activo {% endif %}{% if usuario.usuario.get_tiene_joinitys_nuevos %} newNot {% endif %}">
       <a href="/mis_joinitys/">
         <i class="iconos">
           d
@@ -20,7 +20,7 @@
         </span>
       </a>
     </li>
-    <li {% if pagina == "misTareas" %} class="activo" {% endif %}>
+    <li class="{% if pagina == 'misTareas' %} activo {% endif %}{% if usuario.usuario.get_tiene_tareas_nuevas %} newNot {% endif %}">
     <a href="/mis_tareas/">
       <i class="iconos">
         e
@@ -30,7 +30,7 @@
       </span>
     </a>
     </li>
-    <li {% if pagina == "misCompras" %} class="activo" {% endif %}>
+    <li class=" {% if pagina == 'misCompras' %} activo {% endif %}{% if usuario.usuario.get_tiene_pagos_nuevos %} newNot {% endif %}">
       <a href="/mis_compras">
         <i class="iconos">
           f
@@ -40,7 +40,7 @@
         </span>
       </a>
     </li>
-    <li {% if pagina == "misMensajes" %} class="activo" {% endif %}>
+    <li class="{% if pagina == 'misMensajes' %} activo {% endif %}{% if usuario.usuario.get_tiene_mensajes_nuevos %} newNot {% endif %}">
       <a href="/mensaje/inbox">
         <i class="iconos">
           g
@@ -55,18 +55,18 @@
         </span>
       </a>
     </li>
-    <li {% if pagina == "misEventos" %} class="activo" {% endif %}>
+    <li class="{% if pagina == 'misEventos' %}activo{% endif %}{% if usuario.usuario.get_tiene_eventos_nuevos %} newNot {% endif %}">
       <a href="/mis_eventos/">
         <i class="iconos fl">
           
         </i>
         <span class="detalle">
-          Mis eventos
+          Mis eventos {% if usuario.usuario.get_tiene_mensajes_nuevos %} newNot {% endif %}
         </span>
       </a>
     </li>
     {% if usuario.usuario.soy_brand %}
-    <li {% if pagina == "misReservas" %} class="activo" {% endif %}>
+    <li class="{% if pagina == 'misReservas' %} activo {% endif %}{% if usuario.usuario.get_tiene_reservas_nuevas %} newNot {% endif %}">
       <a href="/mis_reservas/">
         <i class="iconos fl">
           
