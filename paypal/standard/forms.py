@@ -94,7 +94,7 @@ class PayPalPaymentsForm(forms.Form):
     currency_code = forms.CharField(widget=forms.HiddenInput(), initial="USD")
     no_shipping = forms.ChoiceField(widget=forms.HiddenInput(), choices=SHIPPING_CHOICES,
         initial=SHIPPING_CHOICES[0][0])
-
+    paymentaction=forms.CharField(widget=forms.HiddenInput(), initial="sale")
     def __init__(self, button_type="buy", *args, **kwargs):
         super(PayPalPaymentsForm, self).__init__(*args, **kwargs)
         self.button_type = button_type

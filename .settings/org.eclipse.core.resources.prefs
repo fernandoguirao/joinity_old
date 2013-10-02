@@ -6,6 +6,7 @@ encoding//joinitys/eventos/forms.py=utf-8
 encoding//joinitys/forms.py=utf-8
 encoding//mensajes/forms.py=utf-8
 encoding//paypal/pro/forms.py=utf-8
+encoding//paypal/pro/helpers.py=utf-8
 encoding//paypal/standard/forms.py=utf-8
 encoding//paypal/standard/helpers.py=utf-8
 encoding//paypal/standard/ipn/admin.py=utf-8

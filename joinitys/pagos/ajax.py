@@ -45,10 +45,12 @@ def carga_compra(request, pago_id):
         "cancel_return": "http://joinity.com/",
         "custom": usuario_pago[0].id,
         "currency_code": "EUR",  # currency
+        "paymentaction": "authorization",
+
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     
-    context={"pago":pago, "form":form.render()}
+    context={"pago":pago, "form":form.sandbox()}
     pagina_pago=render_to_string("joinitys/pagos/ajax_ver_compra.html", context)
     return simplejson.dumps({"pago":pagina_pago})
 
